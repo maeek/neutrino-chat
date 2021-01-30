@@ -1,0 +1,84 @@
+@mixin scrimGradient($startColor: $color-black, $direction: 'to bottom') {
+  $scrimCoordinates: ( 0: 1, 19: 0.738, 34: 0.541, 47: 0.382, 56.5: 0.278, 65: 0.194, 73: 0.126, 80.2: 0.075, 86.1: 0.042, 91: 0.021, 95.2: 0.008, 98.2: 0.002, 100: 0);
+  $hue: hue($startColor);
+  $saturation: saturation($startColor);
+  $lightness: lightness($startColor);
+  $stops: ();
+  @each $colorStop,
+  $alphaValue in $scrimCoordinates {
+      $stop: hsla($hue, $saturation, $lightness, $alphaValue) percentage($colorStop/100);
+      $stops: append($stops, $stop, comma);
+  }
+  background: linear-gradient(unquote($direction), $stops);
+}
+
+%flex {
+  display: flex;
+}
+
+%flex-column {
+  flex-direction: column;
+}
+
+%flex-start {
+  @extend %flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+%flex-end {
+  @extend %flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  align-content: flex-end;
+}
+
+%flex-center {
+  @extend %flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+%flex-start-end {
+  @extend %flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  align-content: flex-end;
+}
+
+%flex-end-start {
+  @extend %flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+%flex-start-center {
+  @extend %flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+%flex-center-start {
+  @extend %flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+}
+
+%flex-end-center {
+  @extend %flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-content: center;
+}
+
+%flex-center-end {
+  @extend %flex;
+  justify-content: center;
+  align-items: flex-end;
+  align-content: flex-end;
+}

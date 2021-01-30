@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  font-family: "Roboto", "Helvetica Neue", -apple-system, BlinkMacSystemFont, Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #25292F;
+  position: relative;
+  min-height: 100vh;
+  overflow: auto;
+}
+
+i.mi {
+  font-display: block;
+}
+
+.first-paint {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ababab;
+  font-size: 2rem;
+  user-select: none;
+}

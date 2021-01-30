@@ -1,0 +1,36 @@
+.App {
+    // height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    >button {
+        margin: 0.5rem;
+    }
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
+
+.buttons-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    >div,
+    button {
+        margin: 0.5rem;
+    }
+}
+
+.input-wrapper {
+    margin: 1rem;
+    width: 100%;
+    >div,
+    input,
+    textarea {
+        margin: 0.5rem 0;
+    }
+}
