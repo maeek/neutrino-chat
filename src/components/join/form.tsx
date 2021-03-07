@@ -79,7 +79,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
           >
             Username
           </Heading>
-          <ul className="form-register-box-requirements" onClick={clickOnFocus(passwordRef)}>
+          <ul className="form-register-box-requirements" onClick={clickOnFocus(loginRef)}>
             <li>
               <Text type="secondary" className="form-register-box-requirements-entry form-register-box-requirements-entry--header">
                 Username requirements:
