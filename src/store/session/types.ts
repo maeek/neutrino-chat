@@ -1,4 +1,4 @@
-import { GenericPayloadStructure } from "../../types";
+import { GenericPayloadStructure } from '../types';
 
 export interface SessionState {
   sessionInfo: {
@@ -10,8 +10,8 @@ export interface SessionState {
 export enum SessionActionsEnum {
   SET_TOKEN = 'SET_TOKEN',
   SET_REFRESH_TOKEN = 'SET_REFRESH_TOKEN',
-  CLEAR_TOKENS = 'CLEAR_TOKENS'
-};
+  CLEAR_TOKENS = 'CLEAR_TOKENS',
+}
 
 export interface SetTokenAction extends GenericPayloadStructure {
   type: SessionActionsEnum.SET_TOKEN;

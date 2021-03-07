@@ -1,5 +1,5 @@
 // import { DateTime } from "luxon";
-import { GenericPayloadStructure } from "../../types";
+import { GenericPayloadStructure } from '../../types';
 
 export interface Device {
   // added: DateTime; // Maybe in the future
@@ -17,14 +17,14 @@ export interface DeviceEntry {
 }
 
 export type DevicesState = {
-  devices: DeviceEntry;
+  entries: DeviceEntry;
 }
 
 export enum DevicesActionsEnum {
   ADD_DEVICE = 'ADD_DEVICE',
   REMOVE_DEVICE = 'REMOVE_DEVICE',
   CLEAR_DEVICES = 'CLEAR_DEVICES'
-};
+}
 
 export interface AddDevicesAction extends GenericPayloadStructure {
   type: DevicesActionsEnum.ADD_DEVICE;

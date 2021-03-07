@@ -1,4 +1,4 @@
-import { AddDevicesAction, ClearDevicesAction, Device, DevicesActionsEnum, RemoveDevicesAction} from "./types";
+import { AddDevicesAction, ClearDevicesAction, Device, DevicesActionsEnum, RemoveDevicesAction} from './types';
 
 export const addDevices = (devices: Device[]): AddDevicesAction => ({
   type: DevicesActionsEnum.ADD_DEVICE,

@@ -1,4 +1,4 @@
-import { AddGroupMembersAction, AddGroupsAction, ClearGroupMembersAction, ClearGroupsAction, GroupActionsEnum, GroupItem, Groups, RemoveGroupMembersAction, RemoveGroupsAction, RenameGroupAction } from "./types";
+import { AddGroupMembersAction, AddGroupsAction, ClearGroupMembersAction, ClearGroupsAction, GroupActionsEnum, GroupItem, Groups, RemoveGroupMembersAction, RemoveGroupsAction, RenameGroupAction } from './types';
 
 export const addGroups = (groups: string[]): AddGroupsAction => ({
   type: GroupActionsEnum.ADD_GROUP,

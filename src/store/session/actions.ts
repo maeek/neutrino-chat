@@ -1,4 +1,4 @@
-import { ClearTokensAction, SessionActionsEnum, SetRefreshTokenAction, SetTokenAction } from "./types";
+import { ClearTokensAction, SessionActionsEnum, SetRefreshTokenAction, SetTokenAction } from './types';
 
 export const setToken = (token: string): SetTokenAction => ({
   type: SessionActionsEnum.SET_TOKEN,

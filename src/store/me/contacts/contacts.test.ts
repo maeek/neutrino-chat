@@ -1,18 +1,12 @@
-import { DateTime } from 'luxon';
 import contactsReducer from '.';
+import { TIME_MOCK } from '../../../setupTests';
 import { addToContacts, clearContacts, removeFromContacts } from './actions';
-import { AddContactsAction, ClearContactsAction, ContactActionsEnum, ContactsActionTypes, ContactsState, RemoveContactsAction } from './types';
-
-const TIME_MOCK = '2021-01-30T18:05:38.652+01:00' as unknown as DateTime;
-
-jest.mock('luxon', () => ({
-  DateTime: {
-    local: () => TIME_MOCK
-  }
-}));
+import { getContacts, getMutualContacts } from './selectors';
+import { AddContactsAction, ClearContactsAction, ContactActionsEnum, ContactEntry, ContactsActionTypes, ContactsState, RemoveContactsAction } from './types';
 
 describe('Redux store - Me/Contacts', () => {
   describe('Actions', () => {
+
     it('should create an action to add users to contacts', () => {
       const users = [
         'test1',
@@ -21,7 +15,8 @@ describe('Redux store - Me/Contacts', () => {
       const expectedAction = {
         type: ContactActionsEnum.ADD_CONTACT,
         data: {
-          users
+          users,
+          timestamp: TIME_MOCK
         }
       };
       expect(addToContacts(users)).toEqual(expectedAction);
@@ -55,8 +50,8 @@ describe('Redux store - Me/Contacts', () => {
       expect(
         contactsReducer(undefined, {} as ContactsActionTypes)
       ).toEqual({
-        contacts: {}
-      })
+        entries: {}
+      });
     });
 
     it('should handle ADD_CONTACT', () => {
@@ -67,14 +62,15 @@ describe('Redux store - Me/Contacts', () => {
       const addAction: AddContactsAction = {
         type: ContactActionsEnum.ADD_CONTACT,
         data: {
-          users
+          users,
+          timestamp: TIME_MOCK
         }
-      }
+      };
 
       expect(
-        contactsReducer({contacts: {}}, addAction)
+        contactsReducer({entries: {}}, addAction)
       ).toEqual({
-        contacts: {
+        entries: {
           test1: {
             username: 'test1',
             added: TIME_MOCK
@@ -84,12 +80,12 @@ describe('Redux store - Me/Contacts', () => {
             added: TIME_MOCK
           }
         }
-      })
+      });
     });
 
     it('should handle REMOVE_CONTACT', () => {
       const initState: ContactsState = {
-        contacts: {
+        entries: {
           test1: {
             username: 'test1',
             added: TIME_MOCK
@@ -111,22 +107,22 @@ describe('Redux store - Me/Contacts', () => {
         data: {
           users
         }
-      }
+      };
 
       expect(
         contactsReducer(initState, removeAction)
       ).toEqual({
-        contacts: {}
-      })
+        entries: {}
+      });
     });
 
     it('should handle CLEAR_CONTACTS', () => {
       const clearAction: ClearContactsAction = {
         type: ContactActionsEnum.CLEAR_CONTACTS,
         data: {}
-      }
+      };
       const initialState: ContactsState = {
-        contacts: {
+        entries: {
           test1: {
             username: 'test1',
             added: TIME_MOCK
@@ -140,9 +136,37 @@ describe('Redux store - Me/Contacts', () => {
       expect(
         contactsReducer(initialState, clearAction)
       ).toEqual({
-        contacts: {}
-      })
+        entries: {}
+      });
     });
     
+  });
+
+  describe('Selectots', () => {
+    const globalStateMock = {
+      me: {
+        contacts: {
+          entries: {
+            foobar: {
+              username: 'foobar',
+              added: TIME_MOCK
+            },
+            fizbuzz: {
+              username: 'fizbuzz',
+              added: TIME_MOCK
+            }
+          }
+        }
+      }
+    };
+
+    it('getContact should return all contacts from global store', () => {
+      const contacts = getContacts(globalStateMock as any);
+      expect(contacts).toEqual(globalStateMock.me.contacts.entries);
+    });
+    it.skip('getMutualContacts from global store', () => {
+      const contacts = getMutualContacts(globalStateMock as any);
+      expect(contacts).toEqual([]);
+    });
   });
 });

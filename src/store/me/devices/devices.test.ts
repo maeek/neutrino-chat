@@ -1,16 +1,6 @@
-import { DateTime } from 'luxon';
 import devicesReducer from '.';
 import { addDevices, removeDevices, clearDevices } from './actions';
 import { AddDevicesAction, ClearDevicesAction, Device, DevicesActionsEnum, DevicesActionTypes, DevicesState, RemoveDevicesAction } from './types';
-
-
-const TIME_MOCK = '2021-01-30T18:05:38.652+01:00' as unknown as DateTime;
-
-jest.mock('luxon', () => ({
-  DateTime: {
-    local: () => TIME_MOCK
-  }
-}));
 
 describe('Redux store - Me/Devices', () => {
   describe('Actions', () => {
@@ -76,14 +66,14 @@ describe('Redux store - Me/Devices', () => {
         useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.4.0'
       }
     };
-    const initState: DevicesState = { devices: initDevices };
+    const initState: DevicesState = { entries: initDevices };
 
     it('should initialize default state', () => {
       expect(
         devicesReducer(undefined, {} as DevicesActionTypes)
       ).toEqual({
-        devices: initDevices
-      })
+        entries: initDevices
+      });
     });
 
     it('should handle ADD_DEVICE', () => {
@@ -110,22 +100,22 @@ describe('Redux store - Me/Devices', () => {
         data: {
           devices
         }
-      }
+      };
 
       expect(
         devicesReducer(initState, addAction)
       ).toEqual({
-        devices: {
+        entries: {
           ...initDevices,
           [devices[0].id]: devices[0],
           [devices[1].id]: devices[1]
         }
-      })
+      });
     });
 
     it('should handle REMOVE_DEVICE', () => {
       const initState: DevicesState = {
-        devices: {
+        entries: {
           ...initDevices,
           '1': {
             id: '1',
@@ -153,22 +143,22 @@ describe('Redux store - Me/Devices', () => {
         data: {
           devices
         }
-      }
+      };
 
       expect(
         devicesReducer(initState, removeAction)
       ).toEqual({
-        devices: { ...initDevices }
-      })
+        entries: { ...initDevices }
+      });
     });
 
     it('should handle CLEAR_DEVICES', () => {
       const clearAction: ClearDevicesAction = {
         type: DevicesActionsEnum.CLEAR_DEVICES,
         data: {}
-      }
+      };
       const initialState: DevicesState = {
-        devices: {
+        entries: {
           ...initDevices,
           '1': {
             id: '1',
@@ -191,8 +181,8 @@ describe('Redux store - Me/Devices', () => {
       expect(
         devicesReducer(initialState, clearAction)
       ).toEqual({
-        devices: { ...initDevices }
-      })
+        entries: { ...initDevices }
+      });
     });
     
   });

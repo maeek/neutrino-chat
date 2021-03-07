@@ -1,4 +1,4 @@
-import { GenericPayloadStructure } from "../../types";
+import { GenericPayloadStructure } from '../../types';
 
 export interface GroupItem {
   id: string;
@@ -15,7 +15,7 @@ export interface GroupsEntry {
 }
 
 export type GroupsState = {
-  groups: GroupsEntry;
+  entries: GroupsEntry;
 }
 
 export enum GroupActionsEnum {
@@ -26,7 +26,7 @@ export enum GroupActionsEnum {
   ADD_MEMBER = 'ADD_MEMBER',
   REMOVE_MEMBER = 'REMOVE_MEMBER',
   CLEAR_MEMBERS = 'CLEAR_MEMBERS'
-};
+}
 
 export interface AddGroupsAction extends GenericPayloadStructure {
   type: GroupActionsEnum.ADD_GROUP;

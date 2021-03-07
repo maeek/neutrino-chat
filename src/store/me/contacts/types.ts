@@ -1,5 +1,5 @@
-import { DateTime } from "luxon";
-import { GenericPayloadStructure } from "../../types";
+import { DateTime } from 'luxon';
+import { GenericPayloadStructure } from '../../types';
 
 export interface Contact {
   username: string;
@@ -11,19 +11,20 @@ export interface ContactEntry {
 }
 
 export type ContactsState = {
-  contacts: ContactEntry;
+  entries: ContactEntry;
 }
 
 export enum ContactActionsEnum {
   ADD_CONTACT = 'ADD_CONTACT',
   REMOVE_CONTACT = 'REMOVE_CONTACT',
-  CLEAR_CONTACTS = 'CLEAR_CONTACTS',
-};
+  CLEAR_CONTACTS = 'CLEAR_CONTACTS'
+}
 
 export interface AddContactsAction extends GenericPayloadStructure {
   type: ContactActionsEnum.ADD_CONTACT;
   data: {
     users: string[];
+    timestamp: DateTime;
   }
 }
 

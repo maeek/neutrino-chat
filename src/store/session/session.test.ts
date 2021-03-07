@@ -1,9 +1,18 @@
-import sessionReducer from ".";
-import { clearTokens, setRefreshToken, setToken } from "./actions";
-import { ClearTokensAction, SessionActionsEnum, SessionActionTypes, SetRefreshTokenAction, SetTokenAction, SessionState } from "./types";
+import sessionReducer from '.';
+import { clearTokens, setRefreshToken, setToken } from './actions';
+import { getAuthRefreshToken, getAuthToken } from './selectors';
+import {
+  ClearTokensAction,
+  SessionActionsEnum,
+  SessionActionTypes,
+  SetRefreshTokenAction,
+  SetTokenAction,
+  SessionState
+} from './types';
 
 describe('Redux store - Me/Contacts', () => {
   describe('Actions', () => {
+
     it('should create an action to set token', () => {
       const expectedAction = {
         type: SessionActionsEnum.SET_TOKEN,
@@ -42,7 +51,7 @@ describe('Redux store - Me/Contacts', () => {
           token: null,
           refreshToken: null
         }
-      })
+      });
     });
 
     it('should handle SET_TOKEN', () => {
@@ -60,7 +69,7 @@ describe('Redux store - Me/Contacts', () => {
           token: 'abcd123',
           refreshToken: null
         }
-      })
+      });
     });
 
     it('should handle SET_REFRESH_TOKEN', () => {
@@ -78,7 +87,7 @@ describe('Redux store - Me/Contacts', () => {
           token: null,
           refreshToken: 'abcd123'
         }
-      })
+      });
     });
 
     it('should handle CLEAR_TOKENS', () => {
@@ -101,7 +110,27 @@ describe('Redux store - Me/Contacts', () => {
           token: null,
           refreshToken: null
         }
-      })
+      });
+    });
+  });
+
+  describe('Selectors', () => {
+    const globalStateMock = {
+      auth: {
+        sessionInfo: {
+          token: 'abcd',
+          refreshToken: 'abcd'
+        }
+      }
+    };
+
+    it('getAuthToken should return token from global store', () => {
+      const token = getAuthToken(globalStateMock as any);
+      expect(token).toEqual('abcd');
+    });
+    it('getAuthRefreshToken should return refreshToken from global store', () => {
+      const token = getAuthRefreshToken(globalStateMock as any);
+      expect(token).toEqual('abcd');
     });
   });
 });

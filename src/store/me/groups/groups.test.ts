@@ -1,20 +1,10 @@
-import { DateTime } from 'luxon';
 import groupsReducer from '.';
 import { addGroups, addMembersToGroup, clearGroupMembers, clearGroups, removeGroups, removeMembersToGroup } from './actions';
 import { AddGroupMembersAction, AddGroupsAction, ClearGroupMembersAction, ClearGroupsAction, GroupActionsEnum, GroupItem, GroupMemebersActionTypes, Groups, GroupsActionTypes, GroupsState, RemoveGroupMembersAction, RemoveGroupsAction, RenameGroupAction } from './types';
 
-
-const TIME_MOCK = '2021-01-30T18:05:38.652+01:00' as unknown as DateTime;
-
-jest.mock('luxon', () => ({
-  DateTime: {
-    local: () => TIME_MOCK
-  }
-}));
-
 describe('Redux store - Me/Groups', () => {
   const initState = {
-    groups: {
+    entries: {
       Starred: {
         name: 'Starred',
         items: []
@@ -126,13 +116,13 @@ describe('Redux store - Me/Groups', () => {
         data: {
           groups
         }
-      }
+      };
 
       expect(
         groupsReducer(initState, addAction)
       ).toEqual({
-        groups: {
-          ...initState.groups,
+        entries: {
+          ...initState.entries,
           [groups[0]]: {
             name: groups[0],
             items: []
@@ -142,13 +132,13 @@ describe('Redux store - Me/Groups', () => {
             items: []
           }
         }
-      })
+      });
     });
 
     it('should handle REMOVE_GROUP', () => {
       const newState: GroupsState = {
-        groups: {
-          ...initState.groups,
+        entries: {
+          ...initState.entries,
           '1': {
             name: '1',
             items: []
@@ -167,7 +157,7 @@ describe('Redux store - Me/Groups', () => {
         data: {
           groups
         }
-      }
+      };
 
       expect(
         groupsReducer(newState, removeAction)
@@ -176,8 +166,8 @@ describe('Redux store - Me/Groups', () => {
 
     it('should handle RENAME_GROUP', () => {
       const newState: GroupsState = {
-        groups: {
-          ...initState.groups,
+        entries: {
+          ...initState.entries,
           '1': {
             name: '1',
             items: [{
@@ -193,8 +183,8 @@ describe('Redux store - Me/Groups', () => {
       };
 
       const expectedState: GroupsState = {
-        groups: {
-          ...initState.groups,
+        entries: {
+          ...initState.entries,
           'test': {
             name: 'test',
             items: [{
@@ -217,7 +207,7 @@ describe('Redux store - Me/Groups', () => {
             name: 'test'
           }
         }
-      }
+      };
 
       expect(
         groupsReducer(newState, renameGroup)
@@ -226,8 +216,8 @@ describe('Redux store - Me/Groups', () => {
 
     it('should handle CLEAR_GROUPS', () => {
       const newState: GroupsState = {
-        groups: {
-          ...initState.groups,
+        entries: {
+          ...initState.entries,
           '1': {
             name: '1',
             items: []
@@ -242,7 +232,7 @@ describe('Redux store - Me/Groups', () => {
       const clearAction: ClearGroupsAction = {
         type: GroupActionsEnum.CLEAR_GROUPS,
         data: {}
-      }
+      };
 
       expect(
         groupsReducer(newState, clearAction)
@@ -264,12 +254,12 @@ describe('Redux store - Me/Groups', () => {
             items
           }
         }
-      }
+      };
 
       expect(
         groupsReducer(initState, addAction)
       ).toEqual({
-        groups: {
+        entries: {
           Starred: {
             name: 'Starred',
             items
@@ -290,7 +280,7 @@ describe('Redux store - Me/Groups', () => {
       };
 
       const newState: GroupsState = {
-        groups: {
+        entries: {
           Starred: {
             name: 'Starred',
             items: [{
@@ -304,7 +294,7 @@ describe('Redux store - Me/Groups', () => {
       expect(
         groupsReducer(newState, removeAction)
       ).toEqual({
-        groups: {
+        entries: {
           Starred: {
             name: 'Starred',
             items: []
@@ -324,7 +314,7 @@ describe('Redux store - Me/Groups', () => {
       };
 
       const newState: GroupsState = {
-        groups: {
+        entries: {
           Starred: {
             name: 'Starred',
             items: [
@@ -344,7 +334,7 @@ describe('Redux store - Me/Groups', () => {
       expect(
         groupsReducer(newState, clearAction)
       ).toEqual({
-        groups: {
+        entries: {
           Starred: {
             name: 'Starred',
             items: []

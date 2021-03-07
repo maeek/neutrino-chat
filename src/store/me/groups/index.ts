@@ -1,7 +1,7 @@
-import { GroupActionsEnum, GroupItem, GroupMemebersActionTypes, Groups, GroupsActionTypes, GroupsEntry, GroupsState } from './types';
+import { GroupActionsEnum, GroupItem, GroupMemebersActionTypes, GroupsActionTypes, GroupsEntry, GroupsState } from './types';
 
 export const initialState: GroupsState = {
-  groups: {
+  entries: {
     Starred: {
       name: 'Starred',
       items: []
@@ -11,105 +11,105 @@ export const initialState: GroupsState = {
 
 const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMemebersActionTypes) => {
   switch (action.type) {
-    case GroupActionsEnum.ADD_GROUP:
-      const newGroups: GroupsEntry = {};
+  case GroupActionsEnum.ADD_GROUP:
+    const newGroups: GroupsEntry = {};
 
-      action.data.groups.forEach((group: string) => {
-        newGroups[group] = {
-          name: group,
-          items: []
-        };
-      });
-
-      return {
-        groups: {
-          ...state.groups,
-          ...newGroups
-        }
+    action.data.groups.forEach((group: string) => {
+      newGroups[group] = {
+        name: group,
+        items: []
       };
+    });
 
-    case GroupActionsEnum.REMOVE_GROUP:
-      const updatedGroups = {...state.groups};
-
-      action.data.groups.forEach((group: string) => {
-        if (group !== 'Starred') delete updatedGroups[group];
-      });
-
-      return {
-        groups: updatedGroups
+    return {
+      entries: {
+        ...state.entries,
+        ...newGroups
       }
+    };
 
-    case GroupActionsEnum.CLEAR_GROUPS:
-      return {
-        groups: {
-          Starred: {
-            name: 'Starred',
-            items: state.groups.Starred.items
-          }
+  case GroupActionsEnum.REMOVE_GROUP:
+    const updatedGroups = {...state.entries};
+
+    action.data.groups.forEach((group: string) => {
+      if (group !== 'Starred') delete updatedGroups[group];
+    });
+
+    return {
+      entries: updatedGroups
+    };
+
+  case GroupActionsEnum.CLEAR_GROUPS:
+    return {
+      entries: {
+        Starred: {
+          name: 'Starred',
+          items: state.entries.Starred.items
         }
-      };
+      }
+    };
 
-    case GroupActionsEnum.RENAME_GROUP:
-      const renamedGroup = {
-        ...state.groups
-      };
+  case GroupActionsEnum.RENAME_GROUP:
+    const renamedGroup = {
+      ...state.entries
+    };
 
-      delete renamedGroup[action.data.group.id];
+    delete renamedGroup[action.data.group.id];
 
-      renamedGroup[action.data.group.name] = {
-        name: action.data.group.name,
-        items: state.groups[action.data.group.id].items
-      };
+    renamedGroup[action.data.group.name] = {
+      name: action.data.group.name,
+      items: state.entries[action.data.group.id].items
+    };
 
-      return {
-        groups: renamedGroup
-      };
+    return {
+      entries: renamedGroup
+    };
 
-    case GroupActionsEnum.ADD_MEMBER:
-      return {
-        groups: {
-          ...state.groups,
-          [action.data.group.id]: {
-            name: action.data.group.id,
-            items: [
-              ...state.groups[action.data.group.id].items,
-              ...action.data.group.items
-            ]
-          }
+  case GroupActionsEnum.ADD_MEMBER:
+    return {
+      entries: {
+        ...state.entries,
+        [action.data.group.id]: {
+          name: action.data.group.id,
+          items: [
+            ...state.entries[action.data.group.id].items,
+            ...action.data.group.items
+          ]
         }
-      };
+      }
+    };
 
-    case GroupActionsEnum.REMOVE_MEMBER:
-      const updatedItems: GroupItem[] = [
-        ...state.groups[action.data.group.id].items
-          .filter((item: GroupItem) => !action.data.group.items.includes(item.id))
-      ];
+  case GroupActionsEnum.REMOVE_MEMBER:
+    const updatedItems: GroupItem[] = [
+      ...state.entries[action.data.group.id].items
+        .filter((item: GroupItem) => !action.data.group.items.includes(item.id))
+    ];
 
-      return {
-        ...state,
-        groups: {
-          ...state.groups,
-          [action.data.group.id]: {
-            name: action.data.group.id,
-            items: updatedItems
-          }
+    return {
+      ...state,
+      entries: {
+        ...state.entries,
+        [action.data.group.id]: {
+          name: action.data.group.id,
+          items: updatedItems
         }
-      };
+      }
+    };
 
-    case GroupActionsEnum.CLEAR_MEMBERS:
-      return {
-        ...state,
-        groups: {
-          ...state.groups,
-          [action.data.group.id]: {
-            name: action.data.group.id,
-            items: []
-          }
+  case GroupActionsEnum.CLEAR_MEMBERS:
+    return {
+      ...state,
+      entries: {
+        ...state.entries,
+        [action.data.group.id]: {
+          name: action.data.group.id,
+          items: []
         }
-      };
+      }
+    };
 
-    default:
-      return state;
+  default:
+    return state;
   }
 };
 

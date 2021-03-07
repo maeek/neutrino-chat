@@ -1,8 +1,7 @@
-import { DateTime } from 'luxon';
 import { Device, DeviceEntry, DevicesActionsEnum, DevicesActionTypes, DevicesState } from './types';
 
 export const initialState: DevicesState = {
-  devices: {
+  entries: {
     '#': {
       id: '#',
       name: 'This device',
@@ -16,36 +15,36 @@ export const initialState: DevicesState = {
 
 const devicesReducer = (state = initialState, action: DevicesActionTypes) => {
   switch (action.type) {
-    case DevicesActionsEnum.ADD_DEVICE:
-      const newDevices: DeviceEntry = {};
+  case DevicesActionsEnum.ADD_DEVICE:
+    const newDevices: DeviceEntry = {};
 
-      action.data.devices.forEach((dev: Device) => {
-        newDevices[dev.id] = dev;
-      });
+    action.data.devices.forEach((dev: Device) => {
+      newDevices[dev.id] = dev;
+    });
 
-      return {
-        devices: {
-          ...state.devices,
-          ...newDevices
-        }
-      };
-
-    case DevicesActionsEnum.REMOVE_DEVICE:
-      const updatedDevices = {...state.devices};
-
-      action.data.devices.forEach((did: string) => {
-        delete updatedDevices[did];
-      });
-
-      return {
-        devices: updatedDevices
+    return {
+      entries: {
+        ...state.entries,
+        ...newDevices
       }
+    };
 
-    case DevicesActionsEnum.CLEAR_DEVICES:
-      return initialState;
+  case DevicesActionsEnum.REMOVE_DEVICE:
+    const updatedDevices = {...state.entries};
 
-    default:
-      return state;
+    action.data.devices.forEach((did: string) => {
+      delete updatedDevices[did];
+    });
+
+    return {
+      entries: updatedDevices
+    };
+
+  case DevicesActionsEnum.CLEAR_DEVICES:
+    return initialState;
+
+  default:
+    return state;
   }
 };
 

@@ -1,45 +1,44 @@
 import { ContactActionsEnum, ContactEntry, ContactsActionTypes, ContactsState } from './types';
-import { DateTime } from 'luxon';
 
 export const initialState: ContactsState = {
-  contacts: {}
+  entries: {}
 };
 
 const contactsReducer = (state = initialState, action: ContactsActionTypes) => {
   switch (action.type) {
-    case ContactActionsEnum.ADD_CONTACT:
-      const newContacts: ContactEntry = {};
+  case ContactActionsEnum.ADD_CONTACT:
+    const newContacts: ContactEntry = {};
 
-      action.data.users.forEach((user: string) => {
-        newContacts[user] = {
-          username: user,
-          added: DateTime.local()
-        }
-      });
-
-      return {
-        contacts: {
-          ...state.contacts,
-          ...newContacts
-        }
+    action.data.users.forEach((user: string) => {
+      newContacts[user] = {
+        username: user,
+        added: action.data.timestamp
       };
+    });
 
-    case ContactActionsEnum.REMOVE_CONTACT:
-      const updatedContacts = {...state.contacts};
-
-      action.data.users.forEach((user: string) => {
-        delete updatedContacts[user];
-      });
-
-      return {
-        contacts: updatedContacts
+    return {
+      entries: {
+        ...state.entries,
+        ...newContacts
       }
+    };
 
-    case ContactActionsEnum.CLEAR_CONTACTS:
-      return initialState;
+  case ContactActionsEnum.REMOVE_CONTACT:
+    const updatedContacts = {...state.entries};
 
-    default:
-      return state;
+    action.data.users.forEach((user: string) => {
+      delete updatedContacts[user];
+    });
+
+    return {
+      entries: updatedContacts
+    };
+
+  case ContactActionsEnum.CLEAR_CONTACTS:
+    return initialState;
+
+  default:
+    return state;
   }
 };
 
