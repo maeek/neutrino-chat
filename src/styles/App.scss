@@ -1,36 +1,17 @@
 .App {
-    // height: 100vh;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-direction: column;
-    >button {
-        margin: 0.5rem;
-    }
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
 }
 
 ::-moz-focus-inner {
     border: 0;
 }
 
-.buttons-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    >div,
-    button {
-        margin: 0.5rem;
-    }
-}
-
-.input-wrapper {
-    margin: 1rem;
-    width: 100%;
-    >div,
-    input,
-    textarea {
-        margin: 0.5rem 0;
-    }
+.page-root {
+  display:  flex;
+  justify-content: center;
+  width: 100vw;
+  min-height: 100vh;
 }

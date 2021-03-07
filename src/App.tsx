@@ -2,16 +2,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store/';
-import Router from './router';
+import Router from './pages/router';
 import './styles/App.scss';
-
-// import Router from 'components/routes/Router';
 
 const App = () => (
   <Provider store={store}>
-    <div className="App">
-      <Router />
-    </div>
+    <Router />
   </Provider>
 );
 
