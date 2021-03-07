@@ -151,7 +151,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
           <Heading
             level={5}
             className="form-register-box-heading"
-            onClick={clickOnFocus(passwordRef)}
+            onClick={clickOnFocus(passwordRepeatRef)}
           >
               Repeat Password
           </Heading>
