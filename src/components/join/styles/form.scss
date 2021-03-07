@@ -1,0 +1,128 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cantarell&display=swap');
+
+.form-register {
+  flex: 0 0 auto;
+  height: auto;
+  width: 100%;
+  max-width: 580px;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
+  .ne-typo-heading-level-1 {
+    color: #8cc0f2;
+    font-family: 'Cantarell', sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .ne-typo-heading-level-5 {
+    color: #dfdfdf;
+  }
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    margin: 1rem 0;
+    text-align: justify;
+    
+    .ne-typo-heading-level-2 {
+      margin: 0.5rem 0;
+    }
+  }
+
+  &-box {
+    flex: 0 0 auto;
+    position: relative;
+    margin: 0.8rem 0 1.2rem;
+    padding: 0.4rem 0 0.5rem;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #2B3036;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.06);
+
+    &-heading {
+      font-size: 0.78rem;
+      font-weight: 400;
+      padding: 0.6rem 1rem 0.8rem 1rem;
+      margin: 0;
+    }
+
+    &-input {
+      background-color: #2b3036;
+      &:focus-within {
+        background-color: #343a43;
+      }
+
+      .ne-input-controll {
+        padding: .6rem 1rem;
+      }
+    }
+
+    &-entry {
+      margin-bottom: 0.4rem;
+    }
+
+    &-appendix {
+      padding: 0.5rem 1rem 0;
+      font-size: 0.7rem;
+      width: 100%;
+      display: block;
+      line-height: 1.2rem;
+    }
+
+    &-requirements {
+      list-style: none;
+      padding: 0 1rem;
+      margin: -0.2rem 0 0.5rem;
+      >li {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      &-entry {
+        position: relative;
+        padding-left: 0.3rem;
+        font-size: 0.65rem;
+        line-height: 0.75rem;
+        color: #9a9a9a;
+
+        &::before {
+          content: '- ';
+        }
+
+        &--header {
+          padding-left: 0;
+          &::before {
+            content: '';
+          }
+        }
+      }
+    }
+  }
+
+  &-footer {
+    margin: 1rem 0 0;
+  }
+
+  .button-login {
+    margin: 0.2rem 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-register {
+    margin: 0 0 5rem;
+    .ne-typo-heading-level-1 {
+      font-size: 2.5rem;
+      margin-top: 0;
+    }
+  }
+}
