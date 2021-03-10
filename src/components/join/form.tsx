@@ -3,7 +3,9 @@ import React, {
   MouseEventHandler,
   MouseEvent,
   MutableRefObject,
-  useRef
+  useRef,
+  useState,
+  useCallback
 } from 'react';
 import {
   Heading,
@@ -12,24 +14,17 @@ import {
   Text,
   ProceedButton
 } from '@maeek/neutrino-design/components/atoms';
+import { User } from './types';
 import './styles/form.scss';
 
 interface RegisterFormProps {
   onHeadingClick?: MouseEventHandler;
-  onRegister?: MouseEventHandler;
-  setUsername?: (value: string) => void;
-  setPassword?: (value: string) => void;
-  setPasswordRepeat?: (value: string) => void;
-  validatePasswords?: () => boolean;
+  onRegister?: (user: User) => void;
   redirectToLogin?: Function;
 }
 
 export const RegisterForm: FC<RegisterFormProps> = (props) => {
   const {
-    setUsername,
-    setPassword,
-    setPasswordRepeat,
-    validatePasswords,
     onRegister,
     redirectToLogin,
     onHeadingClick
@@ -37,6 +32,9 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
   const loginRef = useRef<any>();
   const passwordRef = useRef<any>();
   const passwordRepeatRef = useRef<any>();
+
+  const [password, setPassword] = useState('');
+  const [passwordRepeat, setPasswordRepeat] = useState('');
 
   const clickOnFocus = (elementToFocus: MutableRefObject<any>) => () => {
     if (elementToFocus.current) elementToFocus.current.element.focus();
@@ -53,9 +51,20 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
     if (elementToFocus.current) elementToFocus.current.element.focus();
   };
 
+  const validatePasswords = useCallback(
+    (): boolean => password.length > 0 && password === passwordRepeat,
+    [password, passwordRepeat]
+  );
+
   const onRegisterHandler = (e: MouseEvent<any>) => {
+    const username = loginRef.current.value;
+    const password = passwordRef.current.value;
+
     if (validatePasswords && validatePasswords() && onRegister) {
-      onRegister(e);
+      onRegister({
+        username,
+        password
+      });
     } else {
       focusElement(passwordRef)();
     }
@@ -67,7 +76,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
 
       <div className="form-register-header">
         <Heading level={2}>Join</Heading>
-        <Paragraph>Chat that does not save your messages, it's like you were standing next to the person you're talking with.</Paragraph>
+        <Paragraph>Chat that does not save your messages! Share what's on your mind with anyone you want.</Paragraph>
       </div>
 
       <div className="form-register-box">
@@ -104,7 +113,6 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
             autoComplete="username"
             placeholder="Username"
             required={true}
-            onChange={setUsername}
             onKeyUp={onEnter(focusElement(passwordRef))}
           />
         </div>
@@ -142,8 +150,8 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
             autoComplete="password"
             placeholder="Password"
             required={true}
-            onChange={setPassword}
             validate={validatePasswords}
+            onChange={setPassword}
             onKeyUp={onEnter(focusElement(passwordRepeatRef))}
           />
         </div>
@@ -163,8 +171,8 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
             autoComplete="password"
             placeholder="Repeat Password"
             required={true}
-            onChange={setPasswordRepeat}
             validate={validatePasswords}
+            onChange={setPasswordRepeat}
             onKeyUp={onEnter(onRegisterHandler as Function)}
           />
         </div>

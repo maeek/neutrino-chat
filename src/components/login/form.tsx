@@ -10,16 +10,12 @@ import './styles/form.scss';
 
 interface LoginFormProps {
   onHeadingClick?: MouseEventHandler;
-  onLogin?: MouseEventHandler;
-  setUsername?: (value: string) => void;
-  setPassword?: (value: string) => void;
+  onLogin?: (username: string, password: string) => void;
   redirectToRegister?: Function;
 }
 
 export const LoginForm: FC<LoginFormProps> = (props) => {
   const {
-    setUsername,
-    setPassword,
     onLogin,
     redirectToRegister,
     onHeadingClick
@@ -40,6 +36,18 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
 
   const focusNextOnEnter = (elementToFocus: MutableRefObject<any>) => () => {
     if (elementToFocus.current) elementToFocus.current.element.focus();
+  };
+
+  const onLoginHandler = () => {
+    if (!loginRef.current.value) {
+      loginRef.current.element.focus();
+      return;
+    }
+
+    const username = loginRef.current.value;
+    const password = passwordRef.current.value;
+
+    if (onLogin) onLogin(username, password);
   };
 
   return (
@@ -67,8 +75,6 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
             name="username"
             autoComplete="username"
             placeholder="Username"
-            required={true}
-            onChange={setUsername}
             onKeyUp={onEnter(focusNextOnEnter(passwordRef))}
           />
         </div>
@@ -88,8 +94,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
             name="password"
             autoComplete="password"
             placeholder="Password"
-            onChange={setPassword}
-            onKeyUp={onEnter(onLogin as Function)}
+            onKeyUp={onEnter(onLoginHandler as Function)}
           />
         </div>
         <div className="form-login-box-entry">
@@ -99,7 +104,7 @@ export const LoginForm: FC<LoginFormProps> = (props) => {
         </div>
       </div>
 
-      <ProceedButton className="button-login" onClick={onLogin}>Login</ProceedButton>
+      <ProceedButton className="button-login" onClick={onLoginHandler}>Login</ProceedButton>
 
       <div className="form-login-footer">
         <Text>Don't have an account?</Text>

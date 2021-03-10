@@ -1,5 +1,5 @@
 import { LayoutContentFooter } from '@maeek/neutrino-design/components/';
-import { FC, MouseEvent, useState } from 'react';
+import { FC, MouseEvent } from 'react';
 import { Redirect, RouteProps, useHistory } from 'react-router-dom';
 import { LoginForm } from './form';
 import { GenericFooter } from '../common/footer/generic';
@@ -14,14 +14,10 @@ export const LoginView: FC<LoginViewProps> = (props) => {
   const { isAuthenticated, location } = props;
   const { from } = location?.state || { from: { pathname: '/' } } as any;
   const history = useHistory();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  // const [errors, setErrors] = useState([]);
 
   if (isAuthenticated) return <Redirect to={from} />;
 
-  const onLogin = () => {
+  const onLogin = (username: string, password: string) => {
     // eslint-disable-next-line no-console
     console.log(username, password);
     // Login
@@ -38,8 +34,6 @@ export const LoginView: FC<LoginViewProps> = (props) => {
     <div className="view-root view-root--login">
       <LayoutContentFooter footerNode={<GenericFooter />}>
         <LoginForm
-          setUsername={setUsername}
-          setPassword={setPassword}
           onLogin={onLogin}
           redirectToRegister={redirectToRegister}
         />

@@ -1,26 +1,21 @@
-import { LayoutContentFooter, LayoutSideContent, Heading, Paragraph } from '@maeek/neutrino-design/components/';
-import { FC, MouseEvent, useState } from 'react';
-import { Redirect, RouteProps, useHistory } from 'react-router-dom';
+import { LayoutContentFooter, LayoutSideContent } from '@maeek/neutrino-design/components/';
+import { FC, MouseEvent } from 'react';
+import { RouteProps, useHistory } from 'react-router-dom';
 import { GenericFooter } from '../common/footer/generic';
 import { RegisterForm } from './form';
+import { User } from './types';
 import './styles/join.scss';
 
 interface JoinViewProps extends RouteProps {
-  // isAuthenticated?: boolean;
   [key: string]: any;
 }
 
 export const JoinView: FC<JoinViewProps> = (props) => {
-  // const { isAuthenticated, location } = props;
-  // const { from } = location?.state || { from: { pathname: '/' } } as any;
   const history = useHistory();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordRepeat, setPasswordRepeat] = useState('');
 
-  const onRegister = () => {
+  const onRegister = (user: User) => {
     // eslint-disable-next-line no-console
-    console.log(username, password, passwordRepeat);
+    console.log(user);
     // Register
     // then
     history.replace('/');
@@ -29,10 +24,6 @@ export const JoinView: FC<JoinViewProps> = (props) => {
   const redirectToLogin = (e: MouseEvent<HTMLSpanElement>) => {
     e.preventDefault();
     history.push('/login');
-  };
-
-  const validatePasswords = (): boolean => {
-    return password.length > 0 && password === passwordRepeat;
   };
 
   const sideNode = (
@@ -48,10 +39,6 @@ export const JoinView: FC<JoinViewProps> = (props) => {
           <RegisterForm
             onRegister={onRegister}
             redirectToLogin={redirectToLogin}
-            setUsername={setUsername}
-            setPassword={setPassword}
-            setPasswordRepeat={setPasswordRepeat}
-            validatePasswords={validatePasswords}
           />
         </LayoutContentFooter>
       </LayoutSideContent>
