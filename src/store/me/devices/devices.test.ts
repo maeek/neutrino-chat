@@ -63,7 +63,7 @@ describe('Redux store - Me/Devices', () => {
         os: '',
         platform: '',
         app: 'Mozilla 4.0',
-        useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.4.0'
+        useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.5.0'
       }
     };
     const initState: DevicesState = { entries: initDevices };
@@ -84,7 +84,7 @@ describe('Redux store - Me/Devices', () => {
           os: '',
           platform: '',
           app: 'Mozilla 4.0',
-          useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.4.0'
+          useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.5.0'
         },
         {
           id: '2',
@@ -92,7 +92,7 @@ describe('Redux store - Me/Devices', () => {
           os: '',
           platform: '',
           app: 'Mozilla 4.0',
-          useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.4.0'
+          useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.5.0'
         }
       ];
       const addAction: AddDevicesAction = {
@@ -123,7 +123,7 @@ describe('Redux store - Me/Devices', () => {
             os: '',
             platform: '',
             app: 'Mozilla 4.0',
-            useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.4.0'
+            useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.5.0'
           },
           '2': {
             id: '2',
@@ -131,7 +131,7 @@ describe('Redux store - Me/Devices', () => {
             os: '',
             platform: '',
             app: 'Mozilla 4.0',
-            useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.4.0'
+            useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.5.0'
           }
         }
       };
@@ -166,7 +166,7 @@ describe('Redux store - Me/Devices', () => {
             os: '',
             platform: '',
             app: 'Mozilla 4.0',
-            useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.4.0'
+            useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.5.0'
           },
           '2': {
             id: '2',
@@ -174,7 +174,7 @@ describe('Redux store - Me/Devices', () => {
             os: '',
             platform: '',
             app: 'Mozilla 4.0',
-            useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.4.0'
+            useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.5.0'
           }
         }
       };
