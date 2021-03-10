@@ -1,6 +1,6 @@
 import { LayoutContentFooter } from '@maeek/neutrino-design/components/';
 import { FC, MouseEvent } from 'react';
-import { Redirect, RouteProps, useHistory } from 'react-router-dom';
+import { RouteProps, useHistory } from 'react-router-dom';
 import { LoginForm } from './form';
 import { GenericFooter } from '../common/footer/generic';
 import './styles/login.scss';
@@ -11,11 +11,9 @@ interface LoginViewProps extends RouteProps {
 }
 
 export const LoginView: FC<LoginViewProps> = (props) => {
-  const { isAuthenticated, location } = props;
+  const { location } = props;
   const { from } = location?.state || { from: { pathname: '/' } } as any;
   const history = useHistory();
-
-  if (isAuthenticated) return <Redirect to={from} />;
 
   const onLogin = (username: string, password: string) => {
     // eslint-disable-next-line no-console

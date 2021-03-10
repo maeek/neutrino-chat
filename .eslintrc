@@ -26,7 +26,7 @@
       "single"
     ],
     "no-console": [
-      "error",
+      0,
       {
         "allow": [
           "warn",
@@ -51,6 +51,6 @@
     "import/export": 0,
     "prettier/prettier": 0,
     "no-unused-vars": 1,
-    "no-case-declarations": 1
+    "no-case-declarations": 1,
   }
 }
