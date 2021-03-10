@@ -1,5 +1,5 @@
 import contactsReducer from '.';
-import { TIME_MOCK } from '../../../setupTests';
+import { TIME_MOCK } from '../../../setup-tests';
 import { addToContacts, clearContacts, removeFromContacts } from './actions';
 import { getContacts, getMutualContacts } from './selectors';
 import { AddContactsAction, ClearContactsAction, ContactActionsEnum, ContactEntry, ContactsActionTypes, ContactsState, RemoveContactsAction } from './types';
