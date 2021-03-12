@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,8 +8,8 @@ import {
 import RestrictedRoute from './restricted-routes';
 import NotAuthorizedRoutes from './not-authorized-routes';
 
-import LoginPage from './auth/login';
-import JoinPage from './auth/join';
+import LoginPage from './auth/Login';
+import JoinPage from './auth/Join';
 
 const RouterWrapper: FC<{}> = () => (
   <Router>
