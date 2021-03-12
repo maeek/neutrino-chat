@@ -1,5 +1,4 @@
 import { Component, ReactNode, Suspense } from 'react';
-import { createPortal } from 'react-dom';
 
 interface PageTemplateProps {
   children?: ReactNode;
@@ -15,8 +14,6 @@ interface PageTemplateState {
 }
 
 export class PageTemplate extends Component<PageTemplateProps, PageTemplateState> {
-  modalDOMNode: Element;
-
   constructor(props: PageTemplateProps) {
     super(props);
 
@@ -25,8 +22,6 @@ export class PageTemplate extends Component<PageTemplateProps, PageTemplateState
       errorMessage: '',
       stack: ''
     };
-
-    this.modalDOMNode = document.querySelector('#modal-root') as Element;
   }
 
   componentDidMount() {
@@ -50,7 +45,17 @@ export class PageTemplate extends Component<PageTemplateProps, PageTemplateState
 
   render() {
     if (this.state.hasError) {
-      return createPortal(this.props.errorPage, this.modalDOMNode);
+      const errorNode = typeof this.props.errorPage === 'function' 
+        ? this.props.errorPage(this.state.errorMessage)
+        : this.props.errorPage;
+
+      return (
+        <main className="page-root page-root--error">
+          {
+            errorNode || this.state.errorMessage
+          }
+        </main>
+      );
     }
 
     return (
