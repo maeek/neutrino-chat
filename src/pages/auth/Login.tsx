@@ -2,7 +2,13 @@ import React, { FC } from 'react';
 import { RouteProps } from 'react-router-dom';
 import { PageTemplate } from '../page-template';
 
-const LoginView = React.lazy(() => import('../../components/login'));
+const LoginView = React.lazy(() => import(
+  /* webpackChunkName: "main-page-login" */
+  /* webpackMode: "lazy" */
+  /* webpackPrefetch: true */
+  /* webpackPreload: true */
+  '../../components/login'
+));
 
 interface LoginPageProps extends RouteProps {}
 

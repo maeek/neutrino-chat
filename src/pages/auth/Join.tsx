@@ -2,7 +2,11 @@ import React, { FC } from 'react';
 import { RouteProps } from 'react-router-dom';
 import { PageTemplate } from '../page-template';
 
-const JoinView = React.lazy(() => import('../../components/join'));
+const JoinView = React.lazy(() => import(
+  /* webpackChunkName: "main-page-join" */
+  /* webpackMode: "lazy" */
+  '../../components/join'
+));
 
 interface JoinPageProps extends RouteProps {}
 
