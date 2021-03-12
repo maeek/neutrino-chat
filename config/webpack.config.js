@@ -362,6 +362,16 @@ module.exports = function (webpackEnv) {
       rules: [
         // Disable require.ensure as it's not a standard language feature.
         { parser: { requireEnsure: false } },
+        // Experimenting with off main thread modules
+        {
+          test: /\.worker\.(js|ts)$/i,
+          use: [{
+            loader: 'comlink-loader',
+            options: {
+              singleton: true
+            }
+          }]
+        },
         {
           // "oneOf" will traverse all following loaders until one will
           // match the requirements. When no loader matches it will fall

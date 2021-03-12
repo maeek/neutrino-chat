@@ -140,7 +140,7 @@ checkBrowsers(paths.appPath, isInteractive)
       }
 
       console.log(chalk.cyan('Starting the development server...\n'));
-      if (!process.env.NO_OPEN) openBrowser(urls.localUrlForBrowser);
+      if (!process.env.NOOPEN) openBrowser(urls.localUrlForBrowser);
     });
 
     ['SIGINT', 'SIGTERM'].forEach(function (sig) {
