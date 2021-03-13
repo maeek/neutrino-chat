@@ -1,9 +1,12 @@
 import { Component, ReactNode, Suspense } from 'react';
+import NoNetworkBanner from './no-network-banner';
 
 interface PageTemplateProps {
   children?: ReactNode;
   errorPage?: ReactNode | ((stack: string) => ReactNode);
   fallbackComponent?: ReactNode;
+  offlineFallbackComponent?: ReactNode;
+  canOperateOffline: boolean;
   title?: string;
 }
 
@@ -44,6 +47,12 @@ export class PageTemplate extends Component<PageTemplateProps, PageTemplateState
   }
 
   render() {
+    const {
+      fallbackComponent,
+      offlineFallbackComponent,
+      canOperateOffline
+    } = this.props;
+
     if (this.state.hasError) {
       const errorNode = typeof this.props.errorPage === 'function' 
         ? this.props.errorPage(this.state.errorMessage)
@@ -58,13 +67,20 @@ export class PageTemplate extends Component<PageTemplateProps, PageTemplateState
       );
     }
 
+    const contentNode = (
+      <main className="page-root">
+        {
+          this.props.children
+        }
+      </main>
+    );
+
     return (
-      <Suspense fallback={this.props.fallbackComponent || null}>
-        <main className="page-root">
-          {
-            this.props.children
-          }
-        </main>
+      <Suspense fallback={fallbackComponent || null}>
+        {
+          !canOperateOffline && <NoNetworkBanner offlineNode={offlineFallbackComponent} />
+        }
+        {contentNode}
       </Suspense>
     );
   }
