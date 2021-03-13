@@ -1,0 +1,47 @@
+.navigation-top-bar {
+  width: 100%;
+  min-height: 60px;
+  background-color: #202328;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+
+  &-controlls {
+    vertical-align: middle;
+    padding: 0 0.5rem;
+    color: #a0a0a0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-button--active {
+      color: #fff;
+    }
+    
+    >svg {
+      cursor: pointer;
+    }
+  }
+
+  &-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &-heading {
+    font-size: 1.3rem;
+    margin: 0 1rem 0 0.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: lighten(#5ea8ed, 5);
+
+    .ne-typo {
+      vertical-align: middle;
+      font: inherit;
+      color: inherit;
+    }
+  }
+}
