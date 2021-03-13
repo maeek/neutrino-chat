@@ -75,7 +75,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
       <Heading>Neutrino Chat</Heading>
 
       <div className="form-register-header">
-        <Heading level={2}>Join</Heading>
+        <Heading level={2}>Create Account</Heading>
         <Paragraph>Chat that does not save your messages! Share what's on your mind with anyone you want.</Paragraph>
       </div>
 
@@ -183,7 +183,7 @@ export const RegisterForm: FC<RegisterFormProps> = (props) => {
         </div>
       </div>
 
-      <ProceedButton className="button-login" onClick={onRegisterHandler}>Create an account</ProceedButton>
+      <ProceedButton className="button-login" onClick={onRegisterHandler}>Register</ProceedButton>
 
       <div className="form-register-footer">
         <Text>Already have an account?</Text>

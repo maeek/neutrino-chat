@@ -1,40 +1,63 @@
 import { LayoutContentFooter } from '@maeek/neutrino-design/components/';
 import { FC, MouseEvent } from 'react';
-import { RouteProps, useHistory } from 'react-router-dom';
+import { RouteProps, useHistory, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { LoginForm } from './form';
 import { GenericFooter } from '../common/footer/generic';
+import { setRefreshToken, setToken } from '../../store/session/actions';
 import './styles/login.scss';
-
+import NavController from '../../utils/navigation';
 interface LoginViewProps extends RouteProps {
   isAuthenticated?: boolean;
   [key: string]: any;
 }
 
 export const LoginView: FC<LoginViewProps> = (props) => {
-  const { location } = props;
-  const { from } = location?.state || { from: { pathname: '/' } } as any;
+  const { isAuthenticated } = props;
+  const location = useLocation();
   const history = useHistory();
+  const dispatch = useDispatch();
+  const { from } = location?.state || { from: { pathname: '/' } } as any;
 
-  const onLogin = (username: string, password: string) => {
+  const onLogin = async (username: string, password: string) => {
     // eslint-disable-next-line no-console
     console.log(username, password);
     // Login
     // then
-    history.replace(from);
+    dispatch(setToken('123'));
+    dispatch(setRefreshToken('123'));
+    window.sessionStorage.setItem('token', '123');
+    window.sessionStorage.setItem('refreshToken', '123');
+
+    console.log('Authenticated, redirecting to...', from);
+    NavController.replace(history, from?.pathname || '/');
+    // history.replace(from);
   };
 
   const redirectToRegister = (e: MouseEvent<HTMLSpanElement>) => {
     e.preventDefault();
-    history.push('/join');
+    NavController.forward(history, '/');
   };
+
+  if (isAuthenticated) {
+    console.warn('You\'re already authenticated, redirecting to...', from?.pathname || '/');
+    setTimeout(() => NavController.replace(history, from?.pathname || '/'), 0);
+  }
+
+  const redirectNode = (
+    <div />
+  );
 
   return (
     <div className="view-root view-root--login">
       <LayoutContentFooter footerNode={<GenericFooter />}>
-        <LoginForm
-          onLogin={onLogin}
-          redirectToRegister={redirectToRegister}
-        />
+        {!isAuthenticated ? 
+          <LoginForm
+            onLogin={onLogin}
+            redirectToRegister={redirectToRegister}
+          />
+          : redirectNode
+        }
       </LayoutContentFooter>
     </div>
   );
