@@ -6,11 +6,15 @@
     display: flex;
     justify-content: center;
     padding: 3rem 0.5rem 0 0.5rem;
+    background: url('../../../assets/images/wave.svg') no-repeat;
+    background-position: 0 100%;
+    background-size: 1440px 320px;
   }
 
   .ne-layout-side-content-side {
     width: 33vw;
   }
+
   &-sidebar {
     position: relative;
     overflow: hidden;
