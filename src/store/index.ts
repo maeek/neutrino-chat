@@ -7,7 +7,7 @@ import rootReducer, { RootState } from './root';
 let reducers;
 
 const logger: Middleware<{}, RootState>  = store => next => action => {
-  console.group(action.type);
+  console.groupCollapsed(action.type);
   console.info('dispatching', action);
   let result = next(action);
   console.log('next state', store.getState());
