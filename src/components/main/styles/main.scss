@@ -1,0 +1,16 @@
+@import '../../../styles/extends.scss';
+
+.view-root--main {
+  width: 100vw;
+  height: 100vh;
+
+  .ne-layout-top-content-footer-content {
+    display: flex;
+    justify-content: center;
+    // @include scrimGradient(#1C1D1F, rgba(28, 29, 31, 0));
+    background: url('../../../assets/images/wave-alt.svg') no-repeat;
+    background-position: 0 bottom;
+    background-size: 100% auto;
+    min-height: 150vh;
+  }
+}

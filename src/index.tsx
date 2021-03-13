@@ -6,7 +6,9 @@ import * as serviceWorkerRegistration from './register-service-worker';
 import { Provider } from 'react-redux';
 import store from './store/';
 // import remoteStoreWrapper from './store/remote-store-wrapper';
+import NavController from './utils/navigation';
 import './styles/index.scss';
+import { setRefreshToken, setToken } from './store/session/actions';
 
 // if (process.env.EXPERIMENTAL && process.env.NODE_ENV === 'development') {
 //   store = require('./store/store.worker');
@@ -24,6 +26,18 @@ const run = async () => {
   );
 };
 
+const init = () => {
+  // Init redux history
+  NavController.init();
+
+  // Try restore the session
+  const token = window.sessionStorage.getItem('token');
+  const refreshToken = window.sessionStorage.getItem('refreshToken');
+  store.dispatch(setToken(token || ''));
+  store.dispatch(setRefreshToken(refreshToken || ''));
+};
+
+init();
 run();
 
 // If you want to start measuring performance in your app, pass a function
