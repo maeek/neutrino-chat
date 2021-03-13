@@ -1,15 +1,9 @@
-.App {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
-}
-
 ::-moz-focus-inner {
     border: 0;
 }
 
 .page-root {
+  position: relative;
   display:  flex;
   justify-content: center;
   width: 100vw;
