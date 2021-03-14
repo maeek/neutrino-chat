@@ -1,28 +1,11 @@
-.navigation-top-bar {
+.top-bar {
   width: 100%;
-  min-height: 60px;
+  min-height: 50px;
   background-color: #202328;
   display: flex;
   justify-content: center;
   align-items: center;
   border-bottom: 2px solid transparent;
-
-  &-controlls {
-    vertical-align: middle;
-    padding: 0 0.5rem;
-    color: #a0a0a0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    &-button--active {
-      color: #fff;
-    }
-    
-    >svg {
-      cursor: pointer;
-    }
-  }
 
   &-inner {
     display: flex;

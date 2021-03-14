@@ -31,8 +31,8 @@ const init = () => {
   NavController.init();
 
   // Try restore the session
-  const token = window.sessionStorage.getItem('token');
-  const refreshToken = window.sessionStorage.getItem('refreshToken');
+  const token = window.localStorage.getItem('token');
+  const refreshToken = window.localStorage.getItem('refreshToken');
   store.dispatch(setToken(token || ''));
   store.dispatch(setRefreshToken(refreshToken || ''));
 };

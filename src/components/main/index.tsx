@@ -1,9 +1,8 @@
-import { LayoutTopContentFooter } from '@maeek/neutrino-design/components/';
-import { FC, MouseEvent } from 'react';
-import { RouteProps, useHistory } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
+import LayoutTopContentFooter from '@maeek/neutrino-design/components/layouts/top-content-footer';
+import { FC } from 'react';
+import { RouteProps } from 'react-router-dom';
 import { GenericFooter } from '../common/footer/generic';
-import { NavigationTopBar } from '../common/navigation-top-bar';
+import TopBar from '../common/top-bar';
 import './styles/main.scss';
 interface MainViewProps extends RouteProps {
   isAuthenticated?: boolean;
@@ -13,7 +12,7 @@ interface MainViewProps extends RouteProps {
 export const MainView: FC<MainViewProps> = (props) => {
   return (
     <div className="view-root view-root--main">
-      <LayoutTopContentFooter topNode={<NavigationTopBar />} footerNode={<GenericFooter />}>
+      <LayoutTopContentFooter topNode={<TopBar />} footerNode={<GenericFooter />}>
         Yee
       </LayoutTopContentFooter>
     </div>
