@@ -1,8 +1,9 @@
-import React, { FC } from 'react';
+import { FC, lazy } from 'react';
 import { RouteProps } from 'react-router-dom';
 import { PageTemplate } from '../../components/common/page-template';
+import MainViewLoader from '../../components/main/loader';
 
-const MainView = React.lazy(() => import(
+const MainView = lazy(() => import(
   /* webpackChunkName: "main-page_app" */
   /* webpackMode: "lazy" */
   /* webpackPrefetch: true */
@@ -16,7 +17,7 @@ export const MainPage: FC<MainPageProps> = (...props) => {
   return (
     <PageTemplate
       errorPage={null}
-      fallbackComponent={null}
+      fallbackComponent={<MainViewLoader />}
       title="Neutrino Chat"
       canOperateOffline={false}
     >
