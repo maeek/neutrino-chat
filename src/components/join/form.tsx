@@ -7,13 +7,12 @@ import React, {
   useState,
   useCallback
 } from 'react';
-import {
-  Heading,
-  Input,
-  Paragraph,
-  Text,
-  ProceedButton
-} from '@maeek/neutrino-design/components/atoms';
+import ProceedButton from '@maeek/neutrino-design/components/atoms/buttons/Proceed';
+import { Input } from '@maeek/neutrino-design/components/atoms/inputs/text';
+import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
+import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
+import { Paragraph } from '@maeek/neutrino-design/components/atoms/typography/paragraph';
+
 import { User } from './types';
 import './styles/form.scss';
 

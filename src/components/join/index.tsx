@@ -1,6 +1,7 @@
-import { LayoutContentFooter, LayoutSideContent } from '@maeek/neutrino-design/components/';
+import { LayoutContentFooter } from '@maeek/neutrino-design/components/layouts/content-footer';
+import { LayoutSideContent } from '@maeek/neutrino-design/components/layouts/side-content';
 import { FC, MouseEvent } from 'react';
-import { RouteProps, useHistory, Redirect, useLocation } from 'react-router-dom';
+import { RouteProps, useHistory, useLocation } from 'react-router-dom';
 import { GenericFooter } from '../common/footer/generic';
 import { RegisterForm } from './form';
 import { User } from './types';

@@ -1,4 +1,4 @@
-import { LayoutContentFooter } from '@maeek/neutrino-design/components/';
+import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/content-footer';
 import { FC, MouseEvent } from 'react';
 import { RouteProps, useHistory, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -26,8 +26,8 @@ export const LoginView: FC<LoginViewProps> = (props) => {
     // then
     dispatch(setToken('123'));
     dispatch(setRefreshToken('123'));
-    window.sessionStorage.setItem('token', '123');
-    window.sessionStorage.setItem('refreshToken', '123');
+    window.localStorage.setItem('token', '123');
+    window.localStorage.setItem('refreshToken', '123');
 
     console.log('Authenticated, redirecting to...', from);
     NavController.replace(history, from?.pathname || '/');

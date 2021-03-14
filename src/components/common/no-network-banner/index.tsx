@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { createPortal } from 'react-dom';
 import classnames from 'classnames';
-import { Text } from '@maeek/neutrino-design/components/atoms/typography';
+import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { useConnection } from '@maeek/neutrino-design/hooks/useConnection';
 import CloseRounded from '@material-ui/icons/CloseRounded';
 import SignalCellularConnectedNoInternet0BarRoundedIcon from '@material-ui/icons/SignalCellularConnectedNoInternet0BarRounded';
