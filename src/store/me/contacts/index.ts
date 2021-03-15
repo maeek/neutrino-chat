@@ -5,9 +5,9 @@ export const initialState: ContactsState = {
 };
 
 const contactsReducer = (state = initialState, action: ContactsActionTypes) => {
+  const newContacts: ContactEntry = {...state.entries};
   switch (action.type) {
   case ContactActionsEnum.ADD_CONTACT:
-    const newContacts: ContactEntry = {};
 
     action.data.users.forEach((user: string) => {
       newContacts[user] = {
@@ -17,21 +17,16 @@ const contactsReducer = (state = initialState, action: ContactsActionTypes) => {
     });
 
     return {
-      entries: {
-        ...state.entries,
-        ...newContacts
-      }
+      entries: newContacts
     };
 
   case ContactActionsEnum.REMOVE_CONTACT:
-    const updatedContacts = {...state.entries};
-
     action.data.users.forEach((user: string) => {
-      delete updatedContacts[user];
+      delete newContacts[user];
     });
 
     return {
-      entries: updatedContacts
+      entries: newContacts
     };
 
   case ContactActionsEnum.CLEAR_CONTACTS:

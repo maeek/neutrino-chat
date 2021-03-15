@@ -14,30 +14,25 @@ export const initialState: DevicesState = {
 };
 
 const devicesReducer = (state = initialState, action: DevicesActionTypes) => {
+  const newDevices: DeviceEntry = {...state.entries};
   switch (action.type) {
   case DevicesActionsEnum.ADD_DEVICE:
-    const newDevices: DeviceEntry = {};
 
     action.data.devices.forEach((dev: Device) => {
       newDevices[dev.id] = dev;
     });
 
     return {
-      entries: {
-        ...state.entries,
-        ...newDevices
-      }
+      entries: newDevices
     };
 
   case DevicesActionsEnum.REMOVE_DEVICE:
-    const updatedDevices = {...state.entries};
-
     action.data.devices.forEach((did: string) => {
-      delete updatedDevices[did];
+      delete newDevices[did];
     });
 
     return {
-      entries: updatedDevices
+      entries: newDevices
     };
 
   case DevicesActionsEnum.CLEAR_DEVICES:

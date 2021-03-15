@@ -10,9 +10,9 @@ export const initialState: GroupsState = {
 };
 
 const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMemebersActionTypes) => {
+  const newGroups: GroupsEntry = {...state.entries};
   switch (action.type) {
   case GroupActionsEnum.ADD_GROUP:
-    const newGroups: GroupsEntry = {};
 
     action.data.groups.forEach((group: string) => {
       newGroups[group] = {
@@ -22,21 +22,16 @@ const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMe
     });
 
     return {
-      entries: {
-        ...state.entries,
-        ...newGroups
-      }
+      entries: newGroups
     };
 
   case GroupActionsEnum.REMOVE_GROUP:
-    const updatedGroups = {...state.entries};
-
     action.data.groups.forEach((group: string) => {
-      if (group !== 'Starred') delete updatedGroups[group];
+      if (group !== 'Starred') delete newGroups[group];
     });
 
     return {
-      entries: updatedGroups
+      entries: newGroups
     };
 
   case GroupActionsEnum.CLEAR_GROUPS:
@@ -44,25 +39,21 @@ const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMe
       entries: {
         Starred: {
           name: 'Starred',
-          items: state.entries.Starred.items
+          items: []
         }
       }
     };
 
   case GroupActionsEnum.RENAME_GROUP:
-    const renamedGroup = {
-      ...state.entries
-    };
+    delete newGroups[action.data.group.id];
 
-    delete renamedGroup[action.data.group.id];
-
-    renamedGroup[action.data.group.name] = {
+    newGroups[action.data.group.name] = {
       name: action.data.group.name,
       items: state.entries[action.data.group.id].items
     };
 
     return {
-      entries: renamedGroup
+      entries: newGroups
     };
 
   case GroupActionsEnum.ADD_MEMBER:
@@ -80,6 +71,7 @@ const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMe
     };
 
   case GroupActionsEnum.REMOVE_MEMBER:
+    // eslint-disable-next-line no-case-declarations
     const updatedItems: GroupItem[] = [
       ...state.entries[action.data.group.id].items
         .filter((item: GroupItem) => !action.data.group.items.includes(item.id))

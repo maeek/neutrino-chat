@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { DateTime } from 'luxon';
 import { GenericPayloadStructure } from '../../types';
 
