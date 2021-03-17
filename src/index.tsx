@@ -9,6 +9,7 @@ import store from './store/';
 import Navigator from './utils/navigation';
 import './styles/index.scss';
 import { setRefreshToken, setToken } from './store/session/actions';
+import { setUsername, setAvatar } from './store/me/user/actions';
 
 // if (process.env.EXPERIMENTAL && process.env.NODE_ENV === 'development') {
 //   store = require('./store/store.worker');
@@ -33,6 +34,10 @@ const init = () => {
   // Try restore the session
   const token = window.localStorage.getItem('token');
   const refreshToken = window.localStorage.getItem('refreshToken');
+  const username = window.localStorage.getItem('username');
+  const avatar = window.localStorage.getItem('avatar');
+  store.dispatch(setAvatar(avatar || ''));
+  store.dispatch(setUsername(username || ''));
   store.dispatch(setToken(token || ''));
   store.dispatch(setRefreshToken(refreshToken || ''));
 };

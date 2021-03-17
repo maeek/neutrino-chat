@@ -13,6 +13,12 @@ const userReducer = (state = initialState, action: UserActionTypes) => {
       username: action.data.username
     };
 
+  case UserActionsEnum.SET_AVATAR:
+    return {
+      ...state,
+      avatar: action.data.avatar
+    };
+
   default:
     return state;
   }

@@ -7,7 +7,8 @@ export type UserState = {
 };
 
 export enum UserActionsEnum {
-  SET_USERNAME = 'SET_USERNAME'
+  SET_USERNAME = 'SET_USERNAME',
+  SET_AVATAR = 'SET_AVATAR'
 }
 
 
@@ -18,4 +19,11 @@ export interface SetUsername extends GenericPayloadStructure {
   }
 }
 
-export type UserActionTypes = SetUsername;
+export interface SetAvatar extends GenericPayloadStructure {
+  type: UserActionsEnum.SET_AVATAR;
+  data: {
+    avatar: string;
+  }
+}
+
+export type UserActionTypes = SetUsername | SetAvatar;
