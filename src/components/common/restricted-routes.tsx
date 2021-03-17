@@ -17,14 +17,13 @@ const RestrictedRoute: FC<RestrictedRouteProps> = ({ children, ...rest }) => {
 
   if (!isAuthenticated) {
     console.warn('You\'re not authenticated, redirecting to /login from...', location);
-    Navigator.replace(history, '/login', {
-      from: {
-        pathname: location.pathname
-      }
-    });
+    
+    setTimeout(() => Navigator.replace(history, '/login', {
+      from: { pathname: location.pathname }
+    }), 0);
   }
 
-  return <>{isAuthenticated ? children : <></>}</>;
+  return <>{isAuthenticated ? children : null}</>;
 };
 
 export default RestrictedRoute;

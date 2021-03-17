@@ -24,7 +24,7 @@ export const JoinPage: FC<JoinPageProps> = (...props) => {
     console.warn('You\'re already authenticated, redirecting to...', from?.pathname || '/');
     setTimeout(() => Navigator.replace(history, from?.pathname || '/'), 0);
 
-    return <></>;
+    return null;
   }
 
 
