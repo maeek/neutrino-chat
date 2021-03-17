@@ -1,42 +1,36 @@
 import { LayoutContentFooter } from '@maeek/neutrino-design/components/layouts/content-footer';
 import { LayoutSideContent } from '@maeek/neutrino-design/components/layouts/side-content';
 import { FC, MouseEvent } from 'react';
-import { RouteProps, useHistory, useLocation } from 'react-router-dom';
+import { RouteProps, useHistory } from 'react-router-dom';
 import { GenericFooter } from '../common/footer/generic';
 import { RegisterForm } from './form';
 import { User } from './types';
+import Navigator from '../../utils/navigation';
 import './styles/join.scss';
-import NavController from '../../utils/navigation';
 
 interface JoinViewProps extends RouteProps {
-  isAuthenticated?: boolean
+  from: {
+    pathname: string;
+  };
   [key: string]: any;
 }
 
 export const JoinView: FC<JoinViewProps> = (props) => {
-  const {isAuthenticated} = props;
-  const location = useLocation();
+  const { from } = props;
   const history = useHistory();
-  const { from } = location?.state || { from: { pathname: '/' } } as any;
 
   const onRegister = (user: User) => {
     // eslint-disable-next-line no-console
     console.log(user);
     // Register
     // then
-    // history.replace('/');
-    NavController.replace(history, '/');
+    Navigator.replace(history, from?.pathname);
   };
 
   const redirectToLogin = (e: MouseEvent<HTMLSpanElement>) => {
     e.preventDefault();
-    NavController.forward(history, '/login');
+    Navigator.forward(history, '/login');
   };
-
-  if (isAuthenticated) {
-    console.warn('You\'re already authenticated, redirecting to...', from?.pathname || '/');
-    setTimeout(() => NavController.replace(history, from?.pathname || '/'), 0);
-  }
 
   const sideNode = (
     <div className="view-root--join-sidebar">
@@ -44,21 +38,14 @@ export const JoinView: FC<JoinViewProps> = (props) => {
     </div>
   );
 
-  const redirectNode = (
-    <div />
-  );
-
   return (
     <div className="view-root view-root--join">
       <LayoutSideContent sideNode={sideNode}>
         <LayoutContentFooter footerNode={<GenericFooter />}>
-          {!isAuthenticated ? 
-            <RegisterForm
-              onRegister={onRegister}
-              redirectToLogin={redirectToLogin}
-            />
-            : redirectNode
-          }
+          <RegisterForm
+            onRegister={onRegister}
+            redirectToLogin={redirectToLogin}
+          />
         </LayoutContentFooter>
       </LayoutSideContent>
     </div>

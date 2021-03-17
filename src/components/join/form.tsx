@@ -25,8 +25,7 @@ interface RegisterFormProps {
 export const RegisterForm: FC<RegisterFormProps> = (props) => {
   const {
     onRegister,
-    redirectToLogin,
-    onHeadingClick
+    redirectToLogin
   } = props;
   const loginRef = useRef<any>();
   const passwordRef = useRef<any>();

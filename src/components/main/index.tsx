@@ -1,20 +1,20 @@
-import LayoutTopContentFooter from '@maeek/neutrino-design/components/layouts/top-content-footer';
 import { FC } from 'react';
 import { RouteProps } from 'react-router-dom';
-import { GenericFooter } from '../common/footer/generic';
-import TopBar from '../common/top-bar';
+import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/content-footer';
+import GenericFooter from '../common/footer/generic';
 import './styles/main.scss';
 interface MainViewProps extends RouteProps {
-  isAuthenticated?: boolean;
   [key: string]: any;
 }
 
-export const MainView: FC<MainViewProps> = (props) => {
+export const MainView: FC<MainViewProps> = () => {
+  const footerNode = <GenericFooter />;
+
   return (
     <div className="view-root view-root--main">
-      <LayoutTopContentFooter topNode={<TopBar />} footerNode={<GenericFooter />}>
+      <LayoutContentFooter footerNode={footerNode}>
         Yee
-      </LayoutTopContentFooter>
+      </LayoutContentFooter>
     </div>
   );
 };

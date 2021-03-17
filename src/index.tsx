@@ -6,7 +6,7 @@ import * as serviceWorkerRegistration from './register-service-worker';
 import { Provider } from 'react-redux';
 import store from './store/';
 // import remoteStoreWrapper from './store/remote-store-wrapper';
-import NavController from './utils/navigation';
+import Navigator from './utils/navigation';
 import './styles/index.scss';
 import { setRefreshToken, setToken } from './store/session/actions';
 
@@ -28,7 +28,7 @@ const run = async () => {
 
 const init = () => {
   // Init redux history
-  NavController.init();
+  Navigator.init();
 
   // Try restore the session
   const token = window.localStorage.getItem('token');
