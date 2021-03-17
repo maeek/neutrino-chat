@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import { FC, KeyboardEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import classnames from 'classnames';
 import { KeyboardArrowLeftRounded } from '@material-ui/icons';
-import NavController from '../../../utils/navigation';
+import Navigator from '../../../utils/navigation';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/root';
 import './styles/navigation.scss';
@@ -14,17 +14,36 @@ export interface NavigationControllBackProps {
 export const NavigationControllBack: FC<NavigationControllBackProps> = () => {
   const history = useHistory();
   const localHistory = useSelector((state: RootState) => state.history);
+  const canGoBack = localHistory.currentIndex > 0 && localHistory.stack.length > 0;
 
   const goBack = () => {
-    NavController.back(history);
+    Navigator.back(history);
   };
 
-  const canGoBack = localHistory.currentIndex > 0 && localHistory.stack.length > 0;
+  const onEnter = (e: KeyboardEvent<HTMLSpanElement>) => {
+    if (e.key === 'Enter' && canGoBack) {
+      goBack();
+    }
+  };
+
+  const classes = classnames(
+    'navigation-controlls-button', 
+    canGoBack 
+      ? 'navigation-controlls-button--active'
+      : 'navigation-controlls-button--disabled'
+  );
+
   return (
-    <KeyboardArrowLeftRounded
+    <span
       onClick={goBack}
-      className={classnames('navigation-controlls-button', canGoBack && 'navigation-controlls-button--active')}
-    />
+      onKeyUp={onEnter}
+      tabIndex={canGoBack ? 0 : -1}
+      className={classes}
+    >
+      <KeyboardArrowLeftRounded
+        className="navigation-controlls-button-icon"
+      />
+    </span>
   );
 };
 
