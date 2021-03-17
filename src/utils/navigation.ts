@@ -79,6 +79,6 @@ export class NavigationController {
   }
 }
 
-const NavController =  new NavigationController(store);
+const Navigator =  new NavigationController(store);
 
-export default NavController;
+export default Navigator;
