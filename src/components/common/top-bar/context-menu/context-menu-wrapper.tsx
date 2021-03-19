@@ -3,11 +3,10 @@ import { useDispatch } from 'react-redux';
 import { ContextMenu } from '@maeek/neutrino-design/components/molecules/context-menu';
 import { ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
 import { AccountCircleRounded, ExitToAppRounded, HelpOutlineRounded, NotificationsOffRounded, SettingsRounded } from '@material-ui/icons';
-import AvatarWrapper from './avatar-wrapper';
-import { clearTokens } from '../../../store/session/actions';
-// import { NotificationsWrapper } from './notifications-wrapper';
+import AvatarWrapper from '../avatar-wrapper';
+import { clearTokens } from '../../../../store/session/actions';
 import ContextMenuPrefix from './context-menu-prefix';
-import './styles/top-bar.scss';
+import '../styles/top-bar.scss';
 
 export interface ContextMenuWrapperProps {
   [key: string]: any;

@@ -2,9 +2,9 @@ import { FC, memo } from 'react';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
-import Navigator from '../../../utils/navigation';
-import { getUsername } from '../../../store/me/user/selectors';
-import './styles/top-bar.scss';
+import Navigator from '../../../../utils/navigation';
+import { getUsername } from '../../../../store/me/user/selectors';
+import '../styles/top-bar.scss';
 
 export interface ContextMenuPrefixProps {
   [key: string]: any;
