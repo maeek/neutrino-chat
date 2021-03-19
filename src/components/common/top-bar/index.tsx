@@ -4,8 +4,8 @@ import { Heading } from '@maeek/neutrino-design/components/atoms/typography/head
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import Navigator from '../../../utils/navigation';
 import NavigationControlls from '../navigation-controlls/navigation';
-import { NotificationsNoneRounded } from '@material-ui/icons';
-import { ContextMenuWrapper } from './context-menu-wrapper';
+import { ContextMenuWrapper } from './context-menu/context-menu-wrapper';
+import NotificationsDrawer from './notifications-drawer';
 import './styles/top-bar.scss';
 
 export interface TopBarProps {
@@ -28,9 +28,7 @@ export const TopBar: FC<TopBarProps> = () => {
           <Text type="primary" link={process.env.PUBLIC_URL} onClick={onHeadingClick}>Neutrino Chat</Text>
         </Heading>
         <div className="top-bar-right">
-          <span className="top-bar-button" tabIndex={0}>
-            <NotificationsNoneRounded />
-          </span>
+          <NotificationsDrawer />
           <ContextMenuWrapper />
         </div>
       </div>

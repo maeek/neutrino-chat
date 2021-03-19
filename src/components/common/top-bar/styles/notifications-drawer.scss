@@ -1,0 +1,42 @@
+.top-bar-button {
+  .top-bar-notifications-drawer {
+    &-content {
+      &-header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 0.8rem 1rem 0 1rem;
+        
+        .top-bar-button-icon {
+          font-size: 1.5rem;
+          margin: 0 0 1rem 0;
+          color:  #ddd;
+          
+          &:hover, &:focus {
+            color: unset;
+          }
+
+          >svg {
+            font: inherit;
+          }
+        }
+        >.ne-typo {
+          color: #cacaca;
+          text-transform: uppercase;
+          font-weight: 700;
+          letter-spacing: 2px;
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+
+    &-spacer {
+      margin: 1rem;
+      width: auto;
+      height: 2px;
+      background-color: #2b2f36;
+    }
+  }
+}
