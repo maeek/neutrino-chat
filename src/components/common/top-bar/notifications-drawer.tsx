@@ -55,6 +55,7 @@ export const NotificationsDrawer: FC<NotificationsDrawerProps> = (props) => {
         <NotificationsNoneRounded />
       </span>
       <Drawer
+        position="right"
         isOpened={isOpened}
         animationDuration={100}
         onClose={handleClose}
