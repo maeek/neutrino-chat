@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import meReducer from './me';
 import sessionReducer from './session';
 import settingsReducer from './settings';
-import buildReducer from './build';
+import buildReducer from './buildReducer';
 import historyReducer from './history';
 
 const reducers = combineReducers({

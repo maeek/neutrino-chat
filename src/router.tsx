@@ -4,13 +4,12 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import RestrictedRoute from './components/common/restricted-routes';
-
-import LoginPage from './modules/auth/Login';
-import JoinPage from './modules/auth/Join';
-import MainPage from './modules/main/Main';
-import TopBar from './components/common/top-bar';
-import Navigator from './utils/navigation';
+import RestrictedRoute from '@components/common/restricted-routes';
+import LoginPage from '@modules/auth/Login';
+import JoinPage from '@modules/auth/Join';
+import MainPage from '@modules/main/Main';
+import TopBar from '@components/common/top-bar';
+import Navigator from '@utils/navigation';
 
 const RouterWrapper: FC<{}> = () => (
   <Router>

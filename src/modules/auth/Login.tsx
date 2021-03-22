@@ -1,17 +1,17 @@
 import { FC, lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { RouteProps, useHistory, useLocation } from 'react-router-dom';
-import { RootState } from '../../store/root';
-import { getAuthToken, getAuthRefreshToken } from '../../store/session/selectors';
-import { PageTemplate } from '../../components/common/page-template';
-import Navigator from '../../utils/navigation';
+import { RootState } from '@store/root';
+import { getAuthToken, getAuthRefreshToken } from '@store/session/selectors';
+import { PageTemplate } from '@components/common/page-template';
+import Navigator from '@utils/navigation';
 
 const LoginView = lazy(() => import(
   /* webpackChunkName: "main-page_login" */
   /* webpackMode: "lazy" */
   /* webpackPrefetch: true */
   /* webpackPreload: true */
-  '../../components/login'
+  '@components/login'
 ));
 
 interface LoginPageProps extends RouteProps {}

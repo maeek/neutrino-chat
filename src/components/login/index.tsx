@@ -2,10 +2,10 @@ import { FC, MouseEvent } from 'react';
 import { RouteProps, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/content-footer';
-import { GenericFooter } from '../common/footer/generic';
-import { setRefreshToken, setToken } from '../../store/session/actions';
-import Navigator from '../../utils/navigation';
-import { setMeAvatar, setMeUsername } from '../../store/me/user/actions';
+import { GenericFooter } from '@components/common/footer/generic';
+import { setRefreshToken, setToken } from '@store/session/actions';
+import { setMeAvatar, setMeUsername } from '@store/me/user/actions';
+import Navigator from '@utils/navigation';
 import { LoginForm } from './form';
 import './styles/login.scss';
 interface LoginViewProps extends RouteProps {

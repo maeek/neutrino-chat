@@ -1,14 +1,14 @@
 import { FC, lazy } from 'react';
 import { RouteProps } from 'react-router-dom';
-import { PageTemplate } from '../../components/common/page-template';
-import MainViewLoader from '../../components/main/loader';
+import { PageTemplate } from '@components/common/page-template';
+import MainViewLoader from '@components/main/loader';
 
 const MainView = lazy(() => import(
   /* webpackChunkName: "main-page_app" */
   /* webpackMode: "lazy" */
   /* webpackPrefetch: true */
   /* webpackPreload: true */
-  '../../components/main'
+  '@components/main'
 ));
 
 interface MainPageProps extends RouteProps {}

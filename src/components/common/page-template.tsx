@@ -1,5 +1,5 @@
 import { Component, ReactNode, Suspense } from 'react';
-import NoNetworkBanner from './no-network-banner';
+import NoNetworkBanner from '@components/common/no-network-banner';
 
 interface PageTemplateProps {
   children?: ReactNode;

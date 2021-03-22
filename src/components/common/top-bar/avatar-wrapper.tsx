@@ -1,10 +1,10 @@
 import { FC, memo, useCallback, KeyboardEvent } from 'react';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import { AvatarCached } from '@maeek/neutrino-design/components/atoms/avatar';
 import { AvatarSizes } from '@maeek/neutrino-design/components/atoms/avatar/avatar';
-import { getMeAvatar, getMeUsername } from '../../../store/me/user/selectors';
-import Navigator from '../../../utils/navigation';
-import { useHistory } from 'react-router';
+import { getMeAvatar, getMeUsername } from '@store/me/user/selectors';
+import Navigator from '@utils/navigation';
 import './styles/top-bar.scss';
 
 export interface AvatarWrapperProps {

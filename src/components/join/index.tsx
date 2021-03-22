@@ -1,11 +1,11 @@
-import { LayoutContentFooter } from '@maeek/neutrino-design/components/layouts/content-footer';
-import { LayoutSideContent } from '@maeek/neutrino-design/components/layouts/side-content';
 import { FC, MouseEvent } from 'react';
 import { RouteProps, useHistory } from 'react-router-dom';
-import { GenericFooter } from '../common/footer/generic';
+import { LayoutContentFooter } from '@maeek/neutrino-design/components/layouts/content-footer';
+import { LayoutSideContent } from '@maeek/neutrino-design/components/layouts/side-content';
+import { GenericFooter } from '@components/common/footer/generic';
+import Navigator from '@utils/navigation';
 import { RegisterForm } from './form';
 import { User } from './types';
-import Navigator from '../../utils/navigation';
 import './styles/join.scss';
 
 interface JoinViewProps extends RouteProps {

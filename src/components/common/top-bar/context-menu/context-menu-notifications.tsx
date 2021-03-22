@@ -1,4 +1,4 @@
-import { FC, useState, useCallback, MouseEvent } from 'react';
+import { FC, useState, useCallback } from 'react';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { KeyboardArrowLeftRounded, KeyboardArrowRightRounded } from '@material-ui/icons';
 import { ContextMenu } from '@maeek/neutrino-design/components/molecules/context-menu';

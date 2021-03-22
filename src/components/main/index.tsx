@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { RouteProps } from 'react-router-dom';
 import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/content-footer';
-import GenericFooter from '../common/footer/generic';
+import GenericFooter from '@components/common/footer/generic';
 import './styles/main.scss';
 interface MainViewProps extends RouteProps {
   [key: string]: any;

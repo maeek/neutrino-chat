@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { Provider } from 'react-redux';
+import store from '@store/index';
+import { setRefreshToken, setToken } from '@store/session/actions';
+import { setMeUsername, setMeAvatar } from '@store/me/user/actions';
+import Navigator from '@utils/navigation';
 import reportWebVitals from './report-web-vitals';
 import * as serviceWorkerRegistration from './register-service-worker';
-import { Provider } from 'react-redux';
-import store from './store/';
-import Navigator from './utils/navigation';
+import App from './App';
 import './styles/index.scss';
-import { setRefreshToken, setToken } from './store/session/actions';
-import { setMeUsername, setMeAvatar } from './store/me/user/actions';
 
 const run = async () => {
   ReactDOM.render(
