@@ -3,7 +3,7 @@ import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import Navigator from '../../../../utils/navigation';
-import { getUsername } from '../../../../store/me/user/selectors';
+import { getMeUsername } from '../../../../store/me/user/selectors';
 import '../styles/top-bar.scss';
 
 export interface ContextMenuPrefixProps {
@@ -12,7 +12,7 @@ export interface ContextMenuPrefixProps {
 
 export const ContextMenuPrefix: FC<ContextMenuPrefixProps> = (props) => {
   const history = useHistory();
-  const username = useSelector(getUsername);
+  const username = useSelector(getMeUsername);
   const goToProfile = () => Navigator.forward(history, '/profile');
 
   return (

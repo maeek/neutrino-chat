@@ -2,7 +2,7 @@ import { FC, memo, useCallback, KeyboardEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { AvatarCached } from '@maeek/neutrino-design/components/atoms/avatar';
 import { AvatarSizes } from '@maeek/neutrino-design/components/atoms/avatar/avatar';
-import { getAvatar, getUsername } from '../../../store/me/user/selectors';
+import { getMeAvatar, getMeUsername } from '../../../store/me/user/selectors';
 import Navigator from '../../../utils/navigation';
 import { useHistory } from 'react-router';
 import './styles/top-bar.scss';
@@ -16,8 +16,8 @@ export interface AvatarWrapperProps {
 
 export const AvatarWrapper: FC<AvatarWrapperProps> = (props) => {
   const { src, size = 'medium', onClick } = props;
-  const username = useSelector(getUsername);
-  const avatar = useSelector(getAvatar);
+  const username = useSelector(getMeUsername);
+  const avatar = useSelector(getMeAvatar);
   const history = useHistory();
 
   const goToProfile = () => Navigator.forward(history, '/profile');

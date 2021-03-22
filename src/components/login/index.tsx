@@ -1,12 +1,12 @@
-import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/content-footer';
 import { FC, MouseEvent } from 'react';
 import { RouteProps, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { LoginForm } from './form';
+import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/content-footer';
 import { GenericFooter } from '../common/footer/generic';
 import { setRefreshToken, setToken } from '../../store/session/actions';
 import Navigator from '../../utils/navigation';
-import { setAvatar, setUsername } from '../../store/me/user/actions';
+import { setMeAvatar, setMeUsername } from '../../store/me/user/actions';
+import { LoginForm } from './form';
 import './styles/login.scss';
 interface LoginViewProps extends RouteProps {
   from: {
@@ -25,15 +25,16 @@ export const LoginView: FC<LoginViewProps> = (props) => {
     console.log(username, password);
     // Login
     // then
+
+    // Dev purposes
     dispatch(setToken('123'));
     dispatch(setRefreshToken('123'));
-    dispatch(setUsername(username));
-    dispatch(setAvatar('https://static.suchanecki.me/pepe1.jpg'));
+    dispatch(setMeUsername(username));
+    dispatch(setMeAvatar('https://static.suchanecki.me/pepe1.jpg'));
     window.localStorage.setItem('avatar', 'https://static.suchanecki.me/pepe1.jpg');
     window.localStorage.setItem('username', username);
     window.localStorage.setItem('token', '123');
     window.localStorage.setItem('refreshToken', '123');
-
     console.log('Authenticated, redirecting to...', from);
     Navigator.replace(history, from?.pathname || '/');
   };

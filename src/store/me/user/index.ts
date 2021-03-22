@@ -2,21 +2,28 @@ import { UserState, UserActionTypes, UserActionsEnum } from './types';
 
 export const initialState: UserState = {
   username: '',
-  avatar: ''
+  avatar: '',
+  bio: ''
 };
 
 const userReducer = (state = initialState, action: UserActionTypes) => {
   switch (action.type) {
-  case UserActionsEnum.SET_USERNAME:
+  case UserActionsEnum.SET_ME_USERNAME:
     return {
       ...state,
       username: action.data.username
     };
 
-  case UserActionsEnum.SET_AVATAR:
+  case UserActionsEnum.SET_ME_AVATAR:
     return {
       ...state,
       avatar: action.data.avatar
+    };
+
+  case UserActionsEnum.SET_ME_BIO:
+    return {
+      ...state,
+      avatar: action.data.bio
     };
 
   default:

@@ -5,16 +5,10 @@ import reportWebVitals from './report-web-vitals';
 import * as serviceWorkerRegistration from './register-service-worker';
 import { Provider } from 'react-redux';
 import store from './store/';
-// import remoteStoreWrapper from './store/remote-store-wrapper';
 import Navigator from './utils/navigation';
 import './styles/index.scss';
 import { setRefreshToken, setToken } from './store/session/actions';
-import { setUsername, setAvatar } from './store/me/user/actions';
-
-// if (process.env.EXPERIMENTAL && process.env.NODE_ENV === 'development') {
-//   store = require('./store/store.worker');
-//   store = await remoteStoreWrapper(store as any);
-// }
+import { setMeUsername, setMeAvatar } from './store/me/user/actions';
 
 const run = async () => {
   ReactDOM.render(
@@ -36,8 +30,8 @@ const init = () => {
   const refreshToken = window.localStorage.getItem('refreshToken');
   const username = window.localStorage.getItem('username');
   const avatar = window.localStorage.getItem('avatar');
-  store.dispatch(setAvatar(avatar || ''));
-  store.dispatch(setUsername(username || ''));
+  store.dispatch(setMeAvatar(avatar || ''));
+  store.dispatch(setMeUsername(username || ''));
   store.dispatch(setToken(token || ''));
   store.dispatch(setRefreshToken(refreshToken || ''));
 };
