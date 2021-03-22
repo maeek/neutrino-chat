@@ -6,6 +6,21 @@ const paths = require('./paths');
 const chalk = require('react-dev-utils/chalk');
 const resolve = require('resolve');
 
+function resolveTsconfigPathsToAlias(compilerOptions = {}) {
+  const { paths } = compilerOptions;
+
+  const aliases = {};
+
+  Object.keys(paths).forEach((item) => {
+    const key = item.replace('/*', '');
+    const value = path.resolve(__dirname, '..', paths[item][0].replace('/*', '').replace('*', ''));
+
+    aliases[key] = value;
+  });
+
+  return aliases;
+}
+
 /**
  * Get additional module paths based on the baseUrl of a compilerOptions object.
  *
@@ -65,7 +80,8 @@ function getWebpackAliases(options = {}) {
 
   if (path.relative(paths.appPath, baseUrlResolved) === '') {
     return {
-      src: paths.appSrc
+      src: paths.appSrc,
+      ...resolveTsconfigPathsToAlias(options)
     };
   }
 }
