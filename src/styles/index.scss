@@ -1,9 +1,17 @@
+body {
+  background: #25292F;
+}
+
 html,
 body {
   margin: 0;
   min-height: 100vh;
   font-size: 18px;
   transform: translate3d(0);
+  font-family: "Roboto", "Helvetica Neue", -apple-system, BlinkMacSystemFont, Helvetica, Ubuntu, Roboto, Noto, "Segoe UI", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
 
 *,
@@ -25,7 +33,7 @@ body {
 }
 
 #app-root {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 #modal {
@@ -33,4 +41,10 @@ body {
   position: fixed;
   top: 0;
   left: 0;
+}
+
+@media (min-width: 2440px) {
+  :root {
+    font-size: 34px !important;
+  }
 }

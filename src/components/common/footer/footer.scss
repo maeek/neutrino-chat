@@ -6,10 +6,23 @@
   padding: 3rem 1rem 8rem;
 
   &-inner {
-    width: 1000px;
+    width: 100%;
+    max-width: 1400px;
   }
 
   .ne-typo-text {
     line-height: 1.8rem;
+  }
+}
+
+@media (min-width: 2240px) {
+  .generic-footer-inner {
+    max-width: 1920px;
+  }
+}
+
+@media (min-width: 3840px) {
+  .generic-footer-inner {
+    max-width: 2200px;
   }
 }
