@@ -22,11 +22,13 @@ export const TopBar: FC<TopBarProps> = () => {
 
   return (
     <nav className="top-bar">
-      <NavigationControlls pwaOnly={false} />
       <div className="top-bar-inner">
-        <Heading level={1} className="top-bar-heading" tabIndex={0}>
-          <Text type="primary" link={process.env.PUBLIC_URL} onClick={onHeadingClick}>Neutrino Chat</Text>
-        </Heading>
+        <div className="top-bar-left">
+          <NavigationControlls pwaOnly={false} />
+          <Heading level={1} className="top-bar-heading" tabIndex={0}>
+            <Text type="primary" link={process.env.PUBLIC_URL} onClick={onHeadingClick}>Neutrino Chat</Text>
+          </Heading>
+        </div>
         <div className="top-bar-right">
           <NotificationsDrawer />
           <ContextMenuWrapper />

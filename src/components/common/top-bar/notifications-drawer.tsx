@@ -57,7 +57,7 @@ export const NotificationsDrawer: FC<NotificationsDrawerProps> = (props) => {
       <Drawer
         position="right"
         isOpened={isOpened}
-        animationDuration={100}
+        animationSpeed={100}
         onClose={handleClose}
         showMask
         className="top-bar-notifications-drawer"

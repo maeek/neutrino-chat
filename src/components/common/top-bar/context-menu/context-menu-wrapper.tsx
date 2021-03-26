@@ -1,7 +1,6 @@
 import { FC, useState, useCallback, memo } from 'react';
 import { useDispatch } from 'react-redux';
-import { ContextMenu } from '@maeek/neutrino-design/components/molecules/context-menu';
-import { ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
+import ContextMenu, { ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
 import { AccountCircleRounded, ExitToAppRounded, HelpOutlineRounded, NotificationsOffRounded, SettingsRounded } from '@material-ui/icons';
 import AvatarWrapper from '../avatar-wrapper';
 import { clearTokens } from '@store/session/actions';

@@ -1,5 +1,16 @@
 .top-bar-button {
   .top-bar-notifications-drawer {
+    z-index: 1;
+
+    .ne-drawer-mask {
+      opacity: 0 !important;
+    }
+
+    .ne-drawer-side {
+      width: 25rem !important;
+      max-width: 100vw;
+    }
+
     &-content {
       &-header {
         display: flex;

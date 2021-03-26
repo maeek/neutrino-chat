@@ -13,7 +13,7 @@ export interface ContextMenuPrefixProps {
 export const ContextMenuPrefix: FC<ContextMenuPrefixProps> = (props) => {
   const history = useHistory();
   const username = useSelector(getMeUsername);
-  const goToProfile = () => Navigator.forward(history, '/profile');
+  const goToProfile = () => Navigator.forward(history, '/me');
 
   return (
     <div className="top-bar-badge-wrapper-context-menu-prefix-content">
