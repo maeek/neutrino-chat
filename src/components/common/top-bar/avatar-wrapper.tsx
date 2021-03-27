@@ -13,7 +13,7 @@ export interface AvatarWrapperProps {
 }
 
 export const AvatarWrapper: FC<AvatarWrapperProps> = (props) => {
-  const { src, size = 'medium' } = props;
+  const { src, size = 'medium', onClick } = props;
   const username = useSelector(getMeUsername);
   const avatar = useSelector(getMeAvatar);
   const history = useHistory();
@@ -21,9 +21,10 @@ export const AvatarWrapper: FC<AvatarWrapperProps> = (props) => {
   const goToProfile = () => Navigator.forward(history, '/me');
   const onEnter = useCallback((fn: Function) => (e: KeyboardEvent<HTMLSpanElement>) => {
     if (e.key === 'Enter') {
-      fn();
+      if(onClick) onClick();
+      else fn();
     }
-  }, []);
+  }, [onClick]);
 
   return (
     <AvatarCached

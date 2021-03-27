@@ -63,6 +63,9 @@
 
 @media (min-width: 3840px) {
   .view-root--main .main-side-filter {
-    max-width: 2200px;
+    max-width: 2600px;
+  }
+  .view-root--main .ne-layout-content-footer-content {
+    background-position-y: calc(100% + 10vh);
   }
 }
