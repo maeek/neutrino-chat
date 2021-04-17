@@ -1,16 +1,16 @@
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import { useHistory } from 'react-router';
 import { useSelector } from 'react-redux';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import Navigator from '@utils/navigation';
-import { getMeUsername } from '@store/me/user/selectors';
+import { getMeUsername } from '@selectors/user';
 import '../styles/top-bar.scss';
 
 export interface ContextMenuPrefixProps {
   [key: string]: any;
 }
 
-export const ContextMenuPrefix: FC<ContextMenuPrefixProps> = (props) => {
+export const ContextMenuPrefix = (props: ContextMenuPrefixProps) => {
   const history = useHistory();
   const username = useSelector(getMeUsername);
   const goToProfile = () => Navigator.forward(history, '/me');

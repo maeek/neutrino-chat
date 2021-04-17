@@ -1,8 +1,8 @@
-import { FC, memo, useCallback, KeyboardEvent } from 'react';
+import { memo, useCallback, KeyboardEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import AvatarCached, { AvatarSizes } from '@maeek/neutrino-design/components/atoms/avatar/avatar';
-import { getMeAvatar, getMeUsername } from '@store/me/user/selectors';
+import { getMeAvatar, getMeUsername } from '@selectors/user';
 import Navigator from '@utils/navigation';
 import './styles/top-bar.scss';
 
@@ -12,7 +12,7 @@ export interface AvatarWrapperProps {
   [key: string]: any;
 }
 
-export const AvatarWrapper: FC<AvatarWrapperProps> = (props) => {
+export const AvatarWrapper = (props: AvatarWrapperProps) => {
   const { src, size = 'medium', onClick } = props;
   const username = useSelector(getMeUsername);
   const avatar = useSelector(getMeAvatar);

@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import {
   PersonAddRounded,
   AddCommentRounded,
@@ -12,7 +12,7 @@ export interface MainSearchBarAddButtonContextMenuProps {
   [key: string]: any;
 }
 
-export const MainSearchBarAddButtonContextMenu: FC<MainSearchBarAddButtonContextMenuProps> = (props) => {
+export const MainSearchBarAddButtonContextMenu = (props: MainSearchBarAddButtonContextMenuProps) => {
   const items: ContextMenuItems[] = [
     {
       text: 'Add Contact',

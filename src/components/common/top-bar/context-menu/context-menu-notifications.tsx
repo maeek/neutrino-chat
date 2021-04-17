@@ -1,4 +1,4 @@
-import { FC, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { KeyboardArrowLeftRounded, KeyboardArrowRightRounded } from '@material-ui/icons';
 import { ContextMenu } from '@maeek/neutrino-design/components/molecules/context-menu';
@@ -7,7 +7,7 @@ import './styles/notifications.scss';
 export interface NotificationsWrapperProps {
 }
 
-export const NotificationsWrapper: FC<NotificationsWrapperProps> = (props) => {
+export const NotificationsWrapper = (props: NotificationsWrapperProps) => {
   const [showMenu, setShowMenu] = useState(false);
 
   const items = [

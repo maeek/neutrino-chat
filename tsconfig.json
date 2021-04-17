@@ -27,9 +27,10 @@
       "@components/*": ["src/components/*"],
       "@assets/*": ["src/assets/*"],
       "@utils/*": ["src/utils/*"],
+      "@selectors/*": ["src/selectors/*"],
       "@store/*": ["src/store/*"],
       "@actions/*": ["src/actions/*"],
-      "@modules/*": ["src/modules/*"],
+      "@views/*": ["src/views/*"],
       "@api/*": ["src/api/*"]
     }
   },

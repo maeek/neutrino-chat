@@ -1,5 +1,4 @@
 import {
-  FC,
   useState,
   KeyboardEvent,
   useRef,
@@ -16,7 +15,7 @@ export interface NotificationsDrawerProps {
   [key: string]: any;
 }
 
-export const NotificationsDrawer: FC<NotificationsDrawerProps> = (props) => {
+export const NotificationsDrawer = (props: NotificationsDrawerProps) => {
   const [isOpened, setIsOpened] = useState(false);
   const bellIconRef = useRef<HTMLSpanElement>(null);
 

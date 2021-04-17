@@ -1,20 +1,22 @@
-import { FC, lazy } from 'react';
+import { lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { RouteProps, useHistory, useLocation } from 'react-router-dom';
-import { PageTemplate } from '@components/common/page-template';
 import { RootState } from '@store/root';
-import { getAuthToken, getAuthRefreshToken } from '@store/session/selectors';
+import { getAuthToken, getAuthRefreshToken } from '@selectors/session';
+import { PageTemplate } from '@components/common/page-template';
 import Navigator from '@utils/navigation';
 
-const JoinView = lazy(() => import(
-  /* webpackChunkName: "main-page_join" */
+const LoginView = lazy(() => import(
+  /* webpackChunkName: "main-page_login" */
   /* webpackMode: "lazy" */
-  '@components/join'
+  /* webpackPrefetch: true */
+  /* webpackPreload: true */
+  '@components/login'
 ));
 
-interface JoinPageProps extends RouteProps {}
+interface LoginPageProps extends RouteProps {}
 
-export const JoinPage: FC<JoinPageProps> = (...props) => {
+export const LoginPage = (props: LoginPageProps) => {
   const location = useLocation();
   const history = useHistory();
   const isAuthenticated = useSelector((state: RootState) => !!getAuthToken(state) && !!getAuthRefreshToken(state));
@@ -27,17 +29,16 @@ export const JoinPage: FC<JoinPageProps> = (...props) => {
     return null;
   }
 
-
   return (
     <PageTemplate
       errorPage={null}
       fallbackComponent={null}
-      title="Neutrino Chat - Join"
+      title="Neutrino Chat - Login"
       canOperateOffline={false}
     >
-      <JoinView from={from} {...props} />
+      <LoginView from={from} {...props} />
     </PageTemplate>
   );
 };
 
-export default JoinPage;
+export default LoginPage;

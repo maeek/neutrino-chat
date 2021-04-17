@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
@@ -12,7 +12,7 @@ export interface TopBarProps {
   [key: string]: any;
 }
 
-export const TopBar: FC<TopBarProps> = () => {
+export const TopBar = (props: TopBarProps) => {
   const history = useHistory();
 
   const onHeadingClick = (e: MouseEvent) => {
@@ -24,7 +24,7 @@ export const TopBar: FC<TopBarProps> = () => {
     <nav className="top-bar">
       <div className="top-bar-inner">
         <div className="top-bar-left">
-          <NavigationControlls pwaOnly={false} />
+          <NavigationControlls pwaOnly={true} />
           <Heading level={1} className="top-bar-heading" tabIndex={0}>
             <Text type="primary" link={process.env.PUBLIC_URL} onClick={onHeadingClick}>Neutrino Chat</Text>
           </Heading>

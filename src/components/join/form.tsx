@@ -1,5 +1,4 @@
-import React, {
-  FC,
+import {
   MouseEventHandler,
   MouseEvent,
   MutableRefObject,
@@ -22,7 +21,7 @@ interface RegisterFormProps {
   redirectToLogin?: Function;
 }
 
-export const RegisterForm: FC<RegisterFormProps> = (props) => {
+export const RegisterForm = (props: RegisterFormProps) => {
   const {
     onRegister,
     redirectToLogin

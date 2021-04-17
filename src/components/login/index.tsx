@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 import { RouteProps, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/content-footer';
@@ -14,7 +14,7 @@ interface LoginViewProps extends RouteProps {
   [key: string]: any;
 }
 
-export const LoginView: FC<LoginViewProps> = (props) => {
+export const LoginView = (props: LoginViewProps) => {
   const { from } = props;
   const history = useHistory();
   const dispatch = useDispatch();

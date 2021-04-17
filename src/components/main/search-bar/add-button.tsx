@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import ActionButton from '@maeek/neutrino-design/components/atoms/buttons/Action';
 import {
   AddRounded
@@ -10,7 +10,7 @@ export interface MainSearchBarAddButtonProps {
   [key: string]: any;
 }
 
-export const MainSearchBarAddButton: FC<MainSearchBarAddButtonProps> = (props) => {
+export const MainSearchBarAddButton = (props: MainSearchBarAddButtonProps) => {
   const [showContext, setShowContext] = useState(false);
 
   const toggleContext = () => setShowContext(!showContext);

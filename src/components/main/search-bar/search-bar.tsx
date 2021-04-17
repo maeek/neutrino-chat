@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { Button } from '@maeek/neutrino-design/components/atoms/buttons/Button';
 import { Input } from '@maeek/neutrino-design/components/atoms/inputs/text';
 import { SearchRounded } from '@material-ui/icons';
@@ -9,7 +8,7 @@ export interface MainSearchBarProps {
   [key: string]: any;
 }
 
-export const MainSearchBar: FC<MainSearchBarProps> = (props) => {
+export const MainSearchBar = (props: MainSearchBarProps) => {
 
   return (
     <section className="main-search-bar">

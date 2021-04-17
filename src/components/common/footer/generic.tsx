@@ -1,9 +1,9 @@
-import {FC, memo} from 'react';
+import { memo } from 'react';
 import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import './footer.scss';
 
-export const GenericFooter: FC = () => (
+export const GenericFooter = () => (
   <div className="generic-footer">
     <div className="generic-footer-inner">
       <Heading level={5}><Text strong highlight>It's open source!</Text></Heading>

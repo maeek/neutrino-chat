@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 import { RouteProps, useHistory } from 'react-router-dom';
 import { LayoutContentFooter } from '@maeek/neutrino-design/components/layouts/content-footer';
 import { LayoutSideContent } from '@maeek/neutrino-design/components/layouts/side-content';
@@ -15,7 +15,7 @@ interface JoinViewProps extends RouteProps {
   [key: string]: any;
 }
 
-export const JoinView: FC<JoinViewProps> = (props) => {
+export const JoinView = (props: JoinViewProps) => {
   const { from } = props;
   const history = useHistory();
 

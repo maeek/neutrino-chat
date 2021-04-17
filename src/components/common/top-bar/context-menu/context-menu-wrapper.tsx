@@ -1,4 +1,4 @@
-import { FC, useState, useCallback, memo } from 'react';
+import { useState, useCallback, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import ContextMenu, { ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
 import { AccountCircleRounded, ExitToAppRounded, HelpOutlineRounded, NotificationsOffRounded, SettingsRounded } from '@material-ui/icons';
@@ -11,7 +11,7 @@ export interface ContextMenuWrapperProps {
   [key: string]: any;
 }
 
-export const ContextMenuWrapper: FC<ContextMenuWrapperProps> = (props) => {
+export const ContextMenuWrapper = (props: ContextMenuWrapperProps) => {
   const [showContext, setShowContext] = useState(false);
   const dispatch = useDispatch();
 

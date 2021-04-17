@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent } from 'react';
+import { KeyboardEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
@@ -11,7 +11,7 @@ export interface NavigationControllForwardProps {
   [key: string]: any;
 }
 
-export const NavigationControllForward: FC<NavigationControllForwardProps> = () => {
+export const NavigationControllForward = (props: NavigationControllForwardProps) => {
   const history = useHistory();
   const localHistory = useSelector((state: RootState) => state.history);
   const canGoForward = localHistory.stack.length - 1 > localHistory.currentIndex;

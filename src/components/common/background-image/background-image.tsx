@@ -1,4 +1,4 @@
-import { FC, CSSProperties, useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import ImageContainerCached from '@maeek/neutrino-design/components/atoms/image/image';
 import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import './background-image.scss';
@@ -11,7 +11,7 @@ export interface BackgroundImageProps {
   style?: CSSProperties;
 }
 
-export const BackgroundImage: FC<BackgroundImageProps> = (props) => {
+export const BackgroundImage = (props: BackgroundImageProps) => {
   const {
     url,
     opacity = 0.1,

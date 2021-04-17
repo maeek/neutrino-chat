@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent } from 'react';
+import { KeyboardEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
@@ -11,7 +11,7 @@ export interface NavigationControllBackProps {
   [key: string]: any;
 }
 
-export const NavigationControllBack: FC<NavigationControllBackProps> = () => {
+export const NavigationControllBack = (props: NavigationControllBackProps) => {
   const history = useHistory();
   const localHistory = useSelector((state: RootState) => state.history);
   const canGoBack = localHistory.currentIndex > 0 && localHistory.stack.length > 0;

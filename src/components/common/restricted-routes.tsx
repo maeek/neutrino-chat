@@ -1,8 +1,8 @@
-import { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '@store/root';
-import { getAuthToken, getAuthRefreshToken } from '@store/session/selectors';
+import { getAuthToken, getAuthRefreshToken } from '@selectors/session';
 import Navigator from '@utils/navigation';
 
 interface RestrictedRouteProps {
@@ -10,7 +10,7 @@ interface RestrictedRouteProps {
   [key: string]: any;
 }
 
-const RestrictedRoute: FC<RestrictedRouteProps> = ({ children, ...rest }) => {
+const RestrictedRoute = ({ children, ...rest }: RestrictedRouteProps) => {
   const isAuthenticated = useSelector((state: RootState) => !!getAuthToken(state) && !!getAuthRefreshToken(state));
   const history = useHistory();
   const location = useLocation();

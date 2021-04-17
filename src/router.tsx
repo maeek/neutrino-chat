@@ -1,17 +1,15 @@
-import { FC } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from 'react-router-dom';
 import RestrictedRoute from '@components/common/restricted-routes';
-import LoginPage from '@modules/auth/Login';
-import JoinPage from '@modules/auth/Join';
-import MainPage from '@modules/main/Main';
+import LoginPage from '@views/auth/Login';
+import JoinPage from '@views/auth/Join';
+import MainPage from '@views/main/Main';
 import TopBar from '@components/common/top-bar';
-import Navigator from '@utils/navigation';
 
-const RouterWrapper: FC<{}> = () => (
+const RouterWrapper = () => (
   <Router>
     <Switch>
       <Route exact path="/login" component={LoginPage} />
@@ -19,13 +17,6 @@ const RouterWrapper: FC<{}> = () => (
       <RestrictedRoute>
         <TopBar />
         <Route exact path="/" component={MainPage} />
-
-        <Route exact path="/test" render={({history}) => <div>
-          <button onClick={() => Navigator.forward(history, '/test2')}>Go somewhere else</button>
-        </div>} />
-        <Route exact path="/test2" render={({history}) => <div>
-          <button onClick={() => Navigator.forward(history, '/')}>Go home</button>
-        </div>} />
 
       </RestrictedRoute>
     </Switch>

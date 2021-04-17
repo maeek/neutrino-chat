@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler, MutableRefObject, useRef } from 'react';
+import { MouseEventHandler, MutableRefObject, useRef } from 'react';
 import ProceedButton from '@maeek/neutrino-design/components/atoms/buttons/Proceed';
 import { Input } from '@maeek/neutrino-design/components/atoms/inputs/text';
 import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
@@ -12,7 +12,7 @@ interface LoginFormProps {
   redirectToRegister?: Function;
 }
 
-export const LoginForm: FC<LoginFormProps> = (props) => {
+export const LoginForm = (props: LoginFormProps) => {
   const {
     onLogin,
     redirectToRegister,
