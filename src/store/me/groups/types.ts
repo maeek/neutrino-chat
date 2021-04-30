@@ -1,9 +1,16 @@
 /* eslint-disable no-unused-vars */
 import { GenericPayloadStructure } from '../../types';
 
+export enum GroupTypeEnum {
+  CHANNEL = 'channel',
+  DM = 'dm',
+  CONTACT = 'contact'
+}
+
 export interface GroupItem {
   id: string;
   name: string;
+  type: GroupTypeEnum;
 }
 
 export interface Groups {

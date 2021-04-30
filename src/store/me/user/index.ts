@@ -3,7 +3,8 @@ import { UserState, UserActionTypes, UserActionsEnum } from './types';
 export const initialState: UserState = {
   username: '',
   avatar: '',
-  bio: ''
+  bio: '',
+  defaultReactions: []
 };
 
 const userReducer = (state = initialState, action: UserActionTypes) => {
@@ -23,8 +24,14 @@ const userReducer = (state = initialState, action: UserActionTypes) => {
   case UserActionsEnum.SET_ME_BIO:
     return {
       ...state,
-      avatar: action.data.bio
+      bio: action.data.bio
     };
+
+  case UserActionsEnum.SET_ME_REACTIONS:
+    return {
+      ...state,
+      defaultReactions: action.data.reactions
+    }; 
 
   default:
     return state;

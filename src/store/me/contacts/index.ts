@@ -1,7 +1,13 @@
+import { DateTime } from 'luxon';
 import { ContactActionsEnum, ContactEntry, ContactsActionTypes, ContactsState } from './types';
 
 export const initialState: ContactsState = {
-  entries: {}
+  entries: {
+    test_user: {
+      username: 'test_user',
+      added: DateTime.local()
+    }
+  }
 };
 
 const contactsReducer = (state = initialState, action: ContactsActionTypes) => {
