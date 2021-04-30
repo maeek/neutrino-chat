@@ -21,15 +21,17 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0.7rem;
+  width: 0.5rem;
 }
 
 ::-webkit-scrollbar-track {
+  border-radius: 1rem;
   background-color: #202328;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #374553;
+  border-radius: 1rem;
 }
 
 #app-root {
@@ -41,10 +43,4 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-}
-
-@media (min-width: 2440px) {
-  :root {
-    font-size: 34px !important;
-  }
 }
