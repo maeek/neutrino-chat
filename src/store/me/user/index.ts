@@ -1,6 +1,7 @@
+import userReducerMock from './mock';
 import { UserState, UserActionTypes, UserActionsEnum } from './types';
 
-export const initialState: UserState = {
+export const initialState: UserState = __DEV__ ? userReducerMock : {
   username: '',
   avatar: '',
   bio: '',

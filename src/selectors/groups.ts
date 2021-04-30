@@ -1,4 +1,4 @@
-import { getStoreState } from '@store/index';
+import { getStoreState } from '@/store/index';
 
 export const getMeGroups = (state = getStoreState()) => {
   return state.me.groups.entries;

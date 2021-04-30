@@ -7,7 +7,7 @@ import {
   CenterFocusStrongRounded,
   PublicRounded
 } from '@material-ui/icons';
-import { FilterCategory } from '@store/app/filters/types';
+import { FilterCategory } from '@/store/app/filters/types';
 
 export const sideBarConfig = {
   mainSection: [

@@ -8,7 +8,7 @@ export interface ChannelSettings {
   backgroundOpacity?: number;
   backgroundBlur?: number;
   color?: string;
-  blocked?: string;
+  blocked?: string[];
   limit?: number;
   encrypted?: boolean;
 }
@@ -22,7 +22,7 @@ export interface Channel {
     type: string; // TODO: type
   };
   owner: string;
-  createdDate: string;
+  createdDate: number;
   isPublic?: boolean;
   settings: ChannelSettings;
   messages: string[];

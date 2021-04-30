@@ -1,13 +1,8 @@
-import { DateTime } from 'luxon';
+import contactsReducerMock from './mock';
 import { ContactActionsEnum, ContactEntry, ContactsActionTypes, ContactsState } from './types';
 
-export const initialState: ContactsState = {
-  entries: {
-    test_user: {
-      username: 'test_user',
-      added: DateTime.local()
-    }
-  }
+export const initialState: ContactsState = __DEV__ ? contactsReducerMock : {
+  entries: {}
 };
 
 const contactsReducer = (state = initialState, action: ContactsActionTypes) => {

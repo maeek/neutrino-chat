@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import NavItem from '@maeek/neutrino-design/components/molecules/navigation/Item';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { StarsRounded, DehazeRounded, ArrowUpwardRounded, FormatListBulletedRounded, MoreHorizRounded } from '@material-ui/icons';
-import { Groups, GroupsEntry } from '@store/me/groups/types';
-import { getMeGroups, getMeGroupsList } from '@selectors/groups';
-import { RootState } from '@store/root';
-import { getFiltersGroup } from '@selectors/filters';
-import { setFilterGroup } from '@store/app/filters/actions';
+import { Groups, GroupsEntry } from '@/store/me/groups/types';
+import { getMeGroups, getMeGroupsList } from '@/selectors/groups';
+import { RootState } from '@/store/root';
+import { getFiltersGroup } from '@/selectors/filters';
+import { setFilterGroup } from '@/store/app/filters/actions';
 
 export interface GroupsListProps {}
 
@@ -63,7 +63,7 @@ export const GroupsList = memo((props: GroupsListProps) => {
       }
 
       {
-        groupsList.length < 2 && (
+        groupsList.length < 1 && (
           <div className="side-nav-groups--empty">
             <Text className="side-nav-groups--heading" strong disabled> You have "0" Groups</Text>
             <Text className="side-nav-groups--desc" disabled>

@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { GenericPayloadStructure } from '../../types';
 
-
-
 export interface MutedState {
   channels: string[];
   users: string[];
@@ -16,8 +14,6 @@ export enum MutedActionsEnum {
   UNMUTE_CHANNEL = 'UNMUTE_CHANNEL',
   CLEAR_MUTED_CHANNEL = 'CLEAR_MUTED_CHANNEL'
 }
-
-
 
 export interface MutedUserAction<T> extends GenericPayloadStructure {
   type: T;

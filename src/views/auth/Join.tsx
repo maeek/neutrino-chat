@@ -1,15 +1,15 @@
 import { lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { RouteProps, useHistory, useLocation } from 'react-router-dom';
-import { PageTemplate } from '@components/common/page-template';
-import { RootState } from '@store/root';
-import { getAuthToken, getAuthRefreshToken } from '@selectors/session';
-import Navigator from '@utils/navigation';
+import { PageTemplate } from '@/components/common/page-template';
+import { RootState } from '@/store/root';
+import { getAuthToken, getAuthRefreshToken } from '@/selectors/session';
+import Navigator from '@/utils/navigation';
 
 const JoinView = lazy(() => import(
   /* webpackChunkName: "main-page_join" */
   /* webpackMode: "lazy" */
-  '@components/join'
+  '@/components/join'
 ));
 
 interface JoinPageProps extends RouteProps {}

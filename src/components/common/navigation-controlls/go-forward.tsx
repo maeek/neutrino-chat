@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import classnames from 'classnames';
 import { KeyboardArrowRightRounded } from '@material-ui/icons';
-import { RootState } from '@store/root';
-import Navigator from '@utils/navigation';
+import { RootState } from '@/store/root';
+import Navigator from '@/utils/navigation';
 import './styles/navigation.scss';
 
 export interface NavigationControllForwardProps {

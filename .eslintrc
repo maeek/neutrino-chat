@@ -16,6 +16,10 @@
       "version": "17"
     }
   },
+  "globals": {
+    "__DEV__": "readonly",
+    "__PROD__": "readonly"
+  },
   "rules": {
     "semi": [
       "error",

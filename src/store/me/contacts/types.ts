@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { DateTime } from 'luxon';
 import { GenericPayloadStructure } from '../../types';
 
 export interface Contact {
   username: string;
-  added: DateTime;
+  added: number;
 }
 
 export interface ContactEntry {
@@ -25,7 +24,7 @@ export interface AddContactsAction extends GenericPayloadStructure {
   type: ContactActionsEnum.ADD_CONTACT;
   data: {
     users: string[];
-    timestamp: DateTime;
+    timestamp: number;
   }
 }
 

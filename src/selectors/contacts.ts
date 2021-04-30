@@ -1,4 +1,4 @@
-import { getStoreState } from '@store/index';
+import { getStoreState } from '@/store/index';
 
 export const getContacts = (state = getStoreState()) => {
   return state.me.contacts.entries;

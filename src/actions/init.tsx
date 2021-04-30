@@ -1,5 +1,5 @@
-import { setMeAvatar, setMeUsername } from '@store/me/user/actions';
-import { setToken, setRefreshToken } from '@store/session/actions';
+import { setMeAvatar, setMeUsername } from '@/store/me/user/actions';
+import { setToken, setRefreshToken } from '@/store/session/actions';
 import {Dispatch} from 'redux';
 
 export const init = () => (dispatch: Dispatch) => {

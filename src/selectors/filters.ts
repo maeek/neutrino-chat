@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
-import { getStoreState } from '@store/index';
+import { getStoreState } from '@/store/index';
 import { getContacts } from './contacts';
-import { GroupTypeEnum } from '@store/me/groups/types';
+import { GroupTypeEnum } from '@/store/me/groups/types';
 
 export const getFiltersMain = (state = getStoreState()) => state.app.filters.category;
 

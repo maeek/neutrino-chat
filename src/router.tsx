@@ -3,11 +3,11 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import RestrictedRoute from '@components/common/restricted-routes';
-import LoginPage from '@views/auth/Login';
-import JoinPage from '@views/auth/Join';
-import MainPage from '@views/main/Main';
-import TopBar from '@components/common/top-bar';
+import RestrictedRoute from '@/components/common/restricted-routes';
+import LoginPage from '@/views/auth/Login';
+import JoinPage from '@/views/auth/Join';
+import MainPage from '@/views/main/Main';
+import TopBar from '@/components/common/top-bar';
 
 const RouterWrapper = () => (
   <Router>

@@ -9,7 +9,6 @@ export enum GroupTypeEnum {
 
 export interface GroupItem {
   id: string;
-  name: string;
   type: GroupTypeEnum;
 }
 

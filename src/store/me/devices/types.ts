@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
-// import { DateTime } from "luxon";
 import { GenericPayloadStructure } from '../../types';
 
 export interface Device {
-  // added: DateTime; // Maybe in the future
-  // lastSeen?: DateTime | string;
+  // added: number; // Maybe in the future
+  // lastSeen?: number;
   id: string;
   name: string;
   os?: string;

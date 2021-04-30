@@ -1,7 +1,6 @@
-import { DateTime } from 'luxon';
 import { AddContactsAction, ClearContactsAction, ContactActionsEnum, RemoveContactsAction } from './types';
 
-export const addToContacts = (users: string[], timestamp = DateTime.local()): AddContactsAction => ({
+export const addToContacts = (users: string[], timestamp = Date.now()): AddContactsAction => ({
   type: ContactActionsEnum.ADD_CONTACT,
   data: {
     users,

@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { RootState } from '@store/root';
-import { getAuthToken, getAuthRefreshToken } from '@selectors/session';
-import Navigator from '@utils/navigation';
+import { RootState } from '@/store/root';
+import { getAuthToken, getAuthRefreshToken } from '@/selectors/session';
+import Navigator from '@/utils/navigation';
 
 interface RestrictedRouteProps {
   children?: ReactNode;

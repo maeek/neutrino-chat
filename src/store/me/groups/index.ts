@@ -1,6 +1,7 @@
+import groupsReducerMock from './mock';
 import { GroupActionsEnum, GroupItem, GroupMemebersActionTypes, GroupsActionTypes, GroupsEntry, GroupsState } from './types';
 
-export const initialState: GroupsState = {
+export const initialState: GroupsState = __DEV__ ? groupsReducerMock : {
   entries: {
     Starred: {
       name: 'Starred',

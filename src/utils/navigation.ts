@@ -1,5 +1,5 @@
 import { Store } from 'redux';
-import store from '@store/index';
+import store from '@/store/index';
 import {
   goBack,
   goForward,
@@ -7,7 +7,7 @@ import {
   replaceLocation,
   setHistory,
   updateIndex
-} from '@store/history/actions';
+} from '@/store/history/actions';
 
 export class NavigationController {
   private store: Store;

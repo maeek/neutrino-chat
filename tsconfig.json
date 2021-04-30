@@ -23,18 +23,11 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
-      "@styles/*": ["src/styles/*"],
-      "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"],
-      "@utils/*": ["src/utils/*"],
-      "@selectors/*": ["src/selectors/*"],
-      "@store/*": ["src/store/*"],
-      "@actions/*": ["src/actions/*"],
-      "@views/*": ["src/views/*"],
-      "@api/*": ["src/api/*"]
+      "@/*": ["src/*"]
     }
   },
   "include": [
-    "src"
+    "src",
+    "./src/global.d.ts"
   ]
 }

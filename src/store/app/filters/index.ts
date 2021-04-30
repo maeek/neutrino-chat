@@ -1,7 +1,8 @@
 import { Reducer } from 'redux';
+import filtersReducerMock from './mock';
 import { FilterCategory, FiltersAction, FiltersActionsEnum, FiltersState } from './types';
 
-export const initialState: FiltersState = {
+export const initialState: FiltersState = __DEV__ ? filtersReducerMock : {
   category: FilterCategory.ALL,
   group: '',
   queries: []

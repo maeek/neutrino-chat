@@ -1,7 +1,7 @@
 import { RouteProps } from 'react-router-dom';
 import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/content-footer';
 import LayoutSideContent from '@maeek/neutrino-design/components/layouts/side-content';
-import GenericFooter from '@components/common/footer/generic';
+import GenericFooter from '@/components/common/footer/generic';
 import MainSearchBar from './search-bar/search-bar';
 import ContactsCards from './content/contacts';
 import ChannelsCards from './content/channels';

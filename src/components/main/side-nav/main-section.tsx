@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavItem } from '@maeek/neutrino-design/components/molecules/navigation/Item';
 import { sideBarConfig } from './config';
 import '../styles/sidebar.scss';
-import { getFiltersMain } from '@selectors/filters';
-import { setFilterMain } from '@store/app/filters/actions';
+import { getFiltersMain } from '@/selectors/filters';
+import { setFilterMain } from '@/store/app/filters/actions';
 
 export const SideBarNavMainSection = () => {
   const selectedCategory = useSelector(getFiltersMain);

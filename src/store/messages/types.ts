@@ -1,5 +1,4 @@
-import { DateTime } from 'luxon';
-
+/* eslint-disable no-unused-vars */
 export enum MessageTypes {
   DIRECT = 'DIRECT',
   CHANNEL = 'CHANNEL'
@@ -45,8 +44,8 @@ export interface Message {
   channelId?: string;
   userId?: string;
 
-  timeSent: DateTime;
-  timeReceived: DateTime;
+  timeSent: number;
+  timeReceived: number;
 
   textBody: string;
   attachments: MessageAttachments;

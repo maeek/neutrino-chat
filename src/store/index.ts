@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { createStore, applyMiddleware, Middleware } from 'redux';
 import thunk from 'redux-thunk';
-import {composeWithDevTools} from 'redux-devtools-extension';
 import rootReducer, { RootState } from './root';
 
 let reducers;
@@ -15,8 +14,8 @@ const logger: Middleware<{}, RootState>  = store => next => action => {
   return result;
 };
 
-if (process.env.NODE_ENV === 'development') {
-  reducers = composeWithDevTools(
+if (__DEV__) {
+  reducers = require('redux-devtools-extension').composeWithDevTools(
     applyMiddleware(
       thunk,
       logger

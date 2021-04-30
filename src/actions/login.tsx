@@ -1,7 +1,7 @@
-// import { ApiAuthorization } from '@api/auth';
-import { setMeUsername, setMeAvatar } from '@store/me/user/actions';
-import { setToken, setRefreshToken } from '@store/session/actions';
-import Navigator from '@utils/navigation';
+// import { ApiAuthorization } from '@/api/auth';
+import { setMeUsername, setMeAvatar } from '@/store/me/user/actions';
+import { setToken, setRefreshToken } from '@/store/session/actions';
+import Navigator from '@/utils/navigation';
 import {Dispatch} from 'redux';
 
 export const login = (
@@ -15,7 +15,6 @@ export const login = (
   
   // ApiAuthorization.login(username, password)
   //   .then((data) => {
-  console.log(username, password);
   dispatch(setToken('123'));
   dispatch(setRefreshToken('123'));
   dispatch(setMeUsername(username));

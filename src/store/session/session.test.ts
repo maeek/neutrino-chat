@@ -1,6 +1,6 @@
 import sessionReducer from '.';
 import { clearTokens, setRefreshToken, setToken } from './actions';
-import { getAuthRefreshToken, getAuthToken } from '@selectors/session';
+import { getAuthRefreshToken, getAuthToken } from '@/selectors/session';
 import {
   ClearTokensAction,
   SessionActionsEnum,

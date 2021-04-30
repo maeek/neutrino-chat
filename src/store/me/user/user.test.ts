@@ -1,6 +1,5 @@
 import meUserReducer from '.';
 import { setMeAvatar, setMeBio, setMeUsername } from './actions';
-import { getMeAvatar, getMeBio, getMeUser, getMeUsername } from '@selectors/user';
 import { SetMeAvatar, SetMeBio, SetMeUsername, UserActionsEnum, UserActionTypes } from './types';
 
 describe('Redux store - Me/Contacts', () => {
@@ -47,7 +46,8 @@ describe('Redux store - Me/Contacts', () => {
       ).toEqual({
         username: '',
         avatar: '',
-        bio: ''
+        bio: '',
+        defaultReactions: []
       });
     });
 
@@ -66,7 +66,8 @@ describe('Redux store - Me/Contacts', () => {
       ).toEqual({
         username,
         avatar: '',
-        bio: ''
+        bio: '',
+        defaultReactions: []
       });
     });
 
@@ -85,7 +86,8 @@ describe('Redux store - Me/Contacts', () => {
       ).toEqual({
         username: '',
         avatar: '',
-        bio
+        bio,
+        defaultReactions: []
       });
     });
 
@@ -104,40 +106,9 @@ describe('Redux store - Me/Contacts', () => {
       ).toEqual({
         username: '',
         avatar,
-        bio: ''
+        bio: '',
+        defaultReactions: []
       });
-    });
-  });
-
-  describe('Selectots', () => {
-    const globalStateMock = {
-      me: {
-        user: {
-          username: '',
-          avatar: '',
-          bio: ''
-        }
-      }
-    };
-
-    it('getMeUser should return current user from global store', () => {
-      const user = getMeUser(globalStateMock as any);
-      expect(user).toEqual(globalStateMock.me.user);
-    });
-
-    it('getMeUsername should return current user username from global store', () => {
-      const username = getMeUsername(globalStateMock as any);
-      expect(username).toEqual(globalStateMock.me.user.username);
-    });
-
-    it('getMeAvatar should return current user avatar from global store', () => {
-      const avatar = getMeAvatar(globalStateMock as any);
-      expect(avatar).toEqual(globalStateMock.me.user.avatar);
-    });
-
-    it('getMeBio should return current user avatar from global store', () => {
-      const bio = getMeBio(globalStateMock as any);
-      expect(bio).toEqual(globalStateMock.me.user.bio);
     });
   });
 });

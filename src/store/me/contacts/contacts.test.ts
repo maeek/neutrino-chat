@@ -1,7 +1,6 @@
 import contactsReducer from '.';
-import { TIME_MOCK } from '../../../setup-tests';
 import { addToContacts, clearContacts, removeFromContacts } from './actions';
-import { getContacts, getMutualContacts } from '../../../selectors/contacts';
+import { getContacts, getMutualContacts } from '@/selectors/contacts';
 import { AddContactsAction, ClearContactsAction, ContactActionsEnum, ContactsActionTypes, ContactsState, RemoveContactsAction } from './types';
 
 describe('Redux store - Me/Contacts', () => {
@@ -16,10 +15,10 @@ describe('Redux store - Me/Contacts', () => {
         type: ContactActionsEnum.ADD_CONTACT,
         data: {
           users,
-          timestamp: TIME_MOCK
+          timestamp: 123456789
         }
       };
-      expect(addToContacts(users)).toEqual(expectedAction);
+      expect(addToContacts(users, 123456789)).toEqual(expectedAction);
     });
 
     it('should create an action to remove users to contacts', () => {
@@ -63,7 +62,7 @@ describe('Redux store - Me/Contacts', () => {
         type: ContactActionsEnum.ADD_CONTACT,
         data: {
           users,
-          timestamp: TIME_MOCK
+          timestamp: 123456789
         }
       };
 
@@ -73,11 +72,11 @@ describe('Redux store - Me/Contacts', () => {
         entries: {
           test1: {
             username: 'test1',
-            added: TIME_MOCK
+            added: 123456789
           },
           test2: {
             username: 'test2',
-            added: TIME_MOCK
+            added: 123456789
           }
         }
       });
@@ -88,11 +87,11 @@ describe('Redux store - Me/Contacts', () => {
         entries: {
           test1: {
             username: 'test1',
-            added: TIME_MOCK
+            added: 123456789
           },
           test2: {
             username: 'test2',
-            added: TIME_MOCK
+            added: 123456789
           }
         }
       };
@@ -125,11 +124,11 @@ describe('Redux store - Me/Contacts', () => {
         entries: {
           test1: {
             username: 'test1',
-            added: TIME_MOCK
+            added: 123456789
           },
           test2: {
             username: 'test2',
-            added: TIME_MOCK
+            added: 123456789
           }
         }
       };
@@ -149,11 +148,11 @@ describe('Redux store - Me/Contacts', () => {
           entries: {
             foobar: {
               username: 'foobar',
-              added: TIME_MOCK
+              added: 123456789
             },
             fizbuzz: {
               username: 'fizbuzz',
-              added: TIME_MOCK
+              added: 123456789
             }
           }
         }
