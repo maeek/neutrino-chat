@@ -1,0 +1,49 @@
+.side-nav {
+  margin: 1rem 0;
+  width: 100%;
+  border-radius: 4px;
+
+  &-groups--empty {
+    padding: 0.6rem 0.2rem 0.6rem 1.1rem;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-groups--heading {
+    margin-top: 0;
+    font-size: 1rem;
+    >.ne-typo {
+      font-size: inherit;
+    }
+  }
+
+  &-groups--desc {
+    margin-top: 0.5rem;
+    line-height: 1.25rem;
+  }
+
+  &-groups--new {
+    margin-top: 1rem;
+  }
+
+  &-items {
+    padding: 0;
+
+    .spacer {
+      height: 2rem;
+    }
+
+    .ne-nav-item--active .ne-nav-item-content {
+      background-color: #202328;
+    }
+
+    .ne-nav-item-content {
+      margin: 0.05rem 0;
+      height: auto;
+      &-wrapper {
+        padding: 0.6rem 0 0.6rem 0.7rem;
+      }
+    }
+  }
+}
