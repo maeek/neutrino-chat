@@ -52,5 +52,9 @@
     "prettier/prettier": 0,
     "no-unused-vars": 1,
     "no-case-declarations": 1,
+    "eol-last": ["error", "always"],
+    "array-bracket-spacing": "warn",
+    "no-duplicate-imports": "error",
+    "no-useless-return": "warn"
   }
 }
