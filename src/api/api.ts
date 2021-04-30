@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { getAuthRefreshToken, getAuthToken } from '../store/session/selectors';
+import { getAuthRefreshToken, getAuthToken } from '@selectors/session';
 
 export class ApiInstance {
   baseURL: string;
