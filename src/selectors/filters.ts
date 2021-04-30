@@ -2,6 +2,7 @@ import { createSelector } from 'reselect';
 import { getStoreState } from '@/store/index';
 import { getContacts } from './contacts';
 import { GroupTypeEnum } from '@/store/me/groups/types';
+import { getChannels } from './channels';
 
 export const getFiltersMain = (state = getStoreState()) => state.app.filters.category;
 
@@ -22,23 +23,18 @@ export const getFilteredContactsByGroup = createSelector(
 export const getFilteredDMsByGroup = createSelector(
   getGroupByFiltersGroup,
   getContacts,
-  (group, contacts) => group.items
+  (group, dms) => group.items
     .filter((item) => item.type === GroupTypeEnum.DM)
-    .map((item) => contacts[item.id])
+    .map((item) => dms[item.id])
 );
 
 export const getFilteredChannelsByGroup = createSelector(
   getGroupByFiltersGroup,
-  getContacts,
-  (group, contacts) => group.items
+  getChannels,
+  (group, channels) => group.items
     .filter((item) => item.type === GroupTypeEnum.CHANNEL)
-    .map((item) => contacts[item.id])
+    .map((item) => channels[item.id])
 );
-
-// TODO: channels reducer
-// const queries = {
-//   MY_CHANNELS: (user, channels) =>  channels.
-// };
 
 export const getFilteredChannelsByQueries = createSelector(
   getFiltersQueries,

@@ -1,7 +1,13 @@
 import contactsReducer from '.';
 import { addToContacts, clearContacts, removeFromContacts } from './actions';
-import { getContacts, getMutualContacts } from '@/selectors/contacts';
-import { AddContactsAction, ClearContactsAction, ContactActionsEnum, ContactsActionTypes, ContactsState, RemoveContactsAction } from './types';
+import {
+  AddContactsAction,
+  ClearContactsAction,
+  ContactActionsEnum,
+  ContactsActionTypes,
+  ContactsState,
+  RemoveContactsAction
+} from './types';
 
 describe('Redux store - Me/Contacts', () => {
   describe('Actions', () => {
@@ -137,35 +143,6 @@ describe('Redux store - Me/Contacts', () => {
       ).toEqual({
         entries: {}
       });
-    });
-    
-  });
-
-  describe('Selectots', () => {
-    const globalStateMock = {
-      me: {
-        contacts: {
-          entries: {
-            foobar: {
-              username: 'foobar',
-              added: 123456789
-            },
-            fizbuzz: {
-              username: 'fizbuzz',
-              added: 123456789
-            }
-          }
-        }
-      }
-    };
-
-    it('getContact should return all contacts from global store', () => {
-      const contacts = getContacts(globalStateMock as any);
-      expect(contacts).toEqual(globalStateMock.me.contacts.entries);
-    });
-    it.skip('getMutualContacts from global store', () => {
-      const contacts = getMutualContacts(globalStateMock as any);
-      expect(contacts).toEqual([]);
     });
   });
 });

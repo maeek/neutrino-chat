@@ -7,13 +7,12 @@ import {
   unmuteChannel,
   unmuteUser
 } from './actions';
-import { checkIfChannelIsMuted, checkIfUserIsMuted, getMuted, getMutedChannels, getMutedUsers } from './selectors';
 import
 { AddMutedChannelAction,
   AddMutedUserAction,
   ClearMutedChannelsAction,
   ClearMutedUsersAction,
-  MutedActionsEnum, MutedActionTypes, MutedState, RemoveMutedUserAction } from './types';
+  MutedActionsEnum, MutedActionTypes, MutedState, RemoveMutedChannelAction, RemoveMutedUserAction } from './types';
 
 describe('Redux store - Settings/Muted', () => {
   describe('Actions', () => {
@@ -138,7 +137,7 @@ describe('Redux store - Settings/Muted', () => {
     });
 
     it('should handle UNMUTE_CHANNEL', () => {
-      const unmuteUsersAction: RemoveMutedUserAction = {
+      const unmuteChannelsAction: RemoveMutedChannelAction = {
         type: MutedActionsEnum.UNMUTE_CHANNEL,
         data: {
           list: ['channel2']
@@ -151,7 +150,7 @@ describe('Redux store - Settings/Muted', () => {
       };
 
       expect(
-        mutedReducer(initState, unmuteUsersAction)
+        mutedReducer(initState, unmuteChannelsAction)
       ).toEqual({
         users: ['user1', 'user2'],
         channels: ['channel1']
@@ -194,41 +193,6 @@ describe('Redux store - Settings/Muted', () => {
         users: [],
         channels: []
       });
-    });
-  });
-
-  describe('Selectors', () => {
-    const globalStateMock = {
-      settings: {
-        muted: {
-          users: ['user1', 'user2'],
-          channels: ['channel1', 'channel2', 'channel3']
-        }
-      }
-    };
-
-    it('getMuted should return all muted users and channels', () => {
-      const muted = getMuted(globalStateMock as any);
-      expect(muted).toEqual(globalStateMock.settings.muted);
-    });
-    it('getMutedUsers should return muted users', () => {
-      const muted = getMutedUsers(globalStateMock as any);
-      expect(muted).toEqual(globalStateMock.settings.muted.users);
-    });
-
-    it('getMutedChannels should return muted channels', () => {
-      const muted = getMutedChannels(globalStateMock as any);
-      expect(muted).toEqual(globalStateMock.settings.muted.channels);
-    });
-
-    it('checkIfUserIsMuted should return true if user is muted', () => {
-      const muted = checkIfUserIsMuted('user2', globalStateMock as any);
-      expect(muted).toBeTruthy();
-    });
-
-    it('checkIfChannelIsMuted should return true if user is muted', () => {
-      const muted = checkIfChannelIsMuted('channel3', globalStateMock as any);
-      expect(muted).toBeTruthy();
     });
   });
 });
