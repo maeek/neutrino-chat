@@ -17,7 +17,25 @@ import {
   removeChannels
 } from './actions';
 import channelsReducerMock from './mock';
-import { AddChannelMessages, AddChannelParticipants, AddChannels, AddChannelToJoined, AddChannelToRecent, Channel, ChannelsAction, ChannelsActionsEnum, ClearChannelMessages, ClearChannels, ClearJoinedChannels, ClearRecentChannels, ModifyChannel, ModifyChannelSettings, RemoveChannelFromJoined, RemoveChannelMessages, RemoveChannelParticipants, RemoveChannels } from './types';
+import {
+  AddChannelMessages,
+  AddChannelParticipants,
+  AddChannels,
+  AddChannelToJoined,
+  AddChannelToRecent,
+  ChannelsAction,
+  ChannelsActionsEnum,
+  ClearChannelMessages,
+  ClearChannels,
+  ClearJoinedChannels,
+  ClearRecentChannels,
+  ModifyChannel,
+  ModifyChannelSettings,
+  RemoveChannelFromJoined,
+  RemoveChannelMessages,
+  RemoveChannelParticipants,
+  RemoveChannels
+} from './types';
 
 describe('Redux store - Channels', () => {
   describe('Actions', () => {

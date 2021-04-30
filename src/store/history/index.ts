@@ -7,7 +7,7 @@ export const initialState: HistoryState = {
   ]
 };
 
-const sessionReducer = (state = initialState, action: HistoryActionTypes) => {
+const historyReducer = (state = initialState, action: HistoryActionTypes) => {
   let newStack = [...state.stack];
 
   switch (action.type) {
@@ -59,4 +59,4 @@ const sessionReducer = (state = initialState, action: HistoryActionTypes) => {
   }
 };
 
-export default sessionReducer;
+export default historyReducer;
