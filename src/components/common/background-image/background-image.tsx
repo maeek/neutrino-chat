@@ -1,5 +1,5 @@
 import { CSSProperties, useState } from 'react';
-import ImageContainerCached from '@maeek/neutrino-design/components/atoms/image/image';
+import ImageContainerCached from '@maeek/neutrino-design/components/atoms/image/Image';
 import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import './background-image.scss';
 
