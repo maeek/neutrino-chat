@@ -1,0 +1,65 @@
+.main-search-bar-suggestions {
+  position: absolute;
+  top: 3.2rem;
+  left: 3.4rem;
+  width: calc(100% - 4.6rem);
+  height: 0;
+  background-color: darken(#343a43, 2);
+  border-radius: 0.2rem;
+  overflow: hidden;
+  opacity: 0;
+  z-index: -1;
+  box-shadow: 0 0 5px 0 transparentize(#000, 0.9);
+  transform: scale(0.9) translateY(-4rem);
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-family: inherit;
+  color: #cecece;
+  padding: 0.2rem 0;
+
+  &--visible {
+    overflow: auto;
+    height: max-content;
+    max-height: 75vh;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .ne-typo-heading {
+    padding: 0.5rem 0.8rem 0.2rem 0.8rem;
+    margin-bottom: 0.1rem;
+  }
+
+  &-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    width: 100%;
+
+    &-element {
+      width: calc(100% - 0.4rem);
+      cursor: pointer;
+      margin: 0 0.2rem;
+
+      > .ne-typo-text {
+        display: block;
+        padding: 0.4rem 0.6rem;
+        text-decoration: none;
+      }
+
+      &:hover, &:focus-within, &:focus {
+        background-color: darken(#343a43, 4);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 60rem) {
+  .main-search-bar-suggestions {
+    left: 1rem;
+    width: calc(100% - 2.2rem);
+  }
+}

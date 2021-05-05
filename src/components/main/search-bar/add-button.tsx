@@ -10,11 +10,11 @@ export interface MainSearchBarAddButtonProps {
   [key: string]: any;
 }
 
-export const MainSearchBarAddButton = (props: MainSearchBarAddButtonProps) => {
-  const [showContext, setShowContext] = useState(false);
+export const MainSearchBarAddButton = () => {
+  const [ showContext, setShowContext ] = useState(false);
 
   const toggleContext = () => setShowContext(!showContext);
-  const closeContextMenu = useCallback(() => setShowContext(false), [setShowContext]);
+  const closeContextMenu = useCallback(() => setShowContext(false), [ setShowContext ]);
 
   return (
     <div className="main-search-bar-add">
