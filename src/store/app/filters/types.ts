@@ -14,15 +14,24 @@ export interface FilterQuery {
 }
 
 export interface FiltersState {
+  search: string;
   category: FilterCategory;
   group: string;
   queries: FilterQuery[];
 }
 
 export enum FiltersActionsEnum {
+  SET_FILTER_SEARCH = 'SET_FILTER_SEARCH',
   SET_FILTER_MAIN = 'SET_FILTER_MAIN',
   SET_FILTER_CUST =  'SET_FILTER_CUST',
   SET_FILTER_GROUP =  'SET_FILTER_GROUP'
+}
+
+export interface SetFilterSearch extends Action {
+  type: FiltersActionsEnum.SET_FILTER_SEARCH,
+  data: {
+    search: string;
+  }
 }
 
 export interface SetFilterMain extends Action {
@@ -46,4 +55,4 @@ export interface SetFilterGroup extends Action {
   }
 }
 
-export type FiltersAction = SetFilterCustom | SetFilterGroup | SetFilterMain;
+export type FiltersAction = SetFilterCustom | SetFilterGroup | SetFilterMain | SetFilterSearch;

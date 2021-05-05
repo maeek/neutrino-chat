@@ -1,5 +1,12 @@
 import { ActionCreator } from 'redux';
-import { FiltersActionsEnum, SetFilterCustom, SetFilterGroup, SetFilterMain } from './types';
+import { FiltersActionsEnum, SetFilterCustom, SetFilterGroup, SetFilterMain, SetFilterSearch } from './types';
+
+export const setFilterSearch: ActionCreator<SetFilterSearch> = (search) => ({
+  type: FiltersActionsEnum.SET_FILTER_SEARCH,
+  data: {
+    search
+  }
+});
 
 export const setFilterMain: ActionCreator<SetFilterMain> = (category) => ({
   type: FiltersActionsEnum.SET_FILTER_MAIN,

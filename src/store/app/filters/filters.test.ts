@@ -1,6 +1,13 @@
 import filtersReducer from '.';
 import { setFilterCust, setFilterGroup, setFilterMain } from './actions';
-import { FilterCategory, FiltersAction, FiltersActionsEnum, SetFilterCustom, SetFilterGroup, SetFilterMain } from './types';
+import {
+  FilterCategory,
+  FiltersAction,
+  FiltersActionsEnum,
+  SetFilterCustom,
+  SetFilterGroup,
+  SetFilterMain
+} from './types';
 
 describe('Redux store - App/Filters', () => {
   describe('Actions', () => {
@@ -25,10 +32,10 @@ describe('Redux store - App/Filters', () => {
     });
 
     it('should create an action to set query', () => {
-      const queries = [{
+      const queries = [ {
         fieldName: 'name',
         value: 'test'
-      }];
+      } ];
       const expectedAction = {
         type: FiltersActionsEnum.SET_FILTER_CUST,
         data: {
@@ -44,6 +51,7 @@ describe('Redux store - App/Filters', () => {
       expect(
         filtersReducer(undefined, {} as FiltersAction)
       ).toEqual({
+        search: '',
         category: FilterCategory.ALL,
         group: '',
         queries: []
@@ -60,6 +68,7 @@ describe('Redux store - App/Filters', () => {
       };
 
       expect(filtersReducer(undefined, action)).toEqual({
+        search: '',
         category,
         group: '',
         queries: []
@@ -76,6 +85,7 @@ describe('Redux store - App/Filters', () => {
       };
 
       expect(filtersReducer(undefined, action)).toEqual({
+        search: '',
         category: FilterCategory.ALL,
         group,
         queries: []
@@ -83,10 +93,10 @@ describe('Redux store - App/Filters', () => {
     });
 
     it('should handle SET_FILTER_CUST', () => {
-      const queries = [{
+      const queries = [ {
         fieldName: 'name',
         value: 'test'
-      }];
+      } ];
       const action: SetFilterCustom = {
         type: FiltersActionsEnum.SET_FILTER_CUST,
         data: {
@@ -95,6 +105,7 @@ describe('Redux store - App/Filters', () => {
       };
 
       expect(filtersReducer(undefined, action)).toEqual({
+        search: '',
         category: FilterCategory.ALL,
         group: '',
         queries

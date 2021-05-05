@@ -3,6 +3,7 @@ import filtersReducerMock from './mock';
 import { FilterCategory, FiltersAction, FiltersActionsEnum, FiltersState } from './types';
 
 export const initialState: FiltersState = __DEV__ ? filtersReducerMock : {
+  search: '',
   category: FilterCategory.ALL,
   group: '',
   queries: []
@@ -10,6 +11,11 @@ export const initialState: FiltersState = __DEV__ ? filtersReducerMock : {
 
 export const filters: Reducer<FiltersState, FiltersAction> = (state = initialState, action) => {
   switch (action.type) {
+  case FiltersActionsEnum.SET_FILTER_SEARCH:
+    return {
+      ...state,
+      search: action.data.search
+    };
 
   case FiltersActionsEnum.SET_FILTER_MAIN:
     return {
