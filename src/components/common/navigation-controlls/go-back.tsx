@@ -11,7 +11,7 @@ export interface NavigationControllBackProps {
   [key: string]: any;
 }
 
-export const NavigationControllBack = (props: NavigationControllBackProps) => {
+export const NavigationControllBack = () => {
   const history = useHistory();
   const localHistory = useSelector((state: RootState) => state.history);
   const canGoBack = localHistory.currentIndex > 0 && localHistory.stack.length > 0;

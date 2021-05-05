@@ -107,8 +107,8 @@ describe('Redux store - Me/Devices', () => {
       ).toEqual({
         entries: {
           ...initDevices,
-          [devices[0].id]: devices[0],
-          [devices[1].id]: devices[1]
+          [ devices[ 0 ].id ]: devices[ 0 ],
+          [ devices[ 1 ].id ]: devices[ 1 ]
         }
       });
     });
@@ -117,7 +117,7 @@ describe('Redux store - Me/Devices', () => {
       const initState: DevicesState = {
         entries: {
           ...initDevices,
-          '1': {
+          1: {
             id: '1',
             name: 'device#1',
             os: '',
@@ -125,7 +125,7 @@ describe('Redux store - Me/Devices', () => {
             app: 'Mozilla 4.0',
             useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.5.0'
           },
-          '2': {
+          2: {
             id: '2',
             name: 'device#2',
             os: '',
@@ -136,7 +136,7 @@ describe('Redux store - Me/Devices', () => {
         }
       };
 
-      const devices = ['1', '2'];
+      const devices = [ '1', '2' ];
 
       const removeAction: RemoveDevicesAction = {
         type: DevicesActionsEnum.REMOVE_DEVICE,
@@ -160,7 +160,7 @@ describe('Redux store - Me/Devices', () => {
       const initialState: DevicesState = {
         entries: {
           ...initDevices,
-          '1': {
+          1: {
             id: '1',
             name: 'device#1',
             os: '',
@@ -168,7 +168,7 @@ describe('Redux store - Me/Devices', () => {
             app: 'Mozilla 4.0',
             useragent: 'Mozilla/5.0 (linux) AppleWebKit/537.36 (KHTML, like Gecko) jsdom/16.5.0'
           },
-          '2': {
+          2: {
             id: '2',
             name: 'device#2',
             os: '',

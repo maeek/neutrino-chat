@@ -21,5 +21,3 @@ describe('Redux store - Me/Contacts', () => {
     });
   });
 });
-
-

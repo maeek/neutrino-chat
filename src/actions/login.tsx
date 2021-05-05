@@ -2,7 +2,7 @@
 import { setMeUsername, setMeAvatar } from '@/store/me/user/actions';
 import { setToken, setRefreshToken } from '@/store/session/actions';
 import Navigator from '@/utils/navigation';
-import {Dispatch} from 'redux';
+import { Dispatch } from 'redux';
 
 export const login = (
   username: string,
@@ -23,7 +23,6 @@ export const login = (
   window.localStorage.setItem('username', username);
   window.localStorage.setItem('token', '123');
   window.localStorage.setItem('refreshToken', '123');
-  console.log('Authenticated, redirecting to...', params.from);
   Navigator.replace(params.history, params.from?.pathname || '/');
   // })
   // .catch();

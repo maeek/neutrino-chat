@@ -1,7 +1,13 @@
 import { useState, useCallback, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import ContextMenu, { ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
-import { AccountCircleRounded, ExitToAppRounded, HelpOutlineRounded, NotificationsOffRounded, SettingsRounded } from '@material-ui/icons';
+import {
+  AccountCircleRounded,
+  ExitToAppRounded,
+  HelpOutlineRounded,
+  NotificationsOffRounded,
+  SettingsRounded
+} from '@material-ui/icons';
 import AvatarWrapper from '../avatar-wrapper';
 import { clearTokens } from '@/store/session/actions';
 import ContextMenuPrefix from './context-menu-prefix';
@@ -12,11 +18,11 @@ export interface ContextMenuWrapperProps {
 }
 
 export const ContextMenuWrapper = (props: ContextMenuWrapperProps) => {
-  const [showContext, setShowContext] = useState(false);
+  const [ showContext, setShowContext ] = useState(false);
   const dispatch = useDispatch();
 
-  const toggleMenu = useCallback(() => setShowContext(!showContext), [setShowContext, showContext]);
-  const closeContextMenu = useCallback(() => setShowContext(false), [setShowContext]);
+  const toggleMenu = useCallback(() => setShowContext(!showContext), [ setShowContext, showContext ]);
+  const closeContextMenu = useCallback(() => setShowContext(false), [ setShowContext ]);
 
   const items: ContextMenuItems[] = [
     {

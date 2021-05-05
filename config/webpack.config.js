@@ -1,5 +1,4 @@
 
-
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -19,6 +18,7 @@ const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeM
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const eslintConfig = require('../.eslintrc');
 const paths = require('./paths');
 const modules = require('./modules');
 const getClientEnvironment = require('./env');
@@ -289,7 +289,7 @@ module.exports = function (webpackEnv) {
               : false
           },
           cssProcessorPluginOptions: {
-            preset: ['default', { minifyFontValues: { removeQuotes: false } }]
+            preset: [ 'default', { minifyFontValues: { removeQuotes: false } } ]
           }
         })
       ],
@@ -312,7 +312,7 @@ module.exports = function (webpackEnv) {
       // We placed these paths second because we want `node_modules` to "win"
       // if there are any conflicts. This matches Node resolution mechanism.
       // https://github.com/facebook/create-react-app/issues/253
-      modules: ['node_modules', paths.appNodeModules].concat(
+      modules: [ 'node_modules', paths.appNodeModules ].concat(
         modules.additionalModulePaths || []
       ),
       // These are the reasonable defaults supported by the Node ecosystem.
@@ -365,12 +365,12 @@ module.exports = function (webpackEnv) {
         // Experimenting with off main thread modules
         {
           test: /\.worker\.(js|ts)$/i,
-          use: [{
+          use: [ {
             loader: 'comlink-loader',
             options: {
               singleton: true
             }
-          }]
+          } ]
         },
         {
           // "oneOf" will traverse all following loaders until one will
@@ -380,7 +380,7 @@ module.exports = function (webpackEnv) {
             // TODO: Merge this config once `image/avif` is in the mime-db
             // https://github.com/jshttp/mime-db
             {
-              test: [/\.avif$/],
+              test: [ /\.avif$/ ],
               loader: require.resolve('url-loader'),
               options: {
                 limit: imageInlineSizeLimit,
@@ -392,7 +392,7 @@ module.exports = function (webpackEnv) {
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
             {
-              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+              test: [ /\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/ ],
               loader: require.resolve('url-loader'),
               options: {
                 limit: imageInlineSizeLimit,
@@ -555,7 +555,7 @@ module.exports = function (webpackEnv) {
               // its runtime that would otherwise be processed through "file" loader.
               // Also exclude `html` and `json` extensions so they get processed
               // by webpacks internal loaders.
-              exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
+              exclude: [ /\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/ ],
               options: {
                 name: 'static/media/[name].[hash:8].[ext]'
               }
@@ -598,7 +598,7 @@ module.exports = function (webpackEnv) {
       // https://github.com/facebook/create-react-app/issues/5358
       isEnvProduction &&
         shouldInlineRuntimeChunk &&
-        new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime-.+[.]js/]),
+        new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [ /runtime-.+[.]js/ ]),
       // Makes some environment variables available in index.html.
       // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
       // <link rel="icon" href="%PUBLIC_URL%/favicon.ico">
@@ -663,7 +663,7 @@ module.exports = function (webpackEnv) {
         publicPath: paths.publicUrlOrPath,
         generate: (seed, files, entrypoints) => {
           const manifestFiles = files.reduce((manifest, file) => {
-            manifest[file.name] = file.path;
+            manifest[ file.name ] = file.path;
             return manifest;
           }, seed);
           const entrypointFiles = entrypoints.main.filter(
@@ -689,7 +689,7 @@ module.exports = function (webpackEnv) {
         new WorkboxWebpackPlugin.InjectManifest({
           swSrc,
           dontCacheBustURLsMatching: /\.[0-9a-f]{8}\./,
-          exclude: [/\.map$/, /asset-manifest\.json$/, /LICENSE/],
+          exclude: [ /\.map$/, /asset-manifest\.json$/, /LICENSE/ ],
           // Bump up the default maximum size (2mb) that's precached,
           // to make lazy-loading failure scenarios less likely.
           // See https://github.com/cra-template/pwa/issues/13#issuecomment-722667270
@@ -729,7 +729,7 @@ module.exports = function (webpackEnv) {
       !disableESLintPlugin &&
         new ESLintPlugin({
           // Plugin options
-          extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
+          extensions: [ 'js', 'mjs', 'jsx', 'ts', 'tsx' ],
           formatter: require.resolve('react-dev-utils/eslintFormatter'),
           eslintPath: require.resolve('eslint'),
           failOnError: !(isEnvDevelopment && emitErrorsAsWarnings),
@@ -742,14 +742,15 @@ module.exports = function (webpackEnv) {
           // ESLint class options
           cwd: paths.appPath,
           resolvePluginsRelativeTo: __dirname,
-          baseConfig: {
-            extends: [require.resolve('eslint-config-react-app/base')],
-            rules: {
-              ...(!hasJsxRuntime && {
-                'react/react-in-jsx-scope': 'error'
-              })
-            }
-          }
+          baseConfig: eslintConfig
+          // {
+          //   extends: [ require.resolve('eslint-config-react-app/base') ],
+          //   rules: {
+          //     ...(!hasJsxRuntime && {
+          //       'react/react-in-jsx-scope': 'error'
+          //     })
+          //   }
+          // }
         })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.

@@ -3,17 +3,17 @@ import { HistoryState, HistoryActionsEnum, HistoryActionTypes } from './types';
 export const initialState: HistoryState = {
   currentIndex: 0,
   stack: [
-    {id: 0, pathname: '/'}
+    { id: 0, pathname: '/' }
   ]
 };
 
 const historyReducer = (state = initialState, action: HistoryActionTypes) => {
-  let newStack = [...state.stack];
+  const newStack = [ ...state.stack ];
 
   switch (action.type) {
   case HistoryActionsEnum.REPLACE_LOCATION:
-    newStack[state.currentIndex] = {
-      ...state.stack[state.currentIndex],
+    newStack[ state.currentIndex ] = {
+      ...state.stack[ state.currentIndex ],
       pathname: action.data.pathname
     };
     return {
@@ -23,7 +23,7 @@ const historyReducer = (state = initialState, action: HistoryActionTypes) => {
 
   case HistoryActionsEnum.PUSH_LOCATION:
     newStack.splice(state.currentIndex + 1);
-    newStack[action.data.id] = {
+    newStack[ action.data.id ] = {
       id: action.data.id,
       pathname: action.data.pathname
     };
@@ -52,7 +52,7 @@ const historyReducer = (state = initialState, action: HistoryActionTypes) => {
     };
 
   case HistoryActionsEnum.SET_HISTORY:
-    return {...action.data.history};
+    return { ...action.data.history };
 
   default:
     return state;

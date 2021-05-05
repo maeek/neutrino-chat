@@ -99,7 +99,7 @@ describe('Redux store - Channels', () => {
 
     it('should create an action to add participants to a channel', () => {
       const id = 'AABC';
-      const participants = ['123', '321'];
+      const participants = [ '123', '321' ];
 
       const expectedAction = {
         type: ChannelsActionsEnum.ADD_CHANNEL_PARTICIPANTS,
@@ -113,7 +113,7 @@ describe('Redux store - Channels', () => {
 
     it('should create an action to add participants to a channel', () => {
       const id = 'AABC';
-      const participants = ['123', '321'];
+      const participants = [ '123', '321' ];
 
       const expectedAction = {
         type: ChannelsActionsEnum.REMOVE_CHANNEL_PARTICIPANTS,
@@ -127,7 +127,7 @@ describe('Redux store - Channels', () => {
 
     it('should create an action to add messages to a channel', () => {
       const id = 'AABC';
-      const messages = ['123', '321'];
+      const messages = [ '123', '321' ];
 
       const expectedAction = {
         type: ChannelsActionsEnum.ADD_CHANNEL_MESSAGES,
@@ -141,7 +141,7 @@ describe('Redux store - Channels', () => {
 
     it('should create an action to add messages to a channel', () => {
       const id = 'AABC';
-      const messages = ['123', '321'];
+      const messages = [ '123', '321' ];
 
       const expectedAction = {
         type: ChannelsActionsEnum.REMOVE_CHANNEL_MESSAGES,
@@ -293,8 +293,8 @@ describe('Redux store - Channels', () => {
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
-          [id]: {
-            ...channelsReducerMock.entries[id],
+          [ id ]: {
+            ...channelsReducerMock.entries[ id ],
             ...channel
           }
         }
@@ -319,10 +319,10 @@ describe('Redux store - Channels', () => {
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
-          [id]: {
-            ...channelsReducerMock.entries[id],
+          [ id ]: {
+            ...channelsReducerMock.entries[ id ],
             settings: {
-              ...channelsReducerMock.entries[id].settings,
+              ...channelsReducerMock.entries[ id ].settings,
               ...settings
             }
           }
@@ -332,7 +332,7 @@ describe('Redux store - Channels', () => {
 
     it('should handle ADD_CHANNEL_PARTICIPANTS', () => {
       const id = '0f717b7f-fbf8-47a7-ae8c-778d8889406a';
-      const participants = ['123', '321'];
+      const participants = [ '123', '321' ];
 
       const action: AddChannelParticipants = {
         type: ChannelsActionsEnum.ADD_CHANNEL_PARTICIPANTS,
@@ -346,10 +346,10 @@ describe('Redux store - Channels', () => {
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
-          [id]: {
-            ...channelsReducerMock.entries[id],
+          [ id ]: {
+            ...channelsReducerMock.entries[ id ],
             participants: [
-              ...channelsReducerMock.entries[id].participants,
+              ...channelsReducerMock.entries[ id ].participants,
               ...participants
             ]
           }
@@ -359,7 +359,7 @@ describe('Redux store - Channels', () => {
 
     it('should handle REMOVE_CHANNEL_PARTICIPANTS', () => {
       const id = '0f717b7f-fbf8-47a7-ae8c-778d8889406a';
-      const participants = ['123', '321'];
+      const participants = [ '123', '321' ];
 
       const action: RemoveChannelParticipants = {
         type: ChannelsActionsEnum.REMOVE_CHANNEL_PARTICIPANTS,
@@ -373,9 +373,9 @@ describe('Redux store - Channels', () => {
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
-          [id]: {
-            ...channelsReducerMock.entries[id],
-            participants: [...channelsReducerMock.entries[id].participants].filter(p => !participants.includes(p))
+          [ id ]: {
+            ...channelsReducerMock.entries[ id ],
+            participants: [ ...channelsReducerMock.entries[ id ].participants ].filter(p => !participants.includes(p))
           }
         }
       });
@@ -383,7 +383,7 @@ describe('Redux store - Channels', () => {
 
     it('should handle ADD_CHANNEL_MESSAGES', () => {
       const id = '0f717b7f-fbf8-47a7-ae8c-778d8889406a';
-      const messages = ['123', '321'];
+      const messages = [ '123', '321' ];
 
       const action: AddChannelMessages = {
         type: ChannelsActionsEnum.ADD_CHANNEL_MESSAGES,
@@ -397,10 +397,10 @@ describe('Redux store - Channels', () => {
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
-          [id]: {
-            ...channelsReducerMock.entries[id],
+          [ id ]: {
+            ...channelsReducerMock.entries[ id ],
             messages: [
-              ...channelsReducerMock.entries[id].messages,
+              ...channelsReducerMock.entries[ id ].messages,
               ...messages
             ]
           }
@@ -410,7 +410,7 @@ describe('Redux store - Channels', () => {
 
     it('should handle REMOVE_CHANNEL_MESSAGES', () => {
       const id = '0f717b7f-fbf8-47a7-ae8c-778d8889406a';
-      const messages = ['123', '321'];
+      const messages = [ '123', '321' ];
 
       const action: RemoveChannelMessages = {
         type: ChannelsActionsEnum.REMOVE_CHANNEL_MESSAGES,
@@ -424,9 +424,9 @@ describe('Redux store - Channels', () => {
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
-          [id]: {
-            ...channelsReducerMock.entries[id],
-            messages: [...channelsReducerMock.entries[id].messages].filter(p => !messages.includes(p))
+          [ id ]: {
+            ...channelsReducerMock.entries[ id ],
+            messages: [ ...channelsReducerMock.entries[ id ].messages ].filter(p => !messages.includes(p))
           }
         }
       });
@@ -446,8 +446,8 @@ describe('Redux store - Channels', () => {
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
-          [id]: {
-            ...channelsReducerMock.entries[id],
+          [ id ]: {
+            ...channelsReducerMock.entries[ id ],
             messages: []
           }
         }
@@ -479,7 +479,7 @@ describe('Redux store - Channels', () => {
 
       expect(channelsReducer(undefined, action)).toEqual({
         joined: [],
-        recent: [id],
+        recent: [ id ],
         entries: {}
       });
     });
@@ -498,7 +498,7 @@ describe('Redux store - Channels', () => {
 
     it('should handle ADD_CHANNEL_MESSAGES', () => {
       const id = '0f717b7f-fbf8-47a7-ae8c-778d8889406a';
-      const messages = ['123', '321'];
+      const messages = [ '123', '321' ];
 
       const action: AddChannelMessages = {
         type: ChannelsActionsEnum.ADD_CHANNEL_MESSAGES,
@@ -512,10 +512,10 @@ describe('Redux store - Channels', () => {
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
-          [id]: {
-            ...channelsReducerMock.entries[id],
+          [ id ]: {
+            ...channelsReducerMock.entries[ id ],
             messages: [
-              ...channelsReducerMock.entries[id].messages,
+              ...channelsReducerMock.entries[ id ].messages,
               ...messages
             ]
           }

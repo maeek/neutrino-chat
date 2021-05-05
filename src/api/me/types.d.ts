@@ -3,7 +3,6 @@ import type { NeutrinoApiDeviceId } from '../devices/types';
 import type { NeutrinoApiSettings } from './settings/types';
 import type { NeutrinoApiAvatar } from './avatar/types';
 
-
 export interface NeutrinoApiMeContact {
   username: string;
   added: number; // timestamp

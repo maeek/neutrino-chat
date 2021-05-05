@@ -1,6 +1,26 @@
 import groupsReducer from '.';
-import { addGroups, addMembersToGroup, clearGroupMembers, clearGroups, removeGroups, removeMembersToGroup } from './actions';
-import { AddGroupMembersAction, AddGroupsAction, ClearGroupMembersAction, ClearGroupsAction, GroupActionsEnum, GroupItem, GroupMemebersActionTypes, Groups, GroupsActionTypes, GroupsState, RemoveGroupMembersAction, RemoveGroupsAction, RenameGroupAction } from './types';
+import {
+  addGroups,
+  addMembersToGroup,
+  clearGroupMembers,
+  clearGroups,
+  removeGroups,
+  removeMembersToGroup
+} from './actions';
+import {
+  AddGroupMembersAction,
+  AddGroupsAction,
+  ClearGroupMembersAction,
+  ClearGroupsAction,
+  GroupActionsEnum,
+  GroupItem,
+  GroupMemebersActionTypes,
+  GroupsActionTypes,
+  GroupsState,
+  RemoveGroupMembersAction,
+  RemoveGroupsAction,
+  RenameGroupAction
+} from './types';
 
 describe('Redux store - Me/Groups', () => {
   const initState = {
@@ -75,7 +95,7 @@ describe('Redux store - Me/Groups', () => {
 
     it('should create an action to remove members to a groups', () => {
       const id = 'Starred';
-      const groups: string[] = ['1', '2'];
+      const groups: string[] = [ '1', '2' ];
       const expectedAction = {
         type: GroupActionsEnum.REMOVE_MEMBER,
         data: {
@@ -110,7 +130,7 @@ describe('Redux store - Me/Groups', () => {
     });
 
     it('should handle ADD_GROUP', () => {
-      const groups = ['group1', 'group2'];
+      const groups = [ 'group1', 'group2' ];
       const addAction: AddGroupsAction = {
         type: GroupActionsEnum.ADD_GROUP,
         data: {
@@ -123,12 +143,12 @@ describe('Redux store - Me/Groups', () => {
       ).toEqual({
         entries: {
           ...initState.entries,
-          [groups[0]]: {
-            name: groups[0],
+          [ groups[ 0 ] ]: {
+            name: groups[ 0 ],
             items: []
           },
-          [groups[1]]: {
-            name: groups[1],
+          [ groups[ 1 ] ]: {
+            name: groups[ 1 ],
             items: []
           }
         }
@@ -139,18 +159,18 @@ describe('Redux store - Me/Groups', () => {
       const newState: GroupsState = {
         entries: {
           ...initState.entries,
-          '1': {
+          1: {
             name: '1',
             items: []
           },
-          '2': {
+          2: {
             name: '2',
             items: []
           }
         }
       };
 
-      const groups = ['1', '2'];
+      const groups = [ '1', '2' ];
 
       const removeAction: RemoveGroupsAction = {
         type: GroupActionsEnum.REMOVE_GROUP,
@@ -168,14 +188,14 @@ describe('Redux store - Me/Groups', () => {
       const newState: GroupsState = {
         entries: {
           ...initState.entries,
-          '1': {
+          1: {
             name: '1',
-            items: [{
+            items: [ {
               id: '1',
               name: 'channelx'
-            }]
+            } ]
           },
-          '2': {
+          2: {
             name: '2',
             items: []
           }
@@ -185,14 +205,14 @@ describe('Redux store - Me/Groups', () => {
       const expectedState: GroupsState = {
         entries: {
           ...initState.entries,
-          'test': {
+          test: {
             name: 'test',
-            items: [{
+            items: [ {
               id: '1',
               name: 'channelx'
-            }]
+            } ]
           },
-          '2': {
+          2: {
             name: '2',
             items: []
           }
@@ -218,11 +238,11 @@ describe('Redux store - Me/Groups', () => {
       const newState: GroupsState = {
         entries: {
           ...initState.entries,
-          '1': {
+          1: {
             name: '1',
             items: []
           },
-          '2': {
+          2: {
             name: '2',
             items: []
           }
@@ -274,7 +294,7 @@ describe('Redux store - Me/Groups', () => {
         data: {
           group: {
             id: 'Starred',
-            items: ['1']
+            items: [ '1' ]
           }
         }
       };
@@ -283,10 +303,10 @@ describe('Redux store - Me/Groups', () => {
         entries: {
           Starred: {
             name: 'Starred',
-            items: [{
+            items: [ {
               id: '1',
               name: 'channel1'
-            }]
+            } ]
           }
         }
       };

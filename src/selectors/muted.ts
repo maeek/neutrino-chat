@@ -6,4 +6,7 @@ export const getMutedUsers = (state = getStoreState()) => state.settings.muted.u
 export const getMutedChannels = (state = getStoreState()) => state.settings.muted.channels;
 
 export const checkIfUserIsMuted = (user: string) => createSelector(getMutedUsers, (users) => users.includes(user));
-export const checkIfChannelIsMuted = (channel: string) => createSelector(getMutedChannels, (channels) => channels.includes(channel));
+export const checkIfChannelIsMuted = (channel: string) => createSelector(
+  getMutedChannels,
+  (channels) => channels.includes(channel)
+);

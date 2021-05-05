@@ -1,6 +1,5 @@
 import sessionReducer from '.';
 import { clearTokens, setRefreshToken, setToken } from './actions';
-import { getAuthRefreshToken, getAuthToken } from '@/selectors/session';
 import {
   ClearTokensAction,
   SessionActionsEnum,
@@ -114,5 +113,3 @@ describe('Redux store - Me/Contacts', () => {
     });
   });
 });
-
-

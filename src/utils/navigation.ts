@@ -20,9 +20,8 @@ export class NavigationController {
     const loadHistory = window.sessionStorage.getItem('history') || '';
     try { 
       this.store.dispatch(setHistory(JSON.parse(loadHistory)));
-    } catch {
-      console.log('Starting new history session');
-    }
+    // eslint-disable-next-line no-empty
+    } catch {}
 
     this.store.subscribe(() => {
       const storeHistory = this.store.getState().history;
@@ -30,7 +29,7 @@ export class NavigationController {
       sessionStorage.setItem('history', stringified);
     });
 
-    window.addEventListener('popstate', (evt: PopStateEvent) => {
+    window.addEventListener('popstate', () => {
       store.dispatch(updateIndex(window.history?.state?.state?.id ?? 0));
     });
   }
@@ -72,7 +71,7 @@ export class NavigationController {
     history.replace({
       pathname,
       state: {
-        id: storeHistory.stack[storeHistory.currentIndex]?.id,
+        id: storeHistory.stack[ storeHistory.currentIndex ]?.id,
         ...state
       }
     });

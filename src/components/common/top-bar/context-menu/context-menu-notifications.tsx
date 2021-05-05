@@ -4,11 +4,8 @@ import { KeyboardArrowLeftRounded, KeyboardArrowRightRounded } from '@material-u
 import { ContextMenu } from '@maeek/neutrino-design/components/molecules/context-menu';
 import './styles/notifications.scss';
 
-export interface NotificationsWrapperProps {
-}
-
-export const NotificationsWrapper = (props: NotificationsWrapperProps) => {
-  const [showMenu, setShowMenu] = useState(false);
+export const NotificationsWrapper = () => {
+  const [ showMenu, setShowMenu ] = useState(false);
 
   const items = [
     {
@@ -33,7 +30,7 @@ export const NotificationsWrapper = (props: NotificationsWrapperProps) => {
     }
   ];
 
-  const toggleMenu = useCallback(() => setShowMenu(!showMenu), [setShowMenu, showMenu]);
+  const toggleMenu = useCallback(() => setShowMenu(!showMenu), [ setShowMenu, showMenu ]);
 
   const iconNode = showMenu ? <KeyboardArrowRightRounded /> : <KeyboardArrowLeftRounded />;
 

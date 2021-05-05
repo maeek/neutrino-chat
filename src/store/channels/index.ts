@@ -40,10 +40,10 @@ export const channels: Reducer<ChannelsState, ChannelsAction> = (state = initial
       ...state,
       entries: {
         ...state.entries,
-        [action.data.id]: {
-          ...state.entries[action.data.id],
+        [ action.data.id ]: {
+          ...state.entries[ action.data.id ],
           participants: [
-            ...state.entries[action.data.id].participants,
+            ...state.entries[ action.data.id ].participants,
             ...action.data.participants
           ]
         }
@@ -55,10 +55,10 @@ export const channels: Reducer<ChannelsState, ChannelsAction> = (state = initial
       ...state,
       entries: {
         ...state.entries,
-        [action.data.id]: {
-          ...state.entries[action.data.id],
+        [ action.data.id ]: {
+          ...state.entries[ action.data.id ],
           participants: [
-            ...state.entries[action.data.id].participants
+            ...state.entries[ action.data.id ].participants
           ].filter(pc => !action.data.participants.includes(pc))
         }
       }
@@ -69,10 +69,10 @@ export const channels: Reducer<ChannelsState, ChannelsAction> = (state = initial
       ...state,
       entries: {
         ...state.entries,
-        [action.data.id]: {
-          ...state.entries[action.data.id],
+        [ action.data.id ]: {
+          ...state.entries[ action.data.id ],
           messages: [
-            ...state.entries[action.data.id].messages,
+            ...state.entries[ action.data.id ].messages,
             ...action.data.messages
           ]
         }
@@ -84,10 +84,10 @@ export const channels: Reducer<ChannelsState, ChannelsAction> = (state = initial
       ...state,
       entries: {
         ...state.entries,
-        [action.data.id]: {
-          ...state.entries[action.data.id],
+        [ action.data.id ]: {
+          ...state.entries[ action.data.id ],
           messages: [
-            ...state.entries[action.data.id].messages
+            ...state.entries[ action.data.id ].messages
           ].filter(ms => !action.data.messages.includes(ms))
         }
       }
@@ -98,8 +98,8 @@ export const channels: Reducer<ChannelsState, ChannelsAction> = (state = initial
       ...state,
       entries: {
         ...state.entries,
-        [action.data.id]: {
-          ...state.entries[action.data.id],
+        [ action.data.id ]: {
+          ...state.entries[ action.data.id ],
           messages: []
         }
       }
@@ -111,7 +111,7 @@ export const channels: Reducer<ChannelsState, ChannelsAction> = (state = initial
   case ChannelsActionsEnum.ADD_CHANNEL_TO_RECENT:
     return {
       ...state,
-      recent: [...state.recent, action.data.id]
+      recent: [ ...state.recent, action.data.id ]
     };
 
   case ChannelsActionsEnum.CLEAR_RECENT_CHANNELS:
@@ -123,13 +123,13 @@ export const channels: Reducer<ChannelsState, ChannelsAction> = (state = initial
   case ChannelsActionsEnum.ADD_CHANNEL_TO_JOINED:
     return {
       ...state,
-      joined: [...state.joined, action.data.id]
+      joined: [ ...state.joined, action.data.id ]
     };
 
   case ChannelsActionsEnum.REMOVE_CHANNEL_FROM_JOINED:
     return {
       ...state,
-      joined: [...state.joined].filter(ch => ch !== action.data.id)
+      joined: [ ...state.joined ].filter(ch => ch !== action.data.id)
     };
 
   case ChannelsActionsEnum.CLEAR_JOINED_CHANNELS:
@@ -145,7 +145,7 @@ export const channels: Reducer<ChannelsState, ChannelsAction> = (state = initial
 
 const newChannels = (chns: Channel[]): ChannelEntry => {
   return Object.fromEntries(
-    chns.map((ch) => [ch.id, ch])
+    chns.map((ch) => [ ch.id, ch ])
   );
 };
 
@@ -153,12 +153,12 @@ const removeChannels = (state: ChannelsState, ids: string[]): ChannelsState => {
   const newEntries = { ...state.entries };
 
   for (const id of ids) {
-    delete newEntries[id];
+    delete newEntries[ id ];
   }
 
   return {
-    recent: [...state.recent].filter(rc => !ids.includes(rc)),
-    joined: [...state.joined].filter(jo => !ids.includes(jo)),
+    recent: [ ...state.recent ].filter(rc => !ids.includes(rc)),
+    joined: [ ...state.joined ].filter(jo => !ids.includes(jo)),
     entries: newEntries
   };
 };
@@ -166,11 +166,11 @@ const removeChannels = (state: ChannelsState, ids: string[]): ChannelsState => {
 const modifyChannel = ({ entries }: ChannelsState, properties: { [key: string]: any }): ChannelEntry => {
   const newEntries = { ...entries };
 
-  newEntries[properties.id] = {
-    ...newEntries[properties.id],
+  newEntries[ properties.id ] = {
+    ...newEntries[ properties.id ],
     ...properties,
     settings: {
-      ...newEntries[properties.id].settings,
+      ...newEntries[ properties.id ].settings,
       ...properties.settings
     }
   };
@@ -181,10 +181,10 @@ const modifyChannel = ({ entries }: ChannelsState, properties: { [key: string]: 
 const modifyChannelSettings = ({ entries }: ChannelsState, id: string, settings: ChannelSettings): ChannelEntry => {
   const newEntries = { ...entries };
 
-  newEntries[id] = {
-    ...newEntries[id],
+  newEntries[ id ] = {
+    ...newEntries[ id ],
     settings: {
-      ...newEntries[id].settings,
+      ...newEntries[ id ].settings,
       ...settings
     }
   };

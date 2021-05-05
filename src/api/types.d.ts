@@ -24,4 +24,3 @@ export interface NeutrinoApiPagination<T> {
   collection: T;
   pagination: NeutrinoApiPaginationMetadata;
 }
-

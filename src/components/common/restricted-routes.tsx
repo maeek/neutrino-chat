@@ -10,7 +10,7 @@ interface RestrictedRouteProps {
   [key: string]: any;
 }
 
-const RestrictedRoute = ({ children, ...rest }: RestrictedRouteProps) => {
+const RestrictedRoute = ({ children }: RestrictedRouteProps) => {
   const isAuthenticated = useSelector((state: RootState) => !!getAuthToken(state) && !!getAuthRefreshToken(state));
   const history = useHistory();
   const location = useLocation();

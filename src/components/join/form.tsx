@@ -1,6 +1,4 @@
 import {
-  MouseEventHandler,
-  MouseEvent,
   MutableRefObject,
   useRef,
   useState,
@@ -16,7 +14,6 @@ import { User } from './types';
 import './styles/form.scss';
 
 interface RegisterFormProps {
-  onHeadingClick?: MouseEventHandler;
   onRegister?: (user: User) => void;
   redirectToLogin?: Function;
 }
@@ -30,8 +27,8 @@ export const RegisterForm = (props: RegisterFormProps) => {
   const passwordRef = useRef<any>();
   const passwordRepeatRef = useRef<any>();
 
-  const [password, setPassword] = useState('');
-  const [passwordRepeat, setPasswordRepeat] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ passwordRepeat, setPasswordRepeat ] = useState('');
 
   const clickOnFocus = (elementToFocus: MutableRefObject<any>) => () => {
     if (elementToFocus.current) elementToFocus.current.element.focus();
@@ -50,10 +47,10 @@ export const RegisterForm = (props: RegisterFormProps) => {
 
   const validatePasswords = useCallback(
     (): boolean => password.length > 0 && password === passwordRepeat,
-    [password, passwordRepeat]
+    [ password, passwordRepeat ]
   );
 
-  const onRegisterHandler = (e: MouseEvent<any>) => {
+  const onRegisterHandler = () => {
     const username = loginRef.current.value;
     const password = passwordRef.current.value;
 
@@ -87,7 +84,10 @@ export const RegisterForm = (props: RegisterFormProps) => {
           </Heading>
           <ul className="form-register-box-requirements" onClick={clickOnFocus(loginRef)}>
             <li>
-              <Text type="secondary" className="form-register-box-requirements-entry form-register-box-requirements-entry--header">
+              <Text
+                type="secondary"
+                className="form-register-box-requirements-entry form-register-box-requirements-entry--header"
+              >
                 Username requirements:
               </Text>
             </li>
@@ -124,7 +124,10 @@ export const RegisterForm = (props: RegisterFormProps) => {
           </Heading>
           <ul className="form-register-box-requirements" onClick={clickOnFocus(passwordRef)}>
             <li>
-              <Text type="secondary" className="form-register-box-requirements-entry form-register-box-requirements-entry--header">
+              <Text
+                type="secondary"
+                className="form-register-box-requirements-entry form-register-box-requirements-entry--header"
+              >
                 Password requirements:
               </Text>
             </li>

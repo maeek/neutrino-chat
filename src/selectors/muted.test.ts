@@ -4,8 +4,8 @@ describe('Muted', () => {
   const globalStateMock = {
     settings: {
       muted: {
-        users: ['user1', 'user2'],
-        channels: ['channel1', 'channel2', 'channel3']
+        users: [ 'user1', 'user2' ],
+        channels: [ 'channel1', 'channel2', 'channel3' ]
       }
     }
   };

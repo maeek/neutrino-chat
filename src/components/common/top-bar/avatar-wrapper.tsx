@@ -24,7 +24,7 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
       if(onClick) onClick();
       else fn();
     }
-  }, [onClick]);
+  }, [ onClick ]);
 
   return (
     <AvatarCached

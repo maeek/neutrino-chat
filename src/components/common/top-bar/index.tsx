@@ -12,7 +12,7 @@ export interface TopBarProps {
   [key: string]: any;
 }
 
-export const TopBar = (props: TopBarProps) => {
+export const TopBar = () => {
   const history = useHistory();
 
   const onHeadingClick = (e: MouseEvent) => {

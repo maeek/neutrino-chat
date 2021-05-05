@@ -27,7 +27,6 @@ export const JoinPage = (props: JoinPageProps) => {
     return null;
   }
 
-
   return (
     <PageTemplate
       errorPage={null}

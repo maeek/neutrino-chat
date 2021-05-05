@@ -1,5 +1,23 @@
 import { ActionCreator } from 'redux';
-import { AddChannels, ChannelsActionsEnum, Channel, RemoveChannels, ModifyChannel, ModifyChannelSettings, AddChannelParticipants, RemoveChannelParticipants, AddChannelMessages, RemoveChannelMessages, ClearChannelMessages, ClearChannels, AddChannelToRecent, ClearRecentChannels, AddChannelToJoined, RemoveChannelFromJoined, ClearJoinedChannels } from './types';
+import {
+  AddChannels,
+  ChannelsActionsEnum,
+  Channel,
+  RemoveChannels,
+  ModifyChannel,
+  ModifyChannelSettings,
+  AddChannelParticipants,
+  RemoveChannelParticipants,
+  AddChannelMessages,
+  RemoveChannelMessages,
+  ClearChannelMessages,
+  ClearChannels,
+  AddChannelToRecent,
+  ClearRecentChannels,
+  AddChannelToJoined,
+  RemoveChannelFromJoined,
+  ClearJoinedChannels
+} from './types';
 
 export const addChannels: ActionCreator<AddChannels> = (channels: Channel[]) => ({
   type: ChannelsActionsEnum.ADD_CHANNELS,
@@ -39,6 +57,7 @@ export const addChannelParticipants: ActionCreator<AddChannelParticipants> = (id
   }
 });
 
+// eslint-disable-next-line max-len
 export const removeChannelParticipants: ActionCreator<RemoveChannelParticipants> = (id: string, participants: string[]) => ({
   type: ChannelsActionsEnum.REMOVE_CHANNEL_PARTICIPANTS,
   data: {
@@ -105,4 +124,3 @@ export const clearJoinedChannels: ActionCreator<ClearJoinedChannels> = () => ({
   type: ChannelsActionsEnum.CLEAR_JOINED_CHANNELS,
   data: {}
 });
-

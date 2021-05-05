@@ -1,12 +1,11 @@
 
-
 const fs = require('fs');
 const path = require('path');
 const childProc = require('child_process');
 const paths = require('./paths');
 
 // Make sure that including paths.js after env.js will read .env variables.
-delete require.cache[require.resolve('./paths')];
+delete require.cache[ require.resolve('./paths') ];
 
 const NODE_ENV = process.env.NODE_ENV;
 if (!NODE_ENV) {
@@ -50,8 +49,8 @@ const dateFormatted = new Date(date.getTime() - (date.getTimezoneOffset() * 6000
   .toISOString()
   .split('T')
   .map((d) => d.replace(/[-:]/g, ''));
-buildInfo.BUILD_DATE = `${dateFormatted[0]}-${dateFormatted[1].substr(0, 6)}`;
-buildInfo.BUILD_NAME = `${buildInfo.GIT_BRANCH}-${dateFormatted[0]}-${dateFormatted[1].substr(0, 6)}-${buildInfo.GIT_COMMIT}`;
+buildInfo.BUILD_DATE = `${dateFormatted[ 0 ]}-${dateFormatted[ 1 ].substr(0, 6)}`;
+buildInfo.BUILD_NAME = `${buildInfo.GIT_BRANCH}-${dateFormatted[ 0 ]}-${dateFormatted[ 1 ].substr(0, 6)}-${buildInfo.GIT_COMMIT}`;
 
 // We support resolving modules according to `NODE_PATH`.
 // This lets you use absolute paths in imports inside large monorepos:
@@ -78,7 +77,7 @@ function getClientEnvironment(publicUrl) {
     .filter(key => REACT_APP.test(key))
     .reduce(
       (env, key) => {
-        env[key] = process.env[key];
+        env[ key ] = process.env[ key ];
         return env;
       },
       {
@@ -109,7 +108,7 @@ function getClientEnvironment(publicUrl) {
   // Stringify all values so we can feed into webpack DefinePlugin
   const stringified = {
     'process.env': Object.keys(raw).reduce((env, key) => {
-      env[key] = JSON.stringify(raw[key]);
+      env[ key ] = JSON.stringify(raw[ key ]);
       return env;
     }, {})
   };

@@ -73,7 +73,7 @@ describe('Redux store - Me/Contacts', () => {
       };
 
       expect(
-        contactsReducer({entries: {}}, addAction)
+        contactsReducer({ entries: {} }, addAction)
       ).toEqual({
         entries: {
           test1: {

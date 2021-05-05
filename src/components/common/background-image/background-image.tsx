@@ -19,7 +19,7 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
     position = 'absolute',
     style
   } = props;
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [ isLoaded, setIsLoaded ] = useState(false);
 
   const styles = {
     opacity: isLoaded ? opacity : 0.5,
@@ -32,10 +32,10 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
     <div className="background-image-container" style={styles}>
       <ImageContainerCached
         src={url}
-        loader={<Loader style={{paddingTop: '5rem'}} />}
+        loader={<Loader style={{ paddingTop: '5rem' }} />}
         onImageLoaded={() => setIsLoaded(true)}
         draggable={false}
-        style={{objectFit: 'cover'}}
+        style={{ objectFit: 'cover' }}
       />
     </div>
   );

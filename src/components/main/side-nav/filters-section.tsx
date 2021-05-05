@@ -4,7 +4,7 @@ import { sideBarConfig } from './config';
 import '../styles/sidebar.scss';
 
 export const SideBarNavFiltersSection = () => {
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+  const [ selectedFilters, setSelectedFilters ] = useState<string[]>([]);
 
   return (
     <>
@@ -18,7 +18,7 @@ export const SideBarNavFiltersSection = () => {
               setSelectedFilters((filters) => (
                 filters.includes(item.name) 
                   ? filters.filter(f => f !== item.name)
-                  : [...filters, item.name]
+                  : [ ...filters, item.name ]
               ));
               item.action();
             }}

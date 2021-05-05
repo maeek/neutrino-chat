@@ -25,4 +25,3 @@ export const SideBar = () => (
     </nav>
   </aside>
 );
-

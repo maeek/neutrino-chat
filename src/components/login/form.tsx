@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { MouseEventHandler, MutableRefObject, useRef } from 'react';
 import ProceedButton from '@maeek/neutrino-design/components/atoms/buttons/Proceed';
 import { Input } from '@maeek/neutrino-design/components/atoms/inputs/text';

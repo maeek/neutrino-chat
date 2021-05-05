@@ -6,12 +6,12 @@ export const initialState: ContactsState = __DEV__ ? contactsReducerMock : {
 };
 
 const contactsReducer = (state = initialState, action: ContactsActionTypes) => {
-  const newContacts: ContactEntry = {...state.entries};
+  const newContacts: ContactEntry = { ...state.entries };
   switch (action.type) {
   case ContactActionsEnum.ADD_CONTACT:
 
     action.data.users.forEach((user: string) => {
-      newContacts[user] = {
+      newContacts[ user ] = {
         username: user,
         added: action.data.timestamp
       };
@@ -23,7 +23,7 @@ const contactsReducer = (state = initialState, action: ContactsActionTypes) => {
 
   case ContactActionsEnum.REMOVE_CONTACT:
     action.data.users.forEach((user: string) => {
-      delete newContacts[user];
+      delete newContacts[ user ];
     });
 
     return {

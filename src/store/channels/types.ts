@@ -7,6 +7,7 @@ export interface ChannelSettings {
   backgroundUri?: string
   backgroundOpacity?: number;
   backgroundBlur?: number;
+  contactsOnly?: boolean;
   color?: string;
   blocked?: string[];
   limit?: number;
@@ -30,6 +31,8 @@ export interface Channel {
     id: string;
     content: string;
   };
+  shadowBans?: string[];
+  bans?: string[];
   participants: string[];
   typing: string[];
 }

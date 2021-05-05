@@ -1,5 +1,12 @@
 import groupsReducerMock from './mock';
-import { GroupActionsEnum, GroupItem, GroupMemebersActionTypes, GroupsActionTypes, GroupsEntry, GroupsState } from './types';
+import {
+  GroupActionsEnum,
+  GroupItem,
+  GroupMemebersActionTypes,
+  GroupsActionTypes,
+  GroupsEntry,
+  GroupsState
+} from './types';
 
 export const initialState: GroupsState = __DEV__ ? groupsReducerMock : {
   entries: {
@@ -11,12 +18,12 @@ export const initialState: GroupsState = __DEV__ ? groupsReducerMock : {
 };
 
 const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMemebersActionTypes) => {
-  const newGroups: GroupsEntry = {...state.entries};
+  const newGroups: GroupsEntry = { ...state.entries };
   switch (action.type) {
   case GroupActionsEnum.ADD_GROUP:
 
     action.data.groups.forEach((group: string) => {
-      newGroups[group] = {
+      newGroups[ group ] = {
         name: group,
         items: []
       };
@@ -28,7 +35,7 @@ const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMe
 
   case GroupActionsEnum.REMOVE_GROUP:
     action.data.groups.forEach((group: string) => {
-      if (group !== 'Starred') delete newGroups[group];
+      if (group !== 'Starred') delete newGroups[ group ];
     });
 
     return {
@@ -46,11 +53,11 @@ const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMe
     };
 
   case GroupActionsEnum.RENAME_GROUP:
-    delete newGroups[action.data.group.id];
+    delete newGroups[ action.data.group.id ];
 
-    newGroups[action.data.group.name] = {
+    newGroups[ action.data.group.name ] = {
       name: action.data.group.name,
-      items: state.entries[action.data.group.id].items
+      items: state.entries[ action.data.group.id ].items
     };
 
     return {
@@ -61,10 +68,10 @@ const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMe
     return {
       entries: {
         ...state.entries,
-        [action.data.group.id]: {
+        [ action.data.group.id ]: {
           name: action.data.group.id,
           items: [
-            ...state.entries[action.data.group.id].items,
+            ...state.entries[ action.data.group.id ].items,
             ...action.data.group.items
           ]
         }
@@ -74,7 +81,7 @@ const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMe
   case GroupActionsEnum.REMOVE_MEMBER:
     // eslint-disable-next-line no-case-declarations
     const updatedItems: GroupItem[] = [
-      ...state.entries[action.data.group.id].items
+      ...state.entries[ action.data.group.id ].items
         .filter((item: GroupItem) => !action.data.group.items.includes(item.id))
     ];
 
@@ -82,7 +89,7 @@ const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMe
       ...state,
       entries: {
         ...state.entries,
-        [action.data.group.id]: {
+        [ action.data.group.id ]: {
           name: action.data.group.id,
           items: updatedItems
         }
@@ -94,7 +101,7 @@ const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMe
       ...state,
       entries: {
         ...state.entries,
-        [action.data.group.id]: {
+        [ action.data.group.id ]: {
           name: action.data.group.id,
           items: []
         }

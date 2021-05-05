@@ -1,5 +1,4 @@
 
-
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
@@ -13,9 +12,9 @@ function resolveTsconfigPathsToAlias(compilerOptions = {}) {
 
   Object.keys(paths).forEach((item) => {
     const key = item.replace('/*', '');
-    const value = path.resolve(__dirname, '..', paths[item][0].replace('/*', '').replace('*', ''));
+    const value = path.resolve(__dirname, '..', paths[ item ][ 0 ].replace('/*', '').replace('*', ''));
 
-    aliases[key] = value;
+    aliases[ key ] = value;
   });
 
   return aliases;
@@ -43,7 +42,7 @@ function getAdditionalModulePaths(options = {}) {
 
   // Allow the user set the `baseUrl` to `appSrc`.
   if (path.relative(paths.appSrc, baseUrlResolved) === '') {
-    return [paths.appSrc];
+    return [ paths.appSrc ];
   }
 
   // If the path is equal to the root directory we ignore it here.

@@ -28,7 +28,6 @@ export const LoginView = (props: LoginViewProps) => {
     Navigator.forward(history, '/join');
   };
 
-
   return (
     <div className="view-root view-root--login">
       <LayoutContentFooter footerNode={<GenericFooter />}>

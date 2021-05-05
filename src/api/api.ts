@@ -30,7 +30,7 @@ export class ApiInstance {
   private _handleRequest(config: AxiosRequestConfig): AxiosRequestConfig {
     const token = getAuthToken();
     if (token) {
-      config.headers['Authorization'] = `JWT ${token}`;
+      config.headers[ 'Authorization' ] = `JWT ${token}`;
     }
 
     return config;
@@ -59,7 +59,7 @@ export class ApiInstance {
   private _handleError(error: any): Promise<any> {
     if (error.config && error.response && error.response.status === 401) {
       return this._updateToken().then((token: string) => {
-        error.config.headers['Authorization'] = `JWT ${token}`;
+        error.config.headers[ 'Authorization' ] = `JWT ${token}`;
 
         return axios.request(error.config);
       });

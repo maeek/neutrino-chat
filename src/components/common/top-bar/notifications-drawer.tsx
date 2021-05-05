@@ -15,8 +15,8 @@ export interface NotificationsDrawerProps {
   [key: string]: any;
 }
 
-export const NotificationsDrawer = (props: NotificationsDrawerProps) => {
-  const [isOpened, setIsOpened] = useState(false);
+export const NotificationsDrawer = () => {
+  const [ isOpened, setIsOpened ] = useState(false);
   const bellIconRef = useRef<HTMLSpanElement>(null);
 
   const onEnter = (fn: Function) => (e: KeyboardEvent<HTMLSpanElement>) => {

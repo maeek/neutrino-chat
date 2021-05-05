@@ -20,40 +20,40 @@ describe('Redux store - Settings/Muted', () => {
       const expectedAction = {
         type: MutedActionsEnum.MUTE_USER,
         data: {
-          list: ['user1', 'user2']
+          list: [ 'user1', 'user2' ]
         }
       };
-      expect(muteUser(['user1', 'user2'])).toEqual(expectedAction);
+      expect(muteUser([ 'user1', 'user2' ])).toEqual(expectedAction);
     });
 
     it('should create an action to mute channels', () => {
       const expectedAction = {
         type: MutedActionsEnum.MUTE_CHANNEL,
         data: {
-          list: ['channel1', 'channel2']
+          list: [ 'channel1', 'channel2' ]
         }
       };
-      expect(muteChannel(['channel1', 'channel2'])).toEqual(expectedAction);
+      expect(muteChannel([ 'channel1', 'channel2' ])).toEqual(expectedAction);
     });
 
     it('should create an action to unmute users', () => {
       const expectedAction = {
         type: MutedActionsEnum.UNMUTE_USER,
         data: {
-          list: ['user1', 'user2']
+          list: [ 'user1', 'user2' ]
         }
       };
-      expect(unmuteUser(['user1', 'user2'])).toEqual(expectedAction);
+      expect(unmuteUser([ 'user1', 'user2' ])).toEqual(expectedAction);
     });
 
     it('should create an action to unmute channels', () => {
       const expectedAction = {
         type: MutedActionsEnum.UNMUTE_CHANNEL,
         data: {
-          list: ['channels1', 'channels2']
+          list: [ 'channels1', 'channels2' ]
         }
       };
-      expect(unmuteChannel(['channels1', 'channels2'])).toEqual(expectedAction);
+      expect(unmuteChannel([ 'channels1', 'channels2' ])).toEqual(expectedAction);
     });
 
     it('should create an action to clear muted channels', () => {
@@ -87,14 +87,14 @@ describe('Redux store - Settings/Muted', () => {
       const addMutedUser: AddMutedUserAction = {
         type: MutedActionsEnum.MUTE_USER,
         data: {
-          list: ['user1', 'user2']
+          list: [ 'user1', 'user2' ]
         }
       };
 
       expect(
         mutedReducer(undefined, addMutedUser)
       ).toEqual({
-        users: ['user1', 'user2'],
+        users: [ 'user1', 'user2' ],
         channels: []
       });
     });
@@ -103,14 +103,14 @@ describe('Redux store - Settings/Muted', () => {
       const addMutedUser: AddMutedChannelAction = {
         type: MutedActionsEnum.MUTE_CHANNEL,
         data: {
-          list: ['channel1', 'channel2']
+          list: [ 'channel1', 'channel2' ]
         }
       };
 
       expect(
         mutedReducer(undefined, addMutedUser)
       ).toEqual({
-        channels: ['channel1', 'channel2'],
+        channels: [ 'channel1', 'channel2' ],
         users: []
       });
     });
@@ -119,19 +119,19 @@ describe('Redux store - Settings/Muted', () => {
       const unmuteUsersAction: RemoveMutedUserAction = {
         type: MutedActionsEnum.UNMUTE_USER,
         data: {
-          list: ['user1']
+          list: [ 'user1' ]
         }
       };
 
       const initState: MutedState = {
-        users: ['user1', 'user2'],
+        users: [ 'user1', 'user2' ],
         channels: []
       };
 
       expect(
         mutedReducer(initState, unmuteUsersAction)
       ).toEqual({
-        users: ['user2'],
+        users: [ 'user2' ],
         channels: []
       });
     });
@@ -140,20 +140,20 @@ describe('Redux store - Settings/Muted', () => {
       const unmuteChannelsAction: RemoveMutedChannelAction = {
         type: MutedActionsEnum.UNMUTE_CHANNEL,
         data: {
-          list: ['channel2']
+          list: [ 'channel2' ]
         }
       };
 
       const initState: MutedState = {
-        users: ['user1', 'user2'],
-        channels: ['channel1', 'channel2']
+        users: [ 'user1', 'user2' ],
+        channels: [ 'channel1', 'channel2' ]
       };
 
       expect(
         mutedReducer(initState, unmuteChannelsAction)
       ).toEqual({
-        users: ['user1', 'user2'],
-        channels: ['channel1']
+        users: [ 'user1', 'user2' ],
+        channels: [ 'channel1' ]
       });
     });
 
@@ -164,7 +164,7 @@ describe('Redux store - Settings/Muted', () => {
       };
 
       const initState: MutedState = {
-        users: ['user1', 'user2'],
+        users: [ 'user1', 'user2' ],
         channels: []
       };
 
@@ -184,7 +184,7 @@ describe('Redux store - Settings/Muted', () => {
 
       const initState: MutedState = {
         users: [],
-        channels: ['channel1', 'channel2']
+        channels: [ 'channel1', 'channel2' ]
       };
 
       expect(

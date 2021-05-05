@@ -15,12 +15,12 @@ export const initialState: DevicesState = __DEV__ ? devicesReducerMock : {
 };
 
 const devicesReducer = (state = initialState, action: DevicesActionTypes) => {
-  const newDevices: DeviceEntry = {...state.entries};
+  const newDevices: DeviceEntry = { ...state.entries };
   switch (action.type) {
   case DevicesActionsEnum.ADD_DEVICE:
 
     action.data.devices.forEach((dev: Device) => {
-      newDevices[dev.id] = dev;
+      newDevices[ dev.id ] = dev;
     });
 
     return {
@@ -29,7 +29,7 @@ const devicesReducer = (state = initialState, action: DevicesActionTypes) => {
 
   case DevicesActionsEnum.REMOVE_DEVICE:
     action.data.devices.forEach((did: string) => {
-      delete newDevices[did];
+      delete newDevices[ did ];
     });
 
     return {

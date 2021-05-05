@@ -11,7 +11,7 @@ export interface NavigationControllForwardProps {
   [key: string]: any;
 }
 
-export const NavigationControllForward = (props: NavigationControllForwardProps) => {
+export const NavigationControllForward = () => {
   const history = useHistory();
   const localHistory = useSelector((state: RootState) => state.history);
   const canGoForward = localHistory.stack.length - 1 > localHistory.currentIndex;

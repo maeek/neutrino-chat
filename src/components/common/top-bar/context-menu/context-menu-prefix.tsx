@@ -10,7 +10,7 @@ export interface ContextMenuPrefixProps {
   [key: string]: any;
 }
 
-export const ContextMenuPrefix = (props: ContextMenuPrefixProps) => {
+export const ContextMenuPrefix = () => {
   const history = useHistory();
   const username = useSelector(getMeUsername);
   const goToProfile = () => Navigator.forward(history, '/me');

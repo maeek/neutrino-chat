@@ -47,4 +47,3 @@ export const setHistory = (history: HistoryState): SetHistory => ({
     history
   }
 });
-

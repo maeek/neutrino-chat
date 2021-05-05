@@ -35,6 +35,6 @@ describe('Filters', () => {
 
   it('getFilteredChannelsByGroup should return selected group', () => {
     const filterQueries = getFilteredChannelsByGroup(globalStateMock as any);
-    expect(filterQueries).toEqual([globalStateMock.channels.entries['0f717b7f-fbf8-47a7-ae8c-778d8889406a']]);
+    expect(filterQueries).toEqual([ globalStateMock.channels.entries[ '0f717b7f-fbf8-47a7-ae8c-778d8889406a' ] ]);
   });
 });

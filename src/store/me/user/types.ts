@@ -19,7 +19,6 @@ export enum UserActionsEnum {
   SET_ME_BIO = 'SET_ME_BIO'
 }
 
-
 export interface SetMeUsername extends GenericPayloadStructure {
   type: UserActionsEnum.SET_ME_USERNAME;
   data: {
