@@ -8,6 +8,7 @@ import LoginPage from '@/views/auth/Login';
 import JoinPage from '@/views/auth/Join';
 import MainPage from '@/views/main/Main';
 import TopBar from '@/components/common/top-bar';
+import { MobileBottomNav } from '@/components/common/mobile-bottom-nav';
 
 const RouterWrapper = () => (
   <Router>
@@ -16,13 +17,13 @@ const RouterWrapper = () => (
       <Route exact path="/join" component={JoinPage} />
       <RestrictedRoute>
         <TopBar />
+
         <Route exact path="/" component={MainPage} />
 
+        <MobileBottomNav />
       </RestrictedRoute>
     </Switch>
   </Router>
 );
-
-
 
 export default RouterWrapper;

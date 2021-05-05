@@ -30,6 +30,5 @@ run();
 // eslint-disable-next-line no-console
 reportWebVitals(console.log);
 
-
 // Register service worker
 serviceWorkerRegistration.register();
