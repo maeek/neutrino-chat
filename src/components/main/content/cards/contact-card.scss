@@ -1,0 +1,107 @@
+.contact-card {
+  position: relative;
+  height: 16rem;
+  margin: 0.2rem;
+  color: #ccc;
+  background-color: #1c1f23;
+  border-radius: 0.6rem;
+  box-shadow: 0 0 5px 0 transparentize(#000, 0.95);
+  word-wrap: break-word;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-direction: column;
+  background-image: url(https://static.suchanecki.me/avatar.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+
+  &-name {
+    padding: 0.8rem;
+    z-index: 1;
+    transform: translateY(5.5rem);
+    transition: all .1s;
+  }
+
+  &:hover &-name, &:focus-within &-name {
+    transform: translateY(0);
+  }
+
+  &-details {
+    z-index: 2;
+    width: 100%;
+    height: max-content;
+    background-color: transparentize(#202328, 0.1);
+    padding: 0.8rem;
+    transform: translateY(100%);
+    transition: all .1s;
+  }
+  
+  &:hover &-details, &:focus-within &-details {
+    transform: translateY(0);
+  }
+
+  &-description .ne-typo-text {
+    color: #999;
+  }
+
+  &-action {
+    margin-top: 0.8rem;
+    >.ne-button-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      svg {
+        font-size: 0.9rem;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  &::before  {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    z-index: 0;
+    transition: all .2s;
+  }
+
+  &:hover::before, &:focus-within::before {
+    height: 100%;
+  }
+}
+@media screen and (max-width: 190rem) {
+  .contact-card {
+    width: calc(14.285714286% - 0.40rem);
+  }
+}
+
+@media screen and (max-width: 140rem) {
+  .contact-card {
+    width: calc(20% - 0.4rem);
+  }
+}
+
+@media screen and (max-width: 130rem) {
+  .contact-card {
+    width: calc(25% - 0.40rem);
+  }
+}
+
+@media screen and (max-width: 80rem) {
+  .contact-card {
+    width: calc(33% - 0.40rem);
+  }
+}
+
+@media screen and (max-width: 60rem) {
+  .contact-card {
+    width: calc(50% - 0.40rem);
+  }
+}
