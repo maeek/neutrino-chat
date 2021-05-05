@@ -1,5 +1,5 @@
 .side-nav {
-  margin: 1rem 0;
+  margin: 0 0 1rem 0;
   width: 100%;
   border-radius: 4px;
 
@@ -29,6 +29,7 @@
 
   &-items {
     padding: 0;
+    margin: 0;
 
     .spacer {
       height: 2rem;
@@ -45,5 +46,11 @@
         padding: 0.6rem 0 0.6rem 0.7rem;
       }
     }
+  }
+}
+
+@media screen and (max-width: 60rem) {
+  .side-nav {
+    margin: 1rem 0;
   }
 }

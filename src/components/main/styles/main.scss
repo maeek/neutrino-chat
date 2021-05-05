@@ -27,7 +27,7 @@
     position: sticky;
     top: calc(4rem + 2px);
     left: 0;
-    height: calc(100vh - 6.5rem);
+    height: calc(100% - 6.5rem);
     max-width: 16rem;
     margin-left: 0.5rem;
   }
@@ -44,7 +44,7 @@
       background-color: #25292F;
       padding: 0 1rem 0.5rem;
       position: sticky;
-      top: calc(3rem + 2px + 4rem);
+      top: calc(3rem + 5px + 4rem);
     }
   }
 

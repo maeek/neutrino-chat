@@ -1,8 +1,15 @@
+/* eslint-disable react/no-unescaped-entities */
 import { memo, ReactNode, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import NavItem from '@maeek/neutrino-design/components/molecules/navigation/Item';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
-import { StarsRounded, DehazeRounded, ArrowUpwardRounded, FormatListBulletedRounded, MoreHorizRounded } from '@material-ui/icons';
+import {
+  StarsRounded,
+  DehazeRounded,
+  ArrowUpwardRounded,
+  FormatListBulletedRounded,
+  MoreHorizRounded
+} from '@material-ui/icons';
 import { Groups, GroupsEntry } from '@/store/me/groups/types';
 import { getMeGroups, getMeGroupsList } from '@/selectors/groups';
 import { RootState } from '@/store/root';
@@ -11,36 +18,34 @@ import { setFilterGroup } from '@/store/app/filters/actions';
 
 export interface GroupsListProps {}
 
-export const GroupsList = memo((props: GroupsListProps) => {
+// eslint-disable-next-line react/display-name
+export const GroupsList = memo(() => {
   const SHOW_PER_PAGE = 10;
-  const [groups, groupsList] = useSelector<RootState, [GroupsEntry, Groups[]]>(
-    (state) => [
-      getMeGroups(state),
-      getMeGroupsList(state).slice(1) // Skip "Starred"
-    ]
-  );
-  const [groupsExpanded, setGroupsExpanded] = useState(false);
-  const [showPagesInNumber, setShowPagesInNumber] = useState(0);
+  const groups = useSelector<RootState, GroupsEntry>(getMeGroups);
+  const groupsList = useSelector<RootState, Groups[]>(getMeGroupsList); // Skip "Starred"
+
+  const [ groupsExpanded, setGroupsExpanded ] = useState(false);
+  const [ showPagesInNumber, setShowPagesInNumber ] = useState(0);
   const selectedGroup = useSelector(getFiltersGroup);
   const dispatch = useDispatch();
 
   const setSelectedGroup = useCallback((group: string) => () => {
     dispatch(setFilterGroup(selectedGroup === group ? '' : group));
-  }, [dispatch, selectedGroup]);
+  }, [ dispatch, selectedGroup ]);
 
-  const selectedGroupNode: ReactNode = groups[selectedGroup] && (
+  const selectedGroupNode: ReactNode = groups[ selectedGroup ] && (
     <NavItem
       icon={selectedGroup === 'Starred' ? <StarsRounded /> : <DehazeRounded />}
       onClick={setSelectedGroup('')}
       active
     >
-      {groups[selectedGroup].name}
+      {groups[ selectedGroup ].name}
     </NavItem>
   );
 
   const groupsExpandedNode = (
     <>
-      { groupsList.slice(0, (showPagesInNumber + 1) * SHOW_PER_PAGE).map(group => (
+      { groupsList.slice(1).slice(0, (showPagesInNumber + 1) * SHOW_PER_PAGE).map(group => (
         <NavItem
           key={JSON.stringify(group)}
           icon={group.name === 'Starred' ? <StarsRounded /> : <DehazeRounded />}
@@ -52,7 +57,7 @@ export const GroupsList = memo((props: GroupsListProps) => {
       ))}
 
       {
-        groupsList.slice((showPagesInNumber + 1) * SHOW_PER_PAGE).length > 0 && (
+        groupsList.slice(1).slice((showPagesInNumber + 1) * SHOW_PER_PAGE).length > 0 && (
           <NavItem
             icon={<MoreHorizRounded />}
             onClick={() => setShowPagesInNumber(prevState => prevState + 1)}
@@ -63,7 +68,7 @@ export const GroupsList = memo((props: GroupsListProps) => {
       }
 
       {
-        groupsList.length < 1 && (
+        groupsList.slice(1).length < 1 && (
           <div className="side-nav-groups--empty">
             <Text className="side-nav-groups--heading" strong disabled> You have "0" Groups</Text>
             <Text className="side-nav-groups--desc" disabled>

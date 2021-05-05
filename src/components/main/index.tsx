@@ -1,4 +1,3 @@
-import { RouteProps } from 'react-router-dom';
 import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/content-footer';
 import LayoutSideContent from '@maeek/neutrino-design/components/layouts/side-content';
 import GenericFooter from '@/components/common/footer/generic';
@@ -9,11 +8,7 @@ import DMsCards from './content/direct-messages';
 import { SideBar } from './side-nav';
 import './styles/main.scss';
 
-interface MainViewProps extends RouteProps {
-  [key: string]: any;
-}
-
-export const MainView = (props: MainViewProps) => {
+export const MainView = () => {
   const footerNode = <GenericFooter />;
 
   return (

@@ -6,4 +6,12 @@
 
 .cards {
   margin-bottom: 5rem;
+
+  &-list {
+    margin: 0 0.8rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
 }
