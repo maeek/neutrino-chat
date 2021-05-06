@@ -66,6 +66,7 @@ module.exports = {
     'react/require-default-props': 0,
     'jsx-quotes': 0,
     'react/prop-types': 0,
+    'react/jsx-no-undef': 0,
     'react/jsx-fragments': 0,
     'react/no-unused-prop-types': 1,
     'react/react-in-jsx-scope': 0,
