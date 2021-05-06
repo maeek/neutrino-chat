@@ -4,9 +4,9 @@ import { LayoutContentFooter } from '@maeek/neutrino-design/components/layouts/c
 import { LayoutSideContent } from '@maeek/neutrino-design/components/layouts/side-content';
 import { GenericFooter } from '@/components/common/footer/generic';
 import Navigator from '@/utils/navigation';
-import { RegisterForm } from './form';
+import { RegisterForm } from './form/';
 import { User } from './types';
-import './styles/join.scss';
+import './join.scss';
 
 interface JoinViewProps extends RouteProps {
   from: {

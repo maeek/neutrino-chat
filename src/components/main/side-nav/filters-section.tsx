@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { NavItem } from '@maeek/neutrino-design/components/molecules/navigation/Item';
-import { sideBarConfig } from './config';
-import '../styles/sidebar.scss';
+import { sideNavConfig } from './config';
+// import './filters-section.scss';
 
-export const SideBarNavFiltersSection = () => {
+export const SideNavFiltersSection = () => {
   const [ selectedFilters, setSelectedFilters ] = useState<string[]>([]);
 
   return (
     <>
       {
-        sideBarConfig.filtersSection.map((item) => (
+        sideNavConfig.filtersSection.map((item) => (
           <NavItem
             key={item.name}
             icon={item.icon}

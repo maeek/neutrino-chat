@@ -1,0 +1,25 @@
+.side-nav {
+  &-groups--empty {
+    padding: 0.6rem 0.2rem 0.6rem 1.1rem;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-groups--heading {
+    margin-top: 0;
+    font-size: 1rem;
+    > .ne-typo {
+      font-size: inherit;
+    }
+  }
+
+  &-groups--desc {
+    margin-top: 0.5rem;
+    line-height: 1.25rem;
+  }
+
+  &-groups--new {
+    margin-top: 1rem;
+  }
+}

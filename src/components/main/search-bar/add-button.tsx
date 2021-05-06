@@ -4,8 +4,6 @@ import {
   AddRounded
 } from '@material-ui/icons';
 import MainSearchBarAddButtonContextMenu from './context-menu-wrapper';
-import '../styles/search-bar.scss';
-
 export interface MainSearchBarAddButtonProps {
   [key: string]: any;
 }

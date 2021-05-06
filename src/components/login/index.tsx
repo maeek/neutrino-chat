@@ -6,7 +6,7 @@ import { GenericFooter } from '@/components/common/footer/generic';
 import Navigator from '@/utils/navigation';
 import { login } from '@/actions/login';
 import { LoginForm } from './form';
-import './styles/login.scss';
+import './login.scss';
 interface LoginViewProps extends RouteProps {
   from: {
     pathname: string;

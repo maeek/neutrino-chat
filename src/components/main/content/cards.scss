@@ -9,9 +9,11 @@
 
   &-list {
     margin: 0 0.8rem;
+    padding: 0;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: wrap;
+    list-style: none;
   }
 }

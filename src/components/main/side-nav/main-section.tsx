@@ -1,18 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { NavItem } from '@maeek/neutrino-design/components/molecules/navigation/Item';
-import { sideBarConfig } from './config';
-import '../styles/sidebar.scss';
+import { sideNavConfig } from './config';
 import { getFiltersMain } from '@/selectors/filters';
 import { setFilterMain } from '@/store/app/filters/actions';
 
-export const SideBarNavMainSection = () => {
+export const SideNavMainSection = () => {
   const selectedCategory = useSelector(getFiltersMain);
   const dispatch = useDispatch();
 
   return (
     <>
       {
-        sideBarConfig.mainSection.map((item) => (
+        sideNavConfig.mainSection.map((item) => (
           <NavItem
             key={item.name}
             icon={item.icon}

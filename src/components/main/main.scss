@@ -5,6 +5,7 @@
   align-items: center;
   flex-direction: column;
   height: auto;
+  transform: translate3d(0);
 
   .ne-layout-content-footer {
     height: auto;
@@ -16,24 +17,27 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    background: url('../../../assets/images/wave-alt.svg') no-repeat;
-    background-position: 0 bottom;
+    background: url('../../assets/images/wave-alt.svg') no-repeat;
+    background-position: left bottom;
     background-size: 100% auto;
     position: relative;
+    height: 100%;
     min-height: auto;
   }
 
   .ne-layout-side-content-side {
     position: sticky;
-    top: calc(4rem + 2px);
+    top: calc(4rem - 0.05rem); // - first item margin
     left: 0;
-    height: calc(100% - 6.5rem);
+    height: auto;
+    max-height: calc(100vh - 6.5rem);
     max-width: 16rem;
     margin-left: 0.5rem;
   }
 
   .ne-layout-side-content-content {
     overflow: unset;
+    min-height: 100vh;
   }
 
   .main-side-filter {
@@ -41,30 +45,10 @@
     width: 100%;
 
     &-heading {
-      background-color: #25292F;
+      background-color: #25292f;
       padding: 0 1rem 0.5rem;
       position: sticky;
-      top: calc(3rem + 5px + 4rem);
-    }
-  }
-
-  .side-nav-info {
-    margin: 0 0.5rem 0 1rem;
-    user-select: none;
-    display: flex;
-    flex-direction: column;
-
-    &--heading {
-      margin-top: 0.4rem;
-      font-size: 1rem;
-      >.ne-typo {
-        font-size: inherit;
-      }
-    }
-  
-    &--desc {
-      margin-top: 0.5rem;
-      line-height: 1.25rem;
+      top: calc(3rem + 4rem); // top bar + search bar
     }
   }
 }
@@ -83,7 +67,6 @@
     height: auto;
   }
 }
-
 
 @media (min-width: 2240px) {
   .view-root--main .main-side-filter {

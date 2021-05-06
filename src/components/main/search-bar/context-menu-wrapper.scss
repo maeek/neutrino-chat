@@ -1,0 +1,10 @@
+.main-search-bar {
+  .ne-context-menu {
+    position: absolute;
+    margin-top: 0.2rem;
+
+    .ne-context-menu-item {
+      justify-content: flex-start;
+    }
+  }
+}

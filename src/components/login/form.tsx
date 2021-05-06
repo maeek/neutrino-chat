@@ -5,7 +5,7 @@ import { Input } from '@maeek/neutrino-design/components/atoms/inputs/text';
 import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { Paragraph } from '@maeek/neutrino-design/components/atoms/typography/paragraph';
-import './styles/form.scss';
+import './form.scss';
 
 interface LoginFormProps {
   onHeadingClick?: MouseEventHandler;

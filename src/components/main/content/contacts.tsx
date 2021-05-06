@@ -3,7 +3,7 @@ import { Heading } from '@maeek/neutrino-design/components/atoms/typography/head
 import { getFilteredContactsIds, getFiltersMain } from '@/selectors/filters';
 import { FilterCategory } from '@/store/app/filters/types';
 import { ContactCard } from './cards/contact-card';
-import '../styles/contacts.scss';
+import './cards.scss';
 
 export interface ContactsCardsProps {}
 
@@ -16,9 +16,9 @@ export const ContactsCards = () => {
     ? (
       <div className="cards">
         <Heading level={3} className="main-side-filter-heading">Contacts</Heading>
-        <div className="cards-list">
+        <ul className="cards-list">
           {contactsIds.map((id) => (<ContactCard key={id} id={id} />))}
-        </div>
+        </ul>
       </div>
     )
     : null;

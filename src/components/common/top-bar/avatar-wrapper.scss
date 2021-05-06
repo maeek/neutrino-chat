@@ -1,0 +1,11 @@
+.top-bar {
+  &-avatar {
+    cursor: pointer;
+    height: 100%;
+    margin: 0 1rem;
+    .ne-avatar-content--medium {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  }
+}

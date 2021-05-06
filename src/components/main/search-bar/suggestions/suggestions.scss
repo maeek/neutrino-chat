@@ -32,29 +32,6 @@
     padding: 0.5rem 0.8rem 0.2rem 0.8rem;
     margin-bottom: 0.1rem;
   }
-
-  &-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    width: 100%;
-
-    &-element {
-      width: calc(100% - 0.4rem);
-      cursor: pointer;
-      margin: 0 0.2rem;
-
-      > .ne-typo-text {
-        display: block;
-        padding: 0.4rem 0.6rem;
-        text-decoration: none;
-      }
-
-      &:hover, &:focus-within, &:focus {
-        background-color: darken(#343a43, 4);
-      }
-    }
-  }
 }
 
 @media screen and (max-width: 60rem) {

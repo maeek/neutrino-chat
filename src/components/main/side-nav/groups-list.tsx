@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { memo, ReactNode, useCallback, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import NavItem from '@maeek/neutrino-design/components/molecules/navigation/Item';
@@ -15,6 +14,7 @@ import { getMeGroups, getMeGroupsList } from '@/selectors/groups';
 import { RootState } from '@/store/root';
 import { getFiltersGroup } from '@/selectors/filters';
 import { setFilterGroup } from '@/store/app/filters/actions';
+import './groups-list.scss';
 
 export interface GroupsListProps {}
 
@@ -45,7 +45,7 @@ export const GroupsList = memo(() => {
 
   const groupsExpandedNode = (
     <>
-      { groupsList.slice(1).slice(0, (showPagesInNumber + 1) * SHOW_PER_PAGE).map(group => (
+      {groupsList.slice(1).slice(0, (showPagesInNumber + 1) * SHOW_PER_PAGE).map(group => (
         <NavItem
           key={JSON.stringify(group)}
           icon={group.name === 'Starred' ? <StarsRounded /> : <DehazeRounded />}
@@ -56,29 +56,25 @@ export const GroupsList = memo(() => {
         </NavItem>
       ))}
 
-      {
-        groupsList.slice(1).slice((showPagesInNumber + 1) * SHOW_PER_PAGE).length > 0 && (
-          <NavItem
-            icon={<MoreHorizRounded />}
-            onClick={() => setShowPagesInNumber(prevState => prevState + 1)}
-          >
+      {groupsList.slice(1).slice((showPagesInNumber + 1) * SHOW_PER_PAGE).length > 0 && (
+        <NavItem
+          icon={<MoreHorizRounded />}
+          onClick={() => setShowPagesInNumber(prevState => prevState + 1)}
+        >
             Show more
-          </NavItem>
-        )
-      }
+        </NavItem>
+      )}
 
-      {
-        groupsList.slice(1).length < 1 && (
-          <div className="side-nav-groups--empty">
-            <Text className="side-nav-groups--heading" strong disabled> You have "0" Groups</Text>
-            <Text className="side-nav-groups--desc" disabled>
+      {groupsList.slice(1).length < 1 && (
+        <div className="side-nav-groups--empty">
+          <Text className="side-nav-groups--heading" strong disabled>You have 0 Groups</Text>
+          <Text className="side-nav-groups--desc" disabled>
               Custom Groups lets you group your favourite Contacts and Channels into a single folder.
-              This way you can filter out unrelevant channels to get where you need to go.
-            </Text>
-            <Text className="side-nav-groups--new" link="/me/groups/new">Learn how to create new Group</Text>
-          </div>
-        )
-      }
+              This way you can filter out unrelevant channels.
+          </Text>
+          <Text className="side-nav-groups--new" link="/me/groups/new">Learn how to create new Group</Text>
+        </div>
+      )}
     </>
   );
 

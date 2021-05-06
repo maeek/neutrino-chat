@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import AvatarCached, { AvatarSizes } from '@maeek/neutrino-design/components/atoms/avatar/Avatar';
 import { getMeAvatar, getMeUsername } from '@/selectors/user';
 import Navigator from '@/utils/navigation';
-import './styles/top-bar.scss';
+import './avatar-wrapper.scss';
 
 export interface AvatarWrapperProps {
   src?: string;

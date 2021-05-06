@@ -1,5 +1,6 @@
 import {
   createRef,
+  CSSProperties,
   forwardRef,
   MouseEventHandler,
   MutableRefObject,
@@ -11,25 +12,21 @@ import {
 } from 'react';
 import classnames from 'classnames';
 import { useLocation, withRouter } from 'react-router';
+import { useMediaQuery } from 'react-responsive';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import Navigator from '@/utils/navigation';
-import { CSSProperties } from '@material-ui/styles';
+import { AccountCircleRounded, ChatBubbleRounded, HomeRounded } from '@material-ui/icons';
 import './mobile-bottom-nav.scss';
 
-interface MobileBottomNavButtonProps {
-  children?: ReactNode;
-  onClick: (link?: string) => MouseEventHandler;
-  link?: string;
-}
-
 export const MobileBottomNav = withRouter(({ location, history }) => {
-  const [ position, setPosition ] = useState(0);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const [ position, setPosition ] = useState<number | null>(null);
   const refs = useRef<MutableRefObject<HTMLDivElement>[]>([]);
 
   const navConfig = useMemo(() => [
-    { link: '/', name: 'Home' },
-    { link: '/chat', name: 'Chat' },
-    { link: '/me', name: 'Profile' }
+    { link: '/', name: 'Home', icon: <HomeRounded /> },
+    { link: '/chats', name: 'Chats', icon: <ChatBubbleRounded /> },
+    { link: '/me', name: 'Profile', icon: <AccountCircleRounded /> }
   ], []);
 
   const onClick = (link?: string): MouseEventHandler => (e) => {
@@ -37,36 +34,56 @@ export const MobileBottomNav = withRouter(({ location, history }) => {
     Navigator.forward(history, link || '');
   };
 
-  const buttons = navConfig.map(({ name, link }, i) => {
+  const buttons = navConfig.map(({ name, link, icon }, i) => {
     refs.current[ i ] = refs.current[ i ] || createRef();
 
     return (
-      <MobileBottomNavButton ref={refs.current[ i ]} key={link} onClick={onClick} link={link}>
-        {name}
+      <MobileBottomNavButton
+        ref={refs.current[ i ]}
+        key={link}
+        onClick={onClick}
+        link={link}
+        renderIcon={icon}
+      >
+        <span>{name}</span>
       </MobileBottomNavButton>
     );
   });
 
   useEffect(() => {
+    if (!isMobile) return;
+
     const btnIndex = navConfig.findIndex((conf) => conf.link === location.pathname);
     const btn = refs.current[ btnIndex ].current;
     const { left } = btn.getBoundingClientRect();
 
     setPosition(left);
-  }, [ location.pathname, navConfig ]);
+  }, [ location.pathname, navConfig, isMobile ]);
 
-  return (
-    <nav className="bottom-nav">
+  return isMobile ? (
+    <nav className="bottom-nav" onContextMenu={(e) => e.preventDefault()}>
       {buttons}
-      <div className="bottom-nav-slider" style={{ '--pos': `${position}px` } as CSSProperties} />
+      {
+        position !== null
+          ? (<div className="bottom-nav-slider" style={{ '--pos': `${position}px` } as CSSProperties} />)
+          : null
+      }
     </nav>
-  );
+  ) : null;
 });
+
+interface MobileBottomNavButtonProps {
+  children?: ReactNode;
+  onClick: (link?: string) => MouseEventHandler;
+  link?: string;
+  renderIcon?: ReactNode | ((isActivr: boolean) => ReactNode);
+}
 
 const MobileBottomNavButton = forwardRef<HTMLDivElement, MobileBottomNavButtonProps>(({
   children,
   link,
-  onClick
+  onClick,
+  renderIcon
 }, ref) => {
   const location = useLocation();
   const { pathname } = location;
@@ -78,6 +95,11 @@ const MobileBottomNavButton = forwardRef<HTMLDivElement, MobileBottomNavButtonPr
       className={classnames('bottom-nav-button', isActive && 'bottom-nav-button--active')}
     >
       <Text strong={isActive} link={link} onClick={onClick(link)}>
+        {
+          typeof renderIcon === 'function'
+            ? renderIcon(isActive)
+            : renderIcon
+        }
         {children}
       </Text>
     </div>

@@ -4,19 +4,10 @@
   justify-content: center;
   align-items: flex-start;
   position: sticky;
-  top: calc(3rem + 2px);
+  top: 3rem;
   left: 0;
   z-index: 100;
-  background-color: #25292F;
-
-  .ne-context-menu {
-    position: absolute;
-    margin-top: 0.2rem;
-
-    .ne-context-menu-item {
-      justify-content: flex-start;
-    }
-  }
+  background-color: #25292f;
 
   .hidden {
     display: none;
@@ -37,7 +28,7 @@
     }
 
     .ne-button-item {
-      >svg {
+      > svg {
         font-size: 1.1rem;
       }
     }
@@ -47,5 +38,4 @@
     height: 2.2rem;
     margin: 0 0.2rem;
   }
-
 }

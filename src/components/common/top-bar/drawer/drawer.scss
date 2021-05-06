@@ -35,9 +35,8 @@
         }
         >.ne-typo {
           color: #cacaca;
-          text-transform: uppercase;
-          font-weight: 700;
-          letter-spacing: 2px;
+          text-transform: capitalize;
+          font-weight: 500;
           padding: 0;
           margin: 0;
         }
@@ -49,6 +48,24 @@
       width: auto;
       height: 2px;
       background-color: #2b2f36;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .top-bar-button .top-bar-notifications-drawer-content-header {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    padding: 0 1rem 0 1rem;
+
+    .top-bar-button-icon {
+      margin: 0;
+    }
+
+    ~.top-bar-notifications-drawer-spacer {
+      margin-top: 0;
     }
   }
 }

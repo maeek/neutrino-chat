@@ -8,21 +8,14 @@ import ProceedButton from '@maeek/neutrino-design/components/atoms/buttons/Proce
 import { Input } from '@maeek/neutrino-design/components/atoms/inputs/text';
 import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
-import { Paragraph } from '@maeek/neutrino-design/components/atoms/typography/paragraph';
+import { User } from '../types';
+import './box.scss';
 
-import { User } from './types';
-import './styles/form.scss';
-
-interface RegisterFormProps {
+interface RegisterFormBoxProps {
   onRegister?: (user: User) => void;
-  redirectToLogin?: Function;
 }
 
-export const RegisterForm = (props: RegisterFormProps) => {
-  const {
-    onRegister,
-    redirectToLogin
-  } = props;
+export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
   const loginRef = useRef<any>();
   const passwordRef = useRef<any>();
   const passwordRepeatRef = useRef<any>();
@@ -65,14 +58,7 @@ export const RegisterForm = (props: RegisterFormProps) => {
   };
 
   return (
-    <div className="form-register">
-      <Heading>Neutrino Chat</Heading>
-
-      <div className="form-register-header">
-        <Heading level={2}>Create Account</Heading>
-        <Paragraph>Chat that does not save your messages! Share what's on your mind with anyone you want.</Paragraph>
-      </div>
-
+    <>
       <div className="form-register-box">
         <div className="form-register-box-entry">
           <Heading
@@ -182,14 +168,7 @@ export const RegisterForm = (props: RegisterFormProps) => {
           </Text>
         </div>
       </div>
-
       <ProceedButton className="button-login" onClick={onRegisterHandler}>Register</ProceedButton>
-
-      <div className="form-register-footer">
-        <Text>Already have an account?</Text>
-        {' '}
-        <Text link="/login" onClick={redirectToLogin}>Log in</Text>
-      </div>
-    </div>
+    </>
   );
 };

@@ -9,7 +9,7 @@ import {
 } from '@material-ui/icons';
 import { FilterCategory } from '@/store/app/filters/types';
 
-export const sideBarConfig = {
+export const sideNavConfig = {
   mainSection: [
     {
       name: 'All',

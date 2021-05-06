@@ -8,7 +8,7 @@ import { setFilterCust, setFilterSearch } from '@/store/app/filters/actions';
 import { getFiltersSearch } from '@/selectors/filters';
 import MainSearchBarAddButton from './add-button';
 import { SearchBarSuggestions } from './suggestions/suggestions';
-import '../styles/search-bar.scss';
+import './search-bar.scss';
 
 const getKeyValues = (v: string) => {
   const newStr = v.split('@');
@@ -26,7 +26,6 @@ export interface MainSearchBarProps {
 export const MainSearchBar = () => {
   const [ isFocused, setIsFocused ] = useState(false);
   const searchedValue = useSelector(getFiltersSearch);
-
   const inputRef = useRef<any>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
   const firstSuggestionsRef = useRef<HTMLLIElement>(null as unknown as HTMLLIElement);
@@ -111,9 +110,6 @@ export const MainSearchBar = () => {
         firstSuggestionRef={firstSuggestionsRef}
         inputRef={inputRef?.current}
       />
-      {/* <Button className="main-search-bar-action">
-        <SearchRounded /><span className="main-search-bar-action-text">Search</span>
-      </Button> */}
     </section>
   );
 };

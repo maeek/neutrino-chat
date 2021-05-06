@@ -5,8 +5,8 @@ import MainSearchBar from './search-bar/search-bar';
 import ContactsCards from './content/contacts';
 import ChannelsCards from './content/channels';
 import DMsCards from './content/direct-messages';
-import { SideBar } from './side-nav';
-import './styles/main.scss';
+import { SideNav } from './side-nav';
+import './main.scss';
 
 export const MainView = () => {
   const footerNode = <GenericFooter />;
@@ -14,7 +14,7 @@ export const MainView = () => {
   return (
     <div className="view-root view-root--main">
       <LayoutContentFooter footerNode={footerNode}>
-        <LayoutSideContent className="main-side-filter" hideScroll sideNode={<SideBar />}>
+        <LayoutSideContent className="main-side-filter" hideScroll sideNode={<SideNav />}>
           <MainSearchBar />
           <ContactsCards />
           <DMsCards />

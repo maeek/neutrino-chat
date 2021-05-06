@@ -1,0 +1,18 @@
+.top-bar {
+  &-button {
+    color: #5ea8ed;
+    margin-left: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+
+    > svg {
+      font-size: inherit;
+    }
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

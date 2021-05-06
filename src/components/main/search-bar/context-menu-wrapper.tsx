@@ -5,7 +5,7 @@ import {
   GroupAddRounded
 } from '@material-ui/icons';
 import { ContextMenu, ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
-import '../styles/search-bar.scss';
+import './context-menu-wrapper.scss';
 
 export interface MainSearchBarAddButtonContextMenuProps {
   closeContextMenu?: any;

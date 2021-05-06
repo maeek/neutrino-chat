@@ -10,6 +10,7 @@ import { useHistory } from 'react-router';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { InputRef } from '@maeek/neutrino-design/components/atoms/inputs/text/Input';
 import Navigator from '@/utils/navigation';
+import './list.scss';
 
 export interface SuggestionsListElement {
   id: string;

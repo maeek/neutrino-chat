@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import Navigator from '@/utils/navigation';
 import { getMeUsername } from '@/selectors/user';
-import '../styles/top-bar.scss';
+import './context-menu-prefix.scss';
 
 export interface ContextMenuPrefixProps {
   [key: string]: any;
