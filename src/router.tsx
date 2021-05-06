@@ -19,6 +19,8 @@ const RouterWrapper = () => (
         <TopBar />
 
         <Route exact path="/" component={MainPage} />
+        <Route exact path="/chats" render={() => <main className="page-root" />} />
+        <Route exact path="/me" render={() => <main className="page-root" />} />
 
         <MobileBottomNav />
       </RestrictedRoute>

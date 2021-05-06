@@ -7,7 +7,6 @@ import Navigator from '@/utils/navigation';
 
 interface RestrictedRouteProps {
   children?: ReactNode;
-  [key: string]: any;
 }
 
 const RestrictedRoute = ({ children }: RestrictedRouteProps) => {
