@@ -49,7 +49,7 @@ export const addMembersToGroup = (id: string, items: GroupItem[]): AddGroupMembe
   }
 });
 
-export const removeMembersToGroup = (id: string, items: string[]): RemoveGroupMembersAction => ({
+export const removeMembersFromGroup = (id: string, items: string[]): RemoveGroupMembersAction => ({
   type: GroupActionsEnum.REMOVE_MEMBER,
   data: {
     group: {

@@ -5,7 +5,7 @@ import {
   clearGroupMembers,
   clearGroups,
   removeGroups,
-  removeMembersToGroup
+  removeMembersFromGroup
 } from './actions';
 import {
   AddGroupMembersAction,
@@ -105,7 +105,7 @@ describe('Redux store - Me/Groups', () => {
           }
         }
       };
-      expect(removeMembersToGroup(id, groups)).toEqual(expectedAction);
+      expect(removeMembersFromGroup(id, groups)).toEqual(expectedAction);
     });
 
     it('should create an action to clear members', () => {
