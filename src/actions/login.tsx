@@ -1,5 +1,5 @@
 // import { ApiAuthorization } from '@/api/auth';
-import { setMeUsername, setMeAvatar } from '@/store/me/user/actions';
+import { setMeUsername, setMeAvatar, setMeBanner } from '@/store/me/user/actions';
 import { setToken, setRefreshToken } from '@/store/session/actions';
 import Navigator from '@/utils/navigation';
 import { Dispatch } from 'redux';
@@ -19,7 +19,9 @@ export const login = (
   dispatch(setRefreshToken('123'));
   dispatch(setMeUsername(username));
   dispatch(setMeAvatar('https://static.suchanecki.me/pepe1.jpg'));
+  dispatch(setMeBanner('https://static.suchanecki.me/neony_1080p.jpg'));
   window.localStorage.setItem('avatar', 'https://static.suchanecki.me/pepe1.jpg');
+  window.localStorage.setItem('banner', 'https://static.suchanecki.me/neony_1080p.jpg');
   window.localStorage.setItem('username', username);
   window.localStorage.setItem('token', '123');
   window.localStorage.setItem('refreshToken', '123');
