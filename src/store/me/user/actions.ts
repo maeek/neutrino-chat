@@ -1,4 +1,4 @@
-import { SetMeAvatar, SetMeUsername, SetMeBio, UserActionsEnum, Reaction, SetMeReactions } from './types';
+import { SetMeAvatar, SetMeUsername, SetMeBio, UserActionsEnum, Reaction, SetMeReactions, SetMeBanner, SetMeStatus, MeStatus } from './types';
 
 export const setMeUsername = (username: string): SetMeUsername => ({
   type: UserActionsEnum.SET_ME_USERNAME,
@@ -18,6 +18,20 @@ export const setMeBio = (bio: string): SetMeBio => ({
   type: UserActionsEnum.SET_ME_BIO,
   data: {
     bio
+  }
+});
+
+export const setMeBanner = (banner: string): SetMeBanner => ({
+  type: UserActionsEnum.SET_ME_BANNER,
+  data: {
+    banner
+  }
+});
+
+export const setMeStatus = (status: MeStatus): SetMeStatus => ({
+  type: UserActionsEnum.SET_ME_STATUS,
+  data: {
+    status
   }
 });
 
