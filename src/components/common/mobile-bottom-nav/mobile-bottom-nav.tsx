@@ -53,7 +53,13 @@ export const MobileBottomNav = withRouter(({ location, history }) => {
   useEffect(() => {
     if (!isMobile) return;
 
-    const btnIndex = navConfig.findIndex((conf) => conf.link === location.pathname);
+    const path = location.pathname.substr(1).split('/');
+    const btnIndex = navConfig.findIndex((conf) => {
+      return path[ 0 ] === conf.link.substr(1);
+    });
+
+    if (!refs.current[ btnIndex ]?.current) return;
+
     const btn = refs.current[ btnIndex ].current;
     const { left } = btn.getBoundingClientRect();
 
