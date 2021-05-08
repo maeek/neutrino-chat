@@ -2,10 +2,13 @@ import {
   KeyboardEvent,
   useEffect
 } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { Drawer } from '@maeek/neutrino-design/components/molecules/drawer';
 import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import ArrowForwardRoundedIcon from '@material-ui/icons/ArrowForwardRounded';
+import InboxRounded from '@material-ui/icons/InboxRounded';
+import CloseRounded from '@material-ui/icons/CloseRounded';
 import './drawer.scss';
 
 export interface NotificationsDrawerProps {
@@ -14,6 +17,8 @@ export interface NotificationsDrawerProps {
 }
 
 export const NotificationsDrawerWrapper = ({ isOpened, onClose }: NotificationsDrawerProps) => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+
   const onEnter = (fn?: () => void) => (e: KeyboardEvent<HTMLSpanElement>) => {
     if (e.key === 'Enter' && fn) {
       fn();
@@ -28,9 +33,9 @@ export const NotificationsDrawerWrapper = ({ isOpened, onClose }: NotificationsD
 
   return (
     <Drawer
-      position="right"
+      position={isMobile ? 'top' : 'right'}
       isOpened={isOpened}
-      animationSpeed={100}
+      animationSpeed={250}
       onClose={onClose}
       showMask
       className="top-bar-notifications-drawer"
@@ -42,14 +47,19 @@ export const NotificationsDrawerWrapper = ({ isOpened, onClose }: NotificationsD
           onClick={onClose}
           onKeyUp={onEnter(onClose)}
         >
-          <ArrowForwardRoundedIcon />
+          {
+            isMobile
+              ? <CloseRounded />
+              : <ArrowForwardRoundedIcon />
+          }
         </span>
         <Heading level={5}>Notifications</Heading>
       </div>
       <div className="top-bar-notifications-drawer-spacer" />
 
-      <div className="top-bar-notifications-drawer-notifications">
-        <Text disabled>No recent notifications</Text>
+      <div className="top-bar-notifications-drawer-empty">
+        <InboxRounded />
+        <Text strong disabled>You have 0 notifications!</Text>
       </div>
     </Drawer>
   );
