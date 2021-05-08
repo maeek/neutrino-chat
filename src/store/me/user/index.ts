@@ -1,10 +1,12 @@
 import userReducerMock from './mock';
-import { UserState, UserActionTypes, UserActionsEnum } from './types';
+import { UserState, UserActionTypes, UserActionsEnum, MeStatus } from './types';
 
 export const initialState: UserState = __DEV__ ? userReducerMock : {
   username: '',
   avatar: '',
+  banner: '',
   bio: '',
+  status: MeStatus.ACTIVE,
   defaultReactions: []
 };
 
@@ -26,6 +28,18 @@ const userReducer = (state = initialState, action: UserActionTypes) => {
     return {
       ...state,
       bio: action.data.bio
+    };
+
+  case UserActionsEnum.SET_ME_BANNER:
+    return {
+      ...state,
+      banner: action.data.banner
+    };
+
+  case UserActionsEnum.SET_ME_STATUS:
+    return {
+      ...state,
+      status: action.data.status
     };
 
   case UserActionsEnum.SET_ME_REACTIONS:

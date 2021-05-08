@@ -1,6 +1,6 @@
 import meUserReducer from '.';
 import { setMeAvatar, setMeBio, setMeUsername } from './actions';
-import { SetMeAvatar, SetMeBio, SetMeUsername, UserActionsEnum, UserActionTypes } from './types';
+import { MeStatus, SetMeAvatar, SetMeBio, SetMeUsername, UserActionsEnum, UserActionTypes } from './types';
 
 describe('Redux store - Me/Contacts', () => {
   describe('Actions', () => {
@@ -46,7 +46,9 @@ describe('Redux store - Me/Contacts', () => {
       ).toEqual({
         username: '',
         avatar: '',
+        banner: '',
         bio: '',
+        status: MeStatus.ACTIVE,
         defaultReactions: []
       });
     });
@@ -66,7 +68,9 @@ describe('Redux store - Me/Contacts', () => {
       ).toEqual({
         username,
         avatar: '',
+        banner: '',
         bio: '',
+        status: MeStatus.ACTIVE,
         defaultReactions: []
       });
     });
@@ -86,7 +90,9 @@ describe('Redux store - Me/Contacts', () => {
       ).toEqual({
         username: '',
         avatar: '',
+        banner: '',
         bio,
+        status: MeStatus.ACTIVE,
         defaultReactions: []
       });
     });
@@ -106,7 +112,9 @@ describe('Redux store - Me/Contacts', () => {
       ).toEqual({
         username: '',
         avatar,
+        banner: '',
         bio: '',
+        status: MeStatus.ACTIVE,
         defaultReactions: []
       });
     });
