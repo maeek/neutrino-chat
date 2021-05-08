@@ -33,10 +33,11 @@
     background-color: transparentize(#202328, 0.1);
     padding: 0 0.8rem;
     // transform: translateY(100%);
-    transition: all .1s;
+    transition: all 0.1s;
   }
-  
-  &:hover &-details, &:focus-within &-details {
+
+  &:hover &-details,
+  &:focus-within &-details {
     padding: 0.8rem;
     height: auto;
   }
@@ -57,7 +58,8 @@
       flex: 1 1 auto;
       margin-right: 0.5rem;
 
-      &-item, &-item .ne-typo-text {
+      &-item,
+      &-item .ne-typo-text {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -72,8 +74,8 @@
 
   &-action {
     margin-left: 0.2rem;
-    
-    >.ne-button-item {
+
+    > .ne-button-item {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -81,14 +83,14 @@
       svg {
         font-size: 1rem;
       }
-      
-      &[data-starred="true"] {
+
+      &[data-starred='true'] {
         color: #ffff86;
       }
     }
   }
 
-  &::before  {
+  &::before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -97,16 +99,17 @@
     height: 65%;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     z-index: 0;
-    transition: all .2s;
+    transition: all 0.2s;
   }
 
-  &:hover::before, &:focus-within::before {
+  &:hover::before,
+  &:focus-within::before {
     height: 100%;
   }
 }
 @media screen and (max-width: 190rem) {
   .contact-card {
-    width: calc(14.285714286% - 0.40rem);
+    width: calc(14.285714286% - 0.4rem);
   }
 }
 
@@ -118,18 +121,27 @@
 
 @media screen and (max-width: 130rem) {
   .contact-card {
-    width: calc(25% - 0.40rem);
+    width: calc(25% - 0.4rem);
   }
 }
 
 @media screen and (max-width: 80rem) {
   .contact-card {
-    width: calc(33% - 0.40rem);
+    width: calc(33% - 0.4rem);
   }
 }
 
 @media screen and (max-width: 60rem) {
   .contact-card {
-    width: calc(50% - 0.40rem);
+    width: calc(50% - 0.4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-card {
+    &-details,
+    &::before {
+      transition: none;
+    }
   }
 }

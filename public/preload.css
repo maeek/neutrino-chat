@@ -21,5 +21,9 @@ i.mi {
   align-items: center;
   color: #ababab;
   font-size: 2rem;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
