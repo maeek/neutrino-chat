@@ -4,9 +4,13 @@ import {
   Route
 } from 'react-router-dom';
 import RestrictedRoute from '@/components/common/restricted-routes';
+
 import LoginPage from '@/views/auth/Login';
 import JoinPage from '@/views/auth/Join';
+
 import MainPage from '@/views/main/Main';
+import ProfilePage from '@/views/me/Profile';
+
 import TopBar from '@/components/common/top-bar';
 import { MobileBottomNav } from '@/components/common/mobile-bottom-nav';
 
@@ -19,8 +23,8 @@ const RouterWrapper = () => (
         <TopBar />
 
         <Route exact path="/" component={MainPage} />
+        <Route exact path="/me" component={ProfilePage} />
         <Route exact path="/chats" render={() => <main className="page-root" />} />
-        <Route exact path="/me" render={() => <main className="page-root" />} />
 
         <MobileBottomNav />
       </RestrictedRoute>

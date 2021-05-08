@@ -1,0 +1,36 @@
+.me-profile {
+  &-avatar {
+    box-shadow: 0 0 5px 0 transparentize(#000, 0.95);
+    margin-top: -4rem;
+    border-radius: 50%;
+    user-select: none;
+    position: relative;
+    overflow: hidden;
+
+    .ne-avatar-content--extra-large {
+      width: 8rem;
+      height: 8rem;
+    }
+
+    &-edit {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: lighten(#717f94, 25);
+      transition: opacity 0.1s;
+      opacity: 0;
+
+      > svg {
+        font-size: 3rem;
+      }
+    }
+
+    &:hover &-edit {
+      opacity: 1;
+    }
+  }
+}

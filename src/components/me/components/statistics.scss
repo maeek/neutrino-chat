@@ -1,0 +1,52 @@
+.me-profile {
+  &-statistics {
+    width: 100%;
+    max-width: 50rem;
+    margin: 3rem 0 2rem 0;
+    color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+
+    &-heading {
+      margin-bottom: 0.8rem;
+    }
+
+    &-list {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      &-entry {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        flex: 0 1 33%;
+        width: 33%;
+        height: 6rem;
+        overflow: hidden;
+        border-radius: 0.6rem;
+        background-color: #343a43;
+        box-shadow: 0 0 5px 0 transparentize(#000, 0.95);
+        margin-right: 0.4rem;
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+
+        &-counter {
+          font-size: 2rem;
+          margin-bottom: 0.4rem;
+          color: #1a6ac5;
+        }
+      }
+    }
+  }
+}

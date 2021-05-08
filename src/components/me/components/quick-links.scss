@@ -1,0 +1,19 @@
+.me-profile {
+  &-links {
+    width: 100%;
+    max-width: 50rem;
+    padding: 0;
+    list-style: none;
+
+    .ne-nav-item {
+      margin-bottom: 0.6rem;
+      .ne-nav-item-content-wrapper {
+        padding-left: 0;
+      }
+    }
+
+    &--deactivate {
+      color: #ff5f5f;
+    }
+  }
+}
