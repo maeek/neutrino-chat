@@ -1,7 +1,7 @@
 import devicesReducerMock from './mock';
 import { Device, DeviceEntry, DevicesActionsEnum, DevicesActionTypes, DevicesState } from './types';
 
-export const initialState: DevicesState = __DEV__ ? devicesReducerMock : {
+export const initialState: DevicesState = __DEMO__ ? devicesReducerMock : {
   entries: {
     '#': {
       id: '#',

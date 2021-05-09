@@ -36,6 +36,7 @@ module.exports = {
   },
   globals: {
     __DEV__: 'readonly',
+    __DEMO__: 'readonly',
     __PROD__: 'readonly'
   },
   rules: {

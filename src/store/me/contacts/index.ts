@@ -1,7 +1,7 @@
 import contactsReducerMock from './mock';
 import { ContactActionsEnum, ContactEntry, ContactsActionTypes, ContactsState } from './types';
 
-export const initialState: ContactsState = __DEV__ ? contactsReducerMock : {
+export const initialState: ContactsState = __DEMO__ ? contactsReducerMock : {
   entries: {}
 };
 

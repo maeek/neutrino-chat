@@ -1,7 +1,7 @@
 import mutedReducerMock from './mock';
 import { MutedActionsEnum, MutedActionTypes, MutedState } from './types';
 
-export const initialState: MutedState = __DEV__ ? mutedReducerMock : {
+export const initialState: MutedState = __DEMO__ ? mutedReducerMock : {
   channels: [],
   users: []
 };

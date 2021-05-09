@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 import channelsReducerMock from './mock';
 import { Channel, ChannelEntry, ChannelsAction, ChannelsActionsEnum, ChannelSettings, ChannelsState } from './types';
 
-export const initialState: ChannelsState = __DEV__ ? channelsReducerMock : {
+export const initialState: ChannelsState = __DEMO__ ? channelsReducerMock : {
   joined: [],
   recent: [],
   entries: {}

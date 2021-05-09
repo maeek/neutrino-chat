@@ -8,7 +8,7 @@ import {
   GroupsState
 } from './types';
 
-export const initialState: GroupsState = __DEV__ ? groupsReducerMock : {
+export const initialState: GroupsState = __DEMO__ ? groupsReducerMock : {
   entries: {
     Starred: {
       name: 'Starred',
