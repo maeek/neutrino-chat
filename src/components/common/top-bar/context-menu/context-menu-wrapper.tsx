@@ -1,5 +1,6 @@
 import { useState, useCallback, memo } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import ContextMenu, { ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
 import {
   AccountCircleRounded,
@@ -7,12 +8,11 @@ import {
   HelpOutlineRounded,
   SettingsRounded
 } from '@material-ui/icons';
+import Navigator from '@/utils/navigation';
+import { logout } from '@/actions/auth';
 import AvatarWrapper from '../avatar-wrapper';
-import { clearTokens } from '@/store/session/actions';
 import ContextMenuPrefix from './context-menu-prefix';
 import './context-menu-wrapper.scss';
-import Navigator from '@/utils/navigation';
-import { useHistory } from 'react-router';
 
 export interface ContextMenuWrapperProps {
   [key: string]: any;
@@ -58,23 +58,19 @@ export const ContextMenuWrapper = (props: ContextMenuWrapperProps) => {
       icon: <ExitToAppRounded />,
       closeOnClick: true,
       onClick: () => {
-        window.localStorage.removeItem('token');
-        window.localStorage.removeItem('refreshToken');
-        window.sessionStorage.removeItem('history');
-        dispatch(clearTokens());
+        dispatch(logout());
       }
     }
   ];
 
-  const contextMenu =  
-    (
-      <ContextMenu items={items} className={showContext ? '' : 'hidden'} closeContextMenu={closeContextMenu}>
-        <div className="top-bar-badge-wrapper-context-menu-prefix">
-          <AvatarWrapper size="large" />
-          <ContextMenuPrefix />
-        </div>
-      </ContextMenu>
-    );
+  const contextMenu = (
+    <ContextMenu items={items} className={showContext ? '' : 'hidden'} closeContextMenu={closeContextMenu}>
+      <div className="top-bar-badge-wrapper-context-menu-prefix">
+        <AvatarWrapper size="large" />
+        <ContextMenuPrefix />
+      </div>
+    </ContextMenu>
+  );
 
   return (
     <div className="top-bar-badge-wrapper" {...props}>
