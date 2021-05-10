@@ -1,7 +1,14 @@
 import filtersReducerMock from '@/store/app/filters/mock';
 import channelsReducerMock from '@/store/channels/mock';
+import contactsReducerMock from '@/store/me/contacts/mock';
 import groupsReducerMock from '@/store/me/groups/mock';
-import { getFilteredChannelsByGroup, getFiltersGroup, getFiltersMain, getFiltersQueries, getGroupByFiltersGroup } from './filters';
+import {
+  getFilteredChannelsByGroup,
+  getFiltersGroup,
+  getFiltersMain,
+  getFiltersQueries,
+  getGroupByFiltersGroup
+} from './filters';
 
 describe('Filters', () => {
   const globalStateMock = {
@@ -9,7 +16,8 @@ describe('Filters', () => {
       filters: filtersReducerMock
     },
     me: {
-      groups: groupsReducerMock
+      groups: groupsReducerMock,
+      contacts: contactsReducerMock
     },
     channels: channelsReducerMock
   };

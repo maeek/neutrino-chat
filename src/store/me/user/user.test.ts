@@ -1,6 +1,6 @@
 import meUserReducer from '.';
-import { setMeAvatar, setMeBio, setMeUsername } from './actions';
-import { MeStatus, SetMeAvatar, SetMeBio, SetMeUsername, UserActionsEnum, UserActionTypes } from './types';
+import { setMeAvatar, setMeBanner, setMeBio, setMeReactions, setMeStatus, setMeUsername } from './actions';
+import { MeStatus, SetMeAvatar, SetMeBanner, SetMeBio, SetMeReactions, SetMeStatus, SetMeUsername, UserActionsEnum, UserActionTypes } from './types';
 
 describe('Redux store - Me/Contacts', () => {
   describe('Actions', () => {
@@ -36,6 +36,42 @@ describe('Redux store - Me/Contacts', () => {
         }
       };
       expect(setMeBio(bio)).toEqual(expectedAction);
+    });
+
+    it('should set current user banner', () => {
+      const banner = 'https://cdn.neutrino.chat/image/test.jpg';
+      const expectedAction = {
+        type: UserActionsEnum.SET_ME_BANNER,
+        data: {
+          banner
+        }
+      };
+      expect(setMeBanner(banner)).toEqual(expectedAction);
+    });
+
+    it('should set current user status', () => {
+      const status = MeStatus.AWAY;
+      const expectedAction = {
+        type: UserActionsEnum.SET_ME_STATUS,
+        data: {
+          status
+        }
+      };
+      expect(setMeStatus(status)).toEqual(expectedAction);
+    });
+
+    it('should set current user reactions', () => {
+      const reactions = [
+        { emoji: 'c:' },
+        { emoji: ':c' }
+      ];
+      const expectedAction = {
+        type: UserActionsEnum.SET_ME_REACTIONS,
+        data: {
+          reactions
+        }
+      };
+      expect(setMeReactions(reactions)).toEqual(expectedAction);
     });
   });
 
@@ -116,6 +152,75 @@ describe('Redux store - Me/Contacts', () => {
         bio: '',
         status: MeStatus.ACTIVE,
         defaultReactions: []
+      });
+    });
+
+    it('should handle SET_ME_BANNER', () => {
+      const banner = 'https://cdn.neutrino.chat/images/test.jpg';
+
+      const setBio: SetMeBanner = {
+        type: UserActionsEnum.SET_ME_BANNER,
+        data: {
+          banner
+        }
+      };
+
+      expect(
+        meUserReducer(undefined, setBio)
+      ).toEqual({
+        username: '',
+        avatar: '',
+        banner,
+        bio: '',
+        status: MeStatus.ACTIVE,
+        defaultReactions: []
+      });
+    });
+
+    it('should handle SET_ME_STATUS', () => {
+      const status = MeStatus.AWAY;
+
+      const setBio: SetMeStatus = {
+        type: UserActionsEnum.SET_ME_STATUS,
+        data: {
+          status
+        }
+      };
+
+      expect(
+        meUserReducer(undefined, setBio)
+      ).toEqual({
+        username: '',
+        avatar: '',
+        banner: '',
+        bio: '',
+        status,
+        defaultReactions: []
+      });
+    });
+
+    it('should handle SET_ME_REACTIONS', () => {
+      const reactions = [
+        { emoji: 'c:' },
+        { emoji: ':c' }
+      ];
+
+      const setBio: SetMeReactions = {
+        type: UserActionsEnum.SET_ME_REACTIONS,
+        data: {
+          reactions
+        }
+      };
+
+      expect(
+        meUserReducer(undefined, setBio)
+      ).toEqual({
+        username: '',
+        avatar: '',
+        banner: '',
+        bio: '',
+        status: MeStatus.ACTIVE,
+        defaultReactions: reactions
       });
     });
   });

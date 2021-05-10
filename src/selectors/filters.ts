@@ -85,7 +85,7 @@ export const getFilteredChannelsByGroup = createSelector(
     .map((item) => channels[ item.id ])
 );
 
-const CHANNEL_SEARCH_EXCLUDE_KEYS = [
+export const CHANNEL_SEARCH_EXCLUDE_KEYS = [
   'settings',
   'avatar',
   'lastMessage',

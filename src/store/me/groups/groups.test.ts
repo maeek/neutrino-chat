@@ -17,6 +17,7 @@ import {
   GroupMemebersActionTypes,
   GroupsActionTypes,
   GroupsState,
+  GroupTypeEnum,
   RemoveGroupMembersAction,
   RemoveGroupsAction,
   RenameGroupAction
@@ -74,11 +75,11 @@ describe('Redux store - Me/Groups', () => {
       const groups: GroupItem[] = [
         {
           id: '1',
-          name: 'group1'
+          type: GroupTypeEnum.CHANNEL
         },
         {
           id: '2',
-          name: 'group2'
+          type: GroupTypeEnum.CONTACT
         }
       ];
       const expectedAction = {
@@ -192,7 +193,7 @@ describe('Redux store - Me/Groups', () => {
             name: '1',
             items: [ {
               id: '1',
-              name: 'channelx'
+              type: GroupTypeEnum.CHANNEL
             } ]
           },
           2: {
@@ -209,7 +210,7 @@ describe('Redux store - Me/Groups', () => {
             name: 'test',
             items: [ {
               id: '1',
-              name: 'channelx'
+              type: GroupTypeEnum.CHANNEL
             } ]
           },
           2: {
@@ -263,7 +264,7 @@ describe('Redux store - Me/Groups', () => {
       const items: GroupItem[] = [
         {
           id: '1',
-          name: 'channel1'
+          type: GroupTypeEnum.CONTACT
         }
       ];
       const addAction: AddGroupMembersAction = {
@@ -305,7 +306,7 @@ describe('Redux store - Me/Groups', () => {
             name: 'Starred',
             items: [ {
               id: '1',
-              name: 'channel1'
+              type: GroupTypeEnum.CONTACT
             } ]
           }
         }
@@ -340,11 +341,11 @@ describe('Redux store - Me/Groups', () => {
             items: [
               {
                 id: '1',
-                name: 'channel1'
+                type: GroupTypeEnum.CONTACT
               },
               {
                 id: '2',
-                name: 'channel2'
+                type: GroupTypeEnum.CONTACT
               }
             ]
           }

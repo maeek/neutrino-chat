@@ -1,12 +1,13 @@
 import filtersReducer from '.';
-import { setFilterCust, setFilterGroup, setFilterMain } from './actions';
+import { setFilterCust, setFilterGroup, setFilterMain, setFilterSearch } from './actions';
 import {
   FilterCategory,
   FiltersAction,
   FiltersActionsEnum,
   SetFilterCustom,
   SetFilterGroup,
-  SetFilterMain
+  SetFilterMain,
+  SetFilterSearch
 } from './types';
 
 describe('Redux store - App/Filters', () => {
@@ -29,6 +30,16 @@ describe('Redux store - App/Filters', () => {
         }
       };
       expect(setFilterGroup('Starred')).toEqual(expectedAction);
+    });
+
+    it('should create an action to set search', () => {
+      const expectedAction = {
+        type: FiltersActionsEnum.SET_FILTER_SEARCH,
+        data: {
+          search: '123'
+        }
+      };
+      expect(setFilterSearch('123')).toEqual(expectedAction);
     });
 
     it('should create an action to set query', () => {
@@ -88,6 +99,23 @@ describe('Redux store - App/Filters', () => {
         search: '',
         category: FilterCategory.ALL,
         group,
+        queries: []
+      });
+    });
+
+    it('should handle SET_FILTER_SEARCH', () => {
+      const search = '123';
+      const action: SetFilterSearch = {
+        type: FiltersActionsEnum.SET_FILTER_SEARCH,
+        data: {
+          search
+        }
+      };
+
+      expect(filtersReducer(undefined, action)).toEqual({
+        search,
+        category: FilterCategory.ALL,
+        group: '',
         queries: []
       });
     });

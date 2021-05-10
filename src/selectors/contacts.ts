@@ -20,5 +20,5 @@ export const getContactById = (id: string) => createSelector(
 
 export const getContactIsInStarred = (id: string) => createSelector(
   getMeGroupsStarred,
-  (starred) => starred.items.find((el) => el.id === id)
+  (starred) => !!starred.items.find((el) => el.id === id)
 );
