@@ -86,8 +86,7 @@ module.exports = {
         code: 120,
         ignoreUrls: true,
         ignoreTrailingComments: true,
-        ignoreStrings: true,
-        ignoreTemplateLiterals: true
+        ignoreStrings: true
       }
     ],
     '@typescript-eslint/no-unused-vars': [
