@@ -50,7 +50,7 @@ export const ContactCard = ({ id }: ContactCardProps) => {
           <SecondaryButton
             onClick={handleStar}
             className="contact-card-action"
-            data-starred={Boolean(contactIsInStarred)}
+            data-starred={contactIsInStarred}
           >
             {
               contactIsInStarred
