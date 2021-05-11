@@ -20,12 +20,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      color: lighten(#717f94, 25);
+      background-color: var(--clr-basic-300);
       transition: opacity 0.1s;
       opacity: 0;
 
       > svg {
-        font-size: 3rem;
+        font-size: var(--fs-1300);
       }
     }
 

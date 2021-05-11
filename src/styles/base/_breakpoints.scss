@@ -1,0 +1,22 @@
+$breakpoints: (
+  small-ultra-narrow: 16.667em,
+  small-narrow: 18.889em,
+  ip: 20.833em,
+  small: 42.667em,
+  small-medium: 53.667em,
+  medium: 62.444em,
+  large: 124.444em,
+  extra-large: 213.333em,
+);
+
+@mixin mq($key) {
+  $size: $key;
+
+  @if type-of($key) == 'string' {
+    $size: map-get($breakpoints, $key);
+  }
+
+  @media only screen and (max-width: $size) {
+    @content;
+  }
+}

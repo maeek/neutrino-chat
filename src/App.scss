@@ -1,0 +1,12 @@
+::-moz-focus-inner {
+  border: 0;
+}
+
+.page-root {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 3rem);
+  transform: translate3d(0);
+}

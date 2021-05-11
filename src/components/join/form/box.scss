@@ -8,20 +8,20 @@
     padding: 0.4rem 0 0.5rem;
     width: 100%;
     border-radius: 4px;
-    background-color: #2b3036;
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.06);
+    background-color: var(--clr-primary-600);
 
     &-heading {
-      font-size: 0.78rem;
+      font-size: var(--fs-250);
       font-weight: 400;
       padding: 0.6rem 1rem 0.8rem 1rem;
       margin: 0;
     }
 
     &-input {
-      background-color: #2b3036;
+      background-color: var(--clr-primary-600);
       &:focus-within {
-        background-color: #343a43;
+        background-color: var(--clr-primary-500);
       }
 
       .ne-input-controll {
@@ -35,7 +35,7 @@
 
     &-appendix {
       padding: 0.5rem 1rem 0;
-      font-size: 0.7rem;
+      font-size: var(--fs-200);
       width: 100%;
       display: block;
       line-height: 1.2rem;
@@ -54,9 +54,9 @@
       &-entry {
         position: relative;
         padding-left: 0.3rem;
-        font-size: 0.65rem;
+        font-size: var(--fs-150);
         line-height: 0.75rem;
-        color: #9a9a9a;
+        color: var(--clr-basic-400);
 
         &::before {
           content: '- ';

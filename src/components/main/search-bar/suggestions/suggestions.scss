@@ -4,7 +4,7 @@
   left: 3.4rem;
   width: calc(100% - 4.6rem);
   height: 0;
-  background-color: darken(#343a43, 2);
+  background-color: var(--clr-primary-600);
   border-radius: 0.2rem;
   overflow: hidden;
   opacity: 0;
@@ -17,7 +17,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   font-family: inherit;
-  color: #cecece;
+  color: var(--clr-basic-200);
   padding: 0.2rem 0;
 
   &--visible {

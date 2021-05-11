@@ -1,11 +1,11 @@
 .top-bar {
   &-button {
-    color: #5ea8ed;
+    color: var(--clr-actions-300);
     margin-left: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.4rem;
+    font-size: var(--fs-700);
 
     > svg {
       font-size: inherit;

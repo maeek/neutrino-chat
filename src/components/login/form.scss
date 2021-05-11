@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Cantarell&display=swap');
 
 .form-login {
@@ -13,23 +12,23 @@
   flex-direction: column;
 
   .ne-typo-heading-level-1 {
-    color: #8cc0f2;
+    color: var(--clr-actions-200);
     font-family: 'Cantarell', sans-serif;
-    font-size: 2.5rem;
+    font-size: var(--fs-1200);
     text-align: center;
   }
 
   .ne-typo-heading-level-5 {
-    color: #dfdfdf;
+    color: var(--clr-basic-200);
   }
 
   &-header {
     display: flex;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
     flex-direction: column;
     margin: 1rem 0;
-    
+
     .ne-typo-heading-level-2 {
       margin: 0.5rem 0;
     }
@@ -42,24 +41,24 @@
     padding: 0.4rem 0 0.5rem;
     width: 100%;
     border-radius: 4px;
-    background-color: #2B3036;
     box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.06);
+    background-color: var(--clr-primary-600);
 
     &-heading {
-      font-size: 0.78rem;
+      font-size: var(--fs-250);
       font-weight: 400;
       padding: 0.6rem 1rem 0.8rem 1rem;
       margin: 0;
     }
 
     &-input {
-      background-color: #2b3036;
+      background-color: var(--clr-primary-600);
       &:focus-within {
-        background-color: #343a43;
+        background-color: var(--clr-primary-500);
       }
 
       .ne-input-controll {
-        padding: .6rem 1rem;
+        padding: 0.6rem 1rem;
       }
     }
 
@@ -69,7 +68,7 @@
 
     &-appendix {
       padding: 0.5rem 1rem 0;
-      font-size: 0.7rem;
+      font-size: var(--fs-200);
       width: 100%;
       display: block;
       line-height: 1.2rem;
@@ -90,7 +89,7 @@
   .form-login {
     margin: 0 0 5rem;
     .ne-typo-heading-level-1 {
-      font-size: 2.5rem;
+      font-size: var(--fs-1200);
       margin-top: 0;
     }
   }

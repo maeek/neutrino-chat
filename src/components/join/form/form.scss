@@ -12,14 +12,14 @@
   flex-direction: column;
 
   .ne-typo-heading-level-1 {
-    color: #8cc0f2;
+    color: var(--clr-actions-200);
     font-family: 'Cantarell', sans-serif;
-    font-size: 2.5rem;
+    font-size: var(--fs-1200);
     text-align: center;
   }
 
   .ne-typo-heading-level-5 {
-    color: #dfdfdf;
+    color: var(--clr-basic-200);
   }
 
   &-footer {
@@ -36,7 +36,7 @@
   .form-register {
     margin: 0 0 5rem;
     .ne-typo-heading-level-1 {
-      font-size: 2.5rem;
+      font-size: var(--fs-1200);
       margin-top: 0;
     }
   }

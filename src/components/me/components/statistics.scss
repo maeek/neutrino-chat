@@ -3,7 +3,7 @@
     width: 100%;
     max-width: 50rem;
     margin: 3rem 0 2rem 0;
-    color: #f0f0f0;
+    color: var(--clr-basic-100);
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -33,7 +33,7 @@
         height: 6rem;
         overflow: hidden;
         border-radius: 0.6rem;
-        background-color: #343a43;
+        background-color: var(--clr-primary-500);
         box-shadow: 0 0 5px 0 transparentize(#000, 0.95);
         margin-right: 0.4rem;
 
@@ -42,9 +42,9 @@
         }
 
         &-counter {
-          font-size: 2rem;
+          font-size: var(--fs-1100);
           margin-bottom: 0.4rem;
-          color: #1a6ac5;
+          color: var(--clr-actions-500);
         }
       }
     }

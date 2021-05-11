@@ -1,28 +1,26 @@
+@use '~@/styles/base/breakpoints' as *;
+
 .generic-footer {
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: darken(#25292F, 5);
+  background-color: var(--clr-primary-1100);
   padding: 3rem 1rem 8rem;
 
   &-inner {
     width: 100%;
     max-width: 1400px;
+
+    @media (min-width: 2240px) {
+      max-width: 1920px;
+    }
+
+    @media (min-width: 3840px) {
+      max-width: 2600px;
+    }
   }
 
   .ne-typo-text {
     line-height: 1.8rem;
-  }
-}
-
-@media (min-width: 2240px) {
-  .generic-footer-inner {
-    max-width: 1920px;
-  }
-}
-
-@media (min-width: 3840px) {
-  .generic-footer-inner {
-    max-width: 2600px;
   }
 }

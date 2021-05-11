@@ -1,6 +1,5 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import Router from './router';
-import './styles/App.scss';
+import './App.scss';
 
 const App = () => <Router />;
 

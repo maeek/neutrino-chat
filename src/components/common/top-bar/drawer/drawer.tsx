@@ -35,7 +35,7 @@ export const NotificationsDrawerWrapper = ({ isOpened, onClose }: NotificationsD
     <Drawer
       position={isMobile ? 'top' : 'right'}
       isOpened={isOpened}
-      animationSpeed={250}
+      animationSpeed={200}
       onClose={onClose}
       showMask
       className="top-bar-notifications-drawer"

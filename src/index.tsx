@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from '@/store/index';
 import Navigator from '@/utils/navigation';
+import { init } from '@/actions/init';
 import reportWebVitals from './report-web-vitals';
 import * as serviceWorkerRegistration from './register-service-worker';
 import App from './App';
-import './styles/index.scss';
-import { init } from '@/actions/init';
+import './styles/main.scss';
 
 const run = async () => {
   ReactDOM.render(

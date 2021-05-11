@@ -19,7 +19,7 @@
       &:hover,
       &:focus-within,
       &:focus {
-        background-color: darken(#343a43, 4);
+        background-color: var(--clr-primary-700);
       }
     }
   }

@@ -1,3 +1,5 @@
+@use '~@/styles/base/breakpoints' as *;
+
 .view-root--main {
   width: 100%;
   display: flex;
@@ -17,7 +19,7 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-    background: url('../../assets/images/wave-alt.svg') no-repeat;
+    background: url(~@/assets/images/wave-alt.svg) no-repeat;
     background-position: left bottom;
     background-size: 100% auto;
     position: relative;
@@ -45,7 +47,7 @@
     width: 100%;
 
     &-heading {
-      background-color: #25292f;
+      background-color: var(--clr-primary-700);
       padding: 0 1rem 0.5rem;
       position: sticky;
       top: calc(3rem + 4rem); // top bar + search bar

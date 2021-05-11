@@ -1,0 +1,25 @@
+@use 'default' as *;
+
+@function get_color($color, $shade, $map: $colors) {
+  @if map-has-key($map, $color) {
+    $value: map-get($map, $color);
+
+    @if type-of($value) == color {
+      @return $value;
+    }
+
+    @if map-has-key($value, $shade) {
+      @return map-get($value, $shade);
+    }
+  }
+
+  @return null;
+}
+
+@function make_transparent($color, $alpha) {
+  @if type-of($color) != color {
+    @return null;
+  }
+
+  @return rgba($color, $alpha);
+}

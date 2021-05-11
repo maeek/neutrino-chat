@@ -1,9 +1,12 @@
+@use '~@/styles/themes/functions' as cf;
+@use '~@/styles/base/breakpoints' as *;
+
 .contact-card {
   position: relative;
   height: 16rem;
   margin: 0.2rem;
-  color: #ccc;
-  background-color: #1c1f23;
+  color: var(--clr-basic-200);
+  background-color: var(--clr-primary-1100);
   border-radius: 0.6rem;
   box-shadow: 0 0 5px 0 transparentize(#000, 0.95);
   word-wrap: break-word;
@@ -11,7 +14,16 @@
   align-items: flex-start;
   justify-content: flex-end;
   flex-direction: column;
-  background-image: url(https://static.suchanecki.me/avatar.png);
+  background-color: var(--clr-primary-900);
+
+  @warn 'TODO: remove dev values';
+  &:nth-of-type(odd) {
+    background-image: url(https://static.suchanecki.me/avatar.png);
+  }
+  &:nth-of-type(even) {
+    background-image: url(https://static.suchanecki.me/pepe1.jpg);
+  }
+
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -30,9 +42,8 @@
     height: 0;
     min-height: 0;
     flex: 0 1 auto;
-    background-color: transparentize(#202328, 0.1);
+    background-color: #{cf.make_transparent(cf.get_color('primary', 1000), 0.8)};
     padding: 0 0.8rem;
-    // transform: translateY(100%);
     transition: all 0.1s;
   }
 
@@ -43,7 +54,7 @@
   }
 
   &-description .ne-typo-text {
-    color: #999;
+    color: var(--clr-basic-500);
   }
 
   &-actions {
@@ -63,7 +74,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #999;
+        color: var(--clr-basic-500);
 
         &:hover {
           color: unset;
@@ -81,11 +92,11 @@
       justify-content: center;
 
       svg {
-        font-size: 1rem;
+        font-size: var(--fs-400);
       }
 
       &[data-starred='true'] {
-        color: #ffff86;
+        color: var(--clr-star-100);
       }
     }
   }
@@ -106,39 +117,28 @@
   &:focus-within::before {
     height: 100%;
   }
-}
-@media screen and (max-width: 190rem) {
-  .contact-card {
+
+  @include mq('extra-large') {
     width: calc(14.285714286% - 0.4rem);
   }
-}
 
-@media screen and (max-width: 140rem) {
-  .contact-card {
+  @include mq(140em) {
     width: calc(20% - 0.4rem);
   }
-}
 
-@media screen and (max-width: 130rem) {
-  .contact-card {
+  @include mq('large') {
     width: calc(25% - 0.4rem);
   }
-}
 
-@media screen and (max-width: 80rem) {
-  .contact-card {
+  @include mq(75em) {
     width: calc(33% - 0.4rem);
   }
-}
 
-@media screen and (max-width: 60rem) {
-  .contact-card {
+  @include mq('medium') {
     width: calc(50% - 0.4rem);
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .contact-card {
+  @media (prefers-reduced-motion: reduce) {
     &-details,
     &::before {
       transition: none;

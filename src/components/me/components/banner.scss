@@ -26,12 +26,12 @@
       justify-content: flex-end;
       align-items: flex-end;
       padding: 1rem;
-      color: lighten(#717f94, 25);
+      background-color: var(--clr-basic-300);
       transition: opacity 0.1s;
       opacity: 0;
 
       > svg {
-        font-size: 2rem;
+        font-size: var(--fs-1100);
       }
     }
 

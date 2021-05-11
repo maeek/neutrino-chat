@@ -1,0 +1,31 @@
+@use '../breakpoints' as *;
+@use 'variables' as *;
+@forward 'variables';
+
+@mixin typography-font-family {
+  font-family: $font-family;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:root {
+  @each $size, $value in $font-sizes {
+    --fs-#{$size}: #{$value};
+  }
+
+  @each $scale, $value in $font-scales {
+    @if map-has-key($breakpoints, $scale) {
+      @include mq($scale) {
+        font-size: #{$value};
+      }
+    } @else {
+      font-size: #{$value};
+    }
+  }
+}
+
+@each $size, $value in $font-sizes {
+  .fs-#{$size} {
+    font-size: var(--fs-#{$size});
+  }
+}

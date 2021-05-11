@@ -10,9 +10,9 @@
   align-items: center;
   padding: 0.4rem 0.7rem;
   margin: 0;
-  background-color: rgba(32, 35, 40, 1);
-  color: #dcdcdc;
-  font-size: 1.6rem;
+  background-color: var(--clr-primary-1000);
+  color: var(--clr-basic-200);
+  font-size: var(--fs-900);
   font-weight: 900;
   max-width: 30rem;
   border-radius: 5px;
@@ -31,21 +31,21 @@
     justify-content: center;
     align-items: center;
 
-    >.no-network-dialog-icon {
+    > .no-network-dialog-icon {
       font-size: inherit;
-      color: #ff5f5f;
+      color: var(--clr-negative-100);
       margin-top: -0.2rem;
       margin-right: 0.8rem;
     }
 
     &-close.MuiSvgIcon-root {
-      color: #d0d0d0;
+      color: var(--clr-basic-200);
       cursor: pointer;
-      font-size: 1rem;
+      font-size: var(--fs-400);
       margin-left: 0.5rem;
 
       &:hover {
-        color: #fff;
+        color: var(--clr-basic-100);
       }
     }
   }

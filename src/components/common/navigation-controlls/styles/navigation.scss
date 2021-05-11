@@ -1,3 +1,5 @@
+@use '~@/styles/themes/functions' as cf;
+
 .navigation-controlls {
   vertical-align: middle;
   padding: 0;
@@ -10,26 +12,26 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #a0a0a0;
+    color: var(--clr-basic-500);
     border-radius: 4px;
     margin: 0 0.1rem 0 0;
 
     &--active {
-      color: #e4e4e4;
+      color: var(--clr-basic-300);
       cursor: pointer;
 
       &:hover {
-        background-color: #25292f;
+        background-color: var(--clr-primary-700);
       }
 
       &:focus {
-        color: lighten(#5ea8ed, 10);
-        background-color: #25292f;
+        color: lighten(cf.get_color('actions', 300), 10);
+        background-color: var(--clr-primary-700);
       }
     }
 
     &--disabled {
-      color: #a0a0a0 !important;
+      color: var(--clr-basic-500) !important;
       outline: none;
     }
   }
