@@ -12,15 +12,25 @@
   @each $size, $value in $font-sizes {
     --fs-#{$size}: #{$value};
   }
+  --ff-primary: $font-family;
+  font-size: 18px;
+}
 
-  @each $scale, $value in $font-scales {
-    @if map-has-key($breakpoints, $scale) {
-      @include mq($scale) {
-        font-size: #{$value};
-      }
-    } @else {
-      font-size: #{$value};
-    }
+@media screen and (max-width: 375px) {
+  :root {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  :root {
+    font-size: 12px;
   }
 }
 

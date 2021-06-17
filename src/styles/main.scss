@@ -1,7 +1,13 @@
-@use './base/reset';
+// @use './base/reset';
 @use './base/typography/utilities' as *;
 @use './themes/colors';
 @use './base/scrollbar';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 body {
   background: var(--clr-primary-700);

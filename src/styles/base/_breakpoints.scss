@@ -1,12 +1,11 @@
 $breakpoints: (
-  small-ultra-narrow: 16.667em,
-  small-narrow: 18.889em,
-  ip: 20.833em,
-  small: 42.667em,
-  small-medium: 53.667em,
-  medium: 62.444em,
-  large: 124.444em,
-  extra-large: 213.333em,
+  small-ultra-narrow: 300px,
+  small-narrow: 320px,
+  small: 768px,
+  small-medium: 1224px,
+  medium: 1440px,
+  large: 1920px,
+  extra-large: 3840px,
 );
 
 @mixin mq($key) {

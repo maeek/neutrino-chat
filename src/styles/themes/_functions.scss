@@ -16,6 +16,18 @@
   @return null;
 }
 
+@function get_color_var($color, $shade, $map: $colors) {
+  @if map-has-key($map, $color) {
+    $shades: map-get($map, $color);
+
+    @if map-has-key($shades, $shade) {
+      @return var(--clr-#{$color}-#{$shade}, #{map-get($shades, $shade)});
+    }
+  }
+
+  @return null;
+}
+
 @function make_transparent($color, $alpha) {
   @if type-of($color) != color {
     @return null;
