@@ -14,11 +14,12 @@ export interface SearchBarSuggestionsProps {
   searchedValue?: string;
   isVisible?: boolean;
   firstSuggestionRef?: MutableRefObject<HTMLLIElement>;
+  onClose?: () => void;
   inputRef?: InputRef;
 }
 
 export const SearchBarSuggestions = forwardRef<HTMLDivElement, SearchBarSuggestionsProps>((
-  { searchedValue, isVisible, firstSuggestionRef, inputRef }, ref
+  { searchedValue, isVisible, firstSuggestionRef, inputRef, onClose }, ref
 ) => {
   const filteredContacts = useSelector<RootState, Contact[]>(getFilteredContactsByQueries);
   const filteredChannels = useSelector<RootState, Channel[]>(getFilteredChannelsByQueries);
@@ -26,7 +27,7 @@ export const SearchBarSuggestions = forwardRef<HTMLDivElement, SearchBarSuggesti
     ...filteredContacts.map((c) => ({
       id: c.username,
       name: c.username,
-      link: `/user/${c.username}`
+      link: `/users/${c.username}`
     })),
     ...filteredChannels.map((ch) => ({
       id: ch.id,
@@ -57,6 +58,7 @@ export const SearchBarSuggestions = forwardRef<HTMLDivElement, SearchBarSuggesti
           inputRef={inputRef}
           firstElementRef={firstSuggestionRef}
           list={flatElements}
+          onClose={onClose}
         />
       )}
     </div>

@@ -106,6 +106,7 @@ export const MainSearchBar = () => {
       <SearchBarSuggestions
         ref={suggestionsRef}
         isVisible={isFocused}
+        onClose={() => setIsFocused(false)}
         searchedValue={searchedValue}
         firstSuggestionRef={firstSuggestionsRef}
         inputRef={inputRef?.current}

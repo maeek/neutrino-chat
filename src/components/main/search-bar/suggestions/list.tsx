@@ -23,13 +23,15 @@ export interface SearchBarSuggestionsListProps {
   children?: ReactNode;
   firstElementRef?: MutableRefObject<HTMLLIElement>;
   inputRef?: InputRef;
+  onClose?: () => void;
 }
 
 export const SearchBarSuggestionsList = ({
   list,
   children,
   firstElementRef,
-  inputRef
+  inputRef,
+  onClose
 }: SearchBarSuggestionsListProps) => {
   const history = useHistory();
   const listRefs = useRef<MutableRefObject<any>[]>([]);
@@ -37,18 +39,18 @@ export const SearchBarSuggestionsList = ({
   const preventDefault = (e: MouseEvent) => e.preventDefault();
 
   const onClick = (link: string): MouseEventHandler => (e) => {
-    preventDefault(e as unknown as MouseEvent);
+    e.preventDefault();
     Navigator.forward(history, link);
   };
 
   const onKeyDown = (link: string, i: number): KeyboardEventHandler => (e) => {
     if ([ 'Enter', ' ' ].includes(e.code)) {
-      preventDefault(e as unknown as MouseEvent);
+      e.preventDefault();
       onClick(link)(e as never);
     }
 
     else if (e.code === 'ArrowDown') {
-      preventDefault(e as unknown as MouseEvent);
+      e.preventDefault();
       if (listRefs.current.length > i + 1 && listRefs.current[ i + 1 ]?.current) {
         listRefs.current[ i + 1 ].current.focus();
       } else {
@@ -59,7 +61,7 @@ export const SearchBarSuggestionsList = ({
     }
 
     else if (e.code === 'ArrowUp') {
-      preventDefault(e as unknown as MouseEvent);
+      e.preventDefault();
       if (i - 1 >= 0 && listRefs.current[ i - 1 ]?.current) {
         listRefs.current[ i - 1 ].current.focus();
       } else {
@@ -67,6 +69,19 @@ export const SearchBarSuggestionsList = ({
           (inputRef.element as unknown as HTMLInputElement).focus();
         }
       }
+    }
+
+    else if (e.code === 'Escape') {
+      e.preventDefault();
+      if (inputRef?.element) {
+        // @ts-ignore
+        inputRef?.element?.focus();
+      }
+
+      if (onClose) {
+        onClose();
+      }
+      
     }
   };
 
