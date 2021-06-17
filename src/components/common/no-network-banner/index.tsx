@@ -24,9 +24,8 @@ export const NoNetworkBanner: any = (props: NoNetworkBannerProps) => {
   const defaultInfoNode = (
     <div className="no-network-dialog">
       <NoConnectionIcon className="no-network-dialog-icon" />
-      <Text>
-        This functionality doesn't work in
-        <Text highlight>offline</Text>. Check your internet connection and come back to this page.
+      <Text strong>
+        This functionality doesn't work offline. Check your internet connection and come back to this page.
       </Text>
       <CloseRounded onClick={hideNotification} className="no-network-dialog-close" />
     </div>

@@ -78,7 +78,7 @@ export class PageTemplate extends Component<PageTemplateProps, PageTemplateState
     return (
       <Suspense fallback={fallbackComponent || null}>
         {
-          !canOperateOffline && <NoNetworkBanner offlineNode={offlineFallbackComponent} />
+          !canOperateOffline && <NoNetworkBanner>{offlineFallbackComponent}</NoNetworkBanner>
         }
         {contentNode}
       </Suspense>
