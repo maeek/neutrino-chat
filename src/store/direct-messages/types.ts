@@ -7,7 +7,7 @@ export interface DmsSettings {
 }
 
 export interface Dms {
-  id: string;
+  id: string; // Recipient
   nickname?: string;
   settings: DmsSettings;
   messages: string[];
