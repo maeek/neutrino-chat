@@ -16,12 +16,10 @@ export const NotificationsDrawer = () => {
 
   const handleOpen = () => {
     setIsOpened(true);
-    document.body.style.overflow = 'hidden';
   };
 
   const handleClose = () => {
     setIsOpened(false);
-    document.body.style.overflow = 'auto';
     if (bellIconRef.current) bellIconRef.current.focus();
   };
 

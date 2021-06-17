@@ -26,10 +26,18 @@ export const NotificationsDrawerWrapper = ({ isOpened, onClose }: NotificationsD
   };
 
   useEffect(() => {
+    if (!isOpened) return;
+
+    document.body.style.overflow = 'hidden';
+    if (!isMobile) {
+      document.body.style.paddingRight = '0.5rem';
+    }
+
     return () => {
       document.body.style.overflow = 'auto';
+      document.body.style.paddingRight = '0';
     };
-  }, []);
+  }, [ isOpened, isMobile ]);
 
   return (
     <Drawer
