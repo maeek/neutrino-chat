@@ -32,11 +32,12 @@
     ]
   },
   "dependencies": {
-    "@maeek/neutrino-design": "^0.3.3",
+    "@maeek/neutrino-design": "^0.4.2",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@types/axios": "^0.14.0",
     "@types/jest": "^26.0.20",
+    "@types/lodash.random": "^3.2.6",
     "@types/lodash.throttle": "^4.1.6",
     "@types/node": "^12.19.15",
     "@types/react": "^17.0.3",
@@ -52,6 +53,7 @@
     "dayjs": "^1.10.4",
     "focus-visible": "^5.2.0",
     "lodash.debounce": "^4.0.8",
+    "lodash.random": "^3.2.0",
     "lodash.throttle": "^4.1.1",
     "react": "^17.0.0",
     "react-app-polyfill": "^2.0.0",
