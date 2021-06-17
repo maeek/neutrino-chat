@@ -50,6 +50,7 @@ const dateFormatted = new Date(date.getTime() - (date.getTimezoneOffset() * 6000
   .split('T')
   .map((d) => d.replace(/[-:]/g, ''));
 buildInfo.BUILD_DATE = `${dateFormatted[ 0 ]}-${dateFormatted[ 1 ].substr(0, 6)}`;
+// eslint-disable-next-line max-len
 buildInfo.BUILD_NAME = `${buildInfo.GIT_BRANCH}-${dateFormatted[ 0 ]}-${dateFormatted[ 1 ].substr(0, 6)}-${buildInfo.GIT_COMMIT}`;
 
 // We support resolving modules according to `NODE_PATH`.
