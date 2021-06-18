@@ -29,15 +29,15 @@ export const ContactCard = ({ id }: ContactCardProps) => {
   const history = useHistory();
 
   const noAvatarPlaceholer = useMemo(() => {
-    const assignedColore = getHslColorFromCharCode(contact.username, '100%', '75%', 0.25);
+    const assignedColor = getHslColorFromCharCode(contact.username, '100%', '75%', 0.25);
     return contact.username ? (
       <svg xmlns="http://www.w3.org/2000/svg" className="repeat-text">
         <defs>
           <pattern id={`bg-contact-pattern-${contact.username}`} x="0" y="0" width="1" height="0.31rem">
-            <text x="0" y="2rem" className="watermark" fill={assignedColore}>
+            <text x="0" y="2rem" className="watermark" fill={assignedColor}>
               {new Array(9).fill(contact.username).join(' ')}
             </text>
-            <text x="1.5rem" y="4.4rem" className="watermark" fill={assignedColore}>
+            <text x="1.5rem" y="4.4rem" className="watermark" fill={assignedColor}>
               {new Array(9).fill(contact.username).join(' ')}
             </text>
           </pattern>
