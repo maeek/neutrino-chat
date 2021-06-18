@@ -85,20 +85,22 @@ export const getFilteredChannelsByGroup = createSelector(
     .map((item) => channels[ item.id ])
 );
 
-export const CHANNEL_SEARCH_EXCLUDE_KEYS = [
+export const CHANNEL_SEARCH_EXCLUDE_KEYS: Array<keyof Channel> = [
+  'id',
   'settings',
   'avatar',
   'lastMessage',
   'isPublic',
   'messages',
-  'typing'
+  'typing',
+  'participants'
 ];
 
 export const getFilteredChannelsByQueries = createSelector(
   getChannels,
   getFiltersQueries,
   (channels, qs) => Object.values(channels).filter((ch) => {
-    const searchInKeys = Object.keys(ch).filter((k) => !CHANNEL_SEARCH_EXCLUDE_KEYS.includes(k));
+    const searchInKeys = Object.keys(ch).filter((k) => !CHANNEL_SEARCH_EXCLUDE_KEYS.includes(k as keyof Channel));
     return qs.reduce((_prev: boolean, _, i, arr) => {
       const keys = !arr[ i ].fieldName ? searchInKeys : [ arr[ i ].fieldName ];
       const val = arr[ i ].value.trim().toLowerCase();
