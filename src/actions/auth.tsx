@@ -1,5 +1,6 @@
 // import { ApiAuthorization } from '@/api/auth';
 import { setMeUsername, setMeAvatar, setMeBanner } from '@/store/me/user/actions';
+import userReducerMock from '@/store/me/user/mock';
 import { setToken, setRefreshToken, clearTokens } from '@/store/session/actions';
 import Navigator from '@/utils/navigation';
 import { Dispatch } from 'redux';
@@ -18,8 +19,8 @@ export const login = (
   //   .then((data) => {
   const user = {
     username,
-    avatar: 'https://static.suchanecki.me/pepe1.jpg',
-    banner: 'https://static.suchanecki.me/neony_1080p.jpg',
+    avatar: userReducerMock.avatar,
+    banner: userReducerMock.avatar,
     token: '123',
     refreshToken: '123'
   };

@@ -22,16 +22,20 @@ export const contactsReducerMock: ContactsState = {
       username: 'bobandy',
       added: Date.now() - 3600
     },
-    rick: {
-      username: 'rick',
+    fizz: {
+      username: 'fizz',
       added: Date.now() - 3600*5
     },
-    jimmy: {
-      username: 'jimmy',
+    matt: {
+      username: 'matt',
       added: Date.now()
     },
-    posix: {
-      username: 'posix',
+    su_one_beat: {
+      username: 'su_one_beat',
+      added: Date.now()
+    },
+    paczka: {
+      username: 'paczka',
       added: Date.now()
     }
   }
