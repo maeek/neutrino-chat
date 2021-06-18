@@ -12,16 +12,24 @@ import { InputRef } from '@maeek/neutrino-design/components/atoms/inputs/text/In
 import Navigator from '@/utils/navigation';
 import './list.scss';
 
+export enum SuggestionItemTypes {
+  CONTACT = 'contact',
+  CHANNEL = 'channel',
+}
 export interface SuggestionsListElement {
   id: string;
   name: string;
   link: string;
+  type: SuggestionItemTypes;
+  // Channel
+  owner?: string;
 }
 
 export interface SearchBarSuggestionsListProps {
   list: SuggestionsListElement[];
   children?: ReactNode;
   firstElementRef?: MutableRefObject<HTMLLIElement>;
+  lastElementRef?: MutableRefObject<HTMLLIElement>;
   inputRef?: InputRef;
   onClose?: () => void;
 }
@@ -30,6 +38,7 @@ export const SearchBarSuggestionsList = ({
   list,
   children,
   firstElementRef,
+  lastElementRef,
   inputRef,
   onClose
 }: SearchBarSuggestionsListProps) => {
@@ -90,12 +99,27 @@ export const SearchBarSuggestionsList = ({
       {children}
       <ul className="main-search-bar-suggestions-list">
         {
-          list.map(({ id, name, link }: SuggestionsListElement, i) => {
-            const ref = i === 0 
-              ? firstElementRef || createRef()
-              : createRef();
+          list.map(({ id, name, link, type, ...rest }: SuggestionsListElement, i) => {
+            let ref; 
+            
+            if (i === 0) {
+              ref = firstElementRef || createRef();
+            }
+            else if (i === list.length - 1) {
+              ref = lastElementRef || createRef();
+            }
+            else {
+              ref = createRef();
+            }
             
             listRefs.current[ i ] = ref;
+
+            const renderChannelOwner = type === SuggestionItemTypes.CHANNEL
+              ? (
+                <Text className="main-search-bar-suggestions-list-element-desc" disabled>
+                  owner: <Text strong disabled>{rest.owner}</Text>
+                </Text>
+              ) : null;
 
             return (
               <li
@@ -113,6 +137,7 @@ export const SearchBarSuggestionsList = ({
                   tabIndex={-1}
                 >
                   {name}
+                  {renderChannelOwner}
                 </Text>
               </li>
             );

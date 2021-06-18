@@ -11,9 +11,18 @@
       margin: 0 0.2rem;
 
       > .ne-typo-text {
-        display: block;
         padding: 0.4rem 0.6rem;
         text-decoration: none;
+        display: block;
+      }
+
+      &-desc.ne-typo {
+        display: block;
+
+        &,
+        .ne-typo {
+          font-size: var(--fs-100);
+        }
       }
 
       &:hover,

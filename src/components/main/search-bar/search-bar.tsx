@@ -2,8 +2,6 @@ import { useRef, useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import debounce from 'lodash.debounce';
 import { Input } from '@maeek/neutrino-design/components/atoms/inputs/text/Input';
-// import { Button } from '@maeek/neutrino-design/components/atoms/buttons/Button';
-// import { SearchRounded } from '@material-ui/icons';
 import { setFilterCust, setFilterSearch } from '@/store/app/filters/actions';
 import { getFiltersSearch } from '@/selectors/filters';
 import MainSearchBarAddButton from './add-button';
@@ -24,12 +22,13 @@ export interface MainSearchBarProps {
 }
 
 export const MainSearchBar = () => {
+  const dispatch = useDispatch();
   const [ isFocused, setIsFocused ] = useState(false);
   const searchedValue = useSelector(getFiltersSearch);
   const inputRef = useRef<any>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
   const firstSuggestionsRef = useRef<HTMLLIElement>(null as unknown as HTMLLIElement);
-  const dispatch = useDispatch();
+  const lastSuggestionsRef = useRef<HTMLLIElement>(null as unknown as HTMLLIElement);
 
   const updateQueries = useRef(debounce((v: string) => {
     const qs = getKeyValues(v.trim().toLocaleLowerCase()).map((q) => {
@@ -60,6 +59,10 @@ export const MainSearchBar = () => {
     if (isFocused && firstSuggestionsRef.current && e.code === 'ArrowDown') {
       e.preventDefault();
       firstSuggestionsRef.current.focus();
+    }
+    else if (isFocused && lastSuggestionsRef.current && e.code === 'ArrowUp') {
+      e.preventDefault();
+      lastSuggestionsRef.current.focus();
     }
     else if (isFocused && e.code === 'Escape') {
       e.preventDefault();
@@ -109,6 +112,7 @@ export const MainSearchBar = () => {
         onClose={() => setIsFocused(false)}
         searchedValue={searchedValue}
         firstSuggestionRef={firstSuggestionsRef}
+        lastSuggestionRef={lastSuggestionsRef}
         inputRef={inputRef?.current}
       />
     </section>
