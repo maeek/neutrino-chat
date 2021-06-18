@@ -8,7 +8,8 @@ import {
   useEffect,
   useMemo,
   useRef,
-  useState
+  useState,
+  useCallback
 } from 'react';
 import classnames from 'classnames';
 import { useLocation, withRouter } from 'react-router';
@@ -50,9 +51,7 @@ export const MobileBottomNav = withRouter(({ location, history }) => {
     );
   });
 
-  useEffect(() => {
-    if (!isMobile) return;
-
+  const positionThumb = useCallback(() => {
     const path = location.pathname.substr(1).split('/');
     const btnIndex = navConfig.findIndex((conf) => {
       return path[ 0 ] === conf.link.substr(1);
@@ -64,7 +63,18 @@ export const MobileBottomNav = withRouter(({ location, history }) => {
     const { left } = btn.getBoundingClientRect();
 
     setPosition(left);
-  }, [ location.pathname, navConfig, isMobile ]);
+  }, [ location.pathname, navConfig ]);
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    positionThumb();
+
+    window.addEventListener('resize', positionThumb);
+    return () => {
+      window.removeEventListener('resize', positionThumb);
+    };
+  }, [ isMobile, positionThumb ]);
 
   return isMobile ? (
     <nav className="bottom-nav" onContextMenu={(e) => e.preventDefault()}>
