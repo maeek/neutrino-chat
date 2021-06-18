@@ -4,34 +4,103 @@
 .contact-card {
   position: relative;
   height: 16rem;
-  margin: 0.2rem;
   color: var(--clr-basic-200);
   background-color: var(--clr-primary-1100);
   border-radius: 0.6rem;
   box-shadow: 0 0 5px 0 transparentize(#000, 0.95);
   word-wrap: break-word;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  flex-direction: column;
-  background-color: var(--clr-primary-900);
+  background-color: var(--clr-primary-1000);
+  display: block;
 
-  @warn 'TODO: remove dev values';
-  &:nth-of-type(odd) {
-    background-image: url(https://static.suchanecki.me/avatar.png);
-  }
-  &:nth-of-type(even) {
-    background-image: url(https://static.suchanecki.me/pepe1.jpg);
+  > a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-decoration: none;
+    z-index: 2;
+    cursor: default;
   }
 
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  figure {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    flex-direction: column;
+
+    figcaption {
+      z-index: 1;
+    }
+
+    picture {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-direction: column;
+
+      .no-display {
+        display: none;
+      }
+
+      .ne-image {
+        @media (prefers-reduced-data: reduce) {
+          display: none;
+        }
+      }
+
+      .repeat-text {
+        border: 0;
+        width: calc(100% - 0.3rem);
+        height: 100%;
+        margin: 0.15rem;
+        overflow: hidden;
+      }
+
+      .watermark {
+        font-size: var(--fs-1200);
+        font-family: var(--ff-primary);
+        font-weight: 900;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        word-spacing: 0.5rem;
+        transform: translateX(-1.5rem);
+      }
+
+      img {
+        object-fit: cover;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 65%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        transition: all 0.2s;
+      }
+
+      &:hover a::before,
+      &:focus-within a::before {
+        height: 100%;
+      }
+    }
+  }
   overflow: hidden;
 
   &-name {
     padding: 0.8rem;
-    z-index: 1;
+    cursor: pointer;
+    font-weight: 700;
   }
 
   &-details {
@@ -74,10 +143,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
         color: var(--clr-basic-500);
 
         &:hover {
-          color: unset;
+          color: var(--clr-basic-300);
         }
       }
     }
@@ -101,46 +171,43 @@
     }
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 65%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    z-index: 0;
-    transition: all 0.2s;
-  }
+  width: calc(12.5% - 0.4rem);
 
-  &:hover::before,
-  &:focus-within::before {
-    height: 100%;
-  }
-
-  @include mq('extra-large') {
+  @include mq(3840px) {
     width: calc(14.285714286% - 0.4rem);
   }
 
-  @include mq(140em) {
+  @include mq(2239px) {
     width: calc(20% - 0.4rem);
   }
 
-  @include mq('large') {
+  @include mq(1400px) {
     width: calc(25% - 0.4rem);
   }
 
-  @include mq(75em) {
+  @include mq(1100px) {
     width: calc(33% - 0.4rem);
   }
 
-  @include mq('medium') {
+  @include mq(900px) {
     width: calc(50% - 0.4rem);
+  }
+
+  @include mq(786px) {
+    width: calc(33% - 0.4rem);
+  }
+
+  @include mq(605px) {
+    width: calc(50% - 0.4rem);
+  }
+
+  @include mq(300px) {
+    width: calc(100% - 0.4rem);
   }
 
   @media (prefers-reduced-motion: reduce) {
     &-details,
-    &::before {
+    & picture::before {
       transition: none;
     }
   }
