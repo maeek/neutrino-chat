@@ -34,27 +34,6 @@
     }
   }
 
-  &-heading {
-    font-size: var(--fs-600);
-    margin: 0;
-    margin-left: 1rem;
-    font-weight: 700;
-    cursor: pointer;
-
-    @warn 'TODO: update to var()';
-    color: lighten(cf.get_color('actions', 300), 5);
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    .ne-typo {
-      font: inherit;
-      color: inherit;
-    }
-  }
-
   &-left {
     height: 100%;
     display: flex;

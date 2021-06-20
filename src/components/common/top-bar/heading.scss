@@ -1,0 +1,27 @@
+@use '~@/styles/themes/functions' as cf;
+@use '~@/styles/base/breakpoints' as *;
+
+.top-bar {
+  &-heading {
+    font-size: var(--fs-600);
+    margin: 0;
+    margin-left: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+
+    color: var(--clr-actions-200);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .ne-typo {
+      font: inherit;
+      color: inherit;
+    }
+
+    &-colored {
+    }
+  }
+}

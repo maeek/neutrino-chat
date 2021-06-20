@@ -4,9 +4,8 @@ import { useHistory } from 'react-router';
 import classnames from 'classnames';
 import AvatarCached, { AvatarSizes } from '@maeek/neutrino-design/components/atoms/avatar/Avatar';
 import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
-import { getMeAvatar, getMeUsername } from '@/selectors/user';
+import { getMeAvatar, getMeColor, getMeUsername } from '@/selectors/user';
 import Navigator from '@/utils/navigation';
-import { getHslColorFromCharCode } from '@/utils/getHslColorFromCharCode';
 import './avatar-wrapper.scss';
 
 export interface AvatarWrapperProps {
@@ -18,6 +17,7 @@ export interface AvatarWrapperProps {
 export const AvatarWrapper = (props: AvatarWrapperProps) => {
   const { src, size = 'medium', onClick } = props;
   const username = useSelector(getMeUsername);
+  const meColor = useSelector(getMeColor);
   const avatar = useSelector(getMeAvatar);
   const history = useHistory();
   const hasAvatar = src || avatar;
@@ -33,7 +33,7 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
   const noAvatar = (
     <div
       className="top-bar-avatar-no-avatar"
-      style={{ '--color': getHslColorFromCharCode(username, '100%', '70%') } as CSSProperties}
+      style={{ '--color': meColor } as CSSProperties}
     >
       <FaceRoundedIcon />
     </div>
