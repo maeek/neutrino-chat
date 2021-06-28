@@ -16,7 +16,7 @@ export const MainPage = () => {
       errorPage={null}
       fallbackComponent={<ProfileLoader />}
       title="Neutrino Chat"
-      canOperateOffline={false}
+      canOperateOffline
     >
       <Profile />
     </PageTemplate>
