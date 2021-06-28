@@ -10,5 +10,5 @@ export const getMeBanner = (state = getStoreState()) => getMeUser(state).banner;
 export const getMeStatus = (state = getStoreState()) => getMeUser(state).status;
 export const getMeColor = createSelector(
   getMeUsername,
-  (username) => getHslColorFromCharCode(username, '100%', '70%')
+  (username) => getHslColorFromCharCode(username, '100%', '80%')
 );
