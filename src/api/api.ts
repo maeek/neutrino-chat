@@ -15,7 +15,7 @@ export class ApiInstance {
     this._initializeInterceptor();
   }
 
-  private _initializeInterceptor(): void {
+  private _initializeInterceptor = (): void => {
     this.instance.interceptors.response.use(
       this._handleResponse,
       this._handleError
@@ -40,7 +40,7 @@ export class ApiInstance {
     return response;
   }
 
-  private _updateToken(): Promise<string> {
+  private _updateToken = (): Promise<string> => {
     const refreshToken = getAuthRefreshToken();
 
     if (!refreshToken) return Promise.reject();
@@ -56,7 +56,7 @@ export class ApiInstance {
     });
   }
 
-  private _handleError(error: any): Promise<any> {
+  private _handleError = (error: any): Promise<any> => {
     if (error.config && error.response && error.response.status === 401) {
       return this._updateToken().then((token: string) => {
         error.config.headers[ 'Authorization' ] = `JWT ${token}`;

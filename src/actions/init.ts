@@ -24,6 +24,8 @@ export const init = (): any => (dispatch: Dispatch) => {
     dispatch(setRefreshToken(refreshToken || ''));
   } catch (e: unknown) {
     window.localStorage.removeItem(STORAGE_PERSIST_KEY);
-    console.error('Failed to initialize window from previous session!');
+    console.error('Failed to initialize window from previous session! Previous session might not be compatible with current version of the app. Try logging in again.');
   }
 };
+
+export const afterLoginInit = () => {};
