@@ -1,3 +1,5 @@
+@use '~@/styles/base/breakpoints' as *;
+
 .top-bar {
   &-button {
     &-icon {
@@ -5,6 +7,10 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+    }
+
+    @include mq('small') {
+      margin-right: 1rem;
     }
   }
 }
