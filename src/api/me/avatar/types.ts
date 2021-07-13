@@ -18,7 +18,7 @@ export interface NeutrinoApiMeAvatarTemp {
   created: number;
 }
 
-export interface NeutrinoApiMeAvatarUpdateBody extends NeutrinoApiMeAvatar{
+export interface NeutrinoApiMeAvatarUpdateBody extends NeutrinoApiMeAvatar {
    file?: Blob | ArrayBuffer | string;
 }
 

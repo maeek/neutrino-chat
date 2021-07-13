@@ -1,6 +1,7 @@
 import { NeutrinoApiError } from '@/api/api-error';
 import ApiInstance, { ApiInstance as ApiInstanceType } from '../../api';
 import {
+  NeutrinoApiMeAvatarTypes,
   NeutrinoApiMeAvatarUpdateBody,
   NeutrinoApiMeMeAvatarInfoResponse,
   NeutrinoApiMeMeAvatarUploadResponse
@@ -46,18 +47,25 @@ export class ApiMeAvatar {
 
   static async modifyAvatar(body: NeutrinoApiMeAvatarUpdateBody, onUploadProgress?: (evt: any) => void) {
     if (body.file) {
+      const query = await ApiMeAvatar.uploadAvatar(body.file, onUploadProgress);
+      if (!query) return;
+
       const {
         data: {
           resources: {
-            uuid,
-            uri,
-            created,
-            ttl
+            // uuid,
+            // created,
+            // ttl,
+            uri
           }
         }
-      } = await ApiMeAvatar.uploadAvatar(body.file, onUploadProgress);
+      } = query;
 
-      // if ()
+      body.uri = uri;
+      body.isLocal = true;
+      body.type = NeutrinoApiMeAvatarTypes.FILE;
+
+      delete body.file;
     }
 
     return ApiMeAvatar.api.instance.put<NeutrinoApiMeMeAvatarInfoResponse>(`${ApiMeAvatar.route}`, body)
