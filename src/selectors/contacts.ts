@@ -1,4 +1,4 @@
-import { getStoreState } from '@/store/index';
+import { getStoreState } from '@/store';
 import { createSelector } from 'reselect';
 import { getMeGroupsStarred } from './groups';
 
