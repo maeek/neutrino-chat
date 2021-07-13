@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, useLayoutEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/root';
@@ -14,15 +14,17 @@ const RestrictedRoute = ({ children }: RestrictedRouteProps) => {
   const history = useHistory();
   const location = useLocation();
 
-  if (!isAuthenticated) {
-    console.warn('You\'re not authenticated, redirecting to /login from...', location);
-    
-    setTimeout(() => Navigator.replace(history, '/login', {
-      from: { pathname: location.pathname }
-    }), 0);
-  }
+  useLayoutEffect(() => {
+    if (!isAuthenticated) {
+      console.warn('You\'re not authenticated, redirecting to /login from...', location);
+      
+      Navigator.replace(history, '/login', {
+        from: { pathname: location.pathname }
+      });
+    }
+  }, [ history, isAuthenticated, location ]);
 
-  return <>{isAuthenticated ? children : null}</>;
+  return <>{children}</>;
 };
 
 export default RestrictedRoute;
