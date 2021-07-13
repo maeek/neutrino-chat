@@ -1,3 +1,4 @@
+import { ClearMe, UserActionsEnum } from '../user/types';
 import devicesReducerMock from './mock';
 import { Device, DeviceEntry, DevicesActionsEnum, DevicesActionTypes, DevicesState } from './types';
 
@@ -14,7 +15,7 @@ export const initialState: DevicesState = __DEMO__ ? devicesReducerMock : {
   }
 };
 
-const devicesReducer = (state = initialState, action: DevicesActionTypes) => {
+const devicesReducer = (state = initialState, action: DevicesActionTypes | ClearMe) => {
   const newDevices: DeviceEntry = { ...state.entries };
   switch (action.type) {
   case DevicesActionsEnum.ADD_DEVICE:
@@ -36,6 +37,7 @@ const devicesReducer = (state = initialState, action: DevicesActionTypes) => {
       entries: newDevices
     };
 
+  case UserActionsEnum.CLEAR_ME:
   case DevicesActionsEnum.CLEAR_DEVICES:
     return initialState;
 

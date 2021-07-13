@@ -1,3 +1,4 @@
+import { ClearMe, UserActionsEnum } from '../user/types';
 import groupsReducerMock from './mock';
 import {
   GroupActionsEnum,
@@ -17,7 +18,7 @@ export const initialState: GroupsState = __DEMO__ ? groupsReducerMock : {
   }
 };
 
-const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMemebersActionTypes) => {
+const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMemebersActionTypes | ClearMe) => {
   const newGroups: GroupsEntry = { ...state.entries };
   switch (action.type) {
   case GroupActionsEnum.ADD_GROUP:
@@ -108,10 +109,12 @@ const groupsReducer = (state = initialState, action: GroupsActionTypes | GroupMe
       }
     };
 
+  case UserActionsEnum.CLEAR_ME:
+    return initialState;
+
   default:
     return state;
   }
 };
 
 export default groupsReducer;
-// export { addTogroups, removeFromgroups } from './actions';

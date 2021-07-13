@@ -1,3 +1,6 @@
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import getPersistConf from '../persist-config';
 import { SessionState, SessionActionTypes, SessionActionsEnum } from './types';
 
 export const initialState: SessionState = {
@@ -33,4 +36,7 @@ const sessionReducer = (state = initialState, action: SessionActionTypes) => {
   }
 };
 
-export default sessionReducer;
+export default persistReducer({
+  ...getPersistConf('ne-auth'),
+  storage
+}, sessionReducer);

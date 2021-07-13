@@ -40,17 +40,12 @@ export interface Message {
   id: string;
   type: MessageTypes;
   senderId: string;
-
   channelId?: string;
-  userId?: string;
-
   timeSent: number;
   timeReceived: number;
-
   textBody: string;
-  attachments: MessageAttachments;
-  reactions: MessageReactions;
-  mentions: string[]; 
-
+  attachments: MessageAttachments[];
+  reactions: MessageReactions[];
+  mentions: string[];
   read: boolean;
 }

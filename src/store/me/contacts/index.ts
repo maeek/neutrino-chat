@@ -1,3 +1,4 @@
+import { ClearMe, UserActionsEnum } from '../user/types';
 import contactsReducerMock from './mock';
 import { ContactActionsEnum, ContactEntry, ContactsActionTypes, ContactsState } from './types';
 
@@ -5,7 +6,7 @@ export const initialState: ContactsState = __DEMO__ ? contactsReducerMock : {
   entries: {}
 };
 
-const contactsReducer = (state = initialState, action: ContactsActionTypes) => {
+const contactsReducer = (state = initialState, action: ContactsActionTypes | ClearMe) => {
   const newContacts: ContactEntry = { ...state.entries };
   switch (action.type) {
   case ContactActionsEnum.ADD_CONTACT:
@@ -30,6 +31,7 @@ const contactsReducer = (state = initialState, action: ContactsActionTypes) => {
       entries: newContacts
     };
 
+  case UserActionsEnum.CLEAR_ME:
   case ContactActionsEnum.CLEAR_CONTACTS:
     return initialState;
 

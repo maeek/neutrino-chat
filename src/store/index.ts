@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { createStore, applyMiddleware, Middleware } from 'redux';
+import { persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import rootReducer, { RootState } from './root';
 
@@ -31,5 +32,6 @@ const store = createStore(rootReducer, reducers);
 
 export const getStore = () => store;
 export const getStoreState = () => store.getState();
+export const persistor = persistStore(store);
 
 export default store;

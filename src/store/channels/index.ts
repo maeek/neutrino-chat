@@ -1,6 +1,9 @@
 import { Reducer } from 'redux';
+import { ClearMe, UserActionsEnum } from '@/store/me/user/types';
 import channelsReducerMock from './mock';
 import { Channel, ChannelEntry, ChannelsAction, ChannelsActionsEnum, ChannelSettings, ChannelsState } from './types';
+import getPersistConf from '../persist-config';
+import { persistReducer } from 'redux-persist';
 
 export const initialState: ChannelsState = __DEMO__ ? channelsReducerMock : {
   joined: [],
@@ -8,7 +11,7 @@ export const initialState: ChannelsState = __DEMO__ ? channelsReducerMock : {
   entries: {}
 };
 
-export const channels: Reducer<ChannelsState, ChannelsAction> = (state = initialState, action) => {
+export const channels: Reducer<ChannelsState, ChannelsAction | ClearMe> = (state = initialState, action) => {
   switch (action.type) {
 
   case ChannelsActionsEnum.ADD_CHANNELS:
@@ -105,6 +108,7 @@ export const channels: Reducer<ChannelsState, ChannelsAction> = (state = initial
       }
     };
 
+  case UserActionsEnum.CLEAR_ME:
   case ChannelsActionsEnum.CLEAR_CHANNELS:
     return initialState;
 
@@ -192,4 +196,4 @@ const modifyChannelSettings = ({ entries }: ChannelsState, id: string, settings:
   return newEntries;
 };
 
-export default channels;
+export default persistReducer<any, any>(getPersistConf('ne-channels'), channels);

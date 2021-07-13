@@ -1,3 +1,4 @@
+import { ClearMe, UserActionsEnum } from '@/store/me/user/types';
 import mutedReducerMock from './mock';
 import { MutedActionsEnum, MutedActionTypes, MutedState } from './types';
 
@@ -6,7 +7,7 @@ export const initialState: MutedState = __DEMO__ ? mutedReducerMock : {
   users: []
 };
 
-const mutedReducer = (state = initialState, action: MutedActionTypes) => {
+const mutedReducer = (state = initialState, action: MutedActionTypes | ClearMe) => {
   switch (action.type) {
   case MutedActionsEnum.MUTE_USER:
     return {
@@ -49,6 +50,9 @@ const mutedReducer = (state = initialState, action: MutedActionTypes) => {
       ...state,
       channels: []
     };
+
+  case UserActionsEnum.CLEAR_ME:
+    return initialState;
 
   default:
     return state;

@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux';
+import { persistReducer } from 'redux-persist';
+import getPersistConf from '../persist-config';
 import contactsReducer from './contacts';
 import devicesReducer from './devices';
 import groupsReducer from './groups';
@@ -13,4 +15,4 @@ const meReducer = combineReducers({
 
 export type MeState = ReturnType<typeof meReducer>;
 
-export default meReducer;
+export default persistReducer<any, any>(getPersistConf('ne-me'), meReducer);

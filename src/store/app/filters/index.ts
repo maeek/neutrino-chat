@@ -1,3 +1,4 @@
+import { ClearMe, UserActionsEnum } from '@/store/me/user/types';
 import { Reducer } from 'redux';
 import filtersReducerMock from './mock';
 import { FilterCategory, FiltersAction, FiltersActionsEnum, FiltersState } from './types';
@@ -9,7 +10,7 @@ export const initialState: FiltersState = __DEMO__ ? filtersReducerMock : {
   queries: []
 };
 
-export const filters: Reducer<FiltersState, FiltersAction> = (state = initialState, action) => {
+export const filters: Reducer<FiltersState, FiltersAction | ClearMe> = (state = initialState, action) => {
   switch (action.type) {
   case FiltersActionsEnum.SET_FILTER_SEARCH:
     return {
@@ -34,6 +35,9 @@ export const filters: Reducer<FiltersState, FiltersAction> = (state = initialSta
       ...state,
       queries: action.data.filters
     };
+
+  case UserActionsEnum.CLEAR_ME:
+    return initialState;
 
   default:
     return state;

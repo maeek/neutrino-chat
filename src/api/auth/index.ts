@@ -1,6 +1,6 @@
 import ApiInstance, { ApiInstance as ApiInstanceType } from '../api';
 import { NeutrinoApiError } from '../api-error';
-import { NeutrinoApiAuthResponse } from './types';
+import { NeutrinoApiAuthHeadersEnum, NeutrinoApiAuthResponse } from './types';
 
 export enum ApiAuthorizationEnum {
   LOGIN = 'ApiAuthorization.login',
@@ -22,8 +22,12 @@ export class ApiAuthorization {
       });
   }
 
-  static logout() {
-    return ApiAuthorization.api.instance.delete<NeutrinoApiAuthResponse>(`${ApiAuthorization.route}/logout`)
+  static logout(refreshToken: string) {
+    return ApiAuthorization.api.instance.delete<NeutrinoApiAuthResponse>(`${ApiAuthorization.route}/logout`, {
+      headers: {
+        [ NeutrinoApiAuthHeadersEnum.REFRESH_TOKEN ]: refreshToken
+      }
+    })
       .catch((e: any) => {
         throw new NeutrinoApiError(e.message, { error: e }, ApiAuthorizationEnum.LOGOUT);
       });

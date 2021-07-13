@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { GenericPayloadStructure } from '../../types';
+import { Action } from 'redux';
 
 export interface Reaction {
   emoji: string;
@@ -26,49 +26,56 @@ export enum UserActionsEnum {
   SET_ME_REACTIONS = 'SET_ME_REACTIONS',
   SET_ME_BIO = 'SET_ME_BIO',
   SET_ME_BANNER = 'SET_ME_BANNER',
-  SET_ME_STATUS = 'SET_ME_STATUS'
+  SET_ME_STATUS = 'SET_ME_STATUS',
+  CLEAR_ME = 'CLEAR_ME'
 }
 
-export interface SetMeUsername extends GenericPayloadStructure {
+export interface SetMeUsername extends Action {
   type: UserActionsEnum.SET_ME_USERNAME;
   data: {
     username: string;
   }
 }
 
-export interface SetMeAvatar extends GenericPayloadStructure {
+export interface SetMeAvatar extends Action {
   type: UserActionsEnum.SET_ME_AVATAR;
   data: {
     avatar: string;
   }
 }
 
-export interface SetMeBio extends GenericPayloadStructure {
+export interface SetMeBio extends Action {
   type: UserActionsEnum.SET_ME_BIO;
   data: {
     bio: string;
   }
 }
 
-export interface SetMeBanner extends GenericPayloadStructure {
+export interface SetMeBanner extends Action {
   type: UserActionsEnum.SET_ME_BANNER;
   data: {
     banner: string;
   }
 }
 
-export interface SetMeStatus extends GenericPayloadStructure {
+export interface SetMeStatus extends Action {
   type: UserActionsEnum.SET_ME_STATUS;
   data: {
     status: MeStatus;
   }
 }
 
-export interface SetMeReactions extends GenericPayloadStructure {
+export interface SetMeReactions extends Action {
   type: UserActionsEnum.SET_ME_REACTIONS;
   data: {
     reactions: Reaction[];
   }
 }
 
-export type UserActionTypes = SetMeUsername | SetMeAvatar | SetMeBio | SetMeBanner | SetMeStatus | SetMeReactions;
+export interface ClearMe extends Action {
+  type: UserActionsEnum.CLEAR_ME;
+  data: {}
+}
+
+export type UserActionTypes = ClearMe | SetMeUsername | SetMeAvatar | SetMeBio | SetMeBanner | SetMeStatus
+| SetMeReactions;

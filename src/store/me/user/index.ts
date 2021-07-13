@@ -48,6 +48,9 @@ const userReducer = (state = initialState, action: UserActionTypes) => {
       defaultReactions: action.data.reactions
     }; 
 
+  case UserActionsEnum.CLEAR_ME:
+    return initialState;
+
   default:
     return state;
   }

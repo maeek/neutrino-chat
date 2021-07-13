@@ -1,4 +1,4 @@
-import { SetMeAvatar, SetMeUsername, SetMeBio, UserActionsEnum, Reaction, SetMeReactions, SetMeBanner, SetMeStatus, MeStatus } from './types';
+import { SetMeAvatar, SetMeUsername, SetMeBio, UserActionsEnum, Reaction, SetMeReactions, SetMeBanner, SetMeStatus, MeStatus, ClearMe } from './types';
 
 export const setMeUsername = (username: string): SetMeUsername => ({
   type: UserActionsEnum.SET_ME_USERNAME,
@@ -40,4 +40,9 @@ export const setMeReactions = (reactions: Reaction[]): SetMeReactions => ({
   data: {
     reactions
   }
+});
+
+export const clearMe = (): ClearMe => ({
+  type: UserActionsEnum.CLEAR_ME,
+  data: {}
 });
