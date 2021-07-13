@@ -1,7 +1,7 @@
 import type { NeutrinoApiPagination, NeutrinoApiResponse } from '../types';
 import type { NeutrinoApiDeviceId } from '../devices/types';
 import type { NeutrinoApiSettings } from './settings/types';
-import type { NeutrinoApiAvatar } from './avatar/types';
+import type { NeutrinoApiMeAvatar } from './avatar/types';
 
 export interface NeutrinoApiMeContact {
   username: string;
@@ -16,7 +16,7 @@ export interface NeutrinoApiMe {
   me: {
     username: string;
     scope?: string;
-    avatar?: NeutrinoApiAvatar;
+    avatar?: NeutrinoApiMeAvatar;
     contacts?: NeutrinoApiMeContacts;
     devices?: NeutrinoApiMeDevices;
     settings?: NeutrinoApiSettings;
