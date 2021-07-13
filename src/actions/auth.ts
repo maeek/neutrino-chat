@@ -1,11 +1,12 @@
+import { Dispatch } from 'redux';
 import { ApiAuthorization } from '@/api/auth';
 import { NeutrinoApiAuthHeadersEnum } from '@/api/auth/types';
 import { setMeUsername, setMeAvatar, setMeBanner } from '@/store/me/user/actions';
-// import userReducerMock from '@/store/me/user/mock';
 import { setToken, setRefreshToken, clearTokens } from '@/store/session/actions';
 import Navigator from '@/utils/navigation';
-import { Dispatch } from 'redux';
 import { STORAGE_PERSIST_KEY } from './consts';
+import { addNewError } from '@/store/app/errors/actions';
+import { unifiedErrorTemplate } from '@/store/app/errors/error';
 
 export const login = (
   username: string,
@@ -38,10 +39,24 @@ export const login = (
     })
     .catch((e: any) => {
       console.error('Failed to log in! ', e);
+      dispatch(addNewError(unifiedErrorTemplate(
+        e.type,
+        e,
+        null,
+        { username, from: params.from }
+      )));
     });
 };
 
 export const logout = () => (dispatch: Dispatch) => {
   window.localStorage.removeItem(STORAGE_PERSIST_KEY);
   dispatch(clearTokens());
+  ApiAuthorization.logout().catch((e: any) => {
+    console.error('Failed to clear the session, you will be logged out anyway but the token will still be valid', e);
+    dispatch(addNewError(unifiedErrorTemplate(
+      e.type,
+      e,
+      []
+    )));
+  });
 };

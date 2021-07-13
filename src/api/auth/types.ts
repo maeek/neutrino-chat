@@ -1,7 +1,7 @@
 import type { NeutrinoApiResponse } from '../types';
 
 export enum NeutrinoApiAuthHeadersEnum {
-  TOKEN = 'x-api-token',
+  TOKEN = 'x-api-key',
   REFRESH_TOKEN = 'x-api-refreshtoken'
 }
 export interface NeutrinoApiAuthHeaders {
