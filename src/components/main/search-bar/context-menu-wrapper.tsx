@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import {
   PersonAddRounded,
   AddCommentRounded,
@@ -13,7 +13,7 @@ export interface MainSearchBarAddButtonContextMenuProps {
 }
 
 export const MainSearchBarAddButtonContextMenu = (props: MainSearchBarAddButtonContextMenuProps) => {
-  const items: ContextMenuItems[] = [
+  const [ items ] = useState<ContextMenuItems[]>([
     {
       text: 'Add Contact',
       icon: <PersonAddRounded />,
@@ -32,9 +32,9 @@ export const MainSearchBarAddButtonContextMenu = (props: MainSearchBarAddButtonC
       iconPosition: 'left',
       closeOnClick: true
     }
-  ];
+  ]);
 
-  return <ContextMenu items={items} {...props} />;
+  return <ContextMenu showMaskOnMobile items={items} {...props} />;
 };
 
 export default memo(MainSearchBarAddButtonContextMenu);
