@@ -11,11 +11,11 @@ export const groupsReducerMock: GroupsState = {
         },
         {
           id: 'bob',
-          type: GroupTypeEnum.CONTACT
+          type: GroupTypeEnum.USER
         },
         {
           id: 'bobandy',
-          type: GroupTypeEnum.CONTACT
+          type: GroupTypeEnum.USER
         }
       ]
     },

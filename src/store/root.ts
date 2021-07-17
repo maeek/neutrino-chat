@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import meReducer from './me';
+import meReducer, { MeState } from './me';
 import usersReducer from './users';
 import sessionReducer from './session';
 import settingsReducer from './settings';
@@ -7,7 +7,6 @@ import buildReducer from './buildReducer';
 import historyReducer from './history';
 import appReducer from './app';
 import channelReducer from './channels';
-import dmsReducer from './direct-messages';
 
 const reducers = combineReducers({
   auth: sessionReducer,
@@ -17,11 +16,10 @@ const reducers = combineReducers({
   build: buildReducer,
   app: appReducer,
   channels: channelReducer,
-  dms: dmsReducer,
   users: usersReducer
 });
 
-export type RootState = ReturnType<typeof reducers>;
+export type RootState = ReturnType<typeof reducers> & { me: MeState };
 
 const rootReducer = reducers;
 export default rootReducer;

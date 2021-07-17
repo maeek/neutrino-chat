@@ -70,7 +70,7 @@ describe('Redux store - App/Filters', () => {
     });
 
     it('should handle SET_FILTER_MAIN', () => {
-      const category = FilterCategory.CONTACT;
+      const category = FilterCategory.USER;
       const action: SetFilterMain = {
         type: FiltersActionsEnum.SET_FILTER_MAIN,
         data: {

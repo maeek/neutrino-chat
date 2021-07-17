@@ -36,7 +36,7 @@ const sessionReducer = (state = initialState, action: SessionActionTypes) => {
   }
 };
 
-export default persistReducer({
+export default persistReducer<ReturnType<typeof sessionReducer>, SessionActionTypes>({
   ...getPersistConf('ne-auth'),
   storage
 }, sessionReducer);

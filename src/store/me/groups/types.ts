@@ -4,7 +4,7 @@ import { GenericPayloadStructure } from '../../types';
 export enum GroupTypeEnum {
   CHANNEL = 'channel',
   DM = 'dm',
-  CONTACT = 'contact'
+  USER = 'user'
 }
 
 export interface GroupItem {

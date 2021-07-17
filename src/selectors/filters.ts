@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 import { getStoreState } from '@/store/index';
-import { getContacts } from './contacts';
+import { getUsers } from './users';
 import { GroupTypeEnum } from '@/store/me/groups/types';
 import { getChannels } from './channels';
-import { Contact } from '@/store/me/contacts/types';
 import { Channel } from '@/store/channels/types';
+import { User } from '@/store/users/types';
 
 export const getFiltersSearch = (state = getStoreState()) => state.app.filters.search;
 
@@ -18,29 +18,39 @@ export const getGroupByFiltersGroup = (state = getStoreState()) => (
   state.me.groups.entries[ state.app.filters.group as string ]
 );
 
-export const getFilteredContactsByGroup = createSelector(
+export const getFilteredUsersByGroup = createSelector(
   getGroupByFiltersGroup,
-  getContacts,
-  (group, contacts) => {
+  getUsers,
+  (group, users) => {
     return group?.items 
       ? group.items
-        .filter((item) => item.type === GroupTypeEnum.CONTACT)
-        .map((item) => contacts[ item.id ])
-      : Object.values(contacts);
+        .filter((item) => item.type === GroupTypeEnum.USER)
+        .map((item) => users[ item.id ])
+      : Object.values(users);
   }
 );
 
-export const getFilteredContactsByQueries = createSelector(
-  getContacts,
+export const USER_SEARCH_EXCLUDE_KEYS: Array<keyof User> = [
+  'settings',
+  'avatar',
+  'lastMessage',
+  'blocked',
+  'messages',
+  'typing'
+];
+
+export const getFilteredUsersByQueries = createSelector(
+  getUsers,
   getFiltersQueries,
-  (contacts, qs) => Object.values(contacts).filter((c) => {
+  (users, qs) => Object.values(users).filter((c) => {
     return qs.reduce((_prev: boolean, _, i, arr) => {
       const keys = !arr[ i ].fieldName ? Object.keys(c) : [ arr[ i ].fieldName ];
       const val = arr[ i ].value.trim().toLowerCase();
 
       return keys
+        .filter((k) => !USER_SEARCH_EXCLUDE_KEYS.includes(k as keyof User))
         .map(k => (
-          String(c[ k as keyof Contact ])
+          String(c[ k as keyof User ])
             .trim()
             .toLocaleLowerCase()
             .includes(val)
@@ -50,28 +60,54 @@ export const getFilteredContactsByQueries = createSelector(
   })
 );
 
-export const getFilteredContacts = createSelector(
-  getFilteredContactsByGroup,
-  getFilteredContactsByQueries,
-  (contactsByGroup, contactsByQueries) => {
-    const uniq = [ ...new Set([ ...contactsByGroup, ...contactsByQueries ]) ];
-    const usernamesInGroups = contactsByGroup.map((c) => c.username);
-    const usernamesInQueries = contactsByQueries.map((c) => c.username);
+export const getFilteredUsers = createSelector(
+  getFilteredUsersByGroup,
+  getFilteredUsersByQueries,
+  (usersByGroup, usersByQueries) => {
+    const uniq = [ ...new Set([ ...usersByGroup, ...usersByQueries ]) ];
+    const usernamesInGroups = usersByGroup.map((c) => c.id);
+    const usernamesInQueries = usersByQueries.map((c) => c.id);
 
-    return uniq.filter(
-      (c) => usernamesInGroups.includes(c.username) && usernamesInQueries.includes(c.username)
+    const soretdResults = uniq.filter(
+      (c) => usernamesInGroups.includes(c.id) && usernamesInQueries.includes(c.id)
     );
+
+    return soretdResults.sort((a, b) => {
+      const nameA = a.id.toUpperCase();
+      const nameB = b.id.toUpperCase();
+
+      if (a?.lastMessage?.receivedDate && b?.lastMessage?.receivedDate) {
+        return b?.lastMessage?.receivedDate - a?.lastMessage?.receivedDate;
+      }
+
+      if (a?.lastMessage?.receivedDate && !b?.lastMessage?.receivedDate) {
+        return -1;
+      }
+
+      if (!a?.lastMessage?.receivedDate && b?.lastMessage?.receivedDate) {
+        return 1;
+      }
+
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+
+      return 0;
+    });
   }
 );
 
-export const getFilteredContactsIds = createSelector(
-  getFilteredContacts,
-  (contacts) => contacts.map(c => c.username)
+export const getFilteredUsersIds = createSelector(
+  getFilteredUsers,
+  (users) => users.map(c => c.id)
 );
 
 export const getFilteredDMsByGroup = createSelector(
   getGroupByFiltersGroup,
-  getContacts,
+  getUsers,
   (group, dms) => group.items
     .filter((item) => item.type === GroupTypeEnum.DM)
     .map((item) => dms[ item.id ])
@@ -132,10 +168,10 @@ export const getFilteredChannels = createSelector(
 );
 
 export const getFiltered = createSelector(
-  getFilteredContactsByGroup,
+  getFilteredUsersByGroup,
   getFilteredDMsByGroup,
   getFilteredChannelsByGroup,
-  (contacts, dm, channels) => ({
-    contacts, dm, channels
+  (users, dm, channels) => ({
+    users, dm, channels
   })
 );

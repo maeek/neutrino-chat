@@ -31,7 +31,7 @@ const store = createStore(rootReducer, reducers);
 (window as any).store = store;
 
 export const getStore = () => store;
-export const getStoreState = () => store.getState();
+export const getStoreState = (): RootState => store.getState();
 export const persistor = persistStore(store);
 
 export default store;

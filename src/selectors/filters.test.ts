@@ -1,6 +1,5 @@
 import filtersReducerMock from '@/store/app/filters/mock';
 import channelsReducerMock from '@/store/channels/mock';
-import contactsReducerMock from '@/store/me/contacts/mock';
 import groupsReducerMock from '@/store/me/groups/mock';
 import {
   getFilteredChannelsByGroup,
@@ -16,8 +15,7 @@ describe('Filters', () => {
       filters: filtersReducerMock
     },
     me: {
-      groups: groupsReducerMock,
-      contacts: contactsReducerMock
+      groups: groupsReducerMock
     },
     channels: channelsReducerMock
   };

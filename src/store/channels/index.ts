@@ -196,4 +196,4 @@ const modifyChannelSettings = ({ entries }: ChannelsState, id: string, settings:
   return newEntries;
 };
 
-export default persistReducer<any, any>(getPersistConf('ne-channels'), channels);
+export default persistReducer<ReturnType<typeof channels>, ChannelsAction>(getPersistConf('ne-channels'), channels);

@@ -5,7 +5,7 @@ export enum FilterCategory {
   ALL = 'all',
   CHANNEL = 'channel',
   DM = 'dm',
-  CONTACT = 'contact'
+  USER = 'user'
 }
 
 export interface FilterQuery {

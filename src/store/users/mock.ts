@@ -1,48 +1,104 @@
-import { UsersState } from './types';
+import { UserFetchingStatus, UsersState, UserStatusEnum } from './types';
 
 export const usersReducerMock: UsersState = {
   entries: {
-    '449be3ed-88fa-4a42-9d02-4731d5ebd0a0': {
-      id: '449be3ed-88fa-4a42-9d02-4731d5ebd0a0',
-      name: 'bob',
+    bob: {
+      id: 'bob',
+      fetchingStatus: UserFetchingStatus.SUCCESS,
+      status: UserStatusEnum.ACTIVE,
+      name: 'Bob Frank',
+      avatar: 'https://static.suchanecki.me/avatar.png',
+      blocked: false,
+      nickname: 'bobo',
+      settings: {},
+      messages: [
+        '1914477c-e595-43d3-b0f5-78e9625a4ba6',
+        '2d9ae79a-a3c1-4756-afdc-f6fa9f7956b2',
+        '653440af-60fc-4ebb-88a5-67f98d209691',
+        'a30d2e71-7115-4e4a-b82a-58e2332c78e0'
+      ],
+      lastMessage: {
+        id: 'a30d2e71-7115-4e4a-b82a-58e2332c78e0',
+        content: 'Yep see u 2mrw',
+        receivedDate: Date.now() - 3670
+      },
+      typing: false
+    },
+    'rossalita-antonios-gonzalez-martinez-gaworia': {
+      id: 'rossalita-antonios-gonzalez-martinez-gaworia',
+      fetchingStatus: UserFetchingStatus.SUCCESS,
+      status: UserStatusEnum.ACTIVE,
+      name: 'Rossalita Antonios Gonzalez Martinez Gaworia',
+      avatar: 'https://static.suchanecki.me/pepe1.jpg',
+      blocked: false
+    },
+    andy: {
+      id: 'andy',
+      fetchingStatus: UserFetchingStatus.SUCCESS,
+      status: UserStatusEnum.OFFLINE,
+      name: 'Andy Bernard',
       avatar: '',
       blocked: false
     },
-    'ad9ac59e-f51c-471a-b23d-0a5d74b0c580': {
-      id: 'ad9ac59e-f51c-471a-b23d-0a5d74b0c580',
-      name: 'rossalita-antonios-gonzalez-martinez-gaworia',
-      avatar: '',
-      blocked: false
-    },
-    '8933fabc-635f-4bfb-a642-3878929cb6fd': {
-      id: '8933fabc-635f-4bfb-a642-3878929cb6fd',
-      name: 'andy',
-      avatar: '',
-      blocked: false
-    },
-    '8739d073-397f-4b42-b709-eb15d0dfad9e': {
-      id: '8739d073-397f-4b42-b709-eb15d0dfad9e',
+    bobandy: {
+      id: 'bobandy',
+      fetchingStatus: UserFetchingStatus.SUCCESS,
+      status: UserStatusEnum.AWAY,
       name: 'bobandy',
       avatar: '',
       blocked: false
     },
-    '571ad4c5-e6c4-4862-8f1e-e82a0ec6479e': {
-      id: '571ad4c5-e6c4-4862-8f1e-e82a0ec6479e',
-      name: 'rick',
+    matt: {
+      id: 'matt',
+      fetchingStatus: UserFetchingStatus.SUCCESS,
+      status: UserStatusEnum.OFFLINE,
+      name: 'matt',
       avatar: '',
-      blocked: false
+      blocked: false,
+      nickname: 'gaaaaaaaaaaaryyyyyyyyyyyyyyyyyyyyyyy',
+      settings: {
+        backgroundUri: 'https://static.suchanecki.me/neony.jpeg',
+        backgroundOpacity: 0.3,
+        backgroundBlur: 6,
+        color: '#fff'
+      },
+      messages: [
+        '258f4703-52f8-49e1-bd39-23e9d9a0b345',
+        '88832d5c-d6ed-4d54-9e1a-94e3db235f57'
+      ],
+      lastMessage: {
+        id: '88832d5c-d6ed-4d54-9e1a-94e3db235f57',
+        content: 'lol',
+        receivedDate: Date.now()
+      },
+      typing: false
     },
-    '42ea5c83-c558-4b47-8142-38c768a1de73': {
-      id: '42ea5c83-c558-4b47-8142-38c768a1de73',
-      name: 'jimmy',
-      avatar: '',
-      blocked: true
+    j: {
+      id: 'j',
+      fetchingStatus: UserFetchingStatus.SUCCESS,
+      status: UserStatusEnum.OFFLINE,
+      name: 'j',
+      avatar: 'https://static.suchanecki.me/nasa.jpg',
+      blocked: true,
+      nickname: 'jj abrams'
     },
-    'e8d5898b-9e10-466d-abe1-dc6ee9073166': {
-      id: 'e8d5898b-9e10-466d-abe1-dc6ee9073166',
-      name: 'posix',
+    paczka: {
+      id: 'paczka',
+      fetchingStatus: UserFetchingStatus.SUCCESS,
+      status: UserStatusEnum.AWAY,
+      name: 'paczka',
       avatar: '',
-      blocked: false
+      blocked: false,
+      messages: [
+        '2e341b65-656a-4fb4-b616-9d2c0ba1499c',
+        '57499627-432a-4302-9163-1a3001c5798e'
+      ],
+      lastMessage: {
+        id: '57499627-432a-4302-9163-1a3001c5798e',
+        content: 'kapisz',
+        receivedDate: Date.now() - 123600
+      },
+      typing: false
     }
   }
 };
