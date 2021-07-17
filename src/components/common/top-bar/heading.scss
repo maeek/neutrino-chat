@@ -3,10 +3,11 @@
 
 .top-bar {
   &-heading {
-    font-size: var(--fs-600);
+    font-family: 'Cantarell', sans-serif;
+    font-size: var(--fs-500);
     margin: 0;
     margin-left: 1rem;
-    font-weight: 700;
+    font-weight: 900;
     cursor: pointer;
 
     color: var(--clr-actions-200);
@@ -19,9 +20,6 @@
     .ne-typo {
       font: inherit;
       color: inherit;
-    }
-
-    &-colored {
     }
   }
 }
