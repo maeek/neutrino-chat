@@ -19,15 +19,8 @@ export const sideNavConfig = {
       action: () => null
     },
     {
-      name: 'Contacts',
-      category: FilterCategory.CONTACT,
-      node: null,
-      icon: <PeopleRounded />,
-      action: () => null
-    },
-    {
       name: 'Direct Messages',
-      category: FilterCategory.DM,
+      category: FilterCategory.USER,
       node: null,
       icon: <SendRounded />,
       action: () => null

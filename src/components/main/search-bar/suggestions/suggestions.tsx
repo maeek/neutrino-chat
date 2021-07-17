@@ -2,12 +2,12 @@ import { forwardRef, MutableRefObject } from 'react';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
 import { InputRef } from '@maeek/neutrino-design/components/atoms/inputs/text/Input';
-import { getFilteredChannelsByQueries, getFilteredContactsByQueries } from '@/selectors/filters';
+import { getFilteredChannelsByQueries, getFilteredUsersByQueries } from '@/selectors/filters';
 import { RootState } from '@/store/root';
 import { Channel } from '@/store/channels/types';
-import { Contact } from '@/store/me/contacts/types';
 import { SearchBarSuggestionsList, SuggestionItemTypes } from './list';
 import './suggestions.scss';
+import { User } from '@/store/users/types';
 
 export interface SearchBarSuggestionsProps {
   searchedValue?: string;
@@ -21,14 +21,14 @@ export interface SearchBarSuggestionsProps {
 export const SearchBarSuggestions = forwardRef<HTMLDivElement, SearchBarSuggestionsProps>((
   { searchedValue, isVisible, firstSuggestionRef, lastSuggestionRef, inputRef, onClose }, ref
 ) => {
-  const filteredContacts = useSelector<RootState, Contact[]>(getFilteredContactsByQueries);
+  const filteredUsers = useSelector<RootState, User[]>(getFilteredUsersByQueries);
   const filteredChannels = useSelector<RootState, Channel[]>(getFilteredChannelsByQueries);
   const flatElements = [
-    ...filteredContacts.map((c) => ({
-      id: c.username,
-      name: c.username,
-      link: `/u/${c.username}`,
-      type: SuggestionItemTypes.CONTACT
+    ...filteredUsers.map((c) => ({
+      id: c.id,
+      name: c.id,
+      link: `/u/${c.id}`,
+      type: SuggestionItemTypes.USER
     })),
     ...filteredChannels.map((ch) => ({
       id: ch.id,
@@ -45,7 +45,7 @@ export const SearchBarSuggestions = forwardRef<HTMLDivElement, SearchBarSuggesti
     && searchedValue.trim().length > 0
     && (
       filteredChannels.length > 0
-      || filteredContacts.length > 0
+      || filteredUsers.length > 0
     )
   );
   

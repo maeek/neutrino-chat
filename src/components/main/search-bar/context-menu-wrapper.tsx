@@ -15,12 +15,6 @@ export interface MainSearchBarAddButtonContextMenuProps {
 export const MainSearchBarAddButtonContextMenu = (props: MainSearchBarAddButtonContextMenuProps) => {
   const [ items ] = useState<ContextMenuItems[]>([
     {
-      text: 'Add Contact',
-      icon: <PersonAddRounded />,
-      iconPosition: 'left',
-      closeOnClick: true
-    },
-    {
       text: 'Add Direct Message',
       icon: <AddCommentRounded />,
       iconPosition: 'left',

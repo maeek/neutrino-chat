@@ -13,7 +13,7 @@ import Navigator from '@/utils/navigation';
 import './list.scss';
 
 export enum SuggestionItemTypes {
-  CONTACT = 'contact',
+  USER = 'user',
   CHANNEL = 'channel',
 }
 export interface SuggestionsListElement {

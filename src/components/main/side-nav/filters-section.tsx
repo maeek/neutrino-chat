@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { NavItem } from '@maeek/neutrino-design/components/molecules/navigation/Item';
 import { sideNavConfig } from './config';
-// import './filters-section.scss';
 
 export const SideNavFiltersSection = () => {
   const [ selectedFilters, setSelectedFilters ] = useState<string[]>([]);

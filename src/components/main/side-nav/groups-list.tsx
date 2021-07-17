@@ -69,7 +69,7 @@ export const GroupsList = memo(() => {
         <div className="side-nav-groups--empty">
           <Text className="side-nav-groups--heading" strong disabled>You have 0 Groups</Text>
           <Text className="side-nav-groups--desc" disabled>
-              Custom Groups lets you group your favourite Contacts and Channels into a single folder.
+              Custom Groups lets you group your favourite Users and Channels into a single folder.
               This way you can filter out unrelevant channels.
           </Text>
           <Text className="side-nav-groups--new" link="/me/groups/new">Learn how to create new Group</Text>

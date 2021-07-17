@@ -2,9 +2,8 @@ import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/conte
 import LayoutSideContent from '@maeek/neutrino-design/components/layouts/side-content';
 import GenericFooter from '@/components/common/footer/generic';
 import MainSearchBar from './search-bar/search-bar';
-import ContactsCards from './content/contacts';
+import UsersCards from './content/users';
 import ChannelsCards from './content/channels';
-import DMsCards from './content/direct-messages';
 import { SideNav } from './side-nav';
 import './main.scss';
 
@@ -16,8 +15,7 @@ export const MainView = () => {
       <LayoutContentFooter footerNode={footerNode}>
         <LayoutSideContent className="main-side-filter" hideScroll sideNode={<SideNav />}>
           <MainSearchBar />
-          <ContactsCards />
-          <DMsCards />
+          <UsersCards />
           <ChannelsCards />
         </LayoutSideContent>
       </LayoutContentFooter>
