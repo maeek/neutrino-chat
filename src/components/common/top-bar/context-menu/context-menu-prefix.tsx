@@ -6,10 +6,6 @@ import Navigator from '@/utils/navigation';
 import { getMeUsername } from '@/selectors/user';
 import './context-menu-prefix.scss';
 
-export interface ContextMenuPrefixProps {
-  [key: string]: any;
-}
-
 export const ContextMenuPrefix = () => {
   const history = useHistory();
   const username = useSelector(getMeUsername);

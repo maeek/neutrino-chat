@@ -11,7 +11,6 @@ import './avatar-wrapper.scss';
 export interface AvatarWrapperProps {
   src?: string;
   size?: AvatarSizes;
-  [key: string]: any;
 }
 
 export const AvatarWrapper = (props: AvatarWrapperProps) => {

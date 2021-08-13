@@ -11,7 +11,6 @@ interface LoginViewProps extends RouteProps {
   from: {
     pathname: string;
   }
-  [key: string]: any;
 }
 
 export const LoginView = (props: LoginViewProps) => {

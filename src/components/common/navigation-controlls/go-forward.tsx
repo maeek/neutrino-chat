@@ -7,10 +7,6 @@ import { RootState } from '@/store/root';
 import Navigator from '@/utils/navigation';
 import './styles/navigation.scss';
 
-export interface NavigationControllForwardProps {
-  [key: string]: any;
-}
-
 export const NavigationControllForward = () => {
   const history = useHistory();
   const localHistory = useSelector((state: RootState) => state.history);

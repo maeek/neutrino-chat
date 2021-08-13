@@ -6,9 +6,6 @@ import {
 } from '@material-ui/icons';
 import MainSearchBarAddButtonContextMenu from './context-menu-wrapper';
 import { getMeColor } from '@/selectors/user';
-export interface MainSearchBarAddButtonProps {
-  [key: string]: any;
-}
 
 export const MainSearchBarAddButton = () => {
   const [ showContext, setShowContext ] = useState(false);

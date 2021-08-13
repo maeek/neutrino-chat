@@ -6,10 +6,6 @@ import NotificationsDrawerWrapper from './drawer';
 import NotificationsDrawerButton from './button';
 import './index.scss';
 
-export interface NotificationsDrawerProps {
-  [key: string]: any;
-}
-
 export const NotificationsDrawer = () => {
   const [ isOpened, setIsOpened ] = useState(false);
   const bellIconRef = useRef<HTMLSpanElement>(null);

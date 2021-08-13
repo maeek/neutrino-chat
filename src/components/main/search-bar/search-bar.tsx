@@ -17,9 +17,6 @@ const getKeyValues = (v: string) => {
       return newKp;
     });
 };
-export interface MainSearchBarProps {
-  [key: string]: any;
-}
 
 export const MainSearchBar = () => {
   const dispatch = useDispatch();

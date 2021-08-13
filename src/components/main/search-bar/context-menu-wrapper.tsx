@@ -1,6 +1,5 @@
 import { memo, useState } from 'react';
 import {
-  PersonAddRounded,
   AddCommentRounded,
   GroupAddRounded
 } from '@material-ui/icons';
@@ -9,7 +8,6 @@ import './context-menu-wrapper.scss';
 
 export interface MainSearchBarAddButtonContextMenuProps {
   closeContextMenu?: any;
-  [key: string]: any;
 }
 
 export const MainSearchBarAddButtonContextMenu = (props: MainSearchBarAddButtonContextMenuProps) => {

@@ -12,7 +12,6 @@ interface JoinViewProps extends RouteProps {
   from: {
     pathname: string;
   };
-  [key: string]: any;
 }
 
 export const JoinView = (props: JoinViewProps) => {

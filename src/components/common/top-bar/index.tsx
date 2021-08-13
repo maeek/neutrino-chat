@@ -6,10 +6,6 @@ import NotificationsDrawer from './drawer/';
 import { TopBarHeading } from './heading';
 import './top-bar.scss';
 
-export interface TopBarProps {
-  [key: string]: any;
-}
-
 export const TopBar = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
 

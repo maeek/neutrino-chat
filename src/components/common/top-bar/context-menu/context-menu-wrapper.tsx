@@ -14,10 +14,6 @@ import AvatarWrapper from '../avatar-wrapper';
 import ContextMenuPrefix from './context-menu-prefix';
 import './context-menu-wrapper.scss';
 
-export interface ContextMenuWrapperProps {
-  [key: string]: any;
-}
-
 export const ContextMenuWrapper = (props: ContextMenuWrapperProps) => {
   const [ showContext, setShowContext ] = useState(false);
   const dispatch = useDispatch();

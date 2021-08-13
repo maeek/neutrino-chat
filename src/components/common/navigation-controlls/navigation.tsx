@@ -5,7 +5,6 @@ import './styles/navigation.scss';
 
 export interface NavigationControllsProps {
   pwaOnly?: boolean;
-  [key: string]: any;
 }
 
 export const NavigationControlls = (props: NavigationControllsProps) => {
