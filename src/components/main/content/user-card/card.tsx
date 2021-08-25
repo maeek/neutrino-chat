@@ -142,40 +142,34 @@ export const UserCard = ({ id }: UserCardProps) => {
 
   const items: ContextMenuItems[] = [
     {
-      index: 0,
       text: userIsInStarred ? 'Remove Star' : 'Star',
       icon: userIsInStarred ? <StarRounded className="user-card-star" /> : null,
       closeOnClick: true,
       onClick: handleStar
     },
     {
-      index: 1,
       text: 'Edit Nickname',
       closeOnClick: true,
       onClick: stopPropagation
     },
     {
-      index: 1,
       text: 'Add to Group',
       closeOnClick: true,
       onClick: stopPropagation
     },
     {
-      index: 1,
       text: user?.blocked ? 'Unblock' : 'Block',
       icon: user?.blocked ? <BlockRounded /> : null,
       closeOnClick: true,
       onClick: stopPropagation
     },
     ...(user?.messages && user?.messages?.length > 0 ? [ {
-      index: 2,
       text: 'Clear History',
       icon: <DeleteSweepRoundedIcon />,
       closeOnClick: true,
       onClick: stopPropagation
     } ] : []),
     {
-      index: 3,
       text: 'Remove',
       closeOnClick: true,
       onClick: stopPropagation

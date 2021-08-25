@@ -103,7 +103,7 @@ export const LoginForm = (props: LoginFormProps) => {
         </div>
       </div>
 
-      <ProceedButton className="button-login" onClick={onLoginHandler}>Login</ProceedButton>
+      <ProceedButton type="button" className="button-login" onClick={onLoginHandler}>Login</ProceedButton>
 
       <div className="form-login-footer">
         <Text>Don't have an account?</Text>

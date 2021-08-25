@@ -168,7 +168,7 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
           </Text>
         </div>
       </div>
-      <ProceedButton className="button-login" onClick={onRegisterHandler}>Register</ProceedButton>
+      <ProceedButton type="button" className="button-login" onClick={onRegisterHandler}>Register</ProceedButton>
     </>
   );
 };

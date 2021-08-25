@@ -14,7 +14,7 @@ import AvatarWrapper from '../avatar-wrapper';
 import ContextMenuPrefix from './context-menu-prefix';
 import './context-menu-wrapper.scss';
 
-export const ContextMenuWrapper = (props: ContextMenuWrapperProps) => {
+export const ContextMenuWrapper = () => {
   const [ showContext, setShowContext ] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -28,28 +28,24 @@ export const ContextMenuWrapper = (props: ContextMenuWrapperProps) => {
 
   const items: ContextMenuItems[] = [
     {
-      index: 0,
       text: 'Profile',
       icon: <AccountCircleRounded />,
       closeOnClick: true,
       onClick: navigate('/me')
     },
     {
-      index: 1,
       text: 'Settings',
       icon: <SettingsRounded />,
       closeOnClick: true,
       onClick: navigate('/settings')
     },
     {
-      index: 2,
       text: 'Help',
       icon: <HelpOutlineRounded />,
       closeOnClick: true,
       onClick: () => location.href = 'https://github.com/maeek/neutrino-chat.git'
     },
     {
-      index: 3,
       text: 'Log out',
       icon: <ExitToAppRounded />,
       closeOnClick: true,
@@ -69,7 +65,7 @@ export const ContextMenuWrapper = (props: ContextMenuWrapperProps) => {
   );
 
   return (
-    <div className="top-bar-badge-wrapper" {...props}>
+    <div className="top-bar-badge-wrapper">
       <AvatarWrapper size="medium" onClick={toggleMenu} />
       {contextMenu}
     </div>

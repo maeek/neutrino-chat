@@ -1,4 +1,4 @@
-import { memo, useCallback, KeyboardEvent, CSSProperties } from 'react';
+import { memo, useCallback, KeyboardEvent, CSSProperties, MouseEventHandler, MouseEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import classnames from 'classnames';
@@ -11,6 +11,7 @@ import './avatar-wrapper.scss';
 export interface AvatarWrapperProps {
   src?: string;
   size?: AvatarSizes;
+  onClick?: MouseEventHandler;
 }
 
 export const AvatarWrapper = (props: AvatarWrapperProps) => {
@@ -24,7 +25,7 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
   const goToProfile = () => Navigator.forward(history, '/me');
   const onEnter = useCallback((fn: Function) => (e: KeyboardEvent<HTMLSpanElement>) => {
     if (e.key === 'Enter') {
-      if(onClick) onClick();
+      if(onClick) onClick(e as unknown as MouseEvent);
       else fn();
     }
   }, [ onClick ]);

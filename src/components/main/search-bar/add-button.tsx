@@ -17,6 +17,7 @@ export const MainSearchBarAddButton = () => {
   return (
     <div className="main-search-bar-add">
       <ActionButton
+        type="button"
         className="main-search-bar-action main-search-bar-action--compact"
         style={{
           // @ts-ignore
