@@ -1,0 +1,49 @@
+.image-change-preview {
+  position: relative;
+
+  .ne-avatar-content .ne-image img {
+    user-select: none !important;
+  }
+
+  &--empty {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 12rem;
+    height: 12rem;
+    transform: translate(-50%);
+    border-radius: 0.3rem;
+    background-color: var(--clr-primary-1000);
+    color: var(--clr-primary-200);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    > svg {
+      font-size: var(--fs-1500);
+    }
+  }
+
+  &--clear {
+    position: absolute;
+    bottom: -0.5rem;
+    right: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(50%);
+    color: var(--clr-negative-100);
+    background-color: var(--clr-primary-500);
+    border-radius: 0.3rem;
+    transition: opacity 0.2s;
+    cursor: pointer;
+    opacity: 1;
+    pointer-events: auto;
+
+    > svg {
+      font-size: var(--fs-700);
+    }
+  }
+}

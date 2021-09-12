@@ -1,0 +1,39 @@
+@use '~@/styles/base/breakpoints' as *;
+
+.image-change-header {
+  margin-top: 0;
+  padding: 1.5rem 2rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background-color: var(--clr-primary-800);
+  border-radius: 0.4rem 0.4rem 0 0;
+  z-index: 1;
+
+  &-heading {
+    margin-top: 0;
+    max-width: 90%;
+  }
+
+  @include mq('small') {
+    padding: 1.5rem 1.5rem;
+  }
+}
+
+.image-change-close {
+  position: absolute;
+  top: 1.45rem;
+  right: 1rem;
+  color: var(--clr-basic-400);
+  cursor: pointer;
+  font-size: var(--fs-1100);
+
+  &:hover,
+  &:focus {
+    color: var(--clr-basic-300);
+  }
+
+  &:active {
+    color: var(--clr-actions-200);
+  }
+}
