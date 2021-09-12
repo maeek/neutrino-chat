@@ -10,7 +10,7 @@ const Profile = lazy(() => import(
   '@/components/me'
 ));
 
-export const MainPage = () => {
+export const ProfilePage = () => {
   return (
     <PageTemplate
       errorPage={null}
@@ -23,4 +23,4 @@ export const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default ProfilePage;
