@@ -29,7 +29,7 @@ export const NotificationsDrawerWrapper = ({ isOpened, onClose }: NotificationsD
     if (!isOpened) return;
 
     document.body.style.overflow = 'hidden';
-    if (!isMobile) {
+    if (!isMobile && document.body.scrollHeight > window.innerHeight) {
       document.body.style.paddingRight = '0.5rem';
     }
 
@@ -43,7 +43,7 @@ export const NotificationsDrawerWrapper = ({ isOpened, onClose }: NotificationsD
     <Drawer
       position={isMobile ? 'top' : 'right'}
       isOpened={isOpened}
-      animationSpeed={200}
+      animationSpeed={0}
       onClose={onClose}
       showMask
       className="top-bar-notifications-drawer"
