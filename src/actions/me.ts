@@ -12,3 +12,8 @@ export const fetchMeBasicInfo = () => (dispatch: Dispatch) => {
       // TODO: error reducer
     });
 };
+
+export const clearMeAvatarAction = () => (dispatch: Dispatch) => {
+  // Remove on server, then
+  dispatch(setMeAvatar(''));
+};
