@@ -18,8 +18,8 @@ export const EditMeBannerModal = ({ isEdited, setEdited }: EditMeBannerModalProp
     setEdited?.(false);
   };
 
-  return isEdited ? (
-    <Modal mountPointId="modal-root">
+  return (
+    <Modal mountPointId="modal-root" className={`modal-fullpage ${isEdited ? 'modal-visible' : ''}`}>
       <ImageChange
         url={banner}
         title="Change Your banner picture"
@@ -27,7 +27,7 @@ export const EditMeBannerModal = ({ isEdited, setEdited }: EditMeBannerModalProp
         onUpdate={savingHandler}
       />
     </Modal>
-  ) : null;
+  );
 };
 
 export default EditMeBannerModal;

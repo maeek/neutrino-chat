@@ -7,11 +7,9 @@ import UserUsername from '@/components/common/user-components/username';
 import UserBio from '@/components/common/user-components/bio';
 import UserPageBackground from '@/components/common/user-components/page-background';
 import ProfileQuickLinks from './quick-links';
-import ProfileStatistics from './statistics';
-import { ImageChange } from '../common/image-change';
-import './me.scss';
 import EditMeAvatarModal from './avatar-edit';
 import EditMeBannerModal from './banner-edit';
+import './me.scss';
 
 export const ProfileView = () => {
   const username = useSelector(getMeUsername);
@@ -37,7 +35,6 @@ export const ProfileView = () => {
         />
         <UserUsername username={username} />
         <UserBio text={bio} />
-        <ProfileStatistics />
         <ProfileQuickLinks />
         <EditMeAvatarModal
           isEdited={isAvatarEdited}

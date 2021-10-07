@@ -18,16 +18,17 @@ export const EditMeAvatarModal = ({ isEdited, setEdited }: EditMeAvatarModalProp
     setEdited?.(false);
   };
 
-  return isEdited ? (
-    <Modal mountPointId="modal-root">
+  return (
+    <Modal mountPointId="modal-root" className={`modal-fullpage ${isEdited ? 'modal-visible' : ''}`}>
       <ImageChange
         url={avatar}
         title="Change Your profile picture"
         onCancel={() => setEdited?.(false)}
         onUpdate={savingHandler}
+        forceAspectRatio='1-1'
       />
     </Modal>
-  ) : null;
+  );
 };
 
 export default EditMeAvatarModal;
