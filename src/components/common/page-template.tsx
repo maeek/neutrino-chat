@@ -2,6 +2,7 @@ import { Component, ReactNode, Suspense } from 'react';
 import NoNetworkBanner from '@/components/common/no-network-banner';
 
 interface PageTemplateProps {
+  startFromTop?: boolean;
   children?: ReactNode;
   errorPage?: ReactNode | ((stack: string) => ReactNode);
   fallbackComponent?: ReactNode;
@@ -30,6 +31,13 @@ export class PageTemplate extends Component<PageTemplateProps, PageTemplateState
   componentDidMount() {
     if (this.props.title) {
       document.title = this.props.title;
+    }
+
+    if (this.props.startFromTop) {
+      document.scrollingElement?.scrollTo({
+        top: 0,
+        behavior: 'auto'
+      });
     }
   }
 
