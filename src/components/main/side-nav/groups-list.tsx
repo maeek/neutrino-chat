@@ -72,7 +72,7 @@ export const GroupsList = memo(() => {
               Custom Groups lets you group your favourite Users and Channels into a single folder.
               This way you can filter out unrelevant channels.
           </Text>
-          <Text className="side-nav-groups--new" link="/me/groups/new">Learn how to create new Group</Text>
+          <Text className="side-nav-groups--new" link="/me/groups/new">Create new Group</Text>
         </div>
       )}
     </>

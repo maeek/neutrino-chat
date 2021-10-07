@@ -1,7 +1,6 @@
 import {
   DoneAllRounded,
   ForumRounded,
-  PeopleRounded,
   SendRounded,
   HowToRegRounded,
   CenterFocusStrongRounded,
