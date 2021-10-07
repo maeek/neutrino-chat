@@ -19,7 +19,7 @@ export interface SearchBarSuggestionsProps {
 }
 
 export const SearchBarSuggestions = forwardRef<HTMLDivElement, SearchBarSuggestionsProps>((
-  { searchedValue, isVisible, firstSuggestionRef, lastSuggestionRef, inputRef, onClose }, ref
+  { isVisible, firstSuggestionRef, lastSuggestionRef, inputRef, onClose }, ref
 ) => {
   const filteredUsers = useSelector<RootState, User[]>(getFilteredUsersByQueries);
   const filteredChannels = useSelector<RootState, Channel[]>(getFilteredChannelsByQueries);
@@ -41,8 +41,6 @@ export const SearchBarSuggestions = forwardRef<HTMLDivElement, SearchBarSuggesti
 
   const isOpened = !!(
     isVisible
-    && searchedValue
-    && searchedValue.trim().length > 0
     && (
       filteredChannels.length > 0
       || filteredUsers.length > 0

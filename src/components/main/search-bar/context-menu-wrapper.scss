@@ -4,6 +4,17 @@
   .ne-context-menu {
     position: absolute;
     margin-top: 0.2rem;
+    pointer-events: none;
+
+    .ne-context-menu-mask {
+      opacity: 0;
+    }
+
+    .ne-context-menu-wrapper {
+      opacity: 0;
+      transform: translateY(-0.5rem);
+      transition: opacity 0.2s, transform 0.2s;
+    }
 
     @include mq('small') {
       left: 0.5rem;
@@ -14,6 +25,19 @@
       justify-content: flex-start;
       padding-top: 0.6rem;
       padding-bottom: 0.6rem;
+    }
+  }
+
+  &-context--visible.ne-context-menu {
+    pointer-events: auto;
+
+    .ne-context-menu-wrapper {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .ne-context-menu-mask {
+      opacity: 1;
     }
   }
 }

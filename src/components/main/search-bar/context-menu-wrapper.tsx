@@ -3,10 +3,10 @@ import {
   AddCommentRounded,
   GroupAddRounded
 } from '@material-ui/icons';
-import { ContextMenu, ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
+import { ContextMenu, ContextMenuItems, ContextMenuProps } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
 import './context-menu-wrapper.scss';
 
-export interface MainSearchBarAddButtonContextMenuProps {
+export interface MainSearchBarAddButtonContextMenuProps extends ContextMenuProps {
   closeContextMenu?: any;
 }
 
@@ -26,7 +26,7 @@ export const MainSearchBarAddButtonContextMenu = (props: MainSearchBarAddButtonC
     }
   ]);
 
-  return <ContextMenu showMaskOnMobile items={items} {...props} />;
+  return <ContextMenu {...props} showMaskOnMobile items={items} />;
 };
 
 export default memo(MainSearchBarAddButtonContextMenu);

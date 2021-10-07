@@ -35,9 +35,10 @@ export const MainSearchBarAddButton = () => {
           }}
         />
       </ActionButton>
-      {
-        showContext ? <MainSearchBarAddButtonContextMenu closeContextMenu={closeContextMenu} /> : null
-      }
+      <MainSearchBarAddButtonContextMenu
+        closeContextMenu={closeContextMenu}
+        className={showContext ? 'main-search-bar-context--visible' : undefined}
+      />
     </div>
   );
 };
