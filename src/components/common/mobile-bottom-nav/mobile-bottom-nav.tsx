@@ -16,7 +16,7 @@ import { useLocation, withRouter } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import Navigator from '@/utils/navigation';
-import { AccountCircleRounded, ChatBubbleRounded, HomeRounded } from '@material-ui/icons';
+import { ChatBubbleRounded, HomeRounded } from '@material-ui/icons';
 import './mobile-bottom-nav.scss';
 
 export const MobileBottomNav = withRouter(({ location, history }) => {
@@ -26,8 +26,7 @@ export const MobileBottomNav = withRouter(({ location, history }) => {
 
   const navConfig = useMemo(() => [
     { link: '/', name: 'Home', icon: <HomeRounded /> },
-    { link: '/chats', name: 'Chats', icon: <ChatBubbleRounded /> },
-    { link: '/me', name: 'Profile', icon: <AccountCircleRounded /> }
+    { link: '/chats', name: 'Chats', icon: <ChatBubbleRounded /> }
   ], []);
 
   const onClick = (link?: string): MouseEventHandler => (e) => {
@@ -81,7 +80,12 @@ export const MobileBottomNav = withRouter(({ location, history }) => {
       {buttons}
       {
         position !== null
-          ? (<div className="bottom-nav-slider" style={{ '--pos': `${position}px` } as CSSProperties} />)
+          ? (
+            <div
+              className="bottom-nav-slider"
+              style={{ '--pos': `${position}px`, '--elem-count': `${100 / navConfig.length}vw` } as CSSProperties}
+            />
+          )
           : null
       }
     </nav>
