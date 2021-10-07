@@ -1,24 +1,26 @@
 import { Avatar } from '@maeek/neutrino-design';
 import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
-import { DeleteRounded, PhotoRounded } from '@material-ui/icons';
+import { DeleteRounded, AddPhotoAlternateRounded } from '@material-ui/icons';
 import { MouseEvent } from 'react';
 import './preview.scss';
 
 export interface ImageChangePreviewProps {
   url?: string;
   onClear?: () => void;
+  forceAspectRatio?: '1-1';
 }
 
 export const ImageChangePreview = ({
   url,
-  onClear
+  onClear,
+  forceAspectRatio
 }: ImageChangePreviewProps) => {
   return (
     <Avatar
       src={url}
       size="extra-large"
       draggable={false}
-      className="image-change-preview"
+      className={`image-change-preview ${forceAspectRatio ? `image-change-preview--${forceAspectRatio}` : ''}`}
       loader={<Loader />}
       onContextMenu={(e: MouseEvent) => e.preventDefault()}
     >
@@ -26,13 +28,15 @@ export const ImageChangePreview = ({
         !url
           ? (
             <div className="image-change-preview--empty">
-              <PhotoRounded />
+              <AddPhotoAlternateRounded />
             </div>
           )
           : (
-            <div className="image-change-preview--clear" onClick={onClear} tabIndex={0}>
-              <DeleteRounded />
-            </div>
+            <>
+              <div className="image-change-preview-clear" onClick={onClear} tabIndex={0}>
+                <DeleteRounded />
+              </div>
+            </>
           )
       }
     </Avatar>

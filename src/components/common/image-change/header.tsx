@@ -13,12 +13,14 @@ export interface ImageChangeHeaderProps {
    */
   description?: string | ReactNode;
   onClose?: () => void;
+  compact?: boolean;
 }
 
 export const ImageChangeHeader = ({
   title = 'Change image',
   description = 'You can drop files into the preview or paste URL in the input.',
-  onClose
+  onClose,
+  compact
 }: ImageChangeHeaderProps) => {
 
   const onCloseHandler: MouseEventHandler = (e) => {
@@ -28,14 +30,18 @@ export const ImageChangeHeader = ({
   };
 
   return (
-    <header className="image-change-header">
-      <Heading className="image-change-header-heading">{title}</Heading>
-      <Paragraph>{description}</Paragraph>
-      <CloseRounded
-        onClick={onCloseHandler}
-        tabIndex={0}
-        className="image-change-close"
-      />
-    </header>
+    <>
+      <div className="image-change-header-plank">
+        <CloseRounded
+          onClick={onCloseHandler}
+          tabIndex={0}
+          className="image-change-close"
+        />
+      </div>
+      <header className={`image-change-header ${compact ? 'image-change-header--compact' : ''}`}>
+        <Heading className="image-change-header-heading">{title}</Heading>
+        <Paragraph className="image-change-header-desc">{description}</Paragraph>
+      </header>
+    </>
   );
 };
