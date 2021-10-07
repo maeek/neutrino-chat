@@ -4,7 +4,7 @@ import { ClearMe, UserActionsEnum } from '@/store/me/user/types';
 import { usersReducerMock } from './mock';
 import { UsersAction, UsersActionsEnum, UsersState } from './types';
 import getPersistConf from '../persist-config';
-import { AddMessages, MessagesActionsEnum, RemoveMessages } from '../messages/types';
+import { AddMessages, MessagesActionsEnum } from '../messages/types';
 
 export const initialState: UsersState = __DEMO__ ? usersReducerMock : {
   entries: {}
