@@ -9,7 +9,7 @@
       cursor: pointer;
 
       svg {
-        font-size: var(--fs-600);
+        font-size: var(--fs-800);
 
         @include mq('small') {
           font-size: var(--fs-800);

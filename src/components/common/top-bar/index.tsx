@@ -17,8 +17,8 @@ export const TopBar = () => {
           <TopBarHeading />
         </div>
         <div className="top-bar-right">
-          <NotificationsDrawer />
-          {!isMobile && <ContextMenuWrapper />}
+          {!isMobile && <NotificationsDrawer />}
+          <ContextMenuWrapper />
         </div>
       </div>
     </nav>

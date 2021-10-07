@@ -1,6 +1,7 @@
 import { useState, useCallback, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import { useMediaQuery } from 'react-responsive';
 import ContextMenu, { ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
 import {
   AccountCircleRounded,
@@ -15,16 +16,24 @@ import ContextMenuPrefix from './context-menu-prefix';
 import './context-menu-wrapper.scss';
 
 export const ContextMenuWrapper = () => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
   const [ showContext, setShowContext ] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const toggleMenu = useCallback(() => setShowContext(!showContext), [ setShowContext, showContext ]);
-  const closeContextMenu = useCallback(() => setShowContext(false), [ setShowContext ]);
-
-  const navigate = (link: string) => () => {
+  const navigate = useCallback((link: string) => () => {
     Navigator.forward(history, link);
-  };
+  }, [ history ]);
+
+  const toggleMenu = useCallback(() => {
+    if (isMobile) {
+      Navigator.forward(history, '/me');
+    } else {
+      setShowContext(!showContext);
+    }
+  }, [ isMobile, history, showContext ]);
+
+  const closeContextMenu = useCallback(() => setShowContext(false), [ setShowContext ]);
 
   const items: ContextMenuItems[] = [
     {
@@ -67,7 +76,7 @@ export const ContextMenuWrapper = () => {
   return (
     <div className="top-bar-badge-wrapper">
       <AvatarWrapper size="medium" onClick={toggleMenu} />
-      {contextMenu}
+      {!isMobile && contextMenu}
     </div>
   );
 };

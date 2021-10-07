@@ -1,3 +1,5 @@
+@use '~@/styles/base/breakpoints' as *;
+
 .top-bar {
   &-badge-wrapper {
     position: relative;
