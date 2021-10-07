@@ -13,9 +13,10 @@ const Profile = lazy(() => import(
 export const ProfilePage = () => {
   return (
     <PageTemplate
+      startFromTop
       errorPage={null}
       fallbackComponent={<ProfileLoader />}
-      title="Neutrino Chat"
+      title="Neutrino Chat - Profile"
       canOperateOffline
     >
       <Profile />

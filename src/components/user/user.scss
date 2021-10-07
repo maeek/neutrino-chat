@@ -1,3 +1,5 @@
+@use '~@/styles/base/breakpoints' as *;
+
 .view-root--user {
   width: 100%;
   display: flex;
@@ -5,5 +7,21 @@
   align-items: center;
   flex-direction: column;
   height: auto;
-  transform: translate3d(0);
+  transform: translate(0, 0, 0);
+
+  .user-profile-avatar {
+    margin-top: 1rem;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-thumb {
+      width: 3rem;
+      height: 0.4rem;
+      border-radius: 3rem;
+      background-color: var(--clr-primary-300);
+    }
+  }
 }

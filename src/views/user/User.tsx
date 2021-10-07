@@ -18,9 +18,10 @@ const User = lazy(() => import(
 export const UserPage = (props: RouteChildrenProps<UserPageParams>) => {
   return (
     <PageTemplate
+      startFromTop
       errorPage={null}
       fallbackComponent={<UserLoader />}
-      title={`Profile ${props.match?.params.username} - Neutrino Chat`}
+      title={` Neutrino Chat - ${props.match?.params.username}`}
       canOperateOffline
     >
       <User />
