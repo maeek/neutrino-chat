@@ -25,10 +25,12 @@ export interface UsersSettings {
 export interface User {
   id: string;
   name: string;
+  bio?: string;
   fetchingStatus: UserFetchingStatus;
   nickname?: string;
   status?: UserStatusEnum;
   avatar?: string;
+  banner?: string;
   blocked?: boolean;
   settings?: UsersSettings;
   messages?: string[];

@@ -12,17 +12,23 @@ export interface AvatarWrapperProps {
   src?: string;
   size?: AvatarSizes;
   onClick?: MouseEventHandler;
+  redirect?: boolean;
 }
 
 export const AvatarWrapper = (props: AvatarWrapperProps) => {
-  const { src, size = 'medium', onClick } = props;
+  const { src, size = 'medium', onClick, redirect, ...rest } = props;
   const username = useSelector(getMeUsername);
   const meColor = useSelector(getMeColor);
   const avatar = useSelector(getMeAvatar);
   const history = useHistory();
   const hasAvatar = src || avatar;
 
-  const goToProfile = () => Navigator.forward(history, '/me');
+  const goToProfile: MouseEventHandler = e => {
+    onClick?.(e);
+
+    if (redirect) Navigator.forward(history, '/me');
+  };
+
   const onEnter = useCallback((fn: Function) => (e: KeyboardEvent<HTMLSpanElement>) => {
     if (e.key === 'Enter') {
       if(onClick) onClick(e as unknown as MouseEvent);
@@ -41,6 +47,7 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
 
   return (
     <AvatarCached
+      {...rest}
       className={classnames('top-bar-avatar', !hasAvatar && 'top-bar-avatar--empty')}
       selectable
       tabIndex={0}
@@ -49,7 +56,6 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
       size={size}
       onClick={goToProfile}
       onKeyUp={onEnter(goToProfile)}
-      {...props}
     >
       {!hasAvatar ? noAvatar : null}
     </AvatarCached>

@@ -65,10 +65,14 @@ export const ContextMenuWrapper = () => {
   ];
 
   const contextMenu = (
-    <ContextMenu items={items} className={showContext ? '' : 'context-menu--hidden'} closeContextMenu={closeContextMenu}>
+    <ContextMenu
+      items={items}
+      className={showContext ? '' : 'context-menu--hidden'}
+      closeContextMenu={closeContextMenu}
+    >
       <div className="top-bar-badge-wrapper-context-menu-prefix">
-        <AvatarWrapper size="large" />
-        <ContextMenuPrefix />
+        <AvatarWrapper size="large" redirect onClick={closeContextMenu} />
+        <ContextMenuPrefix onClick={closeContextMenu} />
       </div>
     </ContextMenu>
   );

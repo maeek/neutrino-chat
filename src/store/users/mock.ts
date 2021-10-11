@@ -30,6 +30,7 @@ export const usersReducerMock: UsersState = {
       status: UserStatusEnum.ACTIVE,
       name: 'Rossalita Antonios Gonzalez Martinez Gaworia',
       avatar: 'https://static.suchanecki.me/pepe1.jpg',
+      banner: 'https://static.suchanecki.me/jupiter.jpg',
       blocked: false
     },
     andy: {
