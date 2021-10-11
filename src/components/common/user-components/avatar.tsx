@@ -6,6 +6,7 @@ import EditRounded from '@material-ui/icons/EditRounded';
 import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import { Modal } from '@maeek/neutrino-design';
 import './avatar.scss';
+import { ImagePreview } from '../image-preview/image-preview';
 
 export interface UserAvatarProps {
   url?: string;
@@ -14,9 +15,10 @@ export interface UserAvatarProps {
   editable?: boolean;
   onEdit?: MouseEventHandler;
   expandOnClick?: boolean;
+  className?: string;
 }
 
-export const UserAvatar = ({ url, username, color, editable, onEdit, expandOnClick }: UserAvatarProps) => {
+export const UserAvatar = ({ url, username, color, editable, onEdit, expandOnClick, className }: UserAvatarProps) => {
   const [ isExpanded, setIsExpanded ] = useState(false);
 
   const onEditHandler: MouseEventHandler = e => {
@@ -26,7 +28,6 @@ export const UserAvatar = ({ url, username, color, editable, onEdit, expandOnCli
 
   const onClickHandler: MouseEventHandler = () => {
     if (expandOnClick && url) {
-      console.log('SHOULD EXPAND');
       setIsExpanded(true);
     }
   };
@@ -43,7 +44,7 @@ export const UserAvatar = ({ url, username, color, editable, onEdit, expandOnCli
   return (
     <>
       <AvatarCached
-        className={classnames('user-profile-avatar', !url && 'user-profile-avatar--empty')}
+        className={classnames('user-profile-avatar', !url && 'user-profile-avatar--empty', className)}
         size="extra-large"
         src={url}
         name={username}
@@ -62,26 +63,7 @@ export const UserAvatar = ({ url, username, color, editable, onEdit, expandOnCli
         }
       </AvatarCached>
       
-      <Modal
-        mountPointId="modal-root"
-        className="modal-fullpage-image-preview"
-      >
-        <div
-          className={classnames(
-            'modal-fullpage-image-preview-mask',
-            isExpanded && 'modal-fullpage-image-preview-mask--visible'
-          )}
-          onClick={() => setIsExpanded(false)}
-        >
-          <AvatarCached
-            className="user-profile-avatar"
-            size="extra-large"
-            type="rounded"
-            src={url}
-            name={username}
-          />
-        </div>
-      </Modal>
+      {url && <ImagePreview url={url} isOpened={isExpanded} onClose={() => setIsExpanded(false)} />}
     </>
   );
 };

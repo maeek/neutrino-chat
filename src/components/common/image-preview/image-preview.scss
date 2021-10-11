@@ -1,0 +1,43 @@
+.modal-fullpage-image-preview {
+  &-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s, transform 0.15s;
+    transform: scale(1.05);
+
+    &--visible {
+      opacity: 1;
+      pointer-events: auto;
+      transition: opacity 0.2s, transform 0.2s;
+      transform: scale(1);
+
+      .background-image-container {
+        z-index: auto;
+        pointer-events: auto;
+      }
+    }
+
+    .background-image-container {
+      max-width: 90vw;
+      height: 90vh;
+      width: 100%;
+      margin: auto;
+      top: unset;
+      left: unset;
+
+      img {
+        object-fit: scale-down;
+      }
+    }
+  }
+}
