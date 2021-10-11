@@ -1,4 +1,4 @@
-import { CSSProperties, useState } from 'react';
+import { CSSProperties, MouseEventHandler, useState } from 'react';
 import ImageContainerCached from '@maeek/neutrino-design/components/atoms/image/Image';
 import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import './background-image.scss';
@@ -9,6 +9,8 @@ export interface BackgroundImageProps {
   blur?: string;
   position?: string;
   style?: CSSProperties;
+  onClick?: MouseEventHandler;
+  objectFit?: string;
 }
 
 export const BackgroundImage = (props: BackgroundImageProps) => {
@@ -17,7 +19,9 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
     opacity = 0.1,
     blur = '4px',
     position = 'absolute',
-    style
+    style,
+    objectFit = 'cover',
+    ...rest
   } = props;
   const [ isLoaded, setIsLoaded ] = useState(false);
 
@@ -29,13 +33,13 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
   } as CSSProperties;
 
   return (
-    <div className="background-image-container" style={styles}>
+    <div className="background-image-container" style={styles} {...rest}>
       <ImageContainerCached
         src={url}
         loader={<Loader style={{ paddingTop: '5rem' }} />}
         onImageLoaded={() => setIsLoaded(true)}
         draggable={false}
-        style={{ objectFit: 'cover' }}
+        style={{ objectFit: objectFit } as CSSProperties}
       />
     </div>
   );
