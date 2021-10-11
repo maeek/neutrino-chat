@@ -23,11 +23,13 @@ export const MobileBottomNav = withRouter(({ location, history }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [ position, setPosition ] = useState<number | null>(null);
   const refs = useRef<MutableRefObject<HTMLDivElement>[]>([]);
-
+  const { pathname } = location;
+  
   const navConfig = useMemo(() => [
     { link: '/', name: 'Home', icon: <HomeRounded /> },
     { link: '/chats', name: 'Chats', icon: <ChatBubbleRounded /> }
   ], []);
+  const isAnyActive = navConfig.findIndex(c => c.link === pathname) > -1;
 
   const onClick = (link?: string): MouseEventHandler => (e) => {
     e.preventDefault();
@@ -79,7 +81,7 @@ export const MobileBottomNav = withRouter(({ location, history }) => {
     <nav className="bottom-nav" onContextMenu={(e) => e.preventDefault()}>
       {buttons}
       {
-        position !== null
+        isAnyActive && position !== null
           ? (
             <div
               className="bottom-nav-slider"
