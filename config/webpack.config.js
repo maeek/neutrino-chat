@@ -363,15 +363,6 @@ module.exports = function (webpackEnv) {
         { parser: { requireEnsure: false } },
         // Experimenting with off main thread modules
         {
-          test: /\.worker\.(js|ts)$/i,
-          use: [ {
-            loader: 'comlink-loader',
-            options: {
-              singleton: true
-            }
-          } ]
-        },
-        {
           // "oneOf" will traverse all following loaders until one will
           // match the requirements. When no loader matches it will fall
           // back to the "file" loader at the end of the loader list.
@@ -397,6 +388,37 @@ module.exports = function (webpackEnv) {
                 limit: imageInlineSizeLimit,
                 name: 'static/media/[name].[hash:8].[ext]'
               }
+            },
+            {
+              test: /\.shared-worker\.ts$/,
+              use: [
+                {
+                  loader: 'worker-loader',
+                  options: {
+                    worker: 'SharedWorker',
+                    filename: '[name].js'
+                  }
+                },
+                {
+                  loader: require.resolve('babel-loader'),
+                  options: {
+                    customize: require.resolve(
+                      'babel-preset-react-app/webpack-overrides'
+                    ),
+                    presets: [
+                      [
+                        require.resolve('babel-preset-react-app'),
+                        {
+                          runtime: hasJsxRuntime ? 'automatic' : 'classic'
+                        }
+                      ]
+                    ],
+                    cacheDirectory: true,
+                    cacheCompression: false,
+                    compact: isEnvProduction
+                  }
+                }
+              ]
             },
             // Process application JS with Babel.
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
