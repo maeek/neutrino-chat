@@ -4,9 +4,11 @@ import {
   SendRounded,
   HowToRegRounded,
   CenterFocusStrongRounded,
-  PublicRounded
+  PublicRounded,
+  BlockRounded
 } from '@material-ui/icons';
 import { FilterCategory } from '@/store/app/filters/types';
+import { ReactNode } from 'react';
 
 export const sideNavConfig = {
   mainSection: [
@@ -23,33 +25,44 @@ export const sideNavConfig = {
       node: null,
       icon: <SendRounded />,
       action: () => null
-    },
-    {
-      name: 'Channels',
-      category: FilterCategory.CHANNEL,
-      node: null,
-      icon: <ForumRounded />,
-      action: () => null
     }
+    // {
+    //   name: 'Channels',
+    //   category: FilterCategory.CHANNEL,
+    //   node: null,
+    //   icon: <ForumRounded />,
+    //   action: () => null
+    // }
   ],
   filtersSection: [
     {
-      name: 'My Channels',
+      name: 'Blocked',
       node: null,
-      icon: <HowToRegRounded />,
-      action: () => null
-    },
-    {
-      name: 'Not Empty',
-      node: null,
-      icon: <CenterFocusStrongRounded />,
-      action: () => null
-    },
-    {
-      name: 'Public',
-      node: null,
-      icon: <PublicRounded />,
+      icon: <BlockRounded />,
       action: () => null
     }
-  ]
+    // {
+    //   name: 'My Channels',
+    //   node: null,
+    //   icon: <HowToRegRounded />,
+    //   action: () => null
+    // },
+    // {
+    //   name: 'Not Empty',
+    //   node: null,
+    //   icon: <CenterFocusStrongRounded />,
+    //   action: () => null
+    // },
+    // {
+    //   name: 'Public',
+    //   node: null,
+    //   icon: <PublicRounded />,
+    //   action: () => null
+    // }
+  ] as {
+    name: string;
+    node: ReactNode;
+    icon: ReactNode;
+    action: Function;
+  }[]
 };

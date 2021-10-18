@@ -19,6 +19,7 @@ import { TextType } from '@maeek/neutrino-design/components/atoms/typography/tex
 import { StatusDot, StatusDotState } from '@/components/common/status-dot';
 import { UserCardPicture } from './picture';
 import './card.scss';
+import { AddToGroup } from '@/components/common/add-to-group';
 
 export interface UserCardProps {
   id: string;
@@ -35,6 +36,7 @@ export interface RelativeCursorPos {
 export const UserCard = ({ id }: UserCardProps) => {
   const user = useSelector<RootState, User>(getUserById(id));
   const userIsInStarred = useSelector(getUserIsInStarred(id));
+  const [ showGroupSelection, setShowGroupSelection ] = useState(false);
 
   const ref = useRef<HTMLLIElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -155,7 +157,11 @@ export const UserCard = ({ id }: UserCardProps) => {
     {
       text: 'Add to Group',
       closeOnClick: true,
-      onClick: stopPropagation
+      onClick: (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        setShowGroupSelection(prev => !prev);
+      }
     },
     {
       text: user?.blocked ? 'Unblock' : 'Block',
@@ -264,6 +270,11 @@ export const UserCard = ({ id }: UserCardProps) => {
           { showContextMenu ? contextMenu : null }
         </figure>
       </a>
+      {
+        showGroupSelection 
+          ? <AddToGroup item={user.id} onDismiss={() => setShowGroupSelection(prev => !prev)} />
+          : null
+      }
     </li>
   );
 };

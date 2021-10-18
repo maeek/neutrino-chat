@@ -6,7 +6,7 @@ import settingsReducer from './settings';
 import buildReducer from './buildReducer';
 import historyReducer from './history';
 import appReducer from './app';
-import channelReducer from './channels';
+// import channelReducer from './channels';
 
 const reducers = combineReducers({
   auth: sessionReducer,
@@ -15,7 +15,7 @@ const reducers = combineReducers({
   history: historyReducer,
   build: buildReducer,
   app: appReducer,
-  channels: channelReducer,
+  // channels: channelReducer, // To be delivered later
   users: usersReducer
 });
 

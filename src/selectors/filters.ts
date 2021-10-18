@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { getStoreState } from '@/store/index';
 import { getUsers } from './users';
 import { GroupTypeEnum } from '@/store/me/groups/types';
-import { getChannels } from './channels';
+// import { getChannels } from './channels';
 import { Channel } from '@/store/channels/types';
 import { User } from '@/store/users/types';
 
@@ -113,13 +113,13 @@ export const getFilteredDMsByGroup = createSelector(
     .map((item) => dms[ item.id ])
 );
 
-export const getFilteredChannelsByGroup = createSelector(
-  getGroupByFiltersGroup,
-  getChannels,
-  (group, channels) => group.items
-    .filter((item) => item.type === GroupTypeEnum.CHANNEL)
-    .map((item) => channels[ item.id ])
-);
+// export const getFilteredChannelsByGroup = createSelector(
+//   getGroupByFiltersGroup,
+//   getChannels,
+//   (group, channels) => group.items
+//     .filter((item) => item.type === GroupTypeEnum.CHANNEL)
+//     .map((item) => channels[ item.id ])
+// );
 
 export const CHANNEL_SEARCH_EXCLUDE_KEYS: Array<keyof Channel> = [
   'id',
@@ -132,46 +132,46 @@ export const CHANNEL_SEARCH_EXCLUDE_KEYS: Array<keyof Channel> = [
   'participants'
 ];
 
-export const getFilteredChannelsByQueries = createSelector(
-  getChannels,
-  getFiltersQueries,
-  (channels, qs) => Object.values(channels).filter((ch) => {
-    const searchInKeys = Object.keys(ch).filter((k) => !CHANNEL_SEARCH_EXCLUDE_KEYS.includes(k as keyof Channel));
-    return qs.reduce((_prev: boolean, _, i, arr) => {
-      const keys = !arr[ i ].fieldName ? searchInKeys : [ arr[ i ].fieldName ];
-      const val = arr[ i ].value.trim().toLowerCase();
+// export const getFilteredChannelsByQueries = createSelector(
+//   getChannels,
+//   getFiltersQueries,
+//   (channels, qs) => Object.values(channels).filter((ch) => {
+//     const searchInKeys = Object.keys(ch).filter((k) => !CHANNEL_SEARCH_EXCLUDE_KEYS.includes(k as keyof Channel));
+//     return qs.reduce((_prev: boolean, _, i, arr) => {
+//       const keys = !arr[ i ].fieldName ? searchInKeys : [ arr[ i ].fieldName ];
+//       const val = arr[ i ].value.trim().toLowerCase();
 
-      return keys
-        .map(k => (
-          String(ch[ k as keyof Channel ])
-            .trim()
-            .toLocaleLowerCase()
-            .includes(val)
-        ))
-        .some(v => v);
-    }, true);
-  })
-);
+//       return keys
+//         .map(k => (
+//           String(ch[ k as keyof Channel ])
+//             .trim()
+//             .toLocaleLowerCase()
+//             .includes(val)
+//         ))
+//         .some(v => v);
+//     }, true);
+//   })
+// );
 
-export const getFilteredChannels = createSelector(
-  getFilteredChannelsByGroup,
-  getFilteredChannelsByQueries,
-  (channelsByGroup, channelsByQueries) => {
-    const uniq = [ ...new Set([ ...channelsByGroup, ...channelsByQueries ]) ];
-    const idsInGroups = channelsByGroup.map((ch) => ch.id);
-    const idsInQueries = channelsByQueries.map((ch) => ch.id);
+// export const getFilteredChannels = createSelector(
+//   getFilteredChannelsByGroup,
+//   getFilteredChannelsByQueries,
+//   (channelsByGroup, channelsByQueries) => {
+//     const uniq = [ ...new Set([ ...channelsByGroup, ...channelsByQueries ]) ];
+//     const idsInGroups = channelsByGroup.map((ch) => ch.id);
+//     const idsInQueries = channelsByQueries.map((ch) => ch.id);
 
-    return uniq.filter(
-      (ch) => idsInGroups.includes(ch.id) && idsInQueries.includes(ch.id)
-    );
-  }
-);
+//     return uniq.filter(
+//       (ch) => idsInGroups.includes(ch.id) && idsInQueries.includes(ch.id)
+//     );
+//   }
+// );
 
 export const getFiltered = createSelector(
   getFilteredUsersByGroup,
   getFilteredDMsByGroup,
-  getFilteredChannelsByGroup,
-  (users, dm, channels) => ({
-    users, dm, channels
+  // getFilteredChannelsByGroup,
+  (users, dm) => ({
+    users, dm
   })
 );
