@@ -1,0 +1,168 @@
+@use '~@/styles/base/breakpoints' as *;
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95vw;
+  max-width: 1400px;
+
+  &-container {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  * {
+    flex: 0 0 auto;
+  }
+
+  &-chips {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 1rem auto;
+
+    @include mq('small') {
+      max-width: 25rem;
+      width: calc(100% - 2rem);
+    }
+  }
+
+  &-block,
+  &-addto,
+  &-mute,
+  &-star {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--clr-basic-100);
+    font-size: var(--fs-200);
+
+    &:hover,
+    &:focus {
+      color: var(--clr-basic-200);
+    }
+  }
+
+  &-star svg {
+    color: var(--clr-star-100);
+  }
+
+  &-blocked {
+    margin: 0 1rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .user-profile-avatar {
+    transition: filter 0.1s;
+  }
+
+  &--blocked {
+    .user-profile-avatar {
+      filter: grayscale(100);
+    }
+  }
+
+  .user-name {
+    padding: 0.8rem 0;
+    margin: 0;
+
+    &-first {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: block;
+    }
+  }
+
+  .me-profile-banner {
+    width: 100%;
+
+    @include mq('small') {
+      max-width: calc(100% - 1rem);
+    }
+  }
+
+  &-back {
+    color: var(--clr-basic-200);
+    margin-right: 0.6rem;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    > svg {
+      font-size: var(--fs-500);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 2.8rem;
+      height: 100%;
+      left: -1rem;
+      top: 0;
+    }
+  }
+
+  &--minified {
+    z-index: 999;
+    transform: translateY(-3rem);
+    width: 100%;
+    background-color: var(--clr-primary-700);
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    transition: transform 0.2s;
+    position: sticky;
+    top: 2.8rem;
+    max-width: 100%;
+    padding: 0.5rem 1rem;
+
+    .user-info-container {
+      width: calc(100% - 3rem);
+      flex-direction: row;
+    }
+
+    .user-profile-avatar .user-profile-avatar-no-avatar > svg {
+      transition: font-size 0.2s;
+      font-size: var(--fs-1100);
+    }
+
+    .user-name {
+      align-items: flex-start;
+      font-size: var(--fs-300);
+      margin: 0;
+      margin-top: 0.2rem;
+      padding: 0 0.8rem;
+      flex: 0 1 auto;
+
+      &-first {
+        margin: 0;
+        text-align: left;
+        word-break: keep-all;
+        white-space: unset;
+      }
+
+      &-at {
+        display: none !important;
+      }
+
+      > .ne-typo-text {
+        text-align: left;
+        padding-top: 0.2rem;
+        display: flex;
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+@use '~@/styles/base/breakpoints' as *;
+
+.user-info-thumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2rem 1rem;
+  color: var(--clr-basic-200);
+  font-weight: 700;
+  border-radius: 3rem;
+  font-size: var(--fs-200);
+  border: 0.15rem solid var(--clr-primary-300);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--clr-actions-200);
+  }
+
+  &-action {
+    margin: 1rem 0;
+
+    @include mq('small') {
+      max-width: 25rem;
+      width: calc(100% - 2rem);
+    }
+
+    svg {
+      font-size: var(--fs-400);
+      margin-left: 0.3rem;
+    }
+  }
+
+  &-minified {
+    color: var(--clr-basic-300);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    > svg {
+      font-size: var(--fs-1100);
+    }
+
+    &:hover,
+    &:focus {
+      color: var(--clr-actions-200);
+    }
+  }
+}
