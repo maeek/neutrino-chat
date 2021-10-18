@@ -4,9 +4,12 @@ import { AvatarCached } from '@maeek/neutrino-design/components/atoms/avatar';
 import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import EditRounded from '@material-ui/icons/EditRounded';
 import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
-import { Modal } from '@maeek/neutrino-design';
-import './avatar.scss';
 import { ImagePreview } from '../image-preview/image-preview';
+import { AvatarSizes } from '@maeek/neutrino-design/components/atoms/avatar/Avatar';
+import { UserStatusEnum } from '@/store/users/types';
+import { TextType } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
+import './avatar.scss';
+import { StatusDot, StatusDotState } from '../status-dot';
 
 export interface UserAvatarProps {
   url?: string;
@@ -16,10 +19,38 @@ export interface UserAvatarProps {
   onEdit?: MouseEventHandler;
   expandOnClick?: boolean;
   className?: string;
+  size?: AvatarSizes;
+  status?: UserStatusEnum;
 }
 
-export const UserAvatar = ({ url, username, color, editable, onEdit, expandOnClick, className }: UserAvatarProps) => {
+export const UserAvatar = ({
+  url,
+  username,
+  color,
+  editable,
+  onEdit,
+  expandOnClick,
+  className,
+  status,
+  size = 'extra-large'
+}: UserAvatarProps) => {
   const [ isExpanded, setIsExpanded ] = useState(false);
+
+  const getStatus = () => {
+    switch (status) {
+    case UserStatusEnum.ACTIVE:
+      return 'Online';
+    case UserStatusEnum.AWAY:
+      return 'Away';
+    case UserStatusEnum.OFFLINE:
+      return 'Offline';
+    default:
+      return 'Unknown';
+    }
+  };
+
+  const mapStatusToDotStatus = (status: 'Online' | 'Offline' | 'Away' | 'Unknown') =>
+    status.toLowerCase() as StatusDotState;
 
   const onEditHandler: MouseEventHandler = e => {
     e.stopPropagation();
@@ -41,27 +72,34 @@ export const UserAvatar = ({ url, username, color, editable, onEdit, expandOnCli
     </div>
   );
 
+  const statusNode = status ? (
+    <StatusDot state={mapStatusToDotStatus(getStatus())} className="user-profile-avatar-status" />
+  ) : null;
+
   return (
     <>
-      <AvatarCached
-        className={classnames('user-profile-avatar', !url && 'user-profile-avatar--empty', className)}
-        size="extra-large"
-        src={url}
-        name={username}
-        loader={<Loader />}
-        onClick={onClickHandler}
-      >
-        {!url && noAvatar}
-        {
-          editable
-            ? (
-              <div className="user-profile-avatar-edit" tabIndex={0} onClick={onEditHandler}>
-                <EditRounded />
-              </div>
-            )
-            : null
-        }
-      </AvatarCached>
+      <div className="user-profile-avatar-container">
+        <AvatarCached
+          className={classnames('user-profile-avatar', !url && 'user-profile-avatar--empty', className)}
+          size={size}
+          src={url}
+          name={username}
+          loader={<Loader />}
+          onClick={onClickHandler}
+        >
+          {!url && noAvatar}
+          {
+            editable
+              ? (
+                <div className="user-profile-avatar-edit" tabIndex={0} onClick={onEditHandler}>
+                  <EditRounded />
+                </div>
+              )
+              : null
+          }
+        </AvatarCached>
+        {statusNode}
+      </div>
       
       {url && <ImagePreview url={url} isOpened={isExpanded} onClose={() => setIsExpanded(false)} />}
     </>

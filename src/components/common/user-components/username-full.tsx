@@ -4,15 +4,18 @@ import { Heading } from '@maeek/neutrino-design/components/atoms/typography/head
 import { TextType } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
 import { StatusDot, StatusDotState } from '../status-dot';
 import './username-full.scss';
+import { ReactNode } from 'react';
 
 export interface UsernameFullProps {
   id: string;
   name?: string;
   nickname?: string;
   status?: UserStatusEnum;
+  children?: ReactNode;
+  hideStatus?: boolean;
 }
 
-export const UsernameFull = ({ id, name, nickname, status }: UsernameFullProps) => {
+export const UsernameFull = ({ id, name, nickname, status, children, hideStatus }: UsernameFullProps) => {
   const getStatus = () => {
     switch (status) {
     case UserStatusEnum.ACTIVE:
@@ -54,7 +57,7 @@ export const UsernameFull = ({ id, name, nickname, status }: UsernameFullProps) 
 
   const originalName = nickname || (name && id !== name)
     ? (
-      <Text type="secondary" monospace>
+      <Text type="secondary" monospace className="user-name-at">
         @{
           id.length > 175
             ? `${id.substr(0, 175)}...`
@@ -77,10 +80,16 @@ export const UsernameFull = ({ id, name, nickname, status }: UsernameFullProps) 
     <Heading className="user-name" level={2}>
       {firstName}
       {originalName}
-      <Text type={mapStatusToType(getStatus())} className="user-status">
-        <StatusDot state={mapStatusToDotStatus(getStatus())} className="user-status-dot" />
-        {getStatus()}
-      </Text>
+      {
+        hideStatus
+          ? (
+            <Text type={mapStatusToType(getStatus())} className="user-status">
+              <StatusDot state={mapStatusToDotStatus(getStatus())} className="user-status-dot" />
+              {getStatus()}
+              {children}
+            </Text>
+          ) : null
+      }
     </Heading>
   );
 };

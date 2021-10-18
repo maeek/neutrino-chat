@@ -1,11 +1,11 @@
 .user-profile {
   &-avatar {
     box-shadow: 0 0 5px 0 transparentize(#000, 0.95);
-    margin-top: -4rem;
     border-radius: 50%;
     user-select: none;
     position: relative;
     overflow: hidden;
+    margin-top: -4rem;
 
     .ne-avatar-content--extra-large {
       width: 8rem;
@@ -45,6 +45,17 @@
       > svg {
         font-size: var(--fs-1300);
       }
+    }
+
+    &-container {
+      position: relative;
+    }
+
+    &-status {
+      position: absolute;
+      bottom: 0.1rem;
+      right: 0.1rem;
+      border-radius: 50%;
     }
 
     &:hover &-edit {
