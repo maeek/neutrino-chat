@@ -18,11 +18,14 @@ import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import Navigator from '@/utils/navigation';
 import { ChatBubbleRounded, HomeRounded } from '@material-ui/icons';
 import './mobile-bottom-nav.scss';
+import { useSelector } from 'react-redux';
+import { isAppUIMobileBottonNavHidden } from '@/selectors/app-ui';
 
 export const MobileBottomNav = withRouter(({ location, history }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [ position, setPosition ] = useState<number | null>(null);
   const refs = useRef<MutableRefObject<HTMLDivElement>[]>([]);
+  const isHidden = useSelector(isAppUIMobileBottonNavHidden);
   const { pathname } = location;
   
   const navConfig = useMemo(() => [
@@ -78,7 +81,10 @@ export const MobileBottomNav = withRouter(({ location, history }) => {
   }, [ isMobile, positionThumb ]);
 
   return isMobile ? (
-    <nav className="bottom-nav" onContextMenu={(e) => e.preventDefault()}>
+    <nav
+      className={classnames('bottom-nav', !isHidden && 'bottom-nav--visible')}
+      onContextMenu={(e) => e.preventDefault()}
+    >
       {buttons}
       {
         isAnyActive && position !== null
