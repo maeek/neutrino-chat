@@ -1,0 +1,64 @@
+import { getMeGroupsList } from '@/selectors/groups';
+import { Button, ContextMenu } from '@maeek/neutrino-design';
+import { ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
+import { AddRounded, CheckRounded } from '@material-ui/icons';
+import CloseRounded from '@material-ui/icons/CloseRounded';
+import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
+import { useDispatch, useSelector } from 'react-redux';
+import './add-to-group.scss';
+import { Groups, GroupTypeEnum } from '@/store/me/groups/types';
+import { addMembersToGroup, removeMembersFromGroup } from '@/store/me/groups/actions';
+
+export interface AddToGroupProps {
+  item: string;
+  itemType?: GroupTypeEnum;
+  onDismiss?: () => void;
+  offsetTop?: number;
+}
+
+export const AddToGroup = ({ item, itemType = GroupTypeEnum.USER, onDismiss }: AddToGroupProps) => {
+  const dispatch = useDispatch();
+  const groups = useSelector(getMeGroupsList);
+
+  const addToGroup = (group: Groups) => () => {
+    const isInGroup = group.items.find(gi => gi.id === item);
+
+    if (isInGroup) {
+      dispatch(removeMembersFromGroup(group.name, [ item ]));
+    } else {
+      dispatch(addMembersToGroup(group.name, [ {
+        id: item,
+        type: itemType
+      } ]));
+    }
+  };
+
+  const items: ContextMenuItems[] = groups.map(g => ({
+    text: g.name,
+    iconPosition: 'right',
+    onClick: addToGroup(g),
+    icon: g.items.find(gi => gi.id === item)
+      ? (
+        <>
+          <CheckRounded className="add-to-group-check" />
+          <CloseRounded className="add-to-group-remove" />
+        </>
+      )
+      : <AddRounded className="add-to-group-add" />
+  }));
+
+  return (
+    <div className="add-to-group">
+      <ContextMenu items={items} suffixNode={(
+        <Button className="add-to-group-dismiss" onClick={onDismiss} type="button">Dismiss</Button>
+      )}>
+        <div className="add-to-group-prefix-content">
+          <Text>
+            Add <Text strong className="prefix-username">{item}</Text> to
+            a group.
+          </Text>
+        </div>
+      </ContextMenu>
+    </div>
+  );
+};
