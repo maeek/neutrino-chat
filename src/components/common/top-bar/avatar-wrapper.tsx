@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import classnames from 'classnames';
 import AvatarCached, { AvatarSizes } from '@maeek/neutrino-design/components/atoms/avatar/Avatar';
+import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import { getMeAvatar, getMeColor, getMeUsername } from '@/selectors/user';
 import Navigator from '@/utils/navigation';
@@ -56,6 +57,7 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
       size={size}
       onClick={goToProfile}
       onKeyUp={onEnter(goToProfile)}
+      loader={<Loader />}
     >
       {!hasAvatar ? noAvatar : null}
     </AvatarCached>

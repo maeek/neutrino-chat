@@ -1,3 +1,5 @@
+@use '~@/styles/base/breakpoints' as *;
+
 .side-nav {
   margin: 0 0 1rem 0;
   width: 100%;
@@ -20,6 +22,16 @@
       height: auto;
       &-wrapper {
         padding: 0.6rem 0 0.6rem 0.7rem;
+      }
+    }
+
+    &-heading {
+      margin: 0.5rem 0.5rem;
+      font-size: var(--fs-200);
+      color: var(--clr-basic-300);
+
+      @include mq('small') {
+        margin: 0.5rem 0;
       }
     }
   }
