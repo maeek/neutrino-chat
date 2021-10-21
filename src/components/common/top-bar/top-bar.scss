@@ -15,6 +15,23 @@
   pointer-events: none;
   opacity: 0;
 
+  .main-chats-navigation {
+    width: 100%;
+    margin-left: 2rem;
+    margin-top: 0.25rem;
+    display: flex;
+    gap: 2rem;
+
+    .ne-typo-text {
+      font-size: var(--fs-300);
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+
   &--visible {
     opacity: 1;
     pointer-events: auto;
