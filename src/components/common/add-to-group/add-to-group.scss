@@ -12,10 +12,9 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  overflow: auto;
   transform: translate(0, 0, 0);
   padding: 2rem 0;
-  padding-top: 15%;
+  padding-top: 10vh;
 
   > .ne-context-menu {
     max-width: 350px;
@@ -27,6 +26,8 @@
 
       .ne-context-menu-list {
         border-radius: 0;
+        max-height: 30rem;
+        overflow: auto;
       }
     }
 
@@ -76,8 +77,9 @@
   }
 
   &-dismiss {
-    position: sticky;
+    position: static;
     bottom: -2rem;
+    // border: 1px solid var(--clr-primary-450);
 
     .ne-button-item {
       border-top-left-radius: 0;
