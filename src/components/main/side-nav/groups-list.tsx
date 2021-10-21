@@ -20,7 +20,7 @@ export interface GroupsListProps {}
 
 // eslint-disable-next-line react/display-name
 export const GroupsList = memo(() => {
-  const SHOW_PER_PAGE = 10;
+  const SHOW_PER_PAGE = 5;
   const groups = useSelector<RootState, GroupsEntry>(getMeGroups);
   const groupsList = useSelector<RootState, Groups[]>(getMeGroupsList); // Skip "Starred"
 
@@ -75,6 +75,7 @@ export const GroupsList = memo(() => {
           <Text className="side-nav-groups--new" link="/me/groups/new">Create new Group</Text>
         </div>
       )}
+      <div className="spacer" />
     </>
   );
 
@@ -96,7 +97,7 @@ export const GroupsList = memo(() => {
       <NavItem
         icon={groupsExpanded ? <ArrowUpwardRounded /> : <FormatListBulletedRounded />}
         onClick={() => {
-          setShowPagesInNumber(1);
+          setShowPagesInNumber(0);
           setGroupsExpanded(prevState => !prevState);
         }}
       >

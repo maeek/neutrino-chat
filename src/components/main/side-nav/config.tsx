@@ -1,10 +1,6 @@
 import {
   DoneAllRounded,
-  ForumRounded,
   SendRounded,
-  HowToRegRounded,
-  CenterFocusStrongRounded,
-  PublicRounded,
   BlockRounded
 } from '@material-ui/icons';
 import { FilterCategory } from '@/store/app/filters/types';
@@ -35,12 +31,12 @@ export const sideNavConfig = {
     // }
   ],
   filtersSection: [
-    {
-      name: 'Blocked',
-      node: null,
-      icon: <BlockRounded />,
-      action: () => null
-    }
+    // {
+    //   name: 'Blocked',
+    //   node: null,
+    //   icon: <BlockRounded />,
+    //   action: () => null
+    // }
     // {
     //   name: 'My Channels',
     //   node: null,

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { GroupsList } from './groups-list';
+import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading/Heading';
 import NavItem from '@maeek/neutrino-design/components/molecules/navigation/Item';
 import { SideNavFiltersSection } from './filters-section';
-import { SideNavMainSection } from './main-section';
-import { ArrowUpwardRounded, MoreHorizRounded, SortRounded } from '@material-ui/icons';
+import { SortRounded } from '@material-ui/icons';
 import './side-nav.scss';
 
 export const SideNav = () => {
@@ -13,7 +13,7 @@ export const SideNav = () => {
     <>
       <div className="spacer" />
       <SideNavFiltersSection />
-      <GroupsList />
+      {/* <GroupsList /> */}
       <div className="spacer" />
       <NavItem
         icon={<SortRounded />}
@@ -28,11 +28,16 @@ export const SideNav = () => {
     <aside className="side-nav">
       <nav>
         <ul className="side-nav-items">
-          <SideNavMainSection />
+          {/* <SideNavMainSection /> */}
+          {/* <div className="spacer" /> */}
+          <li>
+            <Heading className="side-nav-items-heading" level={5}>Groups</Heading>
+          </li>
+          <GroupsList />
 
           {isExpanded ? expandedNode : null}
           
-          <NavItem
+          {/* <NavItem
             icon={isExpanded ? <ArrowUpwardRounded /> : <MoreHorizRounded />}
             onClick={() => setIsExpanded((prev) => !prev)}
           >
@@ -41,7 +46,7 @@ export const SideNav = () => {
                 ? 'Show Less'
                 : 'Show More'
             }
-          </NavItem>
+          </NavItem> */}
         </ul>
       </nav>
     </aside>
