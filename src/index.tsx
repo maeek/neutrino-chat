@@ -12,11 +12,9 @@ import './styles/main.scss';
 
 const run = async () => {
   ReactDOM.render(
-    <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </React.StrictMode>,
+    <Provider store={store}>
+      <App />
+    </Provider>,
     document.getElementById('app-root')
   );
 };

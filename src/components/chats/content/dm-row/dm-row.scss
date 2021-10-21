@@ -1,0 +1,75 @@
+@use '~@/styles/base/breakpoints' as *;
+
+.dm-list-row {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 0.4rem;
+  margin: 0.05rem 0;
+  border-radius: 0.5rem;
+  transition: background-color 0.1s;
+  cursor: pointer;
+  user-select: none;
+
+  &--scrolling {
+  }
+
+  &:hover {
+    background-color: var(--clr-primary-600);
+  }
+
+  @include mq('small') {
+    border-radius: 0;
+    padding: 0.3rem 1rem;
+
+    &:hover {
+      background-color: unset;
+    }
+
+    &:active {
+      background-color: var(--clr-primary-600);
+    }
+  }
+
+  .user-profile-avatar {
+    margin-top: 0;
+
+    .ne-avatar-content--large {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  .user-profile-avatar-no-avatar > svg {
+    font-size: var(--fs-1300);
+  }
+
+  &-message {
+    font-size: var(--fs-300);
+    padding-left: 0.8rem;
+    padding-top: 0.3rem;
+    color: var(--clr-basic-300);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-data {
+    flex: 0 0 auto;
+    max-width: calc(100% - 3rem);
+
+    .me-profile-username {
+      display: block;
+      font-size: var(--fs-300);
+      font-weight: 400;
+      margin: 0;
+      padding: 0 0 0 0.8rem;
+      text-align: left;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

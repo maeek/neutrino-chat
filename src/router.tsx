@@ -9,6 +9,7 @@ import LoginPage from '@/views/auth/Login';
 import JoinPage from '@/views/auth/Join';
 
 import MainPage from '@/views/main/Main';
+import ChatsPage from '@/views/chats/Chats';
 import ProfilePage from '@/views/me/Profile';
 import UserPage from '@/views/user/User';
 
@@ -23,7 +24,8 @@ const RouterWrapper = () => (
       <RestrictedRoute>
         <TopBar />
 
-        <Route exact path="/" component={MainPage} />
+        <Route exact path="/" component={ChatsPage} />
+        <Route exact path="/browse" component={MainPage} />
         <Route exact path="/me" component={ProfilePage} />
         <Route exact path="/chats" render={() => <main className="page-root" />} />
         <Route exact path="/u/:username" render={UserPage} />

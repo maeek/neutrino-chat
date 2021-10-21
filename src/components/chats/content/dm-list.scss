@@ -1,0 +1,22 @@
+@use '~@/styles/base/breakpoints' as *;
+
+.dm-list {
+  margin: 0.5rem 0.8rem;
+  margin-bottom: 3rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 0.4rem;
+}
+
+.dm-list-autosizer-boundry {
+  padding: 0 1rem;
+
+  @include mq('small') {
+    padding: 0;
+  }
+}
