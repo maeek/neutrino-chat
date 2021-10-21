@@ -12,14 +12,14 @@ import {
   useCallback
 } from 'react';
 import classnames from 'classnames';
+import { useSelector } from 'react-redux';
 import { useLocation, withRouter } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import Navigator from '@/utils/navigation';
-import { ChatBubbleRounded, HomeRounded } from '@material-ui/icons';
-import './mobile-bottom-nav.scss';
-import { useSelector } from 'react-redux';
+import { ChatBubbleRounded, ExploreRounded } from '@material-ui/icons';
 import { isAppUIMobileBottonNavHidden } from '@/selectors/app-ui';
+import './mobile-bottom-nav.scss';
 
 export const MobileBottomNav = withRouter(({ location, history }) => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -29,8 +29,8 @@ export const MobileBottomNav = withRouter(({ location, history }) => {
   const { pathname } = location;
   
   const navConfig = useMemo(() => [
-    { link: '/', name: 'Home', icon: <HomeRounded /> },
-    { link: '/chats', name: 'Chats', icon: <ChatBubbleRounded /> }
+    { link: '/', name: 'Chats', icon: <ChatBubbleRounded /> },
+    { link: '/browse', name: 'Browse', icon: <ExploreRounded /> }
   ], []);
   const isAnyActive = navConfig.findIndex(c => c.link === pathname) > -1;
 
