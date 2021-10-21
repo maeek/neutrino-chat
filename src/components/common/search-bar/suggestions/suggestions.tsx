@@ -37,7 +37,7 @@ export const SearchBarSuggestions = forwardRef<HTMLDivElement, SearchBarSuggesti
     //   type: SuggestionItemTypes.CHANNEL,
     //   owner: ch.owner
     // }))
-  ].sort().slice(0, 25);
+  ].sort().slice(0, 10);
 
   const isOpened = !!(
     isVisible

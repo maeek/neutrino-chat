@@ -14,6 +14,10 @@
       opacity: 0;
       transform: translateY(-0.5rem);
       transition: opacity 0.2s, transform 0.2s;
+
+      @include mq('small') {
+        width: initial;
+      }
     }
 
     @include mq('small') {
@@ -25,6 +29,7 @@
       justify-content: flex-start;
       padding-top: 0.6rem;
       padding-bottom: 0.6rem;
+      padding-left: 0.66rem;
     }
   }
 
