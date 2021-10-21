@@ -1,3 +1,5 @@
+import { random } from 'lodash';
+import { v4 } from 'uuid';
 import { UserFetchingStatus, UsersState, UserStatusEnum } from './types';
 
 export const usersReducerMock: UsersState = {
@@ -19,7 +21,7 @@ export const usersReducerMock: UsersState = {
       ],
       lastMessage: {
         id: 'a30d2e71-7115-4e4a-b82a-58e2332c78e0',
-        content: 'Yep see u 2mrw',
+        content: 'Yep see u 2mrw AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
         receivedDate: Date.now() - 3670
       },
       typing: false
@@ -56,7 +58,7 @@ export const usersReducerMock: UsersState = {
       name: 'matt',
       avatar: '',
       blocked: false,
-      nickname: 'gaaaaaaaaaaaryyyyyyyyyyyyyyyyyyyyyyy',
+      nickname: 'gaaaaaaaaaaaryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
       settings: {
         backgroundUri: 'https://static.suchanecki.me/neony.jpeg',
         backgroundOpacity: 0.3,
@@ -100,6 +102,27 @@ export const usersReducerMock: UsersState = {
         receivedDate: Date.now() - 123600
       },
       typing: false
-    }
+    },
+    ...(Object.fromEntries(new Array(50).fill(null).map((_, i) => {
+      const uid = v4();
+      return [ `${uid}-${i+1}`, {
+        id: `${uid}-${i+1}`,
+        fetchingStatus: UserFetchingStatus.SUCCESS,
+        status: UserStatusEnum.AWAY,
+        name: `${uid}-${i+1}`,
+        avatar: '',
+        blocked: false,
+        messages: [
+          '2e341b65-656a-4fb4-b616-9d2c0ba1499c',
+          '57499627-432a-4302-9163-1a3001c5798e'
+        ],
+        lastMessage: {
+          id: '57499627-432a-4302-9163-1a3001c5798e',
+          content: v4(),
+          receivedDate: Date.now() - random(3000, 20000)
+        },
+        typing: false
+      } ];
+    })))
   }
 };

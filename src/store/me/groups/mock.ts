@@ -27,7 +27,11 @@ export const groupsReducerMock: GroupsState = {
           type: GroupTypeEnum.CHANNEL
         }
       ]
-    }
+    },
+    ...(Object.fromEntries(new Array(50).fill(null).map((_e, i) => ([ `TestGroup-${i}`, {
+      name: `TestGroup-${i}`,
+      items: []
+    } ]))))
   }
 };
 

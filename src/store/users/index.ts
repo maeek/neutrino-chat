@@ -1,9 +1,7 @@
 import { Reducer } from 'redux';
-import { persistReducer } from 'redux-persist';
 import { ClearMe, UserActionsEnum } from '@/store/me/user/types';
 import { usersReducerMock } from './mock';
 import { UsersAction, UsersActionsEnum, UsersState } from './types';
-import getPersistConf from '../persist-config';
 import { AddMessages, MessagesActionsEnum } from '../messages/types';
 
 export const initialState: UsersState = __DEMO__ ? usersReducerMock : {
@@ -91,16 +89,10 @@ export const users: Reducer<UsersState, UsersAction | ClearMe | AddMessages> = (
         ...newUsers
       }
     };
-  
-    return {
-      entries: {
-        ...newUsers
-      }
-    };
 
   default:
     return state;
   }
 };
 
-export default persistReducer<ReturnType<typeof users>, UsersAction>(getPersistConf('ne-users'), users);
+export default users;

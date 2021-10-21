@@ -3,7 +3,8 @@ import { UIActions, UIActionsEnum, UIState } from './types';
 
 const initialState: UIState = {
   mobileBottonNavHidden: false,
-  topBarHidden: false
+  topBarHidden: false,
+  topBarQuickNavHidden: true
 };
 
 export const ui: Reducer<UIState, UIActions> = (state = initialState, action = {} as UIActions) => {
@@ -18,6 +19,12 @@ export const ui: Reducer<UIState, UIActions> = (state = initialState, action = {
     return {
       ...state,
       topBarHidden: action.data
+    };
+
+  case UIActionsEnum.SET_TOP_BAR_QUICK_NAV_VISIBILITY:
+    return {
+      ...state,
+      topBarQuickNavHidden: action.data
     };
 
   default:

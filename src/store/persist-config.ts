@@ -1,4 +1,5 @@
 import localforage from 'localforage';
+import { PersistConfig } from 'redux-persist/es/types';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 localforage.config({
@@ -8,11 +9,14 @@ localforage.config({
   storeName: 'persist_cache'
 });
 
-export const getPersistConf = (key: string) => ({
+export const getPersistConf = (key: string): PersistConfig<any> => ({
   key,
   storage: localforage,
   debug: __DEV__,
-  stateReconciler: autoMergeLevel2
+  stateReconciler: autoMergeLevel2,
+  blacklist: [
+    'lastMessage'
+  ]
 });
 
 export default getPersistConf;

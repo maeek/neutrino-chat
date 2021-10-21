@@ -49,7 +49,7 @@ export const messagesMock: MessagesState = {
       parentId: 'bob',
       timeReceived: Date.now() - 3670,
       timeSent: Date.now() - 3670,
-      body: 'Yep see u 2mrw',
+      body: 'Yep see u 2mrw AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
       mentions: [ ],
       attachments: [ ],
       read: true

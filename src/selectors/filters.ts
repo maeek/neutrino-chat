@@ -105,6 +105,13 @@ export const getFilteredUsersIds = createSelector(
   (users) => users.map(c => c.id)
 );
 
+export const getFilteredUsersIdsWithMessages = createSelector(
+  getFilteredUsers,
+  (users) => users.filter(c => (c.messages || []).length > 0 && c.lastMessage)
+    .sort((a, b) => (b.lastMessage?.receivedDate || 0) - (a.lastMessage?.receivedDate || 0))
+    .map(c => c.id)
+);
+
 export const getFilteredDMsByGroup = createSelector(
   getGroupByFiltersGroup,
   getUsers,
