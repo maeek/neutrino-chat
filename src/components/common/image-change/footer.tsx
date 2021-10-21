@@ -1,4 +1,5 @@
-import { ProceedButton, Text } from '@maeek/neutrino-design';
+import { ProceedButton } from '@maeek/neutrino-design/components/atoms/buttons/Proceed';
+import { Text } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
 import { MouseEventHandler } from 'react';
 import './footer.scss';
 

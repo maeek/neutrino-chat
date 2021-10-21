@@ -1,15 +1,14 @@
-import { CSSProperties, MouseEventHandler, useState } from 'react';
+import { CSSProperties, MouseEventHandler, ReactNode, useState } from 'react';
 import classnames from 'classnames';
 import { AvatarCached } from '@maeek/neutrino-design/components/atoms/avatar';
-import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import EditRounded from '@material-ui/icons/EditRounded';
 import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import { ImagePreview } from '../image-preview/image-preview';
 import { AvatarSizes } from '@maeek/neutrino-design/components/atoms/avatar/Avatar';
 import { UserStatusEnum } from '@/store/users/types';
-import { TextType } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
-import './avatar.scss';
 import { StatusDot, StatusDotState } from '../status-dot';
+import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
+import './avatar.scss';
 
 export interface UserAvatarProps {
   url?: string;
@@ -21,6 +20,7 @@ export interface UserAvatarProps {
   className?: string;
   size?: AvatarSizes;
   status?: UserStatusEnum;
+  loader?: ReactNode;
 }
 
 export const UserAvatar = ({
@@ -32,6 +32,7 @@ export const UserAvatar = ({
   expandOnClick,
   className,
   status,
+  loader = <Loader />,
   size = 'extra-large'
 }: UserAvatarProps) => {
   const [ isExpanded, setIsExpanded ] = useState(false);
@@ -84,7 +85,7 @@ export const UserAvatar = ({
           size={size}
           src={url}
           name={username}
-          loader={<Loader />}
+          loader={loader}
           onClick={onClickHandler}
         >
           {!url && noAvatar}

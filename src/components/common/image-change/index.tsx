@@ -1,9 +1,10 @@
-import { Avatar, Heading, Input } from '@maeek/neutrino-design';
 import { ReactNode, UIEventHandler, useRef, useState } from 'react';
 import { ImageChangePreview } from './preview';
 import { ImageChangeHeader } from './header';
 import { ImageChangeFooter } from './footer';
-import { InputRef } from '@maeek/neutrino-design/components/atoms/inputs/text/Input';
+import { Avatar } from '@maeek/neutrino-design/components/atoms/avatar/Avatar';
+import { Input, InputRef } from '@maeek/neutrino-design/components/atoms/inputs/text/Input';
+import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading/Heading';
 import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import './image-change.scss';
 

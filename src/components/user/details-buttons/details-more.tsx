@@ -1,4 +1,4 @@
-import { Text } from '@maeek/neutrino-design';
+import { Text } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
 import { MoreHorizRounded } from '@material-ui/icons';
 import { MouseEventHandler } from 'react';
 import './details.scss';

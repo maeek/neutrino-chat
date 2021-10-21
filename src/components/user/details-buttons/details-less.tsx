@@ -1,4 +1,4 @@
-import { ActionButton } from '@maeek/neutrino-design';
+import { ActionButton } from '@maeek/neutrino-design/components/atoms/buttons/Action';
 import { MouseEventHandler } from 'react';
 import './details.scss';
 

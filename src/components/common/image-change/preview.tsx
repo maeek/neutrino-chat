@@ -1,4 +1,4 @@
-import { Avatar } from '@maeek/neutrino-design';
+import { Avatar } from '@maeek/neutrino-design/components/atoms/avatar/Avatar';
 import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import { DeleteRounded, AddPhotoAlternateRounded } from '@material-ui/icons';
 import { MouseEvent } from 'react';

@@ -2,9 +2,8 @@ import { MouseEventHandler, useState } from 'react';
 import classnames from 'classnames';
 import { BackgroundImage } from '@/components/common/background-image/background-image';
 import { AddPhotoAlternateRounded } from '@material-ui/icons';
-import { Modal } from '@maeek/neutrino-design';
-import './banner.scss';
 import { ImagePreview } from '../image-preview/image-preview';
+import './banner.scss';
 
 export interface UserBannerProps {
   url?: string;
