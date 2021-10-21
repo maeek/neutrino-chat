@@ -4,7 +4,7 @@ import { UIActions, UIActionsEnum, UIState } from './types';
 const initialState: UIState = {
   mobileBottonNavHidden: false,
   topBarHidden: false,
-  topBarQuickNavHidden: true
+  topBarQuickNavHidden: false
 };
 
 export const ui: Reducer<UIState, UIActions> = (state = initialState, action = {} as UIActions) => {
