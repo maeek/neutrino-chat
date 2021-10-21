@@ -3,11 +3,10 @@ import { getHslColorFromCharCode } from '@/utils/getHslColorFromCharCode';
 import UserAvatar from '../../common/user-components/avatar';
 import UserBanner from '../../common/user-components/banner';
 import UsernameFull from '../../common/user-components/username-full';
-import DetailsButtonShowLess from '../details-buttons/details-less';
 import DetailsButtonShowMore from '../details-buttons/details-more';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { User } from '@/store/users/types';
-import { Text } from '@maeek/neutrino-design';
+import { Text } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
 import { useDispatch, useSelector } from 'react-redux';
 import { modifyUsers } from '@/store/users/actions';
 import { MouseEventHandler, useState } from 'react';
@@ -18,9 +17,12 @@ import { getUserIsInStarred } from '@/selectors/users';
 import { removeMembersFromGroup, addMembersToGroup } from '@/store/me/groups/actions';
 import { GroupTypeEnum } from '@/store/me/groups/types';
 import { checkIfUserIsMuted } from '@/selectors/muted';
-import './user-info.scss';
 import { muteUser, unmuteUser } from '@/store/settings/muted/actions';
 import { AddToGroup } from '@/components/common/add-to-group';
+import Navigator from '@/utils/navigation';
+import { useHistory } from 'react-router-dom';
+import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
+import './user-info.scss';
 
 export interface UserInfoProps {
   isMinified?: boolean;
@@ -30,6 +32,7 @@ export interface UserInfoProps {
 
 export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const userIsInStarred = useSelector(getUserIsInStarred(user.id));
   const userIsInMuted = useSelector(checkIfUserIsMuted(user.id));
   const [ showGroupSelection, setShowGroupSelection ] = useState(false);
@@ -59,6 +62,14 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
     }
   };
 
+  const unmuteNode = <><NotificationsOffIcon /> Click to unmute</>;
+  const muteNode = <><NotificationsRounded /> Snooze Notifications</>;
+  const mutedNode = userIsInMuted ? unmuteNode : muteNode;
+
+  const addToStarredNode = <><StarBorderRounded /> Add to Starred</>;
+  const removeFromStarredNode = <><StarRounded /> Remove from Starred</>;
+  const starNode = !userIsInStarred ? addToStarredNode : removeFromStarredNode;
+
   const blockNode = (
     !user.blocked ? (
       <>
@@ -66,13 +77,7 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
         <div className="user-info-chips">
           <Chip onClick={toggleStar}>
             <Text className="user-info-star">
-              {
-                !userIsInStarred ? (
-                  <><StarBorderRounded /> Add to Starred</>
-                ) : (
-                  <><StarRounded /> Remove from Starred</>
-                )
-              }
+              {starNode}
             </Text>
           </Chip>
           <Chip>
@@ -82,14 +87,7 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
           </Chip>
           <Chip onClick={toggleMute}>
             <Text className="user-info-mute" title={userIsInMuted ? 'Click to unmute' : 'Click to mute'}>
-              {
-                userIsInMuted
-                  ? (
-                    <><NotificationsOffIcon /> Click to unmute</>
-                  ) : (
-                    <><NotificationsRounded /> Snooze Notifications</>
-                  )
-              }
+              {mutedNode}
             </Text>
           </Chip>
           <Chip onClick={toggleBlock}>
@@ -101,10 +99,6 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
             </Text>
           </Chip>
         </div>
-        <DetailsButtonShowLess
-          isVisible={!isMinified}
-          onClick={onToggle}
-        />
       </>
     ) : (
       <>
@@ -150,6 +144,7 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
             size={isMinified ? 'medium' : 'extra-large'}
             expandOnClick
             status={isMinified ? user.status : undefined}
+            loader={<Loader />}
           />
           <UsernameFull
             nickname={user.nickname}
@@ -161,7 +156,7 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
         </div>
         <DetailsButtonShowMore
           isVisible={isMinified}
-          onClick={onToggle}
+          onClick={() => Navigator.forward(history, `/u/${user.id}`)}
         />
       </div>
       {!isMinified && blockNode}

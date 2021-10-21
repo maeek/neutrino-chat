@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { getUserById } from '@/selectors/users';
@@ -31,7 +31,7 @@ export const UserView = () => {
     });
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const state = location?.state?.isChat;
     dispatch(setMobileBottomNavVisibility(state));
     dispatch(setTopBarVisibility(state));

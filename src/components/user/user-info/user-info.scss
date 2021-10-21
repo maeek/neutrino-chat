@@ -63,6 +63,10 @@
 
   .user-profile-avatar {
     transition: filter 0.1s;
+
+    .ne-avatar-content {
+      transition: none;
+    }
   }
 
   &--blocked {
@@ -128,14 +132,15 @@
     top: 2.8rem;
     max-width: 100%;
     padding: 0.5rem 1rem;
+    flex: 0 0 auto;
 
     .user-info-container {
       width: calc(100% - 3rem);
       flex-direction: row;
+      flex: 1 1 auto;
     }
 
     .user-profile-avatar .user-profile-avatar-no-avatar > svg {
-      transition: font-size 0.2s;
       font-size: var(--fs-1100);
     }
 
@@ -145,6 +150,9 @@
       margin: 0;
       margin-top: 0.2rem;
       padding: 0 0.8rem;
+      padding-right: 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
       flex: 0 1 auto;
 
       &-first {
@@ -161,7 +169,8 @@
       > .ne-typo-text {
         text-align: left;
         padding-top: 0.2rem;
-        display: flex;
+        display: block;
+        text-overflow: ellipsis;
       }
     }
   }
