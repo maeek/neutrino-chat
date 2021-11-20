@@ -46,7 +46,7 @@ export const ContextMenuWrapper = () => {
       text: 'Settings',
       icon: <SettingsRounded />,
       closeOnClick: true,
-      onClick: navigate('/settings')
+      onClick: navigate('/settings/profile')
     },
     {
       text: 'Help',
