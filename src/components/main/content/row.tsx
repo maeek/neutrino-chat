@@ -4,6 +4,8 @@ import { getUserById } from '@/selectors/users';
 import Navigator from '@/utils/navigation';
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
+import { UserCard } from './user-card/card';
+import './row.scss';
 
 export interface MainListRowProps {
   id: string;
@@ -29,12 +31,12 @@ export const MainListRow = ({ id, style, measure, isScrolling }: MainListRowProp
 
   return (
     <div
-      className={classNames('dm-list-row', isScrolling && 'dm-list-row--scrolling')}
+      className={classNames('main-list-cell', isScrolling && 'main-list-cell--scrolling')}
       onClick={handleClick}
       style={style}
       tabIndex={0}
     >
-      {user.name}
+      <UserCard key={id} id={id} />
     </div>
   );
 };

@@ -1,0 +1,38 @@
+@use '~@/styles/base/breakpoints' as *;
+
+.main-list-cell {
+  margin: 0.3rem 0.1rem;
+  width: calc(12.5% - 0.4rem);
+
+  @include mq(3840px) {
+    width: calc(14.285714286% - 0.4rem);
+  }
+
+  @include mq(2239px) {
+    width: calc(20% - 0.4rem);
+  }
+
+  @include mq(1400px) {
+    width: calc(25% - 0.4rem);
+  }
+
+  @include mq(1100px) {
+    width: calc(33% - 0.4rem);
+  }
+
+  @include mq(900px) {
+    width: calc(50% - 0.4rem);
+  }
+
+  @include mq(786px) {
+    width: calc(33% - 0.4rem);
+  }
+
+  @include mq(605px) {
+    width: calc(50% - 0.4rem);
+  }
+
+  @include mq(300px) {
+    width: calc(100% - 0.4rem);
+  }
+}
