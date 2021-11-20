@@ -4,7 +4,7 @@ import UserAvatar from '../../common/user-components/avatar';
 import UserBanner from '../../common/user-components/banner';
 import UsernameFull from '../../common/user-components/username-full';
 import DetailsButtonShowMore from '../details-buttons/details-more';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowBackRounded from '@material-ui/icons/ArrowBackRounded';
 import { User } from '@/store/users/types';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
 import { useDispatch, useSelector } from 'react-redux';
@@ -122,7 +122,7 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
   const backNode = isMinified 
     ? (
       <div className="user-info-back" onClick={onToggle}>
-        <ArrowBackIosIcon />
+        <ArrowBackRounded />
       </div>
     )
     : null;

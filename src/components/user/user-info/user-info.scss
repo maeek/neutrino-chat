@@ -12,8 +12,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: calc(100% - 0.2rem);
     height: 100%;
+    padding-right: 0.2rem;
   }
 
   * {
@@ -98,7 +99,7 @@
 
   &-back {
     color: var(--clr-basic-200);
-    margin-right: 0.6rem;
+    margin-right: 1rem;
     cursor: pointer;
     height: 100%;
     display: flex;
@@ -106,7 +107,7 @@
     position: relative;
 
     > svg {
-      font-size: var(--fs-500);
+      font-size: var(--fs-900);
     }
 
     &::after {
