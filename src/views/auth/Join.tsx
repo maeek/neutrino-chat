@@ -7,7 +7,7 @@ import { getAuthToken, getAuthRefreshToken } from '@/selectors/session';
 import Navigator from '@/utils/navigation';
 
 const JoinView = lazy(() => import(
-  /* webpackChunkName: "main-page_join" */
+  /* webpackChunkName: "page-join" */
   /* webpackMode: "lazy" */
   '@/components/join'
 ));

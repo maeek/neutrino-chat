@@ -4,7 +4,7 @@ import ChatsViewLoader from '@/components/chats/loader';
 import ChatsViewError from '@/components/chats/error';
 
 const ChatsView = lazy(() => import(
-  /* webpackChunkName: "main-page_chats" */
+  /* webpackChunkName: "page-chats" */
   /* webpackMode: "lazy" */
   /* webpackPrefetch: true */
   /* webpackPreload: true */

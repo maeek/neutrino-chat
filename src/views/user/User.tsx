@@ -8,7 +8,7 @@ export interface UserPageParams {
 }
 
 const User = lazy(() => import(
-  /* webpackChunkName: "main-page_me_profile" */
+  /* webpackChunkName: "page-settings-user" */
   /* webpackMode: "lazy" */
   /* webpackPrefetch: true */
   /* webpackPreload: true */

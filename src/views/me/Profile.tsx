@@ -3,7 +3,7 @@ import { PageTemplate } from '@/components/common/page-template';
 import ProfileLoader from '@/components/main/loader';
 
 const Profile = lazy(() => import(
-  /* webpackChunkName: "main-page_me_profile" */
+  /* webpackChunkName: "page-me" */
   /* webpackMode: "lazy" */
   /* webpackPrefetch: true */
   /* webpackPreload: true */

@@ -4,7 +4,7 @@ import MainViewLoader from '@/components/main/loader';
 import MainViewError from '@/components/main/error';
 
 const MainView = lazy(() => import(
-  /* webpackChunkName: "main-page_app" */
+  /* webpackChunkName: "page-app" */
   /* webpackMode: "lazy" */
   /* webpackPrefetch: true */
   /* webpackPreload: true */

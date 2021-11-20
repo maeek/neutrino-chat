@@ -7,7 +7,7 @@ import { PageTemplate } from '@/components/common/page-template';
 import Navigator from '@/utils/navigation';
 
 const LoginView = lazy(() => import(
-  /* webpackChunkName: "main-page_login" */
+  /* webpackChunkName: "page-login" */
   /* webpackMode: "lazy" */
   /* webpackPrefetch: true */
   /* webpackPreload: true */
