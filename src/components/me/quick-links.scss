@@ -7,8 +7,19 @@
 
     .ne-nav-item {
       margin: 0.3rem 0;
+      padding: 0.2rem 0;
+
       .ne-nav-item-content-wrapper {
         padding-left: 0;
+      }
+
+      .ne-nav-item-content-children {
+        font-size: var(--fs-400);
+      }
+
+      .ne-nav-item-content-icon svg {
+        margin-top: -0.05rem;
+        font-size: var(--fs-600);
       }
     }
 

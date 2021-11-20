@@ -3,6 +3,7 @@ import { getMeBanner } from '@/selectors/user';
 import Modal from '@maeek/neutrino-design/components/atoms/modal/Modal';
 import { ImageChange } from '../common/image-change';
 import { setMeBanner } from '@/store/me/user/actions';
+import './banner-edit.scss';
 
 export interface EditMeBannerModalProps {
   isEdited?: boolean;

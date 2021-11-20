@@ -1,0 +1,11 @@
+.modal-fullpage {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 5s;
+
+  &.modal-visible {
+    transition: opacity 1s;
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
