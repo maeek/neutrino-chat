@@ -33,8 +33,11 @@ export const MainList = () => {
     else if (window.innerWidth <= 2239) {
       return 5;
     }
+    else if (window.innerWidth <= 3840) {
+      return 7;
+    }
 
-    return 6;
+    return 8;
   };
   const [ columnsCount, setColumnsCount ] = useState(() => recalculateColumns());
 
@@ -85,7 +88,7 @@ export const MainList = () => {
                   height={height}
                   isScrolling={isScrolling}
                   onScroll={onChildScroll}
-                  overscanRowCount={3}
+                  overscanRowCount={5}
                   rowCount={Math.ceil(usersIds.length / columnsCount)}
                   rowRenderer={({ index, key, parent, style }) => (
                     <CellMeasurer
