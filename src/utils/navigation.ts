@@ -34,11 +34,13 @@ export class NavigationController {
     });
   }
 
-  back(history: any) {
+  back(history: any, fallbackUrl?: string) {
     const storeHistory = this.store.getState().history;
     if (storeHistory.currentIndex > 0 && storeHistory.stack.length > 0) {
       this.store.dispatch(goBack());
       history.goBack();
+    } else {
+      this.forward(history, fallbackUrl);
     }
   }
 
