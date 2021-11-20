@@ -58,7 +58,7 @@ export type AttachmentType = (
 ) & Attachment;
 
 export interface MessagesState {
-  messages: {
+  list: {
     [uuid: string]: Message;
   };
   attachments: {

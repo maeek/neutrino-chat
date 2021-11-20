@@ -4,16 +4,21 @@ import { usersReducerMock } from './mock';
 import { UsersAction, UsersActionsEnum, UsersState } from './types';
 import { AddMessages, MessagesActionsEnum } from '../messages/types';
 
-export const initialState: UsersState = __DEMO__ ? usersReducerMock : {
-  entries: {}
-};
+export const initialState: UsersState = __DEMO__
+  ? usersReducerMock
+  : {
+    entries: {}
+  };
 
-export const users: Reducer<UsersState, UsersAction | ClearMe | AddMessages> = (state = initialState, action) => {
+export const users: Reducer<UsersState, UsersAction | ClearMe | AddMessages> = (
+  state = initialState,
+  action = {} as UsersAction
+) => {
   const newUsers = {
     ...state.entries
   };
-  
-  switch(action.type) {
+
+  switch (action.type) {
   case UsersActionsEnum.USERS_CACHE:
     for (const user of action.data.users) {
       newUsers[ user.id ] = user;
@@ -43,12 +48,14 @@ export const users: Reducer<UsersState, UsersAction | ClearMe | AddMessages> = (
     return {
       entries: {
         ...state.entries,
-        ...Object.fromEntries(action.data.users.map((user) => [ user.id, user ]))
+        ...Object.fromEntries(
+          action.data.users.map((user) => [ user.id, user ])
+        )
       }
     };
 
   case UsersActionsEnum.REMOVE_USERS:
-    for (const id of action.data.ids)   {
+    for (const id of action.data.ids) {
       delete newUsers[ id ];
     }
 
@@ -59,7 +66,7 @@ export const users: Reducer<UsersState, UsersAction | ClearMe | AddMessages> = (
     };
 
   case UsersActionsEnum.MODIFY_USERS:
-    for (const user of action.data.users)   {
+    for (const user of action.data.users) {
       newUsers[ user.id ] = {
         ...state.entries[ user.id ],
         ...user
@@ -73,7 +80,7 @@ export const users: Reducer<UsersState, UsersAction | ClearMe | AddMessages> = (
     };
 
   case MessagesActionsEnum.ADD_MESSAGES:
-    for (const ms of action.data.messages)   {
+    for (const ms of action.data.messages) {
       newUsers[ ms.parentId ] = {
         ...state.entries[ ms.parentId ],
         lastMessage: {

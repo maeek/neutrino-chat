@@ -8,8 +8,8 @@ describe('Redux store - Users', () => {
 
     it('should create an action to add users to users cache', () => {
       const users = [
-        usersReducerMock.entries[ '449be3ed-88fa-4a42-9d02-4731d5ebd0a0' ],
-        usersReducerMock.entries[ 'ad9ac59e-f51c-471a-b23d-0a5d74b0c580' ]
+        usersReducerMock.entries[ 'bob' ],
+        usersReducerMock.entries[ 'matt' ]
       ];
       const expectedAction = {
         type: UsersActionsEnum.USERS_CACHE,
@@ -54,8 +54,8 @@ describe('Redux store - Users', () => {
 
     it('should handle USERS_CACHE', () => {
       const users = [
-        usersReducerMock.entries[ '449be3ed-88fa-4a42-9d02-4731d5ebd0a0' ],
-        usersReducerMock.entries[ 'ad9ac59e-f51c-471a-b23d-0a5d74b0c580' ]
+        usersReducerMock.entries[ 'bob' ],
+        usersReducerMock.entries[ 'matt' ]
       ];
       const populateCacheAction: PopulateUsersCache = {
         type: UsersActionsEnum.USERS_CACHE,
@@ -68,8 +68,8 @@ describe('Redux store - Users', () => {
         usersReducer(undefined, populateCacheAction)
       ).toEqual({
         entries: {
-          '449be3ed-88fa-4a42-9d02-4731d5ebd0a0': usersReducerMock.entries[ '449be3ed-88fa-4a42-9d02-4731d5ebd0a0' ],
-          'ad9ac59e-f51c-471a-b23d-0a5d74b0c580': usersReducerMock.entries[ 'ad9ac59e-f51c-471a-b23d-0a5d74b0c580' ]
+          bob: usersReducerMock.entries[ 'bob' ],
+          matt: usersReducerMock.entries[ 'matt' ]
         }
       });
     });
@@ -77,14 +77,14 @@ describe('Redux store - Users', () => {
     it('should handle USERS_DELETE', () => {
       const initState = {
         entries: {
-          '449be3ed-88fa-4a42-9d02-4731d5ebd0a0': usersReducerMock.entries[ '449be3ed-88fa-4a42-9d02-4731d5ebd0a0' ],
-          'ad9ac59e-f51c-471a-b23d-0a5d74b0c580': usersReducerMock.entries[ 'ad9ac59e-f51c-471a-b23d-0a5d74b0c580' ]
+          bob: usersReducerMock.entries[ 'bob' ],
+          matt: usersReducerMock.entries[ 'matt' ]
         }
       };
 
       const users = [
-        '449be3ed-88fa-4a42-9d02-4731d5ebd0a0',
-        'ad9ac59e-f51c-471a-b23d-0a5d74b0c580'
+        'bob',
+        'matt'
       ];
       const populateCacheAction: DeleteUsersCache = {
         type: UsersActionsEnum.USERS_DELETE,
@@ -103,8 +103,8 @@ describe('Redux store - Users', () => {
     it('should handle USERS_CLEAR', () => {
       const initState = {
         entries: {
-          '449be3ed-88fa-4a42-9d02-4731d5ebd0a0': usersReducerMock.entries[ '449be3ed-88fa-4a42-9d02-4731d5ebd0a0' ],
-          'ad9ac59e-f51c-471a-b23d-0a5d74b0c580': usersReducerMock.entries[ 'ad9ac59e-f51c-471a-b23d-0a5d74b0c580' ]
+          bob: usersReducerMock.entries[ 'bob' ],
+          matt: usersReducerMock.entries[ 'matt' ]
         }
       };
 

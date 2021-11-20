@@ -15,7 +15,7 @@ export const UsersCards = () => {
     && (selectedCategory === FilterCategory.USER || selectedCategory === FilterCategory.ALL)
     ? (
       <div className="cards">
-        <Heading level={3} className="main-side-filter-heading">Direct Messages</Heading>
+        <Heading level={3} className="main-side-filter-heading">Users</Heading>
         <ul className="cards-list">
           {usersIds.map((id) => (<UserCard key={id} id={id} />))}
         </ul>

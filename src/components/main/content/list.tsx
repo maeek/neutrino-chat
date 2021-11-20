@@ -3,12 +3,11 @@ import { useSelector } from 'react-redux';
 import { WindowScroller, List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
 import { getFilteredUsersIdsWithMessages, getFiltersMain } from '@/selectors/filters';
 import { FilterCategory } from '@/store/app/filters/types';
-import UserDmListRow from './dm-row';
-import './dm-list.scss';
+import MainListRow from './row';
 
-export interface UserDmListProps {}
+export interface MainListProps {}
 
-export const UserDmList = () => {
+export const MainList = () => {
   const usersIds = useSelector(getFilteredUsersIdsWithMessages);
   const selectedCategory = useSelector(getFiltersMain);
 
@@ -28,7 +27,7 @@ export const UserDmList = () => {
         scrollElement={window}
       >
         {({ height, isScrolling, registerChild, onChildScroll, scrollTop }) => registerChild && (
-          <div className="dm-list-autosizer-boundry">
+          <div className="main-list-autosizer-boundry">
             <AutoSizer disableHeight>
               {({ width }) => (
                 <div ref={registerChild}>
@@ -50,10 +49,10 @@ export const UserDmList = () => {
                         {({ measure, registerChild: regChild }) => regChild && (
                           <div
                             style={style}
-                            className="dm-list-row-wrapper"
+                            className="main-list-row-wrapper"
                             ref={(el) => regChild?.(el as Element)}
                           >
-                            <UserDmListRow
+                            <MainListRow
                               isScrolling={isScrolling}
                               key={key}
                               id={usersIds[ index ]}
@@ -77,4 +76,4 @@ export const UserDmList = () => {
     : null;
 };
 
-export default UserDmList;
+export default MainList;

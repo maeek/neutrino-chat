@@ -128,16 +128,16 @@ export const getFilteredDMsByGroup = createSelector(
 //     .map((item) => channels[ item.id ])
 // );
 
-export const CHANNEL_SEARCH_EXCLUDE_KEYS: Array<keyof Channel> = [
-  'id',
-  'settings',
-  'avatar',
-  'lastMessage',
-  'isPublic',
-  'messages',
-  'typing',
-  'participants'
-];
+// export const CHANNEL_SEARCH_EXCLUDE_KEYS: Array<keyof Channel> = [
+//   'id',
+//   'settings',
+//   'avatar',
+//   'lastMessage',
+//   'isPublic',
+//   'messages',
+//   'typing',
+//   'participants'
+// ];
 
 // export const getFilteredChannelsByQueries = createSelector(
 //   getChannels,

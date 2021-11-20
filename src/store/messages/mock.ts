@@ -1,7 +1,7 @@
 import { MessagesState, MessageStatus, MessageTypes } from './types';
 
 export const messagesMock: MessagesState = {
-  messages: {
+  list: {
     '1914477c-e595-43d3-b0f5-78e9625a4ba6': {
       uuid: '1914477c-e595-43d3-b0f5-78e9625a4ba6',
       type: MessageTypes.DIRECT,
@@ -19,7 +19,7 @@ export const messagesMock: MessagesState = {
       uuid: '2d9ae79a-a3c1-4756-afdc-f6fa9f7956b2',
       type: MessageTypes.DIRECT,
       status: MessageStatus.DELIVERED,
-      senderId: 'bop',
+      senderId: 'bob',
       parentId: 'bob',
       timeReceived: Date.now() - 9000,
       timeSent: Date.now() - 9000,
@@ -28,19 +28,19 @@ export const messagesMock: MessagesState = {
       attachments: [ '81df5623-4fa2-423d-a109-4930e7fde301' ],
       read: true
     },
-    '653440af-60fc-4ebb-88a5-67f98d209691': {
-      uuid: '653440af-60fc-4ebb-88a5-67f98d209691',
-      type: MessageTypes.DIRECT,
-      status: MessageStatus.DELIVERED,
-      senderId: 'bob',
-      parentId: 'bob',
-      timeReceived: Date.now() - 8000,
-      timeSent: Date.now() - 8000,
-      body: 'yaaa, we seeing tmrw? @bop',
-      mentions: [ 'bop' ],
-      attachments: [ ],
-      read: true
-    },
+    // '653440af-60fc-4ebb-88a5-67f98d209691': {
+    //   uuid: '653440af-60fc-4ebb-88a5-67f98d209691',
+    //   type: MessageTypes.DIRECT,
+    //   status: MessageStatus.DELIVERED,
+    //   senderId: 'bob',
+    //   parentId: 'bob',
+    //   timeReceived: Date.now() - 8000,
+    //   timeSent: Date.now() - 8000,
+    //   body: 'yaaa, we seeing tmrw? @bop',
+    //   mentions: [ 'bop' ],
+    //   attachments: [ ],
+    //   read: true
+    // },
     'a30d2e71-7115-4e4a-b82a-58e2332c78e0': {
       uuid: 'a30d2e71-7115-4e4a-b82a-58e2332c78e0',
       type: MessageTypes.DIRECT,
@@ -78,7 +78,7 @@ export const messagesMock: MessagesState = {
       body: 'lol',
       mentions: [ ],
       attachments: [ ],
-      read: true
+      read: false
     },
     '2e341b65-656a-4fb4-b616-9d2c0ba1499c': {
       uuid: '2e341b65-656a-4fb4-b616-9d2c0ba1499c',

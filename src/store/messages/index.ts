@@ -1,17 +1,21 @@
 import { Reducer } from 'redux';
+import { messagesMock } from './mock';
 import { AddMessageReactions, MessagesActionsEnum, MessagesActionsType, MessagesState, MessageStatus, MessageTypes, ModifyMessage, RemoveAttachments, RemoveMessageReactions, RemoveMessages } from './types';
 
-export const initialState: MessagesState = {
-  messages: {},
+export const initialState: MessagesState = __DEMO__ ? messagesMock : {
+  list: {},
   attachments: {}
 };
 
-export const messages: Reducer<MessagesState, MessagesActionsType> = (state = initialState, action) => {
+export const messages: Reducer<MessagesState, MessagesActionsType> = (
+  state = initialState,
+  action = {} as MessagesActionsType
+) => {
   switch (action.type) {
   case MessagesActionsEnum.ADD_MESSAGES:
     return {
-      messages: {
-        ...state.messages,
+      list: {
+        ...state.list,
         ...Object.fromEntries(action.data.messages.map((ms) => [ ms.uuid, ms ]))
       },
       attachments: {
@@ -22,12 +26,12 @@ export const messages: Reducer<MessagesState, MessagesActionsType> = (state = in
 
   case MessagesActionsEnum.ADD_ATTACHMENTS:
     return {
-      messages: {
-        ...state.messages,
+      list: {
+        ...state.list,
         [ action.data.messageId ]: {
-          ...state.messages[ action.data.messageId ],
+          ...state.list[ action.data.messageId ],
           attachments: [
-            ...state.messages[ action.data.messageId ].attachments,
+            ...state.list[ action.data.messageId ].attachments,
             ...action.data.attachments.map((at) => at.uuid)
           ]
         }
@@ -49,10 +53,10 @@ export const messages: Reducer<MessagesState, MessagesActionsType> = (state = in
   case MessagesActionsEnum.UPDATE_MESSAGE_STATUS:
     return {
       ...state,
-      messages: {
-        ...state.messages,
+      list: {
+        ...state.list,
         [ action.data.messageId ]: {
-          ...state.messages[ action.data.messageId ],
+          ...state.list[ action.data.messageId ],
           status: action.data.status
         }
       }
@@ -73,7 +77,7 @@ const removeMessages = (state: MessagesState, action: RemoveMessages): MessagesS
   const newState = { ...state };
 
   for (const id of action.data.ids) {
-    const ms = newState.messages[ id ];
+    const ms = newState.list[ id ];
 
     for (const at of ms.attachments) {
       delete newState.attachments[ at ];
@@ -97,7 +101,7 @@ const removeAttachments = (state: MessagesState, action: RemoveAttachments): Mes
     delete newState.attachments[ aid ];
   }
 
-  const ms = newState.messages[ action.data.messageId ];
+  const ms = newState.list[ action.data.messageId ];
   ms.attachments = ms.attachments.filter((id) => !action.data.ids.includes(id));
 
   return newState;
@@ -106,7 +110,7 @@ const removeAttachments = (state: MessagesState, action: RemoveAttachments): Mes
 const addMessageReactions = (state: MessagesState, action: AddMessageReactions): MessagesState => {
   const newState = { ...state };
 
-  const ms = newState.messages[ action.data.messageId ];
+  const ms = newState.list[ action.data.messageId ];
   ms.reactions = [
     ...(ms.reactions || []),
     ...action.data.reactions.filter((react) => !ms.reactions?.find((r) => r.uuid === react.uuid))
@@ -118,7 +122,7 @@ const addMessageReactions = (state: MessagesState, action: AddMessageReactions):
 const removeMessageReactions = (state: MessagesState, action: RemoveMessageReactions): MessagesState => {
   const newState = { ...state };
 
-  const ms = newState.messages[ action.data.messageId ];
+  const ms = newState.list[ action.data.messageId ];
   ms.reactions = (ms.reactions || []).filter((react) => action.data.reactionsIds.includes(react.uuid));
 
   return newState;
@@ -127,15 +131,17 @@ const removeMessageReactions = (state: MessagesState, action: RemoveMessageReact
 const modifyMessage = (state: MessagesState, action: ModifyMessage): MessagesState => {
   const newState = { ...state };
 
-  newState.messages[ action.data.uuid ] = {
-    ...newState.messages[ action.data.uuid ],
+  newState.list[ action.data.uuid ] = {
+    ...newState.list[ action.data.uuid ],
     ...action.data
   };
 
   if (action.data.attachments) {
-    newState.messages[ action.data.uuid ].attachments = newState.messages[ action.data.uuid ].attachments
+    newState.list[ action.data.uuid ].attachments = newState.list[ action.data.uuid ].attachments
       .filter((atid) => !newState.attachments[ atid ]);
   }
   
   return newState;
 };
+
+export default messages;

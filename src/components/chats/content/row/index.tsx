@@ -7,7 +7,8 @@ import { UserUsername } from '@/components/common/user-components/username';
 import Navigator from '@/utils/navigation';
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
-import './dm-row.scss';
+import { areMessagesUnreadByParentId, getMessageById } from '@/selectors/messages';
+import './row.scss';
 
 export interface UserDmListRowProps {
   id: string;
@@ -18,6 +19,8 @@ export interface UserDmListRowProps {
 
 export const UserDmListRow = ({ id, style, measure, isScrolling }: UserDmListRowProps) => {
   const user = useSelector(getUserById(id));
+  const isUnread = useSelector(areMessagesUnreadByParentId(user.id));
+  const lastMessage = useSelector(getMessageById(user.lastMessage?.id));
   const history = useHistory();
 
   const handleClick = () => {
@@ -30,6 +33,28 @@ export const UserDmListRow = ({ id, style, measure, isScrolling }: UserDmListRow
     if (!measure) return;
     return measure();
   }, [ measure ]);
+
+  const renderLastMessage = () => {
+    if (!lastMessage) {
+      return '';
+    }
+
+    const sender = lastMessage.senderId !== user.id ? 'You: ' : `${user.nickname || user.name}: `;
+
+    if (lastMessage.attachments.length > 0) {
+      return (
+        <i>
+          {lastMessage.senderId !== user.id ? 'You ' : `${user.nickname || user.name} `} sent an attachment
+        </i>
+      );
+    }
+    else if (lastMessage?.body && lastMessage.body.length > 90) {
+      return sender + lastMessage?.body.substr(0, 90) + '...';
+    }
+    else if (lastMessage?.body) {
+      return sender  + lastMessage?.body;
+    }
+  };
 
   return (
     <div
@@ -45,14 +70,10 @@ export const UserDmListRow = ({ id, style, measure, isScrolling }: UserDmListRow
         username={user.name}
         color={getHslColorFromCharCode(user.name)}
       />
-      <div className="dm-list-row-data">
+      <div className={classNames('dm-list-row-data', user.lastMessage && isUnread && 'dm-list-row-data--unread')}>
         <UserUsername username={user.nickname || user.name} />
         <div className="dm-list-row-message">
-          {
-            user.lastMessage?.content && user.lastMessage?.content.length > 90
-              ? user.lastMessage?.content?.substr(0, 90) + '...'
-              : user.lastMessage?.content
-          }
+          {renderLastMessage()}
         </div>
       </div>
     </div>

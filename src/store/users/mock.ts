@@ -1,4 +1,3 @@
-import { random } from 'lodash';
 import { v4 } from 'uuid';
 import { UserFetchingStatus, UsersState, UserStatusEnum } from './types';
 
@@ -20,8 +19,8 @@ export const usersReducerMock: UsersState = {
         'a30d2e71-7115-4e4a-b82a-58e2332c78e0'
       ],
       lastMessage: {
-        id: 'a30d2e71-7115-4e4a-b82a-58e2332c78e0',
-        content: 'Yep see u 2mrw AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
+        id: '2d9ae79a-a3c1-4756-afdc-f6fa9f7956b2',
+        content: '',
         receivedDate: Date.now() - 3670
       },
       typing: false
@@ -58,7 +57,8 @@ export const usersReducerMock: UsersState = {
       name: 'matt',
       avatar: '',
       blocked: false,
-      nickname: 'gaaaaaaaaaaaryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
+      nickname:
+        'gaaaaaaaaaaaryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
       settings: {
         backgroundUri: 'https://static.suchanecki.me/neony.jpeg',
         backgroundOpacity: 0.3,
@@ -116,11 +116,11 @@ export const usersReducerMock: UsersState = {
           '2e341b65-656a-4fb4-b616-9d2c0ba1499c',
           '57499627-432a-4302-9163-1a3001c5798e'
         ],
-        lastMessage: {
-          id: '57499627-432a-4302-9163-1a3001c5798e',
-          content: v4(),
-          receivedDate: Date.now() - random(3000, 20000)
-        },
+        // lastMessage: {
+        //   id: '57499627-432a-4302-9163-1a3001c5798e',
+        //   content: v4(),
+        //   receivedDate: Date.now() - 200000
+        // },
         typing: false
       } ];
     })))
