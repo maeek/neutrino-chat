@@ -7,8 +7,8 @@ import {
   useRef
 } from 'react';
 import { useHistory } from 'react-router';
-import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { InputRef } from '@maeek/neutrino-design/components/atoms/inputs/text/Input';
+import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import Navigator from '@/utils/navigation';
 import './list.scss';
 

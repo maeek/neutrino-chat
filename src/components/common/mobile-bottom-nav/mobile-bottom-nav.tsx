@@ -13,7 +13,7 @@ import {
 } from 'react';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
-import { useLocation, withRouter } from 'react-router';
+import { useLocation, useHistory } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import Navigator from '@/utils/navigation';
@@ -21,7 +21,9 @@ import { ChatBubbleRounded, ExploreRounded } from '@material-ui/icons';
 import { isAppUIMobileBottonNavHidden } from '@/selectors/app-ui';
 import './mobile-bottom-nav.scss';
 
-export const MobileBottomNav = withRouter(({ location, history }) => {
+export const MobileBottomNav = () => {
+  const location = useLocation();
+  const history = useHistory();
   const isMobile = useMediaQuery({ maxWidth: 768 });
   const [ position, setPosition ] = useState<number | null>(null);
   const refs = useRef<MutableRefObject<HTMLDivElement>[]>([]);
@@ -98,7 +100,7 @@ export const MobileBottomNav = withRouter(({ location, history }) => {
       }
     </nav>
   ) : null;
-});
+};
 
 interface MobileBottomNavButtonProps {
   children?: ReactNode;

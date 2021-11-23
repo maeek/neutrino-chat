@@ -3,16 +3,13 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'prettier',
+    'plugin:import/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:testing-library/react'
   ],
-  plugins: [
-    'react',
-    'prettier',
-    '@typescript-eslint'
-  ],
+  plugins: [ 'react', 'prettier', '@typescript-eslint' ],
   env: {
     node: true
   },
@@ -40,27 +37,15 @@ module.exports = {
     __PROD__: 'readonly'
   },
   rules: {
-    semi: [
-      'error',
-      'always'
-    ],
-    quotes: [
-      'error',
-      'single'
-    ],
+    semi: [ 'error', 'always' ],
+    quotes: [ 'error', 'single' ],
     'no-console': [
       'warn',
       {
-        allow: [
-          'warn',
-          'error'
-        ]
+        allow: [ 'warn', 'error' ]
       }
     ],
-    'comma-dangle': [
-      'error',
-      'never'
-    ],
+    'comma-dangle': [ 'error', 'never' ],
     indent: [ 'error', 2 ],
     'guard-for-in': 0,
     'no-param-reassign': 0,

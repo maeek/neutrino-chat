@@ -29,7 +29,7 @@ export class ApiInstance {
 
   private _handleRequest(config: AxiosRequestConfig): AxiosRequestConfig {
     const token = getAuthToken();
-    if (token) {
+    if (token && config?.headers) {
       config.headers[ 'Authorization' ] = `JWT ${token}`;
     }
 

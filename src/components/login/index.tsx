@@ -1,16 +1,17 @@
 import { MouseEvent } from 'react';
-import { RouteProps, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { RouteProps, useHistory } from 'react-router-dom';
 import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/content-footer';
-import { GenericFooter } from '@/components/common/footer/generic';
 import Navigator from '@/utils/navigation';
 import { login } from '@/actions/auth';
+import { GenericFooter } from '@/components/common/footer/generic';
 import { LoginForm } from './form';
 import './login.scss';
+
 interface LoginViewProps extends RouteProps {
   from: {
     pathname: string;
-  }
+  };
 }
 
 export const LoginView = (props: LoginViewProps) => {
@@ -28,12 +29,9 @@ export const LoginView = (props: LoginViewProps) => {
   };
 
   return (
-    <div className="view-root view-root--login">
+    <div className='view-root view-root--login'>
       <LayoutContentFooter footerNode={<GenericFooter />}>
-        <LoginForm
-          onLogin={onLogin}
-          redirectToRegister={redirectToRegister}
-        />
+        <LoginForm onLogin={onLogin} redirectToRegister={redirectToRegister} />
       </LayoutContentFooter>
     </div>
   );

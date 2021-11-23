@@ -4,8 +4,8 @@ import {
   useState,
   useCallback
 } from 'react';
-import ProceedButton from '@maeek/neutrino-design/components/atoms/buttons/Proceed';
 import { Input } from '@maeek/neutrino-design/components/atoms/inputs/text';
+import ProceedButton from '@maeek/neutrino-design/components/atoms/buttons/Proceed';
 import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { User } from '../types';

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { GroupsList } from './groups-list';
-import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading/Heading';
 import NavItem from '@maeek/neutrino-design/components/molecules/navigation/Item';
+import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading/Heading';
 import { SideNavFiltersSection } from './filters-section';
 import { SortRounded } from '@material-ui/icons';
 import './side-nav.scss';

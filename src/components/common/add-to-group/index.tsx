@@ -1,9 +1,9 @@
 import { getMeGroupsList } from '@/selectors/groups';
 import { Button } from '@maeek/neutrino-design/components/atoms/buttons/Button';
 import { ContextMenu, ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
+import { Text } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
 import { AddRounded, CheckRounded } from '@material-ui/icons';
 import CloseRounded from '@material-ui/icons/CloseRounded';
-import { Text } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
 import { useDispatch, useSelector } from 'react-redux';
 import { Groups, GroupTypeEnum } from '@/store/me/groups/types';
 import { addMembersToGroup, removeMembersFromGroup } from '@/store/me/groups/actions';

@@ -1,13 +1,13 @@
-import { forwardRef, MutableRefObject } from 'react';
+import { MutableRefObject, forwardRef } from 'react';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
 import { InputRef } from '@maeek/neutrino-design/components/atoms/inputs/text/Input';
+import { SearchBarSuggestionsList, SuggestionItemTypes } from './list';
 import { getFilteredUsersByQueries } from '@/selectors/filters';
 import { RootState } from '@/store/root';
-// import { Channel } from '@/store/channels/types';
-import { SearchBarSuggestionsList, SuggestionItemTypes } from './list';
-import './suggestions.scss';
 import { User } from '@/store/users/types';
+// import { Channel } from '@/store/channels/types';
+import './suggestions.scss';
 
 export interface SearchBarSuggestionsProps {
   searchedValue?: string;

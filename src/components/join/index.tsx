@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react';
 import { RouteProps, useHistory } from 'react-router-dom';
-import { LayoutContentFooter } from '@maeek/neutrino-design/components/layouts/content-footer';
 import { LayoutSideContent } from '@maeek/neutrino-design/components/layouts/side-content';
+import { LayoutContentFooter } from '@maeek/neutrino-design/components/layouts/content-footer';
 import { GenericFooter } from '@/components/common/footer/generic';
 import Navigator from '@/utils/navigation';
 import { RegisterForm } from './form/';

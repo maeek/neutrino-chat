@@ -3,8 +3,8 @@ import { MouseEventHandler, MutableRefObject, useRef } from 'react';
 import ProceedButton from '@maeek/neutrino-design/components/atoms/buttons/Proceed';
 import { Input } from '@maeek/neutrino-design/components/atoms/inputs/text';
 import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
-import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { Paragraph } from '@maeek/neutrino-design/components/atoms/typography/paragraph';
+import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import './form.scss';
 
 interface LoginFormProps {

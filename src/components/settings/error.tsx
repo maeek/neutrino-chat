@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Heading from '@maeek/neutrino-design/components/atoms/typography/heading/Heading';
-import Text from '@maeek/neutrino-design/components/atoms/typography/text/Text';
 import Paragraph from '@maeek/neutrino-design/components/atoms/typography/paragraph/Paragraph';
+import Text from '@maeek/neutrino-design/components/atoms/typography/text/Text';
 import { ReactComponent as ServerDownImage } from '@/assets/images/undraw_server_down_s4lk.svg';
 import './error.scss';
 

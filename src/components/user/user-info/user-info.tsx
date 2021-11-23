@@ -7,6 +7,7 @@ import DetailsButtonShowMore from '../details-buttons/details-more';
 import ArrowBackRounded from '@material-ui/icons/ArrowBackRounded';
 import { User } from '@/store/users/types';
 import { Text } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
+import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { modifyUsers } from '@/store/users/actions';
 import { MouseEventHandler, useState } from 'react';
@@ -21,7 +22,6 @@ import { muteUser, unmuteUser } from '@/store/settings/muted/actions';
 import { AddToGroup } from '@/components/common/add-to-group';
 import Navigator from '@/utils/navigation';
 import { useHistory } from 'react-router-dom';
-import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import './user-info.scss';
 
 export interface UserInfoProps {

@@ -1,7 +1,6 @@
 import { UserStatusEnum } from '@/store/users/types';
-import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
 import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading/Heading';
-import { TextType } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
+import { TextType, Text } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
 import { StatusDot, StatusDotState } from '../status-dot';
 import './username-full.scss';
 import { ReactNode } from 'react';

@@ -1,13 +1,13 @@
 import { CSSProperties, MouseEventHandler, ReactNode, useState } from 'react';
 import classnames from 'classnames';
-import { AvatarCached } from '@maeek/neutrino-design/components/atoms/avatar';
 import EditRounded from '@material-ui/icons/EditRounded';
+import { AvatarCached } from '@maeek/neutrino-design/components/atoms/avatar';
+import { AvatarSizes } from '@maeek/neutrino-design/components/atoms/avatar/Avatar';
+import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import { ImagePreview } from '../image-preview/image-preview';
-import { AvatarSizes } from '@maeek/neutrino-design/components/atoms/avatar/Avatar';
 import { UserStatusEnum } from '@/store/users/types';
 import { StatusDot, StatusDotState } from '../status-dot';
-import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
 import './avatar.scss';
 
 export interface UserAvatarProps {

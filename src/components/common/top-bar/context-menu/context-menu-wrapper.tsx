@@ -1,6 +1,6 @@
 import { useState, useCallback, memo } from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import ContextMenu, { ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
 import {
