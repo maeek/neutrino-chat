@@ -1,44 +1,48 @@
-import { ReactNode, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useMemo, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { WindowScroller, List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
 import { getFilteredUsersIds, getFiltersMain } from '@/selectors/filters';
 import { FilterCategory } from '@/store/app/filters/types';
 import MainListRow from './row';
 import './list.scss';
+import { debounce } from 'lodash';
 
 export interface MainListProps {}
 
+const recalculateColumns = () => {
+  if (window.innerWidth <= 300) {
+    return 1;
+  }
+  else if (window.innerWidth <= 605) {
+    return 2;
+  }
+  else if (window.innerWidth <= 786) {
+    return 3;
+  }
+  else if (window.innerWidth <= 900) {
+    return 2;
+  }
+  else if (window.innerWidth <= 1100) {
+    return 3;
+  }
+  else if (window.innerWidth <= 1400) {
+    return 4;
+  }
+  else if (window.innerWidth <= 2239) {
+    return 5;
+  }
+  else if (window.innerWidth <= 3840) {
+    return 7;
+  }
+
+  return 8;
+};
+
 export const MainList = () => {
+  const debounceRender = useRef(debounce((fn: Function) => fn(), 100));
+  const debounceRenderCurrent = debounceRender.current;
   const usersIds = useSelector(getFilteredUsersIds);
   const selectedCategory = useSelector(getFiltersMain);
-  const recalculateColumns = () => {
-    if (window.innerWidth <= 300) {
-      return 1;
-    }
-    else if (window.innerWidth <= 605) {
-      return 2;
-    }
-    else if (window.innerWidth <= 786) {
-      return 3;
-    }
-    else if (window.innerWidth <= 900) {
-      return 2;
-    }
-    else if (window.innerWidth <= 1100) {
-      return 3;
-    }
-    else if (window.innerWidth <= 1400) {
-      return 4;
-    }
-    else if (window.innerWidth <= 2239) {
-      return 5;
-    }
-    else if (window.innerWidth <= 3840) {
-      return 7;
-    }
-
-    return 8;
-  };
   const [ columnsCount, setColumnsCount ] = useState(() => recalculateColumns());
 
   const cache = useMemo(
@@ -51,8 +55,10 @@ export const MainList = () => {
   );
 
   const onResize = () => {
-    setColumnsCount(recalculateColumns());
-    cache.clearAll();
+    debounceRenderCurrent(() => {
+      setColumnsCount(recalculateColumns());
+      cache.clearAll();
+    });
   };
 
   const renderRow = (index: number) => {

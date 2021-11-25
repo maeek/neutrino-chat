@@ -1,8 +1,8 @@
 import { lazy, ReactNode, useLayoutEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { PageTemplate } from '@/components/common/page-template';
-import SettingsViewLoader from '@/components/main/loader';
-import SettingsViewError from '@/components/main/error';
+import SettingsViewLoader from '@/components/settings/loader';
+import { GenericError } from '@/components/common/error';
 import Navigator from '@/utils/navigation';
 
 const SettingsView = lazy(() => import(
@@ -29,7 +29,7 @@ export const SettingsPage = ({ children }: SettingsPageProps) => {
 
   return (
     <PageTemplate
-      errorPage={(err: string) => <SettingsViewError message={err} />}
+      errorPage={(err: string) => <GenericError message={err} />}
       fallbackComponent={<SettingsViewLoader />}
       title="Neutrino Chat - Settings"
       canOperateOffline={false}

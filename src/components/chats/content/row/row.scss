@@ -37,8 +37,8 @@
     margin-top: 0;
 
     .ne-avatar-content--large {
-      width: 3.5rem;
-      height: 3.5rem;
+      width: 3.4rem;
+      height: 3.4rem;
     }
   }
 
@@ -58,7 +58,7 @@
 
   &-data {
     flex: 0 0 auto;
-    max-width: calc(100% - 3.5rem);
+    max-width: calc(100% - 3.4rem);
     color: var(--clr-basic-300);
 
     &--unread {

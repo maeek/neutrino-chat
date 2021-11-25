@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { PageTemplate } from '@/components/common/page-template';
 import MainViewLoader from '@/components/main/loader';
-import MainViewError from '@/components/main/error';
+import { GenericError } from '@/components/common/error';
 
 const MainView = lazy(() => import(
   /* webpackChunkName: "page-app" */
@@ -14,7 +14,7 @@ const MainView = lazy(() => import(
 export const MainPage = () => {
   return (
     <PageTemplate
-      errorPage={(err: string) => <MainViewError message={err} />}
+      errorPage={(err: string) => <GenericError message={err} />}
       fallbackComponent={<MainViewLoader />}
       title="Neutrino Chat"
       canOperateOffline={false}

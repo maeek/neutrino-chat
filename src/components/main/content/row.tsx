@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { getUserById } from '@/selectors/users';
 import Navigator from '@/utils/navigation';
@@ -41,4 +41,4 @@ export const MainListRow = ({ id, style, measure, isScrolling }: MainListRowProp
   );
 };
 
-export default MainListRow;
+export default memo(MainListRow);

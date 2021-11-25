@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 import { PageTemplate } from '@/components/common/page-template';
 import ProfileLoader from '@/components/main/loader';
+import { GenericError } from '@/components/common/error';
 
 const Profile = lazy(() => import(
   /* webpackChunkName: "page-me" */
@@ -14,7 +15,7 @@ export const ProfilePage = () => {
   return (
     <PageTemplate
       startFromTop
-      errorPage={null}
+      errorPage={(err: string) => <GenericError message={err} />}
       fallbackComponent={<ProfileLoader />}
       title="Neutrino Chat - Profile"
       canOperateOffline
