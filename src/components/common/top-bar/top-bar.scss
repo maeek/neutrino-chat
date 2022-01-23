@@ -16,8 +16,7 @@
   opacity: 0;
 
   @include mq('small') {
-    height: 2.8rem;
-    padding-top: 0.4rem;
+    height: 4rem;
   }
 
   .main-chats-navigation {

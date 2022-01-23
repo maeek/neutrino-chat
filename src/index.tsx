@@ -10,6 +10,11 @@ import * as serviceWorkerRegistration from './register-service-worker';
 import App from './App';
 import './styles/main.scss';
 
+if (process.env.NODE_ENV !== 'production') {
+  const { whyDidYouUpdate } = require('why-did-you-update');
+  whyDidYouUpdate(React);
+}
+
 const run = async () => {
   ReactDOM.render(
     <Provider store={store}>

@@ -1,0 +1,29 @@
+@use '~@/styles/base/breakpoints' as *;
+
+.notf-section {
+  margin-bottom: 2rem;
+
+  &-title {
+    position: sticky;
+    background-color: var(--clr-primary-700);
+    padding: 0.5rem 0 1rem 0;
+    z-index: 1;
+    top: 5.8rem;
+
+    @include mq('small') {
+      top: 2rem;
+    }
+  }
+
+  &-heading,
+  &-paragraph {
+    padding: 0 1.1rem;
+  }
+
+  &-inner {
+    padding: 0.1rem 1.1rem;
+    margin: 1rem 0;
+    border-radius: 0.8rem;
+    background-color: var(--clr-primary-600);
+  }
+}

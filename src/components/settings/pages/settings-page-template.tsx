@@ -1,10 +1,12 @@
-import { ReactNode } from 'react';
+import { ReactNode, useLayoutEffect } from 'react';
 import { Heading } from '@maeek/neutrino-design';
+import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { useMediaQuery } from 'react-responsive';
 import { ArrowBackRounded } from '@material-ui/icons';
 import Navigator from '@/utils/navigation';
 import { useHistory } from 'react-router-dom';
+import { setMobileBottomNavVisibility } from '@/store/app/ui/actions';
 import './template.scss';
 
 export interface SettingsPageTemplateProps {
@@ -22,10 +24,21 @@ export const SettingsPageTemplate = ({
 }: SettingsPageTemplateProps) => {
   const isMobile = useMediaQuery({ maxWidth: 786 });
   const history = useHistory();
+  const dispatch = useDispatch();
   
   const navBack = () => {
     Navigator.back(history, '/me');
   };
+
+  useLayoutEffect(() => {
+    if (isMobile) {
+      dispatch(setMobileBottomNavVisibility(true));
+    }
+    
+    return () => {
+      dispatch(setMobileBottomNavVisibility(false));
+    };
+  }, [ dispatch, isMobile ]);
 
   return (
     <div className={classNames('settings-page-content', className)}>

@@ -30,10 +30,10 @@
     background-color: var(--clr-primary-700);
     padding: 0 1rem 0.5rem;
     position: sticky;
-    top: calc(2.5rem + 4rem);
+    top: calc(3rem + 4rem);
 
     @include mq('small') {
-      top: calc(2.8rem + 4rem);
+      top: calc(3rem + 4rem);
     }
   }
 
@@ -42,7 +42,7 @@
     top: 2.5rem;
 
     @include mq('small') {
-      top: 2.8rem;
+      top: 3rem;
     }
   }
 }

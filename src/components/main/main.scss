@@ -51,6 +51,10 @@
       padding: 0 1rem 0.5rem;
       position: sticky;
       top: calc(2.5rem + 4rem); // top bar + search bar
+
+      @include mq('small') {
+        top: calc(3rem + 4rem); // top bar + search bar
+      }
     }
   }
 }
