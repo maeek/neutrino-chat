@@ -48,7 +48,7 @@ export const AddToGroup = ({ item, itemType = GroupTypeEnum.USER, onDismiss }: A
   }));
 
   return (
-    <div className="add-to-group">
+    <div className="add-to-group" onClick={e => e.stopPropagation()}>
       <ContextMenu items={items} suffixNode={(
         <Button className="add-to-group-dismiss" onClick={onDismiss} type="button">Dismiss</Button>
       )}>

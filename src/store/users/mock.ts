@@ -113,8 +113,8 @@ export const usersReducerMock: UsersState = {
         avatar: '',
         blocked: false,
         messages: [
-          '2e341b65-656a-4fb4-b616-9d2c0ba1499c',
-          '57499627-432a-4302-9163-1a3001c5798e'
+          // '2e341b65-656a-4fb4-b616-9d2c0ba1499c',
+          // '57499627-432a-4302-9163-1a3001c5798e'
         ],
         // lastMessage: {
         //   id: '57499627-432a-4302-9163-1a3001c5798e',

@@ -22,6 +22,7 @@ export const getFilteredUsersByGroup = createSelector(
   getGroupByFiltersGroup,
   getUsers,
   (group, users) => {
+    console.warn(group, users);
     return group?.items 
       ? group.items
         .filter((item) => item.type === GroupTypeEnum.USER)
@@ -65,8 +66,8 @@ export const getFilteredUsers = createSelector(
   getFilteredUsersByQueries,
   (usersByGroup, usersByQueries) => {
     const uniq = [ ...new Set([ ...usersByGroup, ...usersByQueries ]) ];
-    const usernamesInGroups = usersByGroup.map((c) => c.id);
-    const usernamesInQueries = usersByQueries.map((c) => c.id);
+    const usernamesInGroups = usersByGroup.filter(Boolean).map((c) => c.id);
+    const usernamesInQueries = usersByQueries.filter(Boolean).map((c) => c.id);
 
     const soretdResults = uniq.filter(
       (c) => usernamesInGroups.includes(c.id) && usernamesInQueries.includes(c.id)

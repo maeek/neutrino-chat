@@ -16,6 +16,8 @@ import { StatusDot, StatusDotState } from '@/components/common/status-dot';
 import { UserCardPicture } from './picture';
 import './card.scss';
 import { AddToGroup } from '@/components/common/add-to-group';
+import { Modal } from '@maeek/neutrino-design';
+import { modifyUsers } from '@/store/users/actions';
 
 export interface UserCardProps {
   id: string;
@@ -163,7 +165,11 @@ export const UserCard = ({ id }: UserCardProps) => {
       text: user?.blocked ? 'Unblock' : 'Block',
       icon: user?.blocked ? <BlockRounded /> : null,
       closeOnClick: true,
-      onClick: stopPropagation
+      onClick: (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        dispatch(modifyUsers([ { id: user.id, blocked: !user.blocked } ]));
+      }
     },
     ...(user?.messages && user?.messages?.length > 0 ? [ {
       text: 'Clear History',
@@ -171,11 +177,11 @@ export const UserCard = ({ id }: UserCardProps) => {
       closeOnClick: true,
       onClick: stopPropagation
     } ] : []),
-    {
-      text: 'Remove',
-      closeOnClick: true,
-      onClick: stopPropagation
-    }
+    // {
+    //   text: 'Remove',
+    //   closeOnClick: true,
+    //   onClick: stopPropagation
+    // }
   ];
 
   const contextMenu = (
@@ -268,7 +274,7 @@ export const UserCard = ({ id }: UserCardProps) => {
       </a>
       {
         showGroupSelection 
-          ? <AddToGroup item={user.id} onDismiss={() => setShowGroupSelection(prev => !prev)} />
+          ? <Modal><AddToGroup item={user.id} onDismiss={() => setShowGroupSelection(prev => !prev)} /></Modal>
           : null
       }
     </li>
