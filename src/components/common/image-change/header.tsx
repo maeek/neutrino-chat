@@ -1,6 +1,6 @@
 import { MouseEventHandler, ReactNode } from 'react';
-import { Paragraph } from '@maeek/neutrino-design/components/atoms/typography/paragraph/Paragraph';
 import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading/Heading';
+import { Paragraph } from '@maeek/neutrino-design/components/atoms/typography/paragraph/Paragraph';
 import CloseRounded from '@material-ui/icons/CloseRounded';
 import './header.scss';
 

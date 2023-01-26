@@ -5,7 +5,7 @@ import { Channel, ChannelEntry, ChannelsAction, ChannelsActionsEnum, ChannelSett
 import getPersistConf from '../persist-config';
 import { persistReducer } from 'redux-persist';
 
-export const initialState: ChannelsState = __DEMO__ ? channelsReducerMock : {
+export const initialState: ChannelsState = !!import.meta.env.VITE_DEMO ? channelsReducerMock : {
   joined: [],
   recent: [],
   entries: {}

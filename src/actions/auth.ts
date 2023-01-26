@@ -1,29 +1,39 @@
 import { Dispatch } from 'redux';
 import { ApiAuthorization } from '@/api/auth';
 import { NeutrinoApiAuthHeadersEnum } from '@/api/auth/types';
-import { setMeUsername, setMeAvatar, setMeBanner, clearMe } from '@/store/me/user/actions';
-import { setToken, setRefreshToken, clearTokens } from '@/store/session/actions';
+import {
+  setMeUsername,
+  setMeAvatar,
+  setMeBanner,
+  clearMe
+} from '@/store/me/user/actions';
+import {
+  setToken,
+  setRefreshToken,
+  clearTokens
+} from '@/store/session/actions';
 import Navigator from '@/utils/navigation';
 import { addNewError } from '@/store/app/errors/actions';
 import { unifiedErrorTemplate } from '@/store/app/errors/error';
 import { RootState } from '@/store/root';
 import { getAuthRefreshToken } from '@/selectors/session';
 
-export const login = (
-  username: string,
-  password: string,
-  params: {
-    history: unknown,
-    from: { pathname: string }
-  }
-) => (dispatch: Dispatch) => {
-  
-  ApiAuthorization.login(username, password)
-    .then((response) => {
+export const login =
+  (
+    username: string,
+    password: string,
+    params: {
+      history: unknown;
+      from: { pathname: string };
+    }
+  ) =>
+    (dispatch: Dispatch) => {
+      // ApiAuthorization.login(username, password)
+      //   .then((response) => {
       const user = {
         username,
-        token: response.data.resources.token,
-        refreshToken: response.headers[ NeutrinoApiAuthHeadersEnum.REFRESH_TOKEN ]
+        token: 'token', //response.data.resources.accessToken,
+        refreshToken: 'refreshToken' // response.headers[ NeutrinoApiAuthHeadersEnum.REFRESH_TOKEN ]
       };
 
       dispatch(setToken(user.token));
@@ -31,31 +41,32 @@ export const login = (
       dispatch(setMeUsername(username));
 
       // After login initial fetch
-      dispatch(setMeAvatar(''));
+      dispatch(setMeAvatar('https://static.suchanecki.me/avatar.png'));
       dispatch(setMeBanner(''));
 
       Navigator.replace(params.history, params.from?.pathname || '/');
-    })
-    .catch((e: any) => {
-      console.error('Failed to log in! ', e);
-      dispatch(addNewError(unifiedErrorTemplate(
-        e.type,
-        e,
-        null,
-        { username, from: params.from }
-      )));
-    });
-};
+      // })
+      // .catch((e: any) => {
+      //   console.error('Failed to log in! ', e);
+      //   dispatch(
+      //     addNewError(
+      //       unifiedErrorTemplate(e.type, e, null, {
+      //         username,
+      //         from: params.from
+      //       })
+      //     )
+      //   );
+      // });
+    };
 
 export const logout = () => (dispatch: Dispatch, getState: () => RootState) => {
   ApiAuthorization.logout(getAuthRefreshToken(getState()) as string)
     .catch((e: any) => {
-      console.error('Failed to clear the session, you will be logged out anyway but the token will still be valid', e);
-      dispatch(addNewError(unifiedErrorTemplate(
-        e.type,
-        e,
-        []
-      )));
+      console.error(
+        'Failed to clear the session, you will be logged out anyway but the token will still be valid',
+        e
+      );
+      dispatch(addNewError(unifiedErrorTemplate(e.type, e, [])));
     })
     .finally(() => {
       dispatch(clearTokens());

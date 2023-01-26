@@ -2,7 +2,7 @@ import { ClearMe, UserActionsEnum } from '../user/types';
 import devicesReducerMock from './mock';
 import { Device, DeviceEntry, DevicesActionsEnum, DevicesActionTypes, DevicesState } from './types';
 
-export const initialState: DevicesState = __DEMO__ ? devicesReducerMock : {
+export const initialState: DevicesState = !!import.meta.env.VITE_DEMO ? devicesReducerMock : {
   entries: {
     '#': {
       id: '#',

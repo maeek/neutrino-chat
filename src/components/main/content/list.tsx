@@ -4,8 +4,8 @@ import { WindowScroller, List, AutoSizer, CellMeasurer, CellMeasurerCache } from
 import { getFilteredUsersIds, getFiltersMain } from '@/selectors/filters';
 import { FilterCategory } from '@/store/app/filters/types';
 import MainListRow from './row';
+import debounce from 'lodash.debounce';
 import './list.scss';
-import { debounce } from 'lodash';
 
 export interface MainListProps {}
 
@@ -109,6 +109,7 @@ export const MainList = () => {
                           style={style}
                           className="main-list-row-wrapper"
                           ref={(el) => regChild?.(el as Element)}
+                          // eslint-disable-next-line react/no-unknown-property
                           onLoad={measure}
                         >
                           {renderRow(index)}

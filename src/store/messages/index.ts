@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 import { messagesMock } from './mock';
 import { AddMessageReactions, MessagesActionsEnum, MessagesActionsType, MessagesState, MessageStatus, MessageTypes, ModifyMessage, RemoveAttachments, RemoveMessageReactions, RemoveMessages } from './types';
 
-export const initialState: MessagesState = __DEMO__ ? messagesMock : {
+export const initialState: MessagesState = !!import.meta.env.VITE_DEMO ? messagesMock : {
   list: {},
   attachments: {}
 };

@@ -9,7 +9,7 @@ import {
   GroupsState
 } from './types';
 
-export const initialState: GroupsState = __DEMO__ ? groupsReducerMock : {
+export const initialState: GroupsState = !!import.meta.env.VITE_DEMO ? groupsReducerMock : {
   entries: {
     Starred: {
       name: 'Starred',

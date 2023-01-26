@@ -1,5 +1,5 @@
-@use '~@/styles/themes/functions' as cf;
-@use '~@/styles/base/breakpoints' as *;
+@use '@/styles/themes/functions' as cf;
+@use '@/styles/base/breakpoints' as *;
 
 .top-bar-button {
   .top-bar-notifications-drawer {

@@ -12,7 +12,7 @@ localforage.config({
 export const getPersistConf = (key: string): PersistConfig<any> => ({
   key,
   storage: localforage,
-  debug: __DEV__,
+  debug: import.meta.env.MODE === 'development',
   stateReconciler: autoMergeLevel2,
   blacklist: [
     'lastMessage'

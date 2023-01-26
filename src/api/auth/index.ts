@@ -11,11 +11,11 @@ export enum ApiAuthorizationEnum {
 export class ApiAuthorization {
   private static readonly api: ApiInstanceType = ApiInstance;
 
-  static route = '/auth'
+  static route = '/auth';
 
   static login(username: string, password: string) {
     return ApiAuthorization.api.instance.post<NeutrinoApiAuthResponse>(
-      `${ApiAuthorization.route}/login`, { username, password }
+      `${ApiAuthorization.route}/login`, { username, password, newDeviceName: navigator.userAgent }
     )
       .catch((e: any) => {
         throw new NeutrinoApiError(e.message, { error: e }, ApiAuthorizationEnum.LOGIN);

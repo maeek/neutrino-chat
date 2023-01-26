@@ -4,7 +4,7 @@ import { usersReducerMock } from './mock';
 import { UsersAction, UsersActionsEnum, UsersState } from './types';
 import { AddMessages, MessagesActionsEnum } from '../messages/types';
 
-export const initialState: UsersState = __DEMO__
+export const initialState: UsersState = !!import.meta.env.VITE_DEMO
   ? usersReducerMock
   : {
     entries: {}

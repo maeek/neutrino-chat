@@ -10,7 +10,11 @@ import * as serviceWorkerRegistration from './register-service-worker';
 import App from './App';
 import './styles/main.scss';
 
-if (process.env.NODE_ENV !== 'production') {
+window.__DEMO__ = !!import.meta.env.VITE_DEMO;
+window.__PROD__ = import.meta.env.MODE === 'production';
+window.__DEV__ = import.meta.env.MODE === 'development';
+
+if (import.meta.env.MODE !== 'production') {
   const { whyDidYouUpdate } = require('why-did-you-update');
   whyDidYouUpdate(React);
 }

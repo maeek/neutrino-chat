@@ -15,7 +15,7 @@ const logger: Middleware<{}, RootState>  = store => next => action => {
   return result;
 };
 
-if (__DEV__) {
+if (import.meta.env.MODE === 'development') {
   reducers = require('redux-devtools-extension').composeWithDevTools(
     applyMiddleware(
       thunk,

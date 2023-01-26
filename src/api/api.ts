@@ -25,7 +25,7 @@ export class ApiInstance {
       this._handleRequest,
       this._handleError
     );
-  }
+  };
 
   private _handleRequest(config: AxiosRequestConfig): AxiosRequestConfig {
     const token = getAuthToken();
@@ -51,10 +51,10 @@ export class ApiInstance {
       }
     });
 
-    return refreshRequest.then((res) => {
+    return refreshRequest.then((res: { data: { token: string }}) => {
       return res.data.token;
     });
-  }
+  };
 
   private _handleError = (error: any): Promise<any> => {
     if (error.config && error.response && error.response.status === 401) {
@@ -66,7 +66,7 @@ export class ApiInstance {
     }
 
     return Promise.reject(error);
-  }
+  };
 }
 
 export default new ApiInstance('/api');
