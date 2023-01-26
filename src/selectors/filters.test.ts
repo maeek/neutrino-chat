@@ -2,7 +2,7 @@ import filtersReducerMock from '@/store/app/filters/mock';
 import channelsReducerMock from '@/store/channels/mock';
 import groupsReducerMock from '@/store/me/groups/mock';
 import {
-  getFilteredChannelsByGroup,
+  // getFilteredChannelsByGroup,
   getFiltersGroup,
   getFiltersMain,
   getFiltersQueries,
@@ -39,8 +39,8 @@ describe('Filters', () => {
     expect(filterQueries).toEqual(globalStateMock.me.groups.entries.Starred);
   });
 
-  it.skip('getFilteredChannelsByGroup should return selected group', () => {
-    const filterQueries = getFilteredChannelsByGroup(globalStateMock as any);
-    expect(filterQueries).toEqual([ globalStateMock.channels.entries[ '0f717b7f-fbf8-47a7-ae8c-778d8889406a' ] ]);
-  });
+  // it.skip('getFilteredChannelsByGroup should return selected group', () => {
+  //   const filterQueries = getFilteredChannelsByGroup(globalStateMock as any);
+  //   expect(filterQueries).toEqual([ globalStateMock.channels.entries[ '0f717b7f-fbf8-47a7-ae8c-778d8889406a' ] ]);
+  // });
 });

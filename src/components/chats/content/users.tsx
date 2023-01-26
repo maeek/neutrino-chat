@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
 import { getFilteredUsersIds, getFiltersMain } from '@/selectors/filters';
 import { FilterCategory } from '@/store/app/filters/types';
-// import UserDmList from './list';
+import UserDmList from './list';
 import './cards.scss';
 
 export interface UsersCardsProps {}
@@ -16,7 +16,7 @@ export const UsersCards = () => {
     ? (
       <div className="cards">
         <Heading level={3} className="main-side-filter-heading">Messages</Heading>
-        {/* <UserDmList /> */}
+        <UserDmList />
       </div>
     )
     : null;

@@ -268,7 +268,7 @@ describe('Redux store - Channels', () => {
         }
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         joined: [],
         recent: [],
         entries: {}
@@ -289,7 +289,7 @@ describe('Redux store - Channels', () => {
         }
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
@@ -315,7 +315,7 @@ describe('Redux store - Channels', () => {
         }
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
@@ -342,7 +342,7 @@ describe('Redux store - Channels', () => {
         }
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
@@ -369,7 +369,7 @@ describe('Redux store - Channels', () => {
         }
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
@@ -393,7 +393,7 @@ describe('Redux store - Channels', () => {
         }
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
@@ -420,7 +420,7 @@ describe('Redux store - Channels', () => {
         }
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
@@ -442,7 +442,7 @@ describe('Redux store - Channels', () => {
         }
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
@@ -460,7 +460,7 @@ describe('Redux store - Channels', () => {
         data: {}
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         joined: [],
         recent: [],
         entries: {}
@@ -490,7 +490,7 @@ describe('Redux store - Channels', () => {
         data: {}
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         recent: []
       });
@@ -508,7 +508,7 @@ describe('Redux store - Channels', () => {
         }
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         entries: {
           ...channelsReducerMock.entries,
@@ -533,7 +533,7 @@ describe('Redux store - Channels', () => {
         }
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         joined: [
           ...channelsReducerMock.joined,
@@ -552,7 +552,7 @@ describe('Redux store - Channels', () => {
         }
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         joined: [
           ...channelsReducerMock.joined
@@ -566,7 +566,7 @@ describe('Redux store - Channels', () => {
         data: {}
       };
 
-      expect(channelsReducer(channelsReducerMock, action)).toEqual({
+      expect(channelsReducer(channelsReducerMock as any, action)).toEqual({
         ...channelsReducerMock,
         joined: []
       });

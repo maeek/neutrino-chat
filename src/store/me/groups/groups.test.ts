@@ -79,7 +79,7 @@ describe('Redux store - Me/Groups', () => {
         },
         {
           id: '2',
-          type: GroupTypeEnum.CONTACT
+          type: GroupTypeEnum.USER
         }
       ];
       const expectedAction = {
@@ -264,7 +264,7 @@ describe('Redux store - Me/Groups', () => {
       const items: GroupItem[] = [
         {
           id: '1',
-          type: GroupTypeEnum.CONTACT
+          type: GroupTypeEnum.USER
         }
       ];
       const addAction: AddGroupMembersAction = {
@@ -306,7 +306,7 @@ describe('Redux store - Me/Groups', () => {
             name: 'Starred',
             items: [ {
               id: '1',
-              type: GroupTypeEnum.CONTACT
+              type: GroupTypeEnum.USER
             } ]
           }
         }
@@ -341,11 +341,11 @@ describe('Redux store - Me/Groups', () => {
             items: [
               {
                 id: '1',
-                type: GroupTypeEnum.CONTACT
+                type: GroupTypeEnum.USER
               },
               {
                 id: '2',
-                type: GroupTypeEnum.CONTACT
+                type: GroupTypeEnum.USER
               }
             ]
           }

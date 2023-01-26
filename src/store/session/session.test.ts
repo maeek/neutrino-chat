@@ -103,7 +103,7 @@ describe('Redux store - Me/Contacts', () => {
       };
 
       expect(
-        sessionReducer(initState, clearTokensAction)
+        sessionReducer(initState as any, clearTokensAction)
       ).toEqual({
         sessionInfo: {
           token: null,
