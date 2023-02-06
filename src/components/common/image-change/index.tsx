@@ -2,10 +2,13 @@ import { ReactNode, UIEventHandler, useRef, useState } from 'react';
 import { ImageChangePreview } from './preview';
 import { ImageChangeHeader } from './header';
 import { ImageChangeFooter } from './footer';
-import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading/Heading';
-import { Avatar } from '@maeek/neutrino-design/components/atoms/avatar/Avatar';
-import { Input, InputRef } from '@maeek/neutrino-design/components/atoms/inputs/text/Input';
-import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
+import { Heading } from '@maeek/neutrino-design/components/typography/heading/Heading';
+import { Avatar } from '@maeek/neutrino-design/components/avatar/Avatar';
+import {
+  Input,
+  InputRef
+} from '@maeek/neutrino-design/components/inputs/text/Input';
+import Loader from '@maeek/neutrino-design/components/loaders/Loader';
 import './image-change.scss';
 
 const testArr = [
@@ -61,11 +64,12 @@ export const ImageChange = ({
   gallery,
   forceAspectRatio
 }: ImageChangeProps) => {
-  const [ originalImg ] = useState(url);
-  const [ currentImg, setCurrentImg ] = useState(url || '');
-  const [ isShowMore, setIsShowMore ] = useState(false);
-  const [ isScrolled, setIsScrolled ] = useState(() => {
-    const elem = document.querySelector('.image-change-container') || {} as HTMLElement;
+  const [originalImg] = useState(url);
+  const [currentImg, setCurrentImg] = useState(url || '');
+  const [isShowMore, setIsShowMore] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(() => {
+    const elem =
+      document.querySelector('.image-change-container') || ({} as HTMLElement);
     return elem?.scrollTop > SCROLL_POINT;
   });
   const imgRef = useRef<InputRef>(null);
@@ -88,88 +92,87 @@ export const ImageChange = ({
   };
 
   return (
-    <section className="image-change-wrapper">
-      <div className="image-change-container" onScroll={onScrollHandler}>
+    <section className='image-change-wrapper'>
+      <div className='image-change-container' onScroll={onScrollHandler}>
         <ImageChangeHeader
           title={title}
           description={description}
           onClose={onCancel}
           compact={isScrolled}
         />
-        <div className="image-change-content">
+        <div className='image-change-content'>
           <ImageChangePreview
             url={currentImg}
             onClear={() => imgRef?.current?.setValue('')}
             forceAspectRatio={forceAspectRatio}
           />
           <Input
-            renderLabel="Image URL"
-            className="image-change-url"
+            renderLabel='Image URL'
+            className='image-change-url'
             ref={imgRef}
             value={currentImg}
             onChange={(value: string) => setCurrentImg(value)}
           />
-          {
-            (gallery || [ '' ]).length > 0
-              ? (
-                <>
-                  <Heading className="image-change-gallery-header" level={4}>Recent images gallery</Heading>
-                  <ul className="image-change-gallery-items">
-                    {
-                      testArr.slice(0, 5).map((itemImg: string) => (
-                        <li
-                          className="image-change-gallery-items-item"
-                          key={itemImg}
-                          onClick={() => imgRef?.current?.setValue(itemImg)}
-                          onContextMenu={(e) => e.preventDefault()}
-                        >
-                          <Avatar selectable loader={<Loader />} size="larger" type="rounded" src={itemImg} />
-                        </li>
-                      ))
-                    }
-                    {
-                      testArr.slice(5).length > 0 && !isShowMore
-                        ? (
-                          <li
-                            className="image-change-gallery-items-item image-change-gallery-items-item--more"
-                            onContextMenu={(e) => e.preventDefault()}
-                            onClick={() => setIsShowMore(true)}
-                          >
-                            Show More ({ testArr.slice(5).length })
-                          </li>
-                        )
-                        : null
-                    }
-                    {
-                      isShowMore && testArr.slice(5).map((itemImg: string) => (
-                        <li
-                          className="image-change-gallery-items-item"
-                          key={itemImg}
-                          onClick={() => imgRef?.current?.setValue(itemImg)}
-                          onContextMenu={(e) => e.preventDefault()}
-                        >
-                          <Avatar loader={<Loader />} size="larger" type="rounded" src={itemImg} selectable />
-                        </li>
-                      ))
-                    }
-                    {
-                      isShowMore
-                        ? (
-                          <li
-                            className="image-change-gallery-items-item image-change-gallery-items-item--more"
-                            onContextMenu={(e) => e.preventDefault()}
-                            onClick={() => setIsShowMore(false)}
-                          >
-                            Show Less
-                          </li>
-                        )
-                        : null
-                    }
-                  </ul>
-                </>
-              )
-              : null
-          }
+          {(gallery || ['']).length > 0 ? (
+            <>
+              <Heading className='image-change-gallery-header' level={4}>
+                Recent images gallery
+              </Heading>
+              <ul className='image-change-gallery-items'>
+                {testArr.slice(0, 5).map((itemImg: string) => (
+                  <li
+                    className='image-change-gallery-items-item'
+                    key={itemImg}
+                    onClick={() => imgRef?.current?.setValue(itemImg)}
+                    onContextMenu={(e) => e.preventDefault()}
+                  >
+                    <Avatar
+                      selectable
+                      loader={<Loader />}
+                      size='larger'
+                      type='rounded'
+                      src={itemImg}
+                    />
+                  </li>
+                ))}
+                {testArr.slice(5).length > 0 && !isShowMore ? (
+                  <li
+                    className='image-change-gallery-items-item image-change-gallery-items-item--more'
+                    onContextMenu={(e) => e.preventDefault()}
+                    onClick={() => setIsShowMore(true)}
+                  >
+                    Show More ({testArr.slice(5).length})
+                  </li>
+                ) : null}
+                {isShowMore &&
+                  testArr.slice(5).map((itemImg: string) => (
+                    <li
+                      className='image-change-gallery-items-item'
+                      key={itemImg}
+                      onClick={() => imgRef?.current?.setValue(itemImg)}
+                      onContextMenu={(e) => e.preventDefault()}
+                    >
+                      <Avatar
+                        loader={<Loader />}
+                        size='larger'
+                        type='rounded'
+                        src={itemImg}
+                        selectable
+                      />
+                    </li>
+                  ))}
+                {isShowMore ? (
+                  <li
+                    className='image-change-gallery-items-item image-change-gallery-items-item--more'
+                    onContextMenu={(e) => e.preventDefault()}
+                    onClick={() => setIsShowMore(false)}
+                  >
+                    Show Less
+                  </li>
+                ) : null}
+              </ul>
+            </>
+          ) : null}
         </div>
         <ImageChangeFooter
           isUpdateButtonDisabled={savingIsBlocked}

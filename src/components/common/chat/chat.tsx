@@ -6,6 +6,5 @@ export interface ChatProps {
 }
 
 export const Chat = ({ type, id }: ChatProps) => {
-
-  return (<div>Chat</div>);
+  return <div>Chat</div>;
 };

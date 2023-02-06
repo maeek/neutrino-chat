@@ -1,6 +1,6 @@
 import { useMediaQuery } from 'react-responsive';
 import { useDispatch } from 'react-redux';
-import NavItem from '@maeek/neutrino-design/components/molecules/navigation/Item';
+import NavItem from '@maeek/neutrino-design/components/navigation/Item';
 import { ExitToAppRounded } from '@material-ui/icons';
 import { logout } from '@/actions/auth';
 import { SideNavMainSection } from '../settings/side-nav/main-section';
@@ -15,9 +15,11 @@ export const ProfileQuickLinks = () => {
   };
 
   return isMobile ? (
-    <ul className="me-profile-links">
+    <ul className='me-profile-links'>
       <SideNavMainSection />
-      <NavItem onClick={onLogout} icon={<ExitToAppRounded />}>Log out</NavItem>
+      <NavItem onClick={onLogout} icon={<ExitToAppRounded />}>
+        Log out
+      </NavItem>
     </ul>
   ) : null;
 };

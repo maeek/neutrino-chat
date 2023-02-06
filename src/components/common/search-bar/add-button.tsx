@@ -1,24 +1,25 @@
 import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
-import ActionButton from '@maeek/neutrino-design/components/atoms/buttons/Action';
-import {
-  AddRounded
-} from '@material-ui/icons';
+import ActionButton from '@maeek/neutrino-design/components/buttons/Action';
+import { AddRounded } from '@material-ui/icons';
 import MainSearchBarAddButtonContextMenu from './context-menu-wrapper';
 import { getMeColor } from '@/selectors/user';
 
 export const MainSearchBarAddButton = () => {
-  const [ showContext, setShowContext ] = useState(false);
+  const [showContext, setShowContext] = useState(false);
   const meColor = useSelector(getMeColor);
 
   const toggleContext = () => setShowContext(!showContext);
-  const closeContextMenu = useCallback(() => setShowContext(false), [ setShowContext ]);
+  const closeContextMenu = useCallback(
+    () => setShowContext(false),
+    [setShowContext]
+  );
 
   return (
-    <div className="main-search-bar-add">
+    <div className='main-search-bar-add'>
       <ActionButton
-        type="button"
-        className="main-search-bar-action main-search-bar-action--compact"
+        type='button'
+        className='main-search-bar-action main-search-bar-action--compact'
         style={{
           // @ts-ignore
           background: meColor || undefined,

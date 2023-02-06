@@ -2,7 +2,9 @@ import { useState, useCallback, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import ContextMenu, { ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
+import ContextMenu, {
+  ContextMenuItems
+} from '@maeek/neutrino-design/components/context-menu/Menu';
 import {
   AccountCircleRounded,
   ExitToAppRounded,
@@ -17,13 +19,16 @@ import './context-menu-wrapper.scss';
 
 export const ContextMenuWrapper = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [ showContext, setShowContext ] = useState(false);
+  const [showContext, setShowContext] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const navigate = useCallback((link: string) => () => {
-    Navigator.forward(history, link);
-  }, [ history ]);
+  const navigate = useCallback(
+    (link: string) => () => {
+      Navigator.forward(history, link);
+    },
+    [history]
+  );
 
   const toggleMenu = useCallback(() => {
     if (isMobile) {
@@ -31,9 +36,12 @@ export const ContextMenuWrapper = () => {
     } else {
       setShowContext(!showContext);
     }
-  }, [ isMobile, history, showContext ]);
+  }, [isMobile, history, showContext]);
 
-  const closeContextMenu = useCallback(() => setShowContext(false), [ setShowContext ]);
+  const closeContextMenu = useCallback(
+    () => setShowContext(false),
+    [setShowContext]
+  );
 
   const items: ContextMenuItems[] = [
     {
@@ -52,7 +60,8 @@ export const ContextMenuWrapper = () => {
       text: 'Help',
       icon: <HelpOutlineRounded />,
       closeOnClick: true,
-      onClick: () => location.href = 'https://github.com/maeek/neutrino-chat.git'
+      onClick: () =>
+        (location.href = 'https://github.com/maeek/neutrino-chat.git')
     },
     {
       text: 'Log out',
@@ -70,16 +79,16 @@ export const ContextMenuWrapper = () => {
       className={showContext ? '' : 'context-menu--hidden'}
       closeContextMenu={closeContextMenu}
     >
-      <div className="top-bar-badge-wrapper-context-menu-prefix">
-        <AvatarWrapper size="large" redirect onClick={closeContextMenu} />
+      <div className='top-bar-badge-wrapper-context-menu-prefix'>
+        <AvatarWrapper size='large' redirect onClick={closeContextMenu} />
         <ContextMenuPrefix onClick={closeContextMenu} />
       </div>
     </ContextMenu>
   );
 
   return (
-    <div className="top-bar-badge-wrapper">
-      <AvatarWrapper size="medium" onClick={toggleMenu} />
+    <div className='top-bar-badge-wrapper'>
+      <AvatarWrapper size='medium' onClick={toggleMenu} />
       {!isMobile && contextMenu}
     </div>
   );

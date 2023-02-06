@@ -1,5 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { getAuthRefreshToken, getAuthToken } from '@/selectors/session';
+import { NeutrinoApiAuthHeadersEnum } from './auth/types';
 
 export class ApiInstance {
   baseURL: string;
@@ -47,7 +48,7 @@ export class ApiInstance {
 
     const refreshRequest = axios.post(`${this.baseURL}/auth/refresh`, {}, {
       headers: {
-        'x-api-refreshtoken': refreshToken
+        [NeutrinoApiAuthHeadersEnum.REFRESH_TOKEN]: refreshToken
       }
     });
 

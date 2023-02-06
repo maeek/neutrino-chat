@@ -1,6 +1,6 @@
 import { CSSProperties, MouseEventHandler, useState } from 'react';
-import ImageContainerCached from '@maeek/neutrino-design/components/atoms/image/Image';
-import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
+import ImageContainerCached from '@maeek/neutrino-design/components/image/Image';
+import Loader from '@maeek/neutrino-design/components/loaders/Loader';
 import './background-image.scss';
 
 export interface BackgroundImageProps {
@@ -23,7 +23,7 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
     objectFit = 'cover',
     ...rest
   } = props;
-  const [ isLoaded, setIsLoaded ] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const styles = {
     opacity: isLoaded ? opacity : 0.5,
@@ -33,7 +33,7 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
   } as CSSProperties;
 
   return (
-    <div className="background-image-container" style={styles} {...rest}>
+    <div className='background-image-container' style={styles} {...rest}>
       <ImageContainerCached
         src={url}
         loader={<Loader style={{ paddingTop: '5rem' }} />}

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getMeBanner } from '@/selectors/user';
-import Modal from '@maeek/neutrino-design/components/atoms/modal/Modal';
+import Modal from '@maeek/neutrino-design/components/modal/Modal';
 import { ImageChange } from '../common/image-change';
 import { setMeBanner } from '@/store/me/user/actions';
 import './banner-edit.scss';
@@ -10,7 +10,10 @@ export interface EditMeBannerModalProps {
   setEdited?: (v: boolean) => void;
 }
 
-export const EditMeBannerModal = ({ isEdited, setEdited }: EditMeBannerModalProps) => {
+export const EditMeBannerModal = ({
+  isEdited,
+  setEdited
+}: EditMeBannerModalProps) => {
   const banner = useSelector(getMeBanner);
   const dispatch = useDispatch();
 
@@ -20,10 +23,13 @@ export const EditMeBannerModal = ({ isEdited, setEdited }: EditMeBannerModalProp
   };
 
   return (
-    <Modal mountPointId="modal-root" className={`modal-fullpage ${isEdited ? 'modal-visible' : ''}`}>
+    <Modal
+      mountPointId='modal-root'
+      className={`modal-fullpage ${isEdited ? 'modal-visible' : ''}`}
+    >
       <ImageChange
         url={banner}
-        title="Change Your banner picture"
+        title='Change Your banner picture'
         onCancel={() => setEdited?.(false)}
         onUpdate={savingHandler}
       />

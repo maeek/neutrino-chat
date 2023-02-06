@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { RootState } from '@/store/root';
-import ImageContainerCached from '@maeek/neutrino-design/components/atoms/image/Image';
+import ImageContainerCached from '@maeek/neutrino-design/components/image/Image';
 import { User } from '@/store/users/types';
 import { getUserById } from '@/selectors/users';
 import { SvgTextPattern } from './svg-pattern';
@@ -14,10 +14,12 @@ export interface UserCardPictureProps {
 
 export const UserCardPicture = ({ id }: UserCardPictureProps) => {
   const user = useSelector<RootState, User>(getUserById(id));
-  const [ isValidAvatar, setIsValidAvatar ] = useState(true);
-  const isReducedData = useMediaQuery({ query: '(prefers-reduced-data: reduce)' });
+  const [isValidAvatar, setIsValidAvatar] = useState(true);
+  const isReducedData = useMediaQuery({
+    query: '(prefers-reduced-data: reduce)'
+  });
 
-  const noAvatarPlaceholer = useMemo(() => <SvgTextPattern text={id} />, [ id ]);
+  const noAvatarPlaceholer = useMemo(() => <SvgTextPattern text={id} />, [id]);
 
   return (
     <picture>
@@ -27,7 +29,7 @@ export const UserCardPicture = ({ id }: UserCardPictureProps) => {
         loader={noAvatarPlaceholer}
         onImageLoaded={(e) => setIsValidAvatar(!e)}
       />
-      {!isValidAvatar && noAvatarPlaceholer}  
+      {!isValidAvatar && noAvatarPlaceholer}
     </picture>
   );
 };

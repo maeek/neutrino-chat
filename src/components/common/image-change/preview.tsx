@@ -1,5 +1,5 @@
-import { Avatar } from '@maeek/neutrino-design/components/atoms/avatar/Avatar';
-import Loader from '@maeek/neutrino-design/components/molecules/loaders/Loader';
+import { Avatar } from '@maeek/neutrino-design/components/avatar/Avatar';
+import Loader from '@maeek/neutrino-design/components/loaders/Loader';
 import { DeleteRounded, AddPhotoAlternateRounded } from '@material-ui/icons';
 import { MouseEvent } from 'react';
 import './preview.scss';
@@ -18,27 +18,29 @@ export const ImageChangePreview = ({
   return (
     <Avatar
       src={url}
-      size="extra-large"
+      size='extra-large'
       draggable={false}
-      className={`image-change-preview ${forceAspectRatio ? `image-change-preview--${forceAspectRatio}` : ''}`}
+      className={`image-change-preview ${
+        forceAspectRatio ? `image-change-preview--${forceAspectRatio}` : ''
+      }`}
       loader={<Loader />}
       onContextMenu={(e: MouseEvent) => e.preventDefault()}
     >
-      {
-        !url
-          ? (
-            <div className="image-change-preview--empty">
-              <AddPhotoAlternateRounded />
-            </div>
-          )
-          : (
-            <>
-              <div className="image-change-preview-clear" onClick={onClear} tabIndex={0}>
-                <DeleteRounded />
-              </div>
-            </>
-          )
-      }
+      {!url ? (
+        <div className='image-change-preview--empty'>
+          <AddPhotoAlternateRounded />
+        </div>
+      ) : (
+        <>
+          <div
+            className='image-change-preview-clear'
+            onClick={onClear}
+            tabIndex={0}
+          >
+            <DeleteRounded />
+          </div>
+        </>
+      )}
     </Avatar>
   );
 };

@@ -1,4 +1,4 @@
-import { Modal } from '@maeek/neutrino-design/components/atoms/modal/Modal';
+import { Modal } from '@maeek/neutrino-design/components/modal/Modal';
 import { BackgroundImage } from '@/components/common/background-image/background-image';
 import classnames from 'classnames';
 import './image-preview.scss';
@@ -10,12 +10,8 @@ export interface ImagePreviewProps {
 }
 
 export const ImagePreview = ({ url, isOpened, onClose }: ImagePreviewProps) => {
-
   return (
-    <Modal
-      mountPointId="modal-root"
-      className="modal-fullpage-image-preview"
-    >
+    <Modal mountPointId='modal-root' className='modal-fullpage-image-preview'>
       <div
         className={classnames(
           'modal-fullpage-image-preview-mask',
@@ -23,11 +19,7 @@ export const ImagePreview = ({ url, isOpened, onClose }: ImagePreviewProps) => {
         )}
         onClick={onClose}
       >
-        <BackgroundImage
-          opacity={1}
-          blur="0"
-          url={url}
-        />
+        <BackgroundImage opacity={1} blur='0' url={url} />
       </div>
     </Modal>
   );

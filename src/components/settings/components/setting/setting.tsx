@@ -1,5 +1,6 @@
 import { MutableRefObject, ReactNode } from 'react';
-import { Heading, Input } from '@maeek/neutrino-design';
+import { Input } from '@maeek/neutrino-design/components/inputs/text';
+import { Heading } from '@maeek/neutrino-design/components/typography/heading';
 import classNames from 'classnames';
 import './setting.scss';
 
@@ -24,19 +25,20 @@ export const Setting = ({
   className,
   inputRef
 }: SettingProps) => {
-
   return (
     <div className={classNames('setting-grouping', className)}>
-      <Heading className="setting-grouping-header" level={4}>{name}</Heading>
+      <Heading className='setting-grouping-header' level={4}>
+        {name}
+      </Heading>
       {children}
       <Input
         ref={inputRef}
-        type="text"
+        type='text'
         value={value}
         onChange={onChange}
         renderLabel={label}
         validate={validate}
-        className="setting-grouping-input"
+        className='setting-grouping-input'
       />
     </div>
   );

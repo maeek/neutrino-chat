@@ -1,6 +1,6 @@
 import { MouseEventHandler, ReactNode } from 'react';
-import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading/Heading';
-import { Paragraph } from '@maeek/neutrino-design/components/atoms/typography/paragraph/Paragraph';
+import { Heading } from '@maeek/neutrino-design/components/typography/heading/Heading';
+import { Paragraph } from '@maeek/neutrino-design/components/typography/paragraph/Paragraph';
 import CloseRounded from '@material-ui/icons/CloseRounded';
 import './header.scss';
 
@@ -23,7 +23,6 @@ export const ImageChangeHeader = ({
   onClose,
   compact
 }: ImageChangeHeaderProps) => {
-
   const onCloseHandler: MouseEventHandler = (e) => {
     e.preventDefault();
 
@@ -32,16 +31,22 @@ export const ImageChangeHeader = ({
 
   return (
     <>
-      <div className="image-change-header-plank">
+      <div className='image-change-header-plank'>
         <CloseRounded
           onClick={onCloseHandler}
           tabIndex={0}
-          className="image-change-close"
+          className='image-change-close'
         />
       </div>
-      <header className={`image-change-header ${compact ? 'image-change-header--compact' : ''}`}>
-        <Heading className="image-change-header-heading">{title}</Heading>
-        <Paragraph className="image-change-header-desc">{description}</Paragraph>
+      <header
+        className={`image-change-header ${
+          compact ? 'image-change-header--compact' : ''
+        }`}
+      >
+        <Heading className='image-change-header-heading'>{title}</Heading>
+        <Paragraph className='image-change-header-desc'>
+          {description}
+        </Paragraph>
       </header>
     </>
   );

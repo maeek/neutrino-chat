@@ -1,5 +1,5 @@
-import { ProceedButton } from '@maeek/neutrino-design/components/atoms/buttons/Proceed';
-import { Text } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
+import { ProceedButton } from '@maeek/neutrino-design/components/buttons/Proceed';
+import { Text } from '@maeek/neutrino-design/components/typography/text/Text';
 import { MouseEventHandler } from 'react';
 import './footer.scss';
 
@@ -14,7 +14,6 @@ export const ImageChangeFooter = ({
   onUpdate,
   isUpdateButtonDisabled
 }: ImageChangeFooterProps) => {
-
   const onCancelHandler: MouseEventHandler = (e) => {
     e.preventDefault();
 
@@ -22,10 +21,10 @@ export const ImageChangeFooter = ({
   };
 
   return (
-    <div className="image-change-footer">
+    <div className='image-change-footer'>
       <Text
         tabIndex={0}
-        className="image-change-cancel"
+        className='image-change-cancel'
         strong
         onClick={onCancelHandler}
       >
@@ -33,7 +32,7 @@ export const ImageChangeFooter = ({
       </Text>
       <ProceedButton
         disabled={isUpdateButtonDisabled}
-        type="button"
+        type='button'
         onClick={onUpdate}
       >
         Update

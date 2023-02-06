@@ -1,7 +1,7 @@
 import { ReactNode, useState } from 'react';
 import { createPortal } from 'react-dom';
 import classnames from 'classnames';
-import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
+import { Text } from '@maeek/neutrino-design/components/typography/text';
 import { useConnection } from '@maeek/neutrino-design/hooks/useConnection';
 import CloseRounded from '@material-ui/icons/CloseRounded';
 import NoConnectionIcon from '@material-ui/icons/SignalCellularConnectedNoInternet0BarRounded';
@@ -14,7 +14,7 @@ export interface NoNetworkBannerProps {
 export const NoNetworkBanner: any = (props: NoNetworkBannerProps) => {
   const { children } = props;
   const isConnected = useConnection();
-  const [ isHidden, setIsHidden ] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const portalNode = document.querySelector('#connection-root');
 
   const hideNotification = () => {
@@ -22,19 +22,21 @@ export const NoNetworkBanner: any = (props: NoNetworkBannerProps) => {
   };
 
   const defaultInfoNode = (
-    <div className="no-network-dialog">
-      <NoConnectionIcon className="no-network-dialog-icon" />
+    <div className='no-network-dialog'>
+      <NoConnectionIcon className='no-network-dialog-icon' />
       <Text strong>
-        This functionality doesn't work offline. Check your internet connection and come back to this page.
+        This functionality doesn't work offline. Check your internet connection
+        and come back to this page.
       </Text>
-      <CloseRounded onClick={hideNotification} className="no-network-dialog-close" />
+      <CloseRounded
+        onClick={hideNotification}
+        className='no-network-dialog-close'
+      />
     </div>
   );
   const notConnectedNode = (
     <div className={classnames('no-network', isHidden && 'no-network--hidden')}>
-      {
-        children || defaultInfoNode
-      }
+      {children || defaultInfoNode}
     </div>
   );
 

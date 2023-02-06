@@ -1,5 +1,5 @@
 import { ReactNode, useLayoutEffect } from 'react';
-import { Heading } from '@maeek/neutrino-design';
+import { Heading } from '@maeek/neutrino-design/components/typography/heading';
 import { useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { useMediaQuery } from 'react-responsive';
@@ -25,7 +25,7 @@ export const SettingsPageTemplate = ({
   const isMobile = useMediaQuery({ maxWidth: 786 });
   const history = useHistory();
   const dispatch = useDispatch();
-  
+
   const navBack = () => {
     Navigator.back(history, '/me');
   };
@@ -34,24 +34,25 @@ export const SettingsPageTemplate = ({
     if (isMobile) {
       dispatch(setMobileBottomNavVisibility(true));
     }
-    
+
     return () => {
       dispatch(setMobileBottomNavVisibility(false));
     };
-  }, [ dispatch, isMobile ]);
+  }, [dispatch, isMobile]);
 
   return (
     <div className={classNames('settings-page-content', className)}>
-      <div className="settings-page-content-header">
-        <div className="settings-page-content-header-left">
-          {
-            isMobile
-              ? (
-                <span className="settings-page-content-header-back" tabIndex={0} onClick={navBack}>
-                  <ArrowBackRounded />
-                </span>
-              ) : null
-          }
+      <div className='settings-page-content-header'>
+        <div className='settings-page-content-header-left'>
+          {isMobile ? (
+            <span
+              className='settings-page-content-header-back'
+              tabIndex={0}
+              onClick={navBack}
+            >
+              <ArrowBackRounded />
+            </span>
+          ) : null}
           <Heading level={3}>{name}</Heading>
         </div>
         {headerChildren}

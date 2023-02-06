@@ -2,8 +2,8 @@ import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
-import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
+import { Heading } from '@maeek/neutrino-design/components/typography/heading';
+import { Text } from '@maeek/neutrino-design/components/typography/text';
 import Navigator from '@/utils/navigation';
 import { getMeColor } from '@/selectors/user';
 import './heading.scss';
@@ -19,22 +19,18 @@ export const TopBarHeading = () => {
   };
 
   return (
-    <Heading level={1} className="top-bar-heading" tabIndex={0}>
+    <Heading level={1} className='top-bar-heading' tabIndex={0}>
       <Text
-        type="primary"
-        link="/"
+        type='primary'
+        link='/'
         onClick={onHeadingClick}
-        className="top-bar-heading-colored"
+        className='top-bar-heading-colored'
         style={{ color: meColor || 'inherit' }}
       >
-        {
-          !isMobile
-            ? 'Neutrino Chat'
-            : 'Neutrino'
-        }
+        {!isMobile ? 'Neutrino Chat' : 'Neutrino'}
       </Text>
     </Heading>
   );
 };
 
-export default memo(TopBarHeading) ;
+export default memo(TopBarHeading);

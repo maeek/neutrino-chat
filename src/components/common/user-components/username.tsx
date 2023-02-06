@@ -1,4 +1,4 @@
-import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
+import { Heading } from '@maeek/neutrino-design/components/typography/heading';
 import './username.scss';
 
 export interface UserUsernameProps {
@@ -6,7 +6,9 @@ export interface UserUsernameProps {
 }
 
 export const UserUsername = ({ username }: UserUsernameProps) => (
-  <Heading className="me-profile-username" level={3}>{username}</Heading>
+  <Heading className='me-profile-username' level={3}>
+    {username}
+  </Heading>
 );
 
 export default UserUsername;

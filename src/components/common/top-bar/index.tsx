@@ -7,8 +7,11 @@ import NotificationsDrawer from './drawer/';
 import { TopBarHeading } from './heading';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
-import { isAppUITopBarHidden, isAppUITopBarQuickNavHidden } from '@/selectors/app-ui';
-import Text from '@maeek/neutrino-design/components/atoms/typography/text/Text';
+import {
+  isAppUITopBarHidden,
+  isAppUITopBarQuickNavHidden
+} from '@/selectors/app-ui';
+import { Text } from '@maeek/neutrino-design/components/typography/text';
 import Navigator from '@/utils/navigation';
 import './top-bar.scss';
 
@@ -18,31 +21,34 @@ export const TopBar = () => {
   const isHidden = useSelector(isAppUITopBarHidden);
   const isQuickNavHidden = useSelector(isAppUITopBarQuickNavHidden);
 
-  const onClickLink = (link: string): MouseEventHandler => (e) => {
-    e.preventDefault();
-    Navigator.forward(history, link);
-  };
+  const onClickLink =
+    (link: string): MouseEventHandler =>
+    (e) => {
+      e.preventDefault();
+      Navigator.forward(history, link);
+    };
 
   return (
     <nav className={classNames('top-bar', !isHidden && 'top-bar--visible')}>
-      <div className="top-bar-inner">
-        <div className="top-bar-left">
+      <div className='top-bar-inner'>
+        <div className='top-bar-left'>
           <NavigationControlls pwaOnly />
           <TopBarHeading />
-          {
-            !isMobile && !isQuickNavHidden
-              ? (
-                <div className="main-chats-navigation">
-                  <Text link='/browse' onClick={onClickLink('/browse')}>Browse</Text>
-                </div>
-              ) : (
-                <div className="main-chats-navigation">
-                  <Text link='/' onClick={onClickLink('/')}>Chats</Text>
-                </div>
-              )
-          }
+          {!isMobile && !isQuickNavHidden ? (
+            <div className='main-chats-navigation'>
+              <Text link='/browse' onClick={onClickLink('/browse')}>
+                Browse
+              </Text>
+            </div>
+          ) : (
+            <div className='main-chats-navigation'>
+              <Text link='/' onClick={onClickLink('/')}>
+                Chats
+              </Text>
+            </div>
+          )}
         </div>
-        <div className="top-bar-right">
+        <div className='top-bar-right'>
           {!isMobile && <NotificationsDrawer />}
           <ContextMenuWrapper />
         </div>
@@ -51,4 +57,4 @@ export const TopBar = () => {
   );
 };
 
-export default memo(TopBar) ;
+export default memo(TopBar);

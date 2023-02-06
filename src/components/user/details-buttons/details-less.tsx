@@ -1,4 +1,4 @@
-import { ActionButton } from '@maeek/neutrino-design/components/atoms/buttons/Action';
+import { ActionButton } from '@maeek/neutrino-design/components/buttons/Action';
 import { MouseEventHandler } from 'react';
 import './details.scss';
 
@@ -7,19 +7,18 @@ export interface DetailsButtonShowLessProps {
   onClick?: MouseEventHandler;
 }
 
-export const DetailsButtonShowLess = ({ isVisible, onClick }: DetailsButtonShowLessProps) => (
-  isVisible
-    ? (
-      <ActionButton
-        onClick={onClick}
-        type="button"
-        className="user-info-thumb-action"
-      >
-        Work in progress
-      </ActionButton>
-    )
-    : null
-       
-);
+export const DetailsButtonShowLess = ({
+  isVisible,
+  onClick
+}: DetailsButtonShowLessProps) =>
+  isVisible ? (
+    <ActionButton
+      onClick={onClick}
+      type='button'
+      className='user-info-thumb-action'
+    >
+      Work in progress
+    </ActionButton>
+  ) : null;
 
 export default DetailsButtonShowLess;

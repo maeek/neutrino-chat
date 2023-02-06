@@ -7,14 +7,14 @@ import {
   useRef
 } from 'react';
 import { useHistory } from 'react-router';
-import { InputRef } from '@maeek/neutrino-design/components/atoms/inputs/text/Input';
-import { Text } from '@maeek/neutrino-design/components/atoms/typography/text';
+import { InputRef } from '@maeek/neutrino-design/components/inputs/text/Input';
+import { Text } from '@maeek/neutrino-design/components/typography/text';
 import Navigator from '@/utils/navigation';
 import './list.scss';
 
 export enum SuggestionItemTypes {
   USER = 'user',
-  CHANNEL = 'channel',
+  CHANNEL = 'channel'
 }
 export interface SuggestionsListElement {
   id: string;
@@ -47,77 +47,81 @@ export const SearchBarSuggestionsList = ({
 
   const preventDefault = (e: MouseEvent) => e.preventDefault();
 
-  const onClick = (link: string): MouseEventHandler => (e) => {
-    e.preventDefault();
-    Navigator.forward(history, link, { isChat: true });
-  };
-
-  const onKeyDown = (link: string, i: number): KeyboardEventHandler => (e) => {
-    if ([ 'Enter', ' ' ].includes(e.code)) {
+  const onClick =
+    (link: string): MouseEventHandler =>
+    (e) => {
       e.preventDefault();
-      onClick(link)(e as never);
-    }
+      Navigator.forward(history, link, { isChat: true });
+    };
 
-    else if (e.code === 'ArrowDown') {
-      e.preventDefault();
-      if (listRefs.current.length > i + 1 && listRefs.current[ i + 1 ]?.current) {
-        listRefs.current[ i + 1 ].current.focus();
-      } else {
+  const onKeyDown =
+    (link: string, i: number): KeyboardEventHandler =>
+    (e) => {
+      if (['Enter', ' '].includes(e.code)) {
+        e.preventDefault();
+        onClick(link)(e as never);
+      } else if (e.code === 'ArrowDown') {
+        e.preventDefault();
+        if (
+          listRefs.current.length > i + 1 &&
+          listRefs.current[i + 1]?.current
+        ) {
+          listRefs.current[i + 1].current.focus();
+        } else {
+          if (inputRef?.element) {
+            (inputRef.element as unknown as HTMLInputElement).focus();
+          }
+        }
+      } else if (e.code === 'ArrowUp') {
+        e.preventDefault();
+        if (i - 1 >= 0 && listRefs.current[i - 1]?.current) {
+          listRefs.current[i - 1].current.focus();
+        } else {
+          if (inputRef?.element) {
+            (inputRef.element as unknown as HTMLInputElement).focus();
+          }
+        }
+      } else if (e.code === 'Escape') {
+        e.preventDefault();
         if (inputRef?.element) {
-          (inputRef.element as unknown as HTMLInputElement).focus();
+          // @ts-ignore
+          inputRef?.element?.focus();
+        }
+
+        if (onClose) {
+          onClose();
         }
       }
-    }
-
-    else if (e.code === 'ArrowUp') {
-      e.preventDefault();
-      if (i - 1 >= 0 && listRefs.current[ i - 1 ]?.current) {
-        listRefs.current[ i - 1 ].current.focus();
-      } else {
-        if (inputRef?.element) {
-          (inputRef.element as unknown as HTMLInputElement).focus();
-        }
-      }
-    }
-
-    else if (e.code === 'Escape') {
-      e.preventDefault();
-      if (inputRef?.element) {
-        // @ts-ignore
-        inputRef?.element?.focus();
-      }
-
-      if (onClose) {
-        onClose();
-      }
-      
-    }
-  };
+    };
 
   return list.length > 0 ? (
     <>
       {children}
-      <ul className="main-search-bar-suggestions-list">
-        {
-          list.map(({ id, name, link, type, ...rest }: SuggestionsListElement, i) => {
-            let ref; 
-            
+      <ul className='main-search-bar-suggestions-list'>
+        {list.map(
+          ({ id, name, link, type, ...rest }: SuggestionsListElement, i) => {
+            let ref;
+
             if (i === 0) {
               ref = firstElementRef || createRef();
-            }
-            else if (i === list.length - 1) {
+            } else if (i === list.length - 1) {
               ref = lastElementRef || createRef();
-            }
-            else {
+            } else {
               ref = createRef();
             }
-            
-            listRefs.current[ i ] = ref;
 
-            const renderChannelOwner = type === SuggestionItemTypes.CHANNEL
-              ? (
-                <Text className="main-search-bar-suggestions-list-element-desc" disabled>
-                  owner: <Text strong disabled>{rest.owner}</Text>
+            listRefs.current[i] = ref;
+
+            const renderChannelOwner =
+              type === SuggestionItemTypes.CHANNEL ? (
+                <Text
+                  className='main-search-bar-suggestions-list-element-desc'
+                  disabled
+                >
+                  owner:{' '}
+                  <Text strong disabled>
+                    {rest.owner}
+                  </Text>
                 </Text>
               ) : null;
 
@@ -125,13 +129,13 @@ export const SearchBarSuggestionsList = ({
               <li
                 ref={ref as never}
                 key={id}
-                className="main-search-bar-suggestions-list-element"
+                className='main-search-bar-suggestions-list-element'
                 tabIndex={0}
                 onClick={onClick(link)}
                 onKeyDown={onKeyDown(link, i)}
               >
                 <Text
-                  type="primary"
+                  type='primary'
                   link={link}
                   onClick={preventDefault}
                   tabIndex={-1}
@@ -141,8 +145,8 @@ export const SearchBarSuggestionsList = ({
                 </Text>
               </li>
             );
-          })
-        }
+          }
+        )}
       </ul>
     </>
   ) : null;

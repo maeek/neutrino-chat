@@ -1,13 +1,28 @@
-import { KeyboardEventHandler, MouseEventHandler, useState, useRef, useEffect } from 'react';
+import {
+  KeyboardEventHandler,
+  MouseEventHandler,
+  useState,
+  useRef,
+  useEffect
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { getUserIsInStarred, getUserById } from '@/selectors/users';
 import { RootState } from '@/store/root';
 import DeleteSweepRoundedIcon from '@material-ui/icons/DeleteSweepRounded';
-import { ContextMenu, ContextMenuItems } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
-import { Heading } from '@maeek/neutrino-design/components/atoms/typography/heading';
-import { TextType, Text } from '@maeek/neutrino-design/components/atoms/typography/text/Text';
-import { addMembersToGroup, removeMembersFromGroup } from '@/store/me/groups/actions';
+import {
+  ContextMenu,
+  ContextMenuItems
+} from '@maeek/neutrino-design/components/context-menu/Menu';
+import { Heading } from '@maeek/neutrino-design/components/typography/heading';
+import {
+  TextType,
+  Text
+} from '@maeek/neutrino-design/components/typography/text/Text';
+import {
+  addMembersToGroup,
+  removeMembersFromGroup
+} from '@/store/me/groups/actions';
 import { GroupTypeEnum } from '@/store/me/groups/types';
 import Navigator from '@/utils/navigation';
 import { BlockRounded, StarRounded } from '@material-ui/icons';
@@ -34,12 +49,13 @@ export interface RelativeCursorPos {
 export const UserCard = ({ id }: UserCardProps) => {
   const user = useSelector<RootState, User>(getUserById(id));
   const userIsInStarred = useSelector(getUserIsInStarred(id));
-  const [ showGroupSelection, setShowGroupSelection ] = useState(false);
+  const [showGroupSelection, setShowGroupSelection] = useState(false);
 
   const ref = useRef<HTMLLIElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const [ showContextMenu, setShowContextMenu ] = useState(false);
-  const [ relativeCursorPos, setRelativeCursorPos ] = useState<RelativeCursorPos | null>(null);
+  const [showContextMenu, setShowContextMenu] = useState(false);
+  const [relativeCursorPos, setRelativeCursorPos] =
+    useState<RelativeCursorPos | null>(null);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -48,9 +64,11 @@ export const UserCard = ({ id }: UserCardProps) => {
     stopPropagation(e);
 
     if (userIsInStarred) {
-      dispatch(removeMembersFromGroup('Starred', [ id ]));
+      dispatch(removeMembersFromGroup('Starred', [id]));
     } else {
-      dispatch(addMembersToGroup('Starred', [ { id, type: GroupTypeEnum.USER } ]));
+      dispatch(
+        addMembersToGroup('Starred', [{ id, type: GroupTypeEnum.USER }])
+      );
     }
   };
 
@@ -59,11 +77,13 @@ export const UserCard = ({ id }: UserCardProps) => {
     Navigator.forward(history, `/u/${user.id}`);
   };
 
-  const onAccessibility = (fn: Function): KeyboardEventHandler => (e) => {
-    if ([ 'Enter', ' ' ].includes(e.code)) {
-      fn(e);
-    }
-  };
+  const onAccessibility =
+    (fn: Function): KeyboardEventHandler =>
+    (e) => {
+      if (['Enter', ' '].includes(e.code)) {
+        fn(e);
+      }
+    };
 
   const stopPropagation: MouseEventHandler = (e) => {
     e.preventDefault();
@@ -72,29 +92,33 @@ export const UserCard = ({ id }: UserCardProps) => {
 
   const getStatus = () => {
     switch (user?.status) {
-    case UserStatusEnum.ACTIVE:
-      return 'Online';
-    case UserStatusEnum.AWAY:
-      return 'Away';
-    case UserStatusEnum.OFFLINE:
-      return 'Offline';
-    default:
-      return 'Unknown';
+      case UserStatusEnum.ACTIVE:
+        return 'Online';
+      case UserStatusEnum.AWAY:
+        return 'Away';
+      case UserStatusEnum.OFFLINE:
+        return 'Offline';
+      default:
+        return 'Unknown';
     }
   };
 
-  const mapStatusToType = (status: 'Online' | 'Offline' | 'Away' | 'Unknown'): TextType => {
+  const mapStatusToType = (
+    status: 'Online' | 'Offline' | 'Away' | 'Unknown'
+  ): TextType => {
     switch (status) {
-    case 'Online':
-      return 'success';
-    case 'Away':
-      return 'warning';
-    default:
-      return 'secondary';
+      case 'Online':
+        return 'success';
+      case 'Away':
+        return 'warning';
+      default:
+        return 'secondary';
     }
   };
 
-  const mapStatusToDotStatus = (status: 'Online' | 'Offline' | 'Away' | 'Unknown') => status.toLowerCase() as StatusDotState;
+  const mapStatusToDotStatus = (
+    status: 'Online' | 'Offline' | 'Away' | 'Unknown'
+  ) => status.toLowerCase() as StatusDotState;
 
   const onContextMenu: MouseEventHandler = (e) => {
     e.preventDefault();
@@ -113,11 +137,11 @@ export const UserCard = ({ id }: UserCardProps) => {
 
   useEffect(() => {
     const { relX, relY, x, y, recalculated } = relativeCursorPos || {};
-    
+
     if (!menuRef.current || !x || !y || recalculated) {
       return;
     }
-    
+
     let newX = relX || 0;
     let newY = relY || 0;
 
@@ -138,12 +162,12 @@ export const UserCard = ({ id }: UserCardProps) => {
       relY: newY,
       recalculated: true
     });
-  }, [ relativeCursorPos ]);
+  }, [relativeCursorPos]);
 
   const items: ContextMenuItems[] = [
     {
       text: userIsInStarred ? 'Remove Star' : 'Star',
-      icon: userIsInStarred ? <StarRounded className="user-card-star" /> : null,
+      icon: userIsInStarred ? <StarRounded className='user-card-star' /> : null,
       closeOnClick: true,
       onClick: handleStar
     },
@@ -158,7 +182,7 @@ export const UserCard = ({ id }: UserCardProps) => {
       onClick: (e) => {
         e.stopPropagation();
         e.preventDefault();
-        setShowGroupSelection(prev => !prev);
+        setShowGroupSelection((prev) => !prev);
       }
     },
     {
@@ -168,15 +192,19 @@ export const UserCard = ({ id }: UserCardProps) => {
       onClick: (e) => {
         e.stopPropagation();
         e.preventDefault();
-        dispatch(modifyUsers([ { id: user.id, blocked: !user.blocked } ]));
+        dispatch(modifyUsers([{ id: user.id, blocked: !user.blocked }]));
       }
     },
-    ...(user?.messages && user?.messages?.length > 0 ? [ {
-      text: 'Clear History',
-      icon: <DeleteSweepRoundedIcon />,
-      closeOnClick: true,
-      onClick: stopPropagation
-    } ] : []),
+    ...(user?.messages && user?.messages?.length > 0
+      ? [
+          {
+            text: 'Clear History',
+            icon: <DeleteSweepRoundedIcon />,
+            closeOnClick: true,
+            onClick: stopPropagation
+          }
+        ]
+      : [])
     // {
     //   text: 'Remove',
     //   closeOnClick: true,
@@ -189,79 +217,86 @@ export const UserCard = ({ id }: UserCardProps) => {
       innerRef={menuRef}
       items={items}
       closeContextMenu={() => setShowContextMenu(false)}
-      className={`user-card-context-menu ${relativeCursorPos?.recalculated ? 'user-card-context-menu--display': ''}`}
+      className={`user-card-context-menu ${
+        relativeCursorPos?.recalculated ? 'user-card-context-menu--display' : ''
+      }`}
       style={{ top: relativeCursorPos?.relY, left: relativeCursorPos?.relX }}
     />
   );
 
-  const starredNode = userIsInStarred
-    ? (
-      <div
-        className="user-card-emblems-star"
-        data-starred={userIsInStarred}
-        title="Remove from starred"
-        onClick={handleStar}
-        onKeyUp={onAccessibility(handleStar)}
-        tabIndex={0}
-      >
-        <StarRounded />  
-      </div>
-    ) : null;
+  const starredNode = userIsInStarred ? (
+    <div
+      className='user-card-emblems-star'
+      data-starred={userIsInStarred}
+      title='Remove from starred'
+      onClick={handleStar}
+      onKeyUp={onAccessibility(handleStar)}
+      tabIndex={0}
+    >
+      <StarRounded />
+    </div>
+  ) : null;
 
-  const firstNameText = user.nickname ? user.nickname :
-    user?.name && user.id !== user?.name
-      ? user.name
-      : user.id;
+  const firstNameText = user.nickname
+    ? user.nickname
+    : user?.name && user.id !== user?.name
+    ? user.name
+    : user.id;
 
   const firstName = (
-    <Text className="user-card-name-first">
+    <Text className='user-card-name-first'>
       {firstNameText.length > 175
         ? `${firstNameText.substr(0, 175)}...`
         : firstNameText}
     </Text>
   );
 
-  const originalName = user.nickname || (user?.name && user.id !== user?.name)
-    ? (
-      <Text type="secondary" monospace>
-        @{
-          user.id.length > 175
-            ? `${user.id.substr(0, 175)}...`
-            : user.id
-        }
-        { user.nickname && user.name && user.id !== user.name
-          ? (
-            <Text monospace disabled className="user-card-name-full"> ({
-              user.name.length > 175
-                ? `${user.name.substr(0, 175)}...`
-                : user.name
-            })
-            </Text>
-          ) : null }
+  const originalName =
+    user.nickname || (user?.name && user.id !== user?.name) ? (
+      <Text type='secondary' monospace>
+        @{user.id.length > 175 ? `${user.id.substr(0, 175)}...` : user.id}
+        {user.nickname && user.name && user.id !== user.name ? (
+          <Text monospace disabled className='user-card-name-full'>
+            {' '}
+            (
+            {user.name.length > 175
+              ? `${user.name.substr(0, 175)}...`
+              : user.name}
+            )
+          </Text>
+        ) : null}
       </Text>
-    )
-    : null;
+    ) : null;
 
   return (
-    <li className="card user-card" onContextMenu={onContextMenu} ref={ref}>
+    <li className='card user-card' onContextMenu={onContextMenu} ref={ref}>
       <a href={`/u/${user.id}`} onClick={navToUser}>
         <figure>
           <figcaption>
-            <div className="user-card-emblems">
-              {
-                user?.blocked
-                  ? (
-                    <Text strong type="secondary" className="user-card-emblems-blocked">Blocked</Text>
-                  ) : null
-              }
+            <div className='user-card-emblems'>
+              {user?.blocked ? (
+                <Text
+                  strong
+                  type='secondary'
+                  className='user-card-emblems-blocked'
+                >
+                  Blocked
+                </Text>
+              ) : null}
               {starredNode}
             </div>
 
-            <Heading className="user-card-name" level={4}>
+            <Heading className='user-card-name' level={4}>
               {firstName}
               {originalName}
-              <Text type={mapStatusToType(getStatus())} className="user-card-status">
-                <StatusDot state={mapStatusToDotStatus(getStatus())} className="user-card-status-dot" />
+              <Text
+                type={mapStatusToType(getStatus())}
+                className='user-card-status'
+              >
+                <StatusDot
+                  state={mapStatusToDotStatus(getStatus())}
+                  className='user-card-status-dot'
+                />
                 {getStatus()}
               </Text>
             </Heading>
@@ -269,14 +304,17 @@ export const UserCard = ({ id }: UserCardProps) => {
 
           <UserCardPicture id={id} />
 
-          { showContextMenu ? contextMenu : null }
+          {showContextMenu ? contextMenu : null}
         </figure>
       </a>
-      {
-        showGroupSelection 
-          ? <Modal><AddToGroup item={user.id} onDismiss={() => setShowGroupSelection(prev => !prev)} /></Modal>
-          : null
-      }
+      {showGroupSelection ? (
+        <Modal>
+          <AddToGroup
+            item={user.id}
+            onDismiss={() => setShowGroupSelection((prev) => !prev)}
+          />
+        </Modal>
+      ) : null}
     </li>
   );
 };

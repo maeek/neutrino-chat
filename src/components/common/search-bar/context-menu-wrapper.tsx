@@ -1,16 +1,21 @@
 import { memo, useState } from 'react';
+import { SendRounded } from '@material-ui/icons';
 import {
-  SendRounded
-} from '@material-ui/icons';
-import { ContextMenu, ContextMenuItems, ContextMenuProps } from '@maeek/neutrino-design/components/molecules/context-menu/Menu';
+  ContextMenu,
+  ContextMenuItems,
+  ContextMenuProps
+} from '@maeek/neutrino-design/components/context-menu/Menu';
 import './context-menu-wrapper.scss';
 
-export interface MainSearchBarAddButtonContextMenuProps extends ContextMenuProps {
+export interface MainSearchBarAddButtonContextMenuProps
+  extends ContextMenuProps {
   closeContextMenu?: any;
 }
 
-export const MainSearchBarAddButtonContextMenu = (props: MainSearchBarAddButtonContextMenuProps) => {
-  const [ items ] = useState<ContextMenuItems[]>([
+export const MainSearchBarAddButtonContextMenu = (
+  props: MainSearchBarAddButtonContextMenuProps
+) => {
+  const [items] = useState<ContextMenuItems[]>([
     {
       text: 'Compose Message',
       icon: <SendRounded />,

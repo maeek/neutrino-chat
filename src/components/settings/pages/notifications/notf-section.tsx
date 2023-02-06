@@ -1,5 +1,8 @@
 import { ReactNode } from 'react';
-import { Heading, Paragraph } from '@maeek/neutrino-design';
+import {
+  Heading,
+  Paragraph
+} from '@maeek/neutrino-design/components/typography';
 import { SwitchStoreWrapper } from './notf-switch/switch-store-wrapper';
 import './notf-section.scss';
 import { useSelector } from 'react-redux';
@@ -12,48 +15,57 @@ export interface NotfSectionProps {
   description?: string;
 }
 
-export const NotfSection = ({ title, field, children, description }: NotfSectionProps) => {
-  const { enabled } = useSelector(getNotificationsSettingsByKey(field as never));
+export const NotfSection = ({
+  title,
+  field,
+  children,
+  description
+}: NotfSectionProps) => {
+  const { enabled } = useSelector(
+    getNotificationsSettingsByKey(field as never)
+  );
 
   return (
-    <div className="notf-section">
-      <div className="notf-section-title">
-        <Heading className="notf-section-heading" level={4}>{title}</Heading>
-        <Paragraph className="notf-section-paragraph">{description}</Paragraph>
+    <div className='notf-section'>
+      <div className='notf-section-title'>
+        <Heading className='notf-section-heading' level={4}>
+          {title}
+        </Heading>
+        <Paragraph className='notf-section-paragraph'>{description}</Paragraph>
       </div>
-      <div className="notf-section-inner">
+      <div className='notf-section-inner'>
         <SwitchStoreWrapper
           field={field as never}
-          innerField="enabled"
-          title="Recieve this notifications"
-          description="Enable or disable this notification"
+          innerField='enabled'
+          title='Recieve this notifications'
+          description='Enable or disable this notification'
         />
         <SwitchStoreWrapper
           field={field as never}
-          innerField="push"
-          title="Sound"
-          description="Play sound when notification is received"
+          innerField='push'
+          title='Sound'
+          description='Play sound when notification is received'
           disabled={!enabled}
         />
         <SwitchStoreWrapper
           field={field as never}
-          innerField="push"
-          title="Push"
-          description="Receive push notifications"
+          innerField='push'
+          title='Push'
+          description='Receive push notifications'
           disabled={!enabled}
         />
         <SwitchStoreWrapper
           field={field as never}
-          innerField="push"
-          title="Native"
-          description="Receive native notifications"
+          innerField='push'
+          title='Native'
+          description='Receive native notifications'
           disabled={!enabled}
         />
         <SwitchStoreWrapper
           field={field as never}
-          innerField="vibrations"
-          title="Vibrations"
-          description="Vibrate when receiving notifications"
+          innerField='vibrations'
+          title='Vibrations'
+          description='Vibrate when receiving notifications'
           disabled={!enabled}
         />
       </div>
