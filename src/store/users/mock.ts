@@ -103,7 +103,7 @@ export const usersReducerMock: UsersState = {
       },
       typing: false
     },
-    ...(Object.fromEntries(new Array(400).fill(null).map((_, i) => {
+    ...(Object.fromEntries(new Array(10).fill(null).map((_, i) => {
       const uid = v4();
       return [ `${uid}-${i+1}`, {
         id: `${uid}-${i+1}`,

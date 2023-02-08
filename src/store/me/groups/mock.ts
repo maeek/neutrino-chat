@@ -24,7 +24,7 @@ export const groupsReducerMock: GroupsState = {
         }
       ]
     },
-    ...(Object.fromEntries(new Array(50).fill(null).map((_e, i) => ([ `TestGroup-${i}`, {
+    ...(Object.fromEntries(new Array(10).fill(null).map((_e, i) => ([ `TestGroup-${i}`, {
       name: `TestGroup-${i}`,
       items: []
     } ]))))

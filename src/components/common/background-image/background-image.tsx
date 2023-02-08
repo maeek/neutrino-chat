@@ -1,5 +1,5 @@
-import { CSSProperties, MouseEventHandler, useState } from 'react';
-import ImageContainerCached from '@maeek/neutrino-design/components/image/Image';
+import { CSSProperties, MouseEventHandler, useCallback, useState } from 'react';
+import Image from '@maeek/neutrino-design/components/image/Image';
 import Loader from '@maeek/neutrino-design/components/loaders/Loader';
 import './background-image.scss';
 
@@ -32,12 +32,14 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
     ...style
   } as CSSProperties;
 
+  const onLoad = useCallback(() => setIsLoaded(true), []);
+
   return (
     <div className='background-image-container' style={styles} {...rest}>
-      <ImageContainerCached
+      <Image
         src={url}
         loader={<Loader style={{ paddingTop: '5rem' }} />}
-        onImageLoaded={() => setIsLoaded(true)}
+        onLoad={onLoad}
         draggable={false}
         style={{ objectFit: objectFit } as CSSProperties}
       />

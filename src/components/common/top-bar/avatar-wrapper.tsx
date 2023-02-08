@@ -9,7 +9,7 @@ import {
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import classnames from 'classnames';
-import AvatarCached, {
+import Avatar, {
   AvatarSizes
 } from '@maeek/neutrino-design/components/avatar/Avatar';
 import Loader from '@maeek/neutrino-design/components/loaders/Loader';
@@ -59,7 +59,7 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
   );
 
   return (
-    <AvatarCached
+    <Avatar
       {...rest}
       className={classnames(
         'top-bar-avatar',
@@ -75,7 +75,7 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
       loader={<Loader />}
     >
       {!hasAvatar ? noAvatar : null}
-    </AvatarCached>
+    </Avatar>
   );
 };
 
