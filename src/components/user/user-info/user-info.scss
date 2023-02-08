@@ -128,12 +128,18 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    transition: transform 0.2s;
+    transition: transform 0;
     position: sticky;
     top: 2.8rem;
     max-width: 100%;
     padding: 0.5rem 1rem;
     flex: 0 0 auto;
+
+    @include mq('small') {
+      transform: translateY(-4.05rem);
+      top: 4rem;
+      padding: 0.2rem 1rem;
+    }
 
     .user-info-container {
       width: calc(100% - 3rem);

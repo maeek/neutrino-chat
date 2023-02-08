@@ -17,4 +17,14 @@
       margin-top: 0;
     }
   }
+
+  &--minified-move {
+    @include mq('small') {
+      transform: translateY(-3rem);
+    }
+
+    transform: translateY(-2rem);
+    width: 100%;
+    height: auto;
+  }
 }

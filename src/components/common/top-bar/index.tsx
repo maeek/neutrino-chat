@@ -41,11 +41,7 @@ export const TopBar = () => {
               </Text>
             </div>
           ) : (
-            <div className='main-chats-navigation'>
-              <Text link='/' onClick={onClickLink('/')}>
-                Chats
-              </Text>
-            </div>
+            <></>
           )}
         </div>
         <div className='top-bar-right'>

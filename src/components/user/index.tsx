@@ -62,7 +62,11 @@ export const UserView = () => {
         isMinified={isInfoMinified}
         onToggle={toggleVisibility}
       />
-      {isInfoMinified && <Chat id={user.id} type={MessageTypes.DIRECT} />}
+      {isInfoMinified && (
+        <div className='view-root--user--minified-move'>
+          <Chat id={user.id} type={MessageTypes.DIRECT} />
+        </div>
+      )}
     </div>
   );
 };

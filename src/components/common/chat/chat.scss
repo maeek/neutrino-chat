@@ -1,0 +1,13 @@
+.chat-bubble-list {
+  padding: 0 0.5rem;
+
+  &--no-avatar {
+    .ne-bubble--recipient .ne-bubble-timestamp {
+      margin-left: 0;
+    }
+
+    .ne-bubble--recipient .ne-bubble-content {
+      margin-left: 0;
+    }
+  }
+}

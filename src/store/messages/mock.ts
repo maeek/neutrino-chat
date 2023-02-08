@@ -28,19 +28,19 @@ export const messagesMock: MessagesState = {
       attachments: [ '81df5623-4fa2-423d-a109-4930e7fde301' ],
       read: true
     },
-    // '653440af-60fc-4ebb-88a5-67f98d209691': {
-    //   uuid: '653440af-60fc-4ebb-88a5-67f98d209691',
-    //   type: MessageTypes.DIRECT,
-    //   status: MessageStatus.DELIVERED,
-    //   senderId: 'bob',
-    //   parentId: 'bob',
-    //   timeReceived: Date.now() - 8000,
-    //   timeSent: Date.now() - 8000,
-    //   body: 'yaaa, we seeing tmrw? @bop',
-    //   mentions: [ 'bop' ],
-    //   attachments: [ ],
-    //   read: true
-    // },
+    '653440af-60fc-4ebb-88a5-67f98d209691': {
+      uuid: '653440af-60fc-4ebb-88a5-67f98d209691',
+      type: MessageTypes.DIRECT,
+      status: MessageStatus.DELIVERED,
+      senderId: 'bob',
+      parentId: 'bob',
+      timeReceived: Date.now() - 8000,
+      timeSent: Date.now() - 8000,
+      body: 'yaaa, we seeing tmrw? @bop',
+      mentions: [ 'bop' ],
+      attachments: [ ],
+      read: true
+    },
     'a30d2e71-7115-4e4a-b82a-58e2332c78e0': {
       uuid: 'a30d2e71-7115-4e4a-b82a-58e2332c78e0',
       type: MessageTypes.DIRECT,
@@ -101,6 +101,19 @@ export const messagesMock: MessagesState = {
       parentId: 'paczka',
       timeReceived: Date.now() - 123600,
       timeSent: Date.now() - 123600,
+      body: 'kapisz',
+      mentions: [ ],
+      attachments: [ ],
+      read: true
+    },
+    '258f4703-52f8-49e1-bd39-23e9d9a0b888': {
+      uuid: '258f4703-52f8-49e1-bd39-23e9d9a0b888',
+      type: MessageTypes.DIRECT,
+      status: MessageStatus.DELIVERED,
+      senderId: 'maek',
+      parentId: 'bob',
+      timeReceived: Date.now() - 123000,
+      timeSent: Date.now() - 123000,
       body: 'kapisz',
       mentions: [ ],
       attachments: [ ],
