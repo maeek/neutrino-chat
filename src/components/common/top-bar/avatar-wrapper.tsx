@@ -26,18 +26,18 @@ export interface AvatarWrapperProps {
 }
 
 export const AvatarWrapper = (props: AvatarWrapperProps) => {
-  const { src, size = 'medium', onClick, redirect, ...rest } = props;
+  const { src, size = 'medium', onClick, redirect } = props;
   const username = useSelector(getMeUsername);
   const meColor = useSelector(getMeColor);
   const avatar = useSelector(getMeAvatar);
   const history = useHistory();
   const hasAvatar = src || avatar;
 
-  const goToProfile: MouseEventHandler = (e) => {
+  const goToProfile: MouseEventHandler = useCallback((e) => {
     onClick?.(e);
 
     if (redirect) Navigator.forward(history, '/me');
-  };
+  }, [onClick, redirect, history]);
 
   const onEnter = useCallback(
     (fn: Function) => (e: KeyboardEvent<HTMLSpanElement>) => {
@@ -60,7 +60,7 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
 
   return (
     <Avatar
-      {...rest}
+      // {...rest}
       className={classnames(
         'top-bar-avatar',
         !hasAvatar && 'top-bar-avatar--empty'

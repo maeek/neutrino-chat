@@ -6,8 +6,8 @@ import { Bubble, ContextMenu } from '@maeek/neutrino-design';
 import { useSelector } from 'react-redux';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticonRounded';
 import { DeleteForeverRounded, MoreHorizRounded } from '@material-ui/icons';
-import './chat.scss'
 import classNames from 'classnames';
+import './chat.scss'
 
 export interface ChatProps {
   type: MessageTypes;
@@ -59,7 +59,7 @@ export const Chat = ({ type, id }: ChatProps) => {
             type={message.senderId === myId ? 'sender' : 'recipient'}
             inBulk={arr[i - 1]?.senderId === message.senderId || arr[i + 1]?.senderId === message.senderId}
             isFirstInBulk={arr[i - 1]?.senderId !== message.senderId}
-            isLastInBulk={arr[i + 1] && arr[i + 1]?.senderId !== message.senderId}
+            isLastInBulk={!arr[i + 1] || arr[i + 1]?.senderId !== message.senderId}
             avatar={type === MessageTypes.CHANNEL && message.senderId !== myId ? users[message.senderId].avatar : undefined}
           />
         ))

@@ -1,5 +1,9 @@
 .chat-bubble-list {
-  padding: 0 0.5rem;
+  padding: 0 0.8rem;
+
+  .ne-bubble-content--sender {
+    margin-right: 0;
+  }
 
   &--no-avatar {
     .ne-bubble--recipient .ne-bubble-timestamp {

@@ -54,6 +54,45 @@ export const messagesMock: MessagesState = {
       attachments: [ ],
       read: true
     },
+    '1234-7115-4e4a-b82a-58e2332c78e0': {
+      uuid: '1234-7115-4e4a-b82a-58e2332c78e0',
+      type: MessageTypes.DIRECT,
+      status: MessageStatus.DELIVERED,
+      senderId: 'bob',
+      parentId: 'bob',
+      timeReceived: Date.now() - 3670,
+      timeSent: Date.now() - 3670,
+      body: 'he',
+      mentions: [ ],
+      attachments: [ ],
+      read: true
+    },
+    '12345-7115-4e4a-b82a-58e2332c78e0': {
+      uuid: '12345-7115-4e4a-b82a-58e2332c78e0',
+      type: MessageTypes.DIRECT,
+      status: MessageStatus.DELIVERED,
+      senderId: 'bob',
+      parentId: 'bob',
+      timeReceived: Date.now() - 3670,
+      timeSent: Date.now() - 3670,
+      body: 'he',
+      mentions: [ ],
+      attachments: [ ],
+      read: true
+    },
+    '123456-7115-4e4a-b82a-58e2332c78e0': {
+      uuid: '123456-7115-4e4a-b82a-58e2332c78e0',
+      type: MessageTypes.DIRECT,
+      status: MessageStatus.DELIVERED,
+      senderId: 'maek',
+      parentId: 'bob',
+      timeReceived: Date.now() - 3670,
+      timeSent: Date.now() - 3670,
+      body: 'he',
+      mentions: [ ],
+      attachments: [ ],
+      read: true
+    },
     '258f4703-52f8-49e1-bd39-23e9d9a0b345': {
       uuid: '258f4703-52f8-49e1-bd39-23e9d9a0b345',
       type: MessageTypes.DIRECT,

@@ -17,11 +17,14 @@ export const usersReducerMock: UsersState = {
         '2d9ae79a-a3c1-4756-afdc-f6fa9f7956b2',
         '653440af-60fc-4ebb-88a5-67f98d209691',
         'a30d2e71-7115-4e4a-b82a-58e2332c78e0',
-        '258f4703-52f8-49e1-bd39-23e9d9a0b888'
+        '258f4703-52f8-49e1-bd39-23e9d9a0b888',
+        '1234-7115-4e4a-b82a-58e2332c78e0',
+        '12345-7115-4e4a-b82a-58e2332c78e0',
+        '123456-7115-4e4a-b82a-58e2332c78e0'
       ],
       lastMessage: {
-        id: '258f4703-52f8-49e1-bd39-23e9d9a0b888',
-        content: 'kapisz',
+        id: '123456-7115-4e4a-b82a-58e2332c78e0',
+        content: 'he',
         receivedDate: Date.now() - 3670
       },
       typing: false
