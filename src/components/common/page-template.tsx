@@ -1,5 +1,6 @@
 import { Component, ReactNode, Suspense } from 'react';
 import NoNetworkBanner from '@/components/common/no-network-banner';
+import classNames from 'classnames';
 
 interface PageTemplateProps {
   startFromTop?: boolean;
@@ -9,6 +10,7 @@ interface PageTemplateProps {
   offlineFallbackComponent?: ReactNode;
   canOperateOffline: boolean;
   title?: string;
+  className?: string;
 }
 
 interface PageTemplateState {
@@ -76,7 +78,7 @@ export class PageTemplate extends Component<PageTemplateProps, PageTemplateState
     }
 
     const contentNode = (
-      <main className="page-root">
+      <main className={classNames("page-root", this.props.className)}>
         {
           this.props.children
         }

@@ -4,38 +4,26 @@ import { getUsers } from '@/selectors/users';
 import { MessageTypes } from '@/store/messages/types';
 import { Bubble, ContextMenu } from '@maeek/neutrino-design';
 import { useSelector } from 'react-redux';
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticonRounded';
 import { DeleteForeverRounded, MoreHorizRounded } from '@material-ui/icons';
 import classNames from 'classnames';
 import './chat.scss'
 
 export interface ChatProps {
   type: MessageTypes;
-  id: string;
+  parentId: string;
 }
 
-export const Chat = ({ type, id }: ChatProps) => {
-  const messages = useSelector(getMessagesByParentId(id)) || [];
+export const Chat = ({ type, parentId }: ChatProps) => {
+  const messages = useSelector(getMessagesByParentId(parentId)) || [];
   const myId = useSelector(getMeUsername);
   const users = useSelector(getUsers);
 
-  console.log(messages);
   const actions = [
     {
       key: 'action-1',
-      name: 'Action 1',
-      icon: <InsertEmoticonIcon />,
-      onClick: () => {
-        console.log('action 1');
-      }
-    },
-    {
-      key: 'action-2',
       name: 'More',
       icon: <MoreHorizRounded />,
-      onClick: () => {
-        console.log('action 2');
-      },
+      onClick: () => {},
       children: (
         <ContextMenu items={[
           { text: 'Details' },

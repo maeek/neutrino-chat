@@ -34,7 +34,7 @@ export const SearchBarSuggestions = forwardRef<
       ...filteredUsers.map((c) => ({
         id: c.id,
         name: c.id,
-        link: `/u/${c.id}`,
+        link: `/u/${c.id}/chat`,
         type: SuggestionItemTypes.USER
       }))
       // ...filteredChannels.map((ch) => ({

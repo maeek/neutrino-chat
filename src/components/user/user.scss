@@ -1,14 +1,19 @@
 @use '@/styles/base/breakpoints' as *;
 
+.page-root--user {
+  min-height: 0 !important;
+  flex: 1 1 auto;
+  overflow: hidden;
+  height: 100%;
+}
+
 .view-root--user {
   width: 100%;
-  min-height: 100%;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  height: auto;
   transform: translate(0, 0, 0);
   background-color: var(--clr-primary-700);
 
@@ -19,12 +24,20 @@
   }
 
   &--minified-move {
-    @include mq('small') {
-      transform: translateY(-3rem);
-    }
-
-    transform: translateY(-2rem);
+    flex: 1 1 auto;
+    max-height: calc(100% - 4rem - 3rem);
     width: 100%;
-    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &-cta {
+    margin-top: 2rem;
+    flex: 1 1 auto;
+    width: 600px;
+    max-width: 94%;
   }
 }

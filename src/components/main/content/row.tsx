@@ -19,9 +19,7 @@ export const MainListRow = ({ id, style, measure, isScrolling }: MainListRowProp
   const history = useHistory();
 
   const handleClick = () => {
-    Navigator.forward(history, `/u/${user.id}`, {
-      isChat: true
-    });
+    Navigator.forward(history, `/u/${user.id}/chat`);
   };
 
   useEffect(() => {

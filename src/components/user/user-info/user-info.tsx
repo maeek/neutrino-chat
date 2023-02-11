@@ -144,8 +144,10 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
     </>
   );
 
+  const goBack = () => Navigator.forward(history, `/`);
+
   const backNode = isMinified ? (
-    <div className='user-info-back' onClick={onToggle}>
+    <div className='user-info-back' onClick={goBack}>
       <ArrowBackRounded />
     </div>
   ) : null;

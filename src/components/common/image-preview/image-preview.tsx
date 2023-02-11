@@ -19,7 +19,7 @@ export const ImagePreview = ({ url, isOpened, onClose }: ImagePreviewProps) => {
         )}
         onClick={onClose}
       >
-        <BackgroundImage opacity={1} blur='0' url={url} />
+        <BackgroundImage opacity={1} blur='0' url={url} objectFit='contain' />
       </div>
     </Modal>
   );

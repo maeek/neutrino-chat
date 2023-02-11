@@ -24,6 +24,7 @@ export const UserPage = (props: RouteChildrenProps<UserPageParams>) => {
       fallbackComponent={<UserLoader />}
       title={` Neutrino Chat - ${props.match?.params.username}`}
       canOperateOffline
+      className='page-root--user'
     >
       <User />
     </PageTemplate>

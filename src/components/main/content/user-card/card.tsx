@@ -74,7 +74,7 @@ export const UserCard = ({ id }: UserCardProps) => {
 
   const navToUser: MouseEventHandler = (e) => {
     e.preventDefault();
-    Navigator.forward(history, `/u/${user.id}`);
+    Navigator.forward(history, `/u/${user.id}/chat`);
   };
 
   const onAccessibility =
@@ -270,7 +270,7 @@ export const UserCard = ({ id }: UserCardProps) => {
 
   return (
     <li className='card user-card' onContextMenu={onContextMenu} ref={ref}>
-      <a href={`/u/${user.id}`} onClick={navToUser}>
+      <a href={`/u/${user.id}/chat`} onClick={navToUser}>
         <figure>
           <figcaption>
             <div className='user-card-emblems'>

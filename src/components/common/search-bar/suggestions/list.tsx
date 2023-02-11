@@ -51,7 +51,7 @@ export const SearchBarSuggestionsList = ({
     (link: string): MouseEventHandler =>
     (e) => {
       e.preventDefault();
-      Navigator.forward(history, link, { isChat: true });
+      Navigator.forward(history, link);
     };
 
   const onKeyDown =

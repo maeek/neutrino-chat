@@ -1,0 +1,36 @@
+.chat-compose {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: var(--clr-primary-700);
+  gap: 0.4rem;
+  flex: 0 0 auto;
+  height: 4rem;
+
+  &-action--compact {
+    width: 2.2rem;
+    height: 2.2rem;
+    flex: 0 0 2.2rem;
+    padding: 0;
+
+    .ne-button-item {
+      width: 100%;
+
+      .MuiSvgIcon-root {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .ne-input {
+    height: 2.2rem;
+  }
+
+  &--fixed {
+    // position: fixed;
+    // bottom: 0;
+    // left: 0;
+  }
+}

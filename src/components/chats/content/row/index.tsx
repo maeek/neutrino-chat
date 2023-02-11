@@ -24,7 +24,7 @@ export const UserDmListRow = ({ id, style, measure, isScrolling }: UserDmListRow
   const history = useHistory();
 
   const handleClick = () => {
-    Navigator.forward(history, `/u/${user.id}`, {
+    Navigator.forward(history, `/u/${user.id}/chat`, {
       isChat: true
     });
   };

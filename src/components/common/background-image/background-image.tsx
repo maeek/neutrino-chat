@@ -41,7 +41,7 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
         loader={<Loader style={{ paddingTop: '5rem' }} />}
         onLoad={onLoad}
         draggable={false}
-        style={{ objectFit: objectFit } as CSSProperties}
+        objectFit={objectFit as any}
       />
     </div>
   );
