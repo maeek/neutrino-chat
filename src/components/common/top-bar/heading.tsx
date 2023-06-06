@@ -10,7 +10,6 @@ import './heading.scss';
 
 export const TopBarHeading = () => {
   const history = useHistory();
-  const isMobile = useMediaQuery({ maxWidth: 768 });
   const meColor = useSelector(getMeColor);
 
   const onHeadingClick = (e: MouseEvent) => {
@@ -27,7 +26,7 @@ export const TopBarHeading = () => {
         className='top-bar-heading-colored'
         style={{ color: meColor || 'inherit' }}
       >
-        {!isMobile ? 'Neutrino Chat' : 'Neutrino'}
+        Chat
       </Text>
     </Heading>
   );

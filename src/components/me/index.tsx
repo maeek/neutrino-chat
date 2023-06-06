@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getMeAvatar, getMeBanner, getMeBio, getMeColor, getMeUsername } from '@/selectors/user';
+import {
+  getMeAvatar,
+  getMeBanner,
+  getMeBio,
+  getMeColor,
+  getMeUsername
+} from '@/selectors/user';
 import UserBanner from '@/components/common/user-components/banner';
 import UserAvatar from '@/components/common/user-components/avatar';
 import UserUsername from '@/components/common/user-components/username';
@@ -18,14 +24,14 @@ export const ProfileView = () => {
   const bio = useSelector(getMeBio);
   const color = useSelector(getMeColor);
 
-  const [ isAvatarEdited, setIsAvatarEdited ] = useState(false);
-  const [ isBannerEdited, setIsBannerEdited ] = useState(false);
+  const [isAvatarEdited, setIsAvatarEdited] = useState(false);
+  const [isBannerEdited, setIsBannerEdited] = useState(false);
 
   return (
-    <div className="view-root view-root--me">
+    <div className='view-root view-root--me'>
       <UserPageBackground url={banner} />
-      <UserBanner editable url={banner} onEdit={() => setIsBannerEdited(true)} />
-      <div className="me-profile-content">
+      {/* <UserBanner editable url={banner} onEdit={() => setIsBannerEdited(true)} /> */}
+      <div className='me-profile-content'>
         <UserAvatar
           url={avatar}
           username={username}

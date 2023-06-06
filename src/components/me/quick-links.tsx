@@ -14,14 +14,14 @@ export const ProfileQuickLinks = () => {
     dispatch(logout());
   };
 
-  return isMobile ? (
+  return (
     <ul className='me-profile-links'>
       <SideNavMainSection />
       <NavItem onClick={onLogout} icon={<ExitToAppRounded />}>
         Log out
       </NavItem>
     </ul>
-  ) : null;
+  );
 };
 
 export default ProfileQuickLinks;

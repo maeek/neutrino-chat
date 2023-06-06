@@ -34,15 +34,6 @@ export const TopBar = () => {
         <div className='top-bar-left'>
           <NavigationControlls pwaOnly />
           <TopBarHeading />
-          {!isMobile && !isQuickNavHidden ? (
-            <div className='main-chats-navigation'>
-              <Text link='/browse' onClick={onClickLink('/browse')}>
-                Browse
-              </Text>
-            </div>
-          ) : (
-            <></>
-          )}
         </div>
         <div className='top-bar-right'>
           {!isMobile && <NotificationsDrawer />}
