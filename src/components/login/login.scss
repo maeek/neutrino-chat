@@ -2,12 +2,35 @@
   width: 100%;
   height: 100vh;
 
-  .ne-layout-content-footer-content {
+  .ne-typo-heading-level-1 {
+    width: 100%;
+    color: var(--clr-actions-200);
+    font-size: var(--fs-900);
+    text-align: left;
+    padding: 0.5rem 1rem;
+  }
+
+  .container-between {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .heading-element {
+    padding: 0.5rem 0.5rem;
+    margin: 1rem;
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .container-centered {
     min-height: 100vh;
     flex: 1 0 auto;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    padding: 3rem 0.5rem 0 0.5rem;
+    align-items: center;
     background: url(~@/assets/images/wave-alt.svg) no-repeat;
     background-position: 0 bottom;
     background-size: 100% auto;

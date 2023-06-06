@@ -1,4 +1,4 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, useMemo } from 'react';
 import { RouteProps, useHistory } from 'react-router-dom';
 import { LayoutSideContent } from '@maeek/neutrino-design/components/layouts/side-content';
 import { LayoutContentFooter } from '@maeek/neutrino-design/components/layouts/content-footer';
@@ -7,6 +7,7 @@ import Navigator from '@/utils/navigation';
 import { RegisterForm } from './form/';
 import { User } from './types';
 import './join.scss';
+import { Heading, Text } from '@maeek/neutrino-design';
 
 interface JoinViewProps extends RouteProps {
   from: {
@@ -31,22 +32,21 @@ export const JoinView = (props: JoinViewProps) => {
     Navigator.forward(history, '/login');
   };
 
-  const sideNode = (
-    <div className="view-root--join-sidebar">
-      <div className="view-root--join-sidebar-image" />
-    </div>
-  );
-
   return (
-    <div className="view-root view-root--join">
-      <LayoutSideContent sideNode={sideNode}>
-        <LayoutContentFooter footerNode={<GenericFooter />}>
-          <RegisterForm
-            onRegister={onRegister}
-            redirectToLogin={redirectToLogin}
-          />
-        </LayoutContentFooter>
-      </LayoutSideContent>
+    <div className='view-root view-root--join'>
+      <div className='container-between'>
+        <Heading>Sign up</Heading>
+        <div className='heading-element'>
+          <Text>Already have an account?</Text>{' '}
+          <Text link='/login' onClick={redirectToLogin}>
+            Sign in!
+          </Text>
+        </div>
+      </div>
+      <div className='container-centered'>
+        <RegisterForm onRegister={onRegister} />
+        <GenericFooter />
+      </div>
     </div>
   );
 };

@@ -1,16 +1,33 @@
-import { MutableRefObject, useRef, useState, useCallback } from 'react';
+import {
+  MutableRefObject,
+  useRef,
+  useState,
+  useCallback,
+  useMemo
+} from 'react';
 import { Input } from '@maeek/neutrino-design/components/inputs/text';
 import ProceedButton from '@maeek/neutrino-design/components/buttons/Proceed';
 import { Heading } from '@maeek/neutrino-design/components/typography/heading';
 import { Text } from '@maeek/neutrino-design/components/typography/text';
 import { User } from '../types';
+import { RegisterFormHeader } from './header';
 import './box.scss';
+import { useLocation } from 'react-router-dom';
 
 interface RegisterFormBoxProps {
   onRegister?: (user: User) => void;
 }
 
 export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
+  const { search } = useLocation<{ method: string }>();
+  const method = useMemo(
+    () => new URLSearchParams(search)?.get('method') || '',
+    [search]
+  );
+  const doesNotSupportWebAuthn = useMemo(
+    () => typeof PublicKeyCredential == 'undefined',
+    []
+  );
   const loginRef = useRef<any>();
   const passwordRef = useRef<any>();
   const passwordRepeatRef = useRef<any>();
@@ -42,7 +59,7 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
     const username = loginRef.current.value;
     const password = passwordRef.current.value;
 
-    if (validatePasswords && validatePasswords() && onRegister) {
+    if (validatePasswords() && onRegister) {
       onRegister({
         username,
         password
@@ -55,6 +72,7 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
   return (
     <>
       <div className='form-register-box'>
+        <RegisterFormHeader />
         <div className='form-register-box-entry'>
           <Heading
             level={5}
@@ -101,85 +119,93 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
             placeholder='Username'
             required={true}
             onKeyUp={onEnter(focusElement(passwordRef))}
+            validate={(value: string) => value.length > 2}
           />
         </div>
 
-        <div className='form-register-box-entry'>
-          <Heading
-            level={5}
-            className='form-register-box-heading'
-            onClick={clickOnFocus(passwordRef)}
-          >
-            Password
-          </Heading>
-          <ul
-            className='form-register-box-requirements'
-            onClick={clickOnFocus(passwordRef)}
-          >
-            <li>
-              <Text
-                type='secondary'
-                className='form-register-box-requirements-entry form-register-box-requirements-entry--header'
+        {!method ? (
+          <>
+            <div className='form-register-box-entry'>
+              <Heading
+                level={5}
+                className='form-register-box-heading'
+                onClick={clickOnFocus(passwordRef)}
               >
-                Password requirements:
-              </Text>
-            </li>
-            <li>
-              <Text
-                type='secondary'
-                className='form-register-box-requirements-entry'
+                Password
+              </Heading>
+              <ul
+                className='form-register-box-requirements'
+                onClick={clickOnFocus(passwordRef)}
               >
-                Minimum eight (8) characters long
-              </Text>
-            </li>
-            <li>
-              <Text
-                type='secondary'
-                className='form-register-box-requirements-entry'
+                <li>
+                  <Text
+                    type='secondary'
+                    className='form-register-box-requirements-entry form-register-box-requirements-entry--header'
+                  >
+                    Password requirements:
+                  </Text>
+                </li>
+                <li>
+                  <Text
+                    type='secondary'
+                    className='form-register-box-requirements-entry'
+                  >
+                    Minimum eight (8) characters long
+                  </Text>
+                </li>
+                <li>
+                  <Text
+                    type='secondary'
+                    className='form-register-box-requirements-entry'
+                  >
+                    Contain at least one (1) number and one (1) special
+                    character
+                  </Text>
+                </li>
+              </ul>
+              <Input
+                ref={passwordRef}
+                className='form-register-box-input'
+                type='password'
+                name='password'
+                autoComplete='password'
+                placeholder='Password'
+                required={true}
+                validate={validatePasswords}
+                onChange={setPassword}
+                onKeyUp={onEnter(focusElement(passwordRepeatRef))}
+              />
+            </div>
+            <div className='form-register-box-entry'>
+              <Heading
+                level={5}
+                className='form-register-box-heading'
+                onClick={clickOnFocus(passwordRepeatRef)}
               >
-                Contain at least one (1) number and one (1) special character
-              </Text>
-            </li>
-          </ul>
-          <Input
-            ref={passwordRef}
-            className='form-register-box-input'
-            type='password'
-            name='password'
-            autoComplete='password'
-            placeholder='Password'
-            required={true}
-            validate={validatePasswords}
-            onChange={setPassword}
-            onKeyUp={onEnter(focusElement(passwordRepeatRef))}
-          />
-        </div>
-        <div className='form-register-box-entry'>
-          <Heading
-            level={5}
-            className='form-register-box-heading'
-            onClick={clickOnFocus(passwordRepeatRef)}
-          >
-            Repeat Password
-          </Heading>
-          <Input
-            ref={passwordRepeatRef}
-            className='form-register-box-input'
-            type='password'
-            name='repeat-password'
-            autoComplete='password'
-            placeholder='Repeat Password'
-            required={true}
-            validate={validatePasswords}
-            onChange={setPasswordRepeat}
-            onKeyUp={onEnter(onRegisterHandler as Function)}
-          />
-        </div>
-        <div className='form-register-box-entry'>
-          <Text type='secondary' className='form-register-box-appendix'>
-            Beware who you talk to on the Internet
-          </Text>
-        </div>
+                Repeat Password
+              </Heading>
+              <Input
+                ref={passwordRepeatRef}
+                className='form-register-box-input'
+                type='password'
+                name='repeat-password'
+                autoComplete='password'
+                placeholder='Repeat Password'
+                required={true}
+                validate={validatePasswords}
+                onChange={setPasswordRepeat}
+                onKeyUp={onEnter(onRegisterHandler as Function)}
+              />
+            </div>
+          </>
+        ) : (
+          <div className='form-register-box-entry'>
+            <Text type='secondary' className='form-register-box-appendix'>
+              You don't need to set a password, you can use Web Authentication
+              technology instead.
+            </Text>
+          </div>
+        )}
       </div>
       <ProceedButton
         type='button'

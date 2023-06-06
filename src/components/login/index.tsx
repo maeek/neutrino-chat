@@ -7,6 +7,7 @@ import { login } from '@/actions/auth';
 import { GenericFooter } from '@/components/common/footer/generic';
 import { LoginForm } from './form';
 import './login.scss';
+import { Heading, Text } from '@maeek/neutrino-design';
 
 interface LoginViewProps extends RouteProps {
   from: {
@@ -19,8 +20,12 @@ export const LoginView = (props: LoginViewProps) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const onLogin = async (username: string, password: string) => {
-    dispatch(login(username, password, { history, from }));
+  const onLogin = async (
+    username: string,
+    password: string,
+    webAuthn = false
+  ) => {
+    dispatch(login(username, password, { history, from, webAuthn }));
   };
 
   const redirectToRegister = (e: MouseEvent<HTMLSpanElement>) => {
@@ -30,9 +35,19 @@ export const LoginView = (props: LoginViewProps) => {
 
   return (
     <div className='view-root view-root--login'>
-      <LayoutContentFooter footerNode={<GenericFooter />}>
-        <LoginForm onLogin={onLogin} redirectToRegister={redirectToRegister} />
-      </LayoutContentFooter>
+      <div className='container-between'>
+        <Heading>Sign in</Heading>
+        <div className='heading-element'>
+          <Text>Don't have an account?</Text>{' '}
+          <Text link='/join' onClick={redirectToRegister}>
+            Join now
+          </Text>
+        </div>
+      </div>
+      <div className='container-centered'>
+        <LoginForm onLogin={onLogin} />
+        <GenericFooter />
+      </div>
     </div>
   );
 };

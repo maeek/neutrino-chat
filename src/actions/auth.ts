@@ -23,6 +23,7 @@ export const login =
     username: string,
     password: string,
     params: {
+      webAuthn: boolean;
       history: unknown;
       from: { pathname: string };
     }

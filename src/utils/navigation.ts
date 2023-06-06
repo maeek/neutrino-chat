@@ -67,11 +67,12 @@ export class NavigationController {
     }
   }
 
-  replace(history: any, pathname: string, state?: {}) {
+  replace(history: any, pathname: string, state?: {}, search?: string) {
     const storeHistory = this.store.getState().history;
     this.store.dispatch(replaceLocation(pathname));
     history.replace({
       pathname,
+      search,
       state: {
         id: storeHistory.stack[ storeHistory.currentIndex ]?.id,
         ...state

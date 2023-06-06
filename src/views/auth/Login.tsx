@@ -6,24 +6,32 @@ import { getAuthToken, getAuthRefreshToken } from '@/selectors/session';
 import { PageTemplate } from '@/components/common/page-template';
 import Navigator from '@/utils/navigation';
 
-const LoginView = lazy(() => import(
-  /* webpackChunkName: "page-login" */
-  /* webpackMode: "lazy" */
-  /* webpackPrefetch: true */
-  /* webpackPreload: true */
-  '@/components/login'
-));
+const LoginView = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "page-login" */
+      /* webpackMode: "lazy" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      '@/components/login'
+    )
+);
 
 interface LoginPageProps extends RouteProps {}
 
 export const LoginPage = (props: LoginPageProps) => {
   const location = useLocation();
   const history = useHistory();
-  const isAuthenticated = useSelector((state: RootState) => !!getAuthToken(state) && !!getAuthRefreshToken(state));
-  const { from } = location?.state || { from: { pathname: '/' } } as any;
+  const isAuthenticated = useSelector(
+    (state: RootState) => !!getAuthToken(state) && !!getAuthRefreshToken(state)
+  );
+  const { from } = location?.state || ({ from: { pathname: '/' } } as any);
 
   if (isAuthenticated) {
-    console.warn('You\'re already authenticated, redirecting to...', from?.pathname || '/');
+    console.warn(
+      "You're already authenticated, redirecting to...",
+      from?.pathname || '/'
+    );
     setTimeout(() => Navigator.replace(history, from?.pathname || '/'), 0);
 
     return null;
@@ -33,7 +41,7 @@ export const LoginPage = (props: LoginPageProps) => {
     <PageTemplate
       errorPage={null}
       fallbackComponent={null}
-      title="Neutrino Chat - Login"
+      title='Login to Chat'
       canOperateOffline={false}
     >
       <LoginView from={from} {...props} />
