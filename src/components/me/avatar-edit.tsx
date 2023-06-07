@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getMeAvatar } from '@/selectors/user';
-import Modal from '@maeek/neutrino-design/components/modal/Modal';
 import { ImageChange } from '../common/image-change';
 import { setMeAvatar } from '@/store/me/user/actions';
 import './avatar-edit.scss';
@@ -11,7 +10,6 @@ export interface EditMeAvatarModalProps {
 }
 
 export const EditMeAvatarModal = ({
-  isEdited,
   setEdited
 }: EditMeAvatarModalProps) => {
   const avatar = useSelector(getMeAvatar);
@@ -23,18 +21,13 @@ export const EditMeAvatarModal = ({
   };
 
   return (
-    <Modal
-      mountPointId='modal-root'
-      className={`modal-fullpage ${isEdited ? 'modal-visible' : ''}`}
-    >
-      <ImageChange
-        url={avatar}
-        title='Change Your profile picture'
-        onCancel={() => setEdited?.(false)}
-        onUpdate={savingHandler}
-        forceAspectRatio='1-1'
-      />
-    </Modal>
+    <ImageChange
+      url={avatar}
+      title='Change Your profile picture'
+      onCancel={() => setEdited?.(false)}
+      onUpdate={savingHandler}
+      forceAspectRatio='1-1'
+    />
   );
 };
 

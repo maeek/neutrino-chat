@@ -1,6 +1,6 @@
 import { Avatar } from '@maeek/neutrino-design/components/avatar/Avatar';
 import Loader from '@maeek/neutrino-design/components/loaders/Loader';
-import { DeleteRounded, AddPhotoAlternateRounded } from '@material-ui/icons';
+import { DeleteRounded, PhotoCameraRounded } from '@material-ui/icons';
 import { MouseEvent } from 'react';
 import './preview.scss';
 
@@ -17,6 +17,7 @@ export const ImageChangePreview = ({
 }: ImageChangePreviewProps) => {
   return (
     <Avatar
+      key={url}
       src={url}
       size='extra-large'
       draggable={false}
@@ -28,7 +29,7 @@ export const ImageChangePreview = ({
     >
       {!url ? (
         <div className='image-change-preview--empty'>
-          <AddPhotoAlternateRounded />
+          <PhotoCameraRounded />
         </div>
       ) : (
         <>

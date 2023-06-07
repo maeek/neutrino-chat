@@ -1,14 +1,13 @@
-import UserAvatar from '@/components/common/user-components/avatar';
 import EditMeAvatarModal from '@/components/me/avatar-edit';
-import { getMeAvatar, getMeUsername } from '@/selectors/user';
+import { getMeAvatar } from '@/selectors/user';
 import { InputRef } from '@maeek/neutrino-design/components/inputs/text/Input';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Heading } from '@maeek/neutrino-design';
 import './avatar-setting.scss';
 
 export const AvatarSetting = () => {
   const avatarUrl = useSelector(getMeAvatar);
-  const username = useSelector(getMeUsername);
   const [isEdited, setIsEdited] = useState(false);
   const inputRef = useRef<InputRef>(null);
 
@@ -18,13 +17,9 @@ export const AvatarSetting = () => {
 
   return (
     <div className='setting-avatar-preview-container'>
-      <UserAvatar
-        className='setting-avatar-preview'
-        editable
-        username={username}
-        url={avatarUrl}
-        onEdit={() => setIsEdited(true)}
-      />
+      <Heading level={4}>Avatar</Heading>
+      <div className="centered">
+      </div>
       <EditMeAvatarModal
         setEdited={(v: boolean) => setIsEdited(v)}
         isEdited={isEdited}

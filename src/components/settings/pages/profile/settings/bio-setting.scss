@@ -1,0 +1,62 @@
+.setting-bio-preview {
+  margin-top: 0;
+  margin: 0;
+
+  &-container {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+
+    textarea {
+      width: 100%;
+      min-height: 8.5rem;
+      max-height: 15rem;
+      resize: vertical;
+      font-family: var(--font-family);
+      font-size: var(--fs-400);
+      background-color: var(--clr-primary-500);
+      color: var(--clr-basic-100);
+      border: 0;
+      border-radius: 0.4rem;
+      padding: 0.6rem 0.8rem;
+    }
+
+    .space-between {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .image-change-footer {
+      background-color: inherit;
+      width: 100%;
+      padding: 0.5rem 0;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .image-change-cancel {
+      cursor: pointer;
+      outline-offset: 0.4rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:active {
+        color: var(--clr-basic-100);
+      }
+
+      &:focus {
+        color: var(--clr-actions-100);
+      }
+    }
+  }
+}

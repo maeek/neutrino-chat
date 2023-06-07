@@ -44,7 +44,6 @@ export const UserView = () => {
   useEffect(() => {
     const state = location.pathname.endsWith('/chat');
     dispatch(setMobileBottomNavVisibility(state));
-    dispatch(setTopBarVisibility(state));
     setIsInfoMinified(state);
 
     if (location.state?.focusInput) inputRef.current?.element?.current?.focus();

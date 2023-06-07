@@ -1,18 +1,16 @@
 @use '@/styles/base/breakpoints' as *;
 
 .image-change-footer {
-  position: sticky;
   background-color: inherit;
-  bottom: 0;
   width: 100%;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 1.8rem;
 
   @include mq('small') {
-    padding: 1.5rem 1.5rem;
+    padding: 0;
   }
 }
 
