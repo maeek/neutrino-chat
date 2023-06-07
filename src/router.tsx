@@ -13,7 +13,6 @@ import SettingsProfilePage from './views/settings/content/Profile';
 import SettingsSecurityPage from './views/settings/content/Security';
 import SettingsChatsPage from './views/settings/content/Chats';
 import SettingsNotificationsPage from './views/settings/content/Notifications';
-import SettingsAppearancePage from './views/settings/content/Appearance';
 
 const RouterWrapper = () => (
   <Router>
@@ -33,10 +32,6 @@ const RouterWrapper = () => (
             <Route
               path='/settings/notifications'
               component={SettingsNotificationsPage}
-            />
-            <Route
-              path='/settings/appearance'
-              component={SettingsAppearancePage}
             />
           </SettingsPage>
         </Route>

@@ -6,22 +6,30 @@ import { RootState } from '@/store/root';
 import { getAuthToken, getAuthRefreshToken } from '@/selectors/session';
 import Navigator from '@/utils/navigation';
 
-const JoinView = lazy(() => import(
-  /* webpackChunkName: "page-join" */
-  /* webpackMode: "lazy" */
-  '@/components/join'
-));
+const JoinView = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "page-join" */
+      /* webpackMode: "lazy" */
+      '@/components/join'
+    )
+);
 
 interface JoinPageProps extends RouteProps {}
 
 export const JoinPage = (props: JoinPageProps) => {
   const location = useLocation();
   const history = useHistory();
-  const isAuthenticated = useSelector((state: RootState) => !!getAuthToken(state) && !!getAuthRefreshToken(state));
-  const { from } = location?.state || { from: { pathname: '/' } } as any;
+  const isAuthenticated = useSelector(
+    (state: RootState) => !!getAuthToken(state) && !!getAuthRefreshToken(state)
+  );
+  const { from } = location?.state || ({ from: { pathname: '/' } } as any);
 
   if (isAuthenticated) {
-    console.warn('You\'re already authenticated, redirecting to...', from?.pathname || '/');
+    console.warn(
+      "You're already authenticated, redirecting to...",
+      from?.pathname || '/'
+    );
     setTimeout(() => Navigator.replace(history, from?.pathname || '/'), 0);
 
     return null;
@@ -31,7 +39,7 @@ export const JoinPage = (props: JoinPageProps) => {
     <PageTemplate
       errorPage={null}
       fallbackComponent={null}
-      title="Neutrino Chat - Join"
+      title='Sign up'
       canOperateOffline={false}
     >
       <JoinView from={from} {...props} />

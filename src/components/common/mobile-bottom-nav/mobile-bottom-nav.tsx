@@ -16,7 +16,7 @@ import { useSelector } from 'react-redux';
 import { useLocation, useHistory } from 'react-router';
 import { useMediaQuery } from 'react-responsive';
 import Navigator from '@/utils/navigation';
-import { ChatBubbleRounded, ExploreRounded } from '@material-ui/icons';
+import { ChatBubbleRounded, AccountCircleRounded } from '@material-ui/icons';
 import { isAppUIMobileBottonNavHidden } from '@/selectors/app-ui';
 import { Text } from '@maeek/neutrino-design/components/typography/text';
 import './mobile-bottom-nav.scss';
@@ -33,7 +33,7 @@ export const MobileBottomNav = () => {
   const navConfig = useMemo(
     () => [
       { link: '/', name: 'Chats', icon: <ChatBubbleRounded /> },
-      { link: '/browse', name: 'Browse', icon: <ExploreRounded /> }
+      { link: '/me', name: 'Profile', icon: <AccountCircleRounded /> }
     ],
     []
   );

@@ -4,12 +4,10 @@ import { ImageChangeHeader } from './header';
 import { ImageChangeFooter } from './footer';
 import { Heading } from '@maeek/neutrino-design/components/typography/heading/Heading';
 import { Avatar } from '@maeek/neutrino-design/components/avatar/Avatar';
-import {
-  Input,
-  InputRef
-} from '@maeek/neutrino-design/components/inputs/text/Input';
+import { FileSelect } from '@maeek/neutrino-design/components/inputs/file/FileSelect';
 import Loader from '@maeek/neutrino-design/components/loaders/Loader';
 import './image-change.scss';
+import { InputRef } from '@maeek/neutrino-design/components/inputs/text/Input';
 
 const testArr = [
   'https://static.suchanecki.me/pepe1.jpg',
@@ -106,12 +104,10 @@ export const ImageChange = ({
             onClear={() => imgRef?.current?.setValue('')}
             forceAspectRatio={forceAspectRatio}
           />
-          <Input
-            renderLabel='Image URL'
-            className='image-change-url'
-            ref={imgRef}
-            value={currentImg}
-            onChange={(value: string) => setCurrentImg(value)}
+          <FileSelect
+            description='Upload your profile photos'
+            name='Upload'
+            onChange={() => {}}
           />
           {(gallery || ['']).length > 0 ? (
             <>

@@ -8,13 +8,16 @@ export interface UserPageParams {
   username: string;
 }
 
-const User = lazy(() => import(
-  /* webpackChunkName: "page-settings-user" */
-  /* webpackMode: "lazy" */
-  /* webpackPrefetch: true */
-  /* webpackPreload: true */
-  '@/components/user'
-));
+const User = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "page-settings-user" */
+      /* webpackMode: "lazy" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      '@/components/user'
+    )
+);
 
 export const UserPage = (props: RouteChildrenProps<UserPageParams>) => {
   return (
@@ -22,7 +25,7 @@ export const UserPage = (props: RouteChildrenProps<UserPageParams>) => {
       startFromTop
       errorPage={(err: string) => <GenericError message={err} />}
       fallbackComponent={<UserLoader />}
-      title={` Neutrino Chat - ${props.match?.params.username}`}
+      title={`Chat - ${props.match?.params.username}`}
       canOperateOffline
       className='page-root--user'
     >

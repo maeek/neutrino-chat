@@ -33,7 +33,7 @@
     top: calc(3rem + 4rem);
 
     @include mq('small') {
-      top: calc(3rem + 4rem);
+      top: 0;
     }
   }
 
@@ -42,7 +42,7 @@
     top: 2.5rem;
 
     @include mq('small') {
-      top: 3rem;
+      top: 0;
     }
   }
 }

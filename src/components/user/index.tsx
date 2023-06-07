@@ -37,65 +37,65 @@ export const UserView = () => {
     }
 
     Navigator.forward(history, `/u/${user.id}/chat`, {
-      focusInput: true,
+      focusInput: true
     });
   };
 
-  useEffect(
-    () => {
-      const state = location.pathname.endsWith('/chat');
-      dispatch(setMobileBottomNavVisibility(state));
-      dispatch(setTopBarVisibility(state));
-      setIsInfoMinified(state);
+  useEffect(() => {
+    const state = location.pathname.endsWith('/chat');
+    dispatch(setMobileBottomNavVisibility(state));
+    dispatch(setTopBarVisibility(state));
+    setIsInfoMinified(state);
 
-      if (location.state?.focusInput) inputRef.current?.element?.current?.focus();
-      
-      if (state) document.body.style.overflow = 'hidden';
+    if (location.state?.focusInput) inputRef.current?.element?.current?.focus();
 
-      return () => {
-        document.body.style.overflow = '';
-        if (state) {
-          dispatch(setMobileBottomNavVisibility(false));
-          dispatch(setTopBarVisibility(false));
-        }
-      };
-    },
-    [dispatch, location]
-  );
+    if (state) document.body.style.overflow = 'hidden';
+
+    return () => {
+      document.body.style.overflow = '';
+      if (state) {
+        dispatch(setMobileBottomNavVisibility(false));
+        dispatch(setTopBarVisibility(false));
+      }
+    };
+  }, [dispatch, location]);
 
   if (!user) {
     return <></>;
   }
 
   return (
-    <div className={classNames('view-root view-root--user', isInfoMinified && 'view-root--user-minified')}>
+    <div
+      className={classNames(
+        'view-root view-root--user',
+        isInfoMinified && 'view-root--user-minified'
+      )}
+    >
       <UserInfo
         user={user}
         isMinified={isInfoMinified}
         onToggle={toggleVisibility}
       />
-        {isInfoMinified && (
-          <>
-            <div className='view-root--user--minified-move'>
-              <Chat parentId={user.id} type={MessageTypes.DIRECT} />
-            </div>
-            <ComposeMessage
-              ref={inputRef}
-              parentId={user.id}
-              type={MessageTypes.DIRECT}
-              toggleVisibility={toggleVisibility}
-              isMinified={isInfoMinified}
-            />
-          </>
-        )}
-        {
-          !isInfoMinified && (
-            <div className='view-root--user-cta'>
-              <ActionButton onClick={toggleVisibility}>Send a Message</ActionButton>
-            </div>
-
-          )
-        }
+      {isInfoMinified && (
+        <>
+          <div className='view-root--user--minified-move'>
+            <Chat parentId={user.id} type={MessageTypes.DIRECT} />
+          </div>
+          <ComposeMessage
+            ref={inputRef}
+            parentId={user.id}
+            type={MessageTypes.DIRECT}
+            toggleVisibility={toggleVisibility}
+            isMinified={isInfoMinified}
+            showActions
+          />
+        </>
+      )}
+      {!isInfoMinified && (
+        <div className='view-root--user-cta'>
+          <ActionButton onClick={toggleVisibility}>Send a Message</ActionButton>
+        </div>
+      )}
     </div>
   );
 };

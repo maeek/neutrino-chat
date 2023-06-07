@@ -3,20 +3,23 @@ import { PageTemplate } from '@/components/common/page-template';
 import ChatsViewLoader from '@/components/chats/loader';
 import { GenericError } from '@/components/common/error';
 
-const ChatsView = lazy(() => import(
-  /* webpackChunkName: "page-chats" */
-  /* webpackMode: "lazy" */
-  /* webpackPrefetch: true */
-  /* webpackPreload: true */
-  '@/components/chats'
-));
+const ChatsView = lazy(
+  () =>
+    import(
+      /* webpackChunkName: "page-chats" */
+      /* webpackMode: "lazy" */
+      /* webpackPrefetch: true */
+      /* webpackPreload: true */
+      '@/components/chats'
+    )
+);
 
 export const MainPage = () => {
   return (
     <PageTemplate
       errorPage={(err: string) => <GenericError message={err} />}
       fallbackComponent={<ChatsViewLoader />}
-      title="Neutrino Chat"
+      title='Chat'
       canOperateOffline={false}
       startFromTop
     >

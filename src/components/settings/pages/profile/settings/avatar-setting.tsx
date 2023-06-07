@@ -4,7 +4,6 @@ import { getMeAvatar, getMeUsername } from '@/selectors/user';
 import { InputRef } from '@maeek/neutrino-design/components/inputs/text/Input';
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Setting } from '../../../components/setting/setting';
 import './avatar-setting.scss';
 
 export const AvatarSetting = () => {
@@ -18,21 +17,19 @@ export const AvatarSetting = () => {
   }, [avatarUrl]);
 
   return (
-    <Setting name='Avatar' value={avatarUrl} inputRef={inputRef}>
-      <div className='setting-avatar-preview-container'>
-        <UserAvatar
-          className='setting-avatar-preview'
-          editable
-          username={username}
-          url={avatarUrl}
-          onEdit={() => setIsEdited(true)}
-        />
-        <EditMeAvatarModal
-          setEdited={(v: boolean) => setIsEdited(v)}
-          isEdited={isEdited}
-        />
-      </div>
-    </Setting>
+    <div className='setting-avatar-preview-container'>
+      <UserAvatar
+        className='setting-avatar-preview'
+        editable
+        username={username}
+        url={avatarUrl}
+        onEdit={() => setIsEdited(true)}
+      />
+      <EditMeAvatarModal
+        setEdited={(v: boolean) => setIsEdited(v)}
+        isEdited={isEdited}
+      />
+    </div>
   );
 };
 

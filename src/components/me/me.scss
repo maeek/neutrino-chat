@@ -1,25 +1,27 @@
 .view-root--me {
+  height: calc(100% - 10rem);
   width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   height: auto;
+  flex: 1 1 auto;
   transform: translate3d(0, 0, 0);
-
-  .ne-layout-content-footer {
-    height: auto;
-    min-height: 100%;
-  }
 
   .me-profile {
     &-content {
-      width: 100%;
+      width: 38rem;
       max-width: calc(100% - 2rem);
       display: flex;
       justify-content: flex-start;
       align-items: center;
       flex-direction: column;
+
+      p.ne-typo.ne-typo-paragraph .ne-typo.ne-typo-text.ne-typo-text--primary {
+        margin: 0 1rem;
+        display: block;
+      }
     }
   }
 }

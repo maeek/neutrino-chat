@@ -163,12 +163,9 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
       >
         <div className='user-info-container'>
           {backNode}
-          {user.banner && !isMinified && (
-            <UserBanner expandOnClick url={user.banner} />
-          )}
           <UserAvatar
             className={user.banner && !isMinified ? '' : 'reset-margin'}
-            color={getHslColorFromCharCode(user.name)}
+            color={getHslColorFromCharCode(user.name || '')}
             url={user.avatar}
             size={isMinified ? 'medium' : 'extra-large'}
             expandOnClick
