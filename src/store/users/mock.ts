@@ -8,9 +8,9 @@ export const usersReducerMock: UsersState = {
       fetchingStatus: UserFetchingStatus.SUCCESS,
       status: UserStatusEnum.ACTIVE,
       name: 'Bob Frank',
-      avatar: 'https://static.suchanecki.me/avatar.png',
+      avatar: '',
       blocked: false,
-      nickname: 'bobo',
+      nickname: 'bob',
       settings: {},
       messages: [
         '1914477c-e595-43d3-b0f5-78e9625a4ba6',
@@ -24,13 +24,13 @@ export const usersReducerMock: UsersState = {
       ],
       lastMessage: {
         id: '123456-7115-4e4a-b82a-58e2332c78e0',
-        content: 'he',
+        content: 'Dictum varius duis at consectetur',
         receivedDate: Date.now() - 3670
       },
       typing: false
     },
-    'rossalita-antonios-gonzalez-martinez-gaworia': {
-      id: 'rossalita-antonios-gonzalez-martinez-gaworia',
+    test_user: {
+      id: 'test_user',
       fetchingStatus: UserFetchingStatus.SUCCESS,
       status: UserStatusEnum.ACTIVE,
       name: 'Rossalita Antonios Gonzalez Martinez Gaworia',
@@ -61,8 +61,7 @@ export const usersReducerMock: UsersState = {
       name: 'matt',
       avatar: '',
       blocked: false,
-      nickname:
-        'gaaaaaaaaaaaryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy',
+      nickname: '',
       settings: {
         backgroundUri: 'https://static.suchanecki.me/neony.jpeg',
         backgroundOpacity: 0.3,
@@ -102,31 +101,36 @@ export const usersReducerMock: UsersState = {
       ],
       lastMessage: {
         id: '57499627-432a-4302-9163-1a3001c5798e',
-        content: 'kapisz',
+        content: 'testing',
         receivedDate: Date.now() - 123600
       },
       typing: false
     },
-    ...(Object.fromEntries(new Array(10).fill(null).map((_, i) => {
-      const uid = v4();
-      return [ `${uid}-${i+1}`, {
-        id: `${uid}-${i+1}`,
-        fetchingStatus: UserFetchingStatus.SUCCESS,
-        status: UserStatusEnum.AWAY,
-        name: `${uid}-${i+1}`,
-        avatar: '',
-        blocked: false,
-        messages: [
-          // '2e341b65-656a-4fb4-b616-9d2c0ba1499c',
-          // '57499627-432a-4302-9163-1a3001c5798e'
-        ],
-        // lastMessage: {
-        //   id: '57499627-432a-4302-9163-1a3001c5798e',
-        //   content: v4(),
-        //   receivedDate: Date.now() - 200000
-        // },
-        typing: false
-      } ];
-    })))
+    ...Object.fromEntries(
+      new Array(10).fill(null).map((_, i) => {
+        const uid = v4();
+        return [
+          `${uid}-${i + 1}`,
+          {
+            id: `${uid}-${i + 1}`,
+            fetchingStatus: UserFetchingStatus.SUCCESS,
+            status: UserStatusEnum.AWAY,
+            name: `${uid}-${i + 1}`,
+            avatar: '',
+            blocked: false,
+            messages: [
+              // '2e341b65-656a-4fb4-b616-9d2c0ba1499c',
+              // '57499627-432a-4302-9163-1a3001c5798e'
+            ],
+            // lastMessage: {
+            //   id: '57499627-432a-4302-9163-1a3001c5798e',
+            //   content: v4(),
+            //   receivedDate: Date.now() - 200000
+            // },
+            typing: false
+          }
+        ];
+      })
+    )
   }
 };

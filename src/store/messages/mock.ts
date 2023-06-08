@@ -10,7 +10,7 @@ export const messagesMock: MessagesState = {
       parentId: 'bob',
       timeReceived: Date.now() - 10000,
       timeSent: Date.now() - 10000,
-      body: 'Whatssss up',
+      body: 'Hello',
       mentions: [],
       attachments: [],
       read: true
@@ -23,9 +23,9 @@ export const messagesMock: MessagesState = {
       parentId: 'bob',
       timeReceived: Date.now() - 9000,
       timeSent: Date.now() - 9000,
-      body: 'gud u?',
-      mentions: [ ],
-      attachments: [ '81df5623-4fa2-423d-a109-4930e7fde301' ],
+      body: 'Lorem ipsum sil dolor a met',
+      mentions: [],
+      attachments: ['81df5623-4fa2-423d-a109-4930e7fde301'],
       read: true
     },
     '653440af-60fc-4ebb-88a5-67f98d209691': {
@@ -36,9 +36,9 @@ export const messagesMock: MessagesState = {
       parentId: 'bob',
       timeReceived: Date.now() - 8000,
       timeSent: Date.now() - 8000,
-      body: 'yaaa, we seeing tmrw? @bop',
-      mentions: [ 'bop' ],
-      attachments: [ ],
+      body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+      mentions: ['bop'],
+      attachments: [],
       read: true
     },
     'a30d2e71-7115-4e4a-b82a-58e2332c78e0': {
@@ -49,9 +49,9 @@ export const messagesMock: MessagesState = {
       parentId: 'bob',
       timeReceived: Date.now() - 3670,
       timeSent: Date.now() - 3670,
-      body: 'Yep see u 2mrw AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',
-      mentions: [ ],
-      attachments: [ ],
+      body: 'nostrud',
+      mentions: [],
+      attachments: [],
       read: true
     },
     '1234-7115-4e4a-b82a-58e2332c78e0': {
@@ -62,9 +62,9 @@ export const messagesMock: MessagesState = {
       parentId: 'bob',
       timeReceived: Date.now() - 3670,
       timeSent: Date.now() - 3670,
-      body: 'he',
-      mentions: [ ],
-      attachments: [ ],
+      body: '❤️',
+      mentions: [],
+      attachments: [],
       read: true
     },
     '12345-7115-4e4a-b82a-58e2332c78e0': {
@@ -73,11 +73,11 @@ export const messagesMock: MessagesState = {
       status: MessageStatus.DELIVERED,
       senderId: 'bob',
       parentId: 'bob',
-      timeReceived: Date.now() - 3670,
-      timeSent: Date.now() - 3670,
-      body: 'he',
-      mentions: [ ],
-      attachments: [ ],
+      timeReceived: Date.now() - 103670,
+      timeSent: Date.now() - 103670,
+      body: 'Ac turpis egestas sed tempus. Mattis rhoncus urna neque viverra justo. Tempus iaculis urna id volutpat lacus. Ac auctor augue mauris augue neque gravida. Duis ut diam quam nulla porttitor massa id neque.',
+      mentions: [],
+      attachments: [],
       read: true
     },
     '123456-7115-4e4a-b82a-58e2332c78e0': {
@@ -88,9 +88,9 @@ export const messagesMock: MessagesState = {
       parentId: 'bob',
       timeReceived: Date.now() - 3670,
       timeSent: Date.now() - 3670,
-      body: 'he',
-      mentions: [ ],
-      attachments: [ ],
+      body: 'Sed nisi lacus sed viverra tellus in hac habitasse',
+      mentions: [],
+      attachments: [],
       read: true
     },
     '258f4703-52f8-49e1-bd39-23e9d9a0b345': {
@@ -102,8 +102,8 @@ export const messagesMock: MessagesState = {
       timeReceived: Date.now() - 3670,
       timeSent: Date.now() - 3670,
       body: 'Look at this meme',
-      mentions: [ ],
-      attachments: [ 'a925630e-bab7-4f01-8804-f087e3dd341e' ],
+      mentions: [],
+      attachments: ['a925630e-bab7-4f01-8804-f087e3dd341e'],
       read: true
     },
     '88832d5c-d6ed-4d54-9e1a-94e3db235f57': {
@@ -115,8 +115,8 @@ export const messagesMock: MessagesState = {
       timeReceived: Date.now(),
       timeSent: Date.now(),
       body: 'lol',
-      mentions: [ ],
-      attachments: [ ],
+      mentions: [],
+      attachments: [],
       read: false
     },
     '2e341b65-656a-4fb4-b616-9d2c0ba1499c': {
@@ -128,8 +128,8 @@ export const messagesMock: MessagesState = {
       timeReceived: Date.now() - 200000,
       timeSent: Date.now() - 200000,
       body: 'get oooout',
-      mentions: [ ],
-      attachments: [ ],
+      mentions: [],
+      attachments: [],
       read: true
     },
     '57499627-432a-4302-9163-1a3001c5798e': {
@@ -140,9 +140,9 @@ export const messagesMock: MessagesState = {
       parentId: 'paczka',
       timeReceived: Date.now() - 123600,
       timeSent: Date.now() - 123600,
-      body: 'kapisz',
-      mentions: [ ],
-      attachments: [ ],
+      body: 'testing',
+      mentions: [],
+      attachments: [],
       read: true
     },
     '258f4703-52f8-49e1-bd39-23e9d9a0b888': {
@@ -153,9 +153,9 @@ export const messagesMock: MessagesState = {
       parentId: 'bob',
       timeReceived: Date.now() - 123000,
       timeSent: Date.now() - 123000,
-      body: 'kapisz',
-      mentions: [ ],
-      attachments: [ ],
+      body: 'Dictum varius duis at consectetur',
+      mentions: [],
+      attachments: [],
       read: true
     }
   },

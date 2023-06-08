@@ -56,6 +56,29 @@
     text-overflow: ellipsis;
   }
 
+  &-timestamp {
+    font-size: var(--fs-100);
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+  }
+
+  &-unread {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0.5rem;
+    border-radius: 50%;
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: var(--fs-300);
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-actions-700);
+  }
+
   &-data {
     flex: 0 0 auto;
     max-width: calc(100% - 3.4rem);

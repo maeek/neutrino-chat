@@ -59,10 +59,12 @@ export const ComposeMessage = forwardRef(
           type,
           body: message,
           timeSent: Date.now(),
+          timeReceived: Date.now(),
           status: MessageStatus.NOT_SENT,
           senderId: me,
           uuid: v4(),
-          attachments: []
+          attachments: [],
+          read: true
         };
         dispatch(addMessages([msg]));
         inputRef.current?.setValue('');

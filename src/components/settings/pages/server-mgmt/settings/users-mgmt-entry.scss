@@ -1,0 +1,56 @@
+.user-mgmt-list-entry {
+  padding: 0.5rem 0.8rem;
+  width: 100%;
+  background-color: var(--clr-primary-900);
+  color: var(--clr-basic-100);
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--fs-200);
+
+  &-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    .user-mgmt-action {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+
+      &--delete:hover svg,
+      &--delete:focus svg {
+        color: var(--clr-negative-200);
+      }
+    }
+  }
+
+  &-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+
+    &-title {
+      font-size: var(--fs-300);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    &-avatar .user-profile-avatar-container .ne-avatar {
+      margin-top: 0;
+    }
+
+    .user-profile-avatar {
+      margin-top: 0;
+
+      .user-profile-avatar-no-avatar > svg {
+        font-size: var(--fs-1200);
+      }
+    }
+  }
+}

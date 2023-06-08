@@ -9,10 +9,15 @@ import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
 import {
   areMessagesUnreadByParentId,
-  getMessageById
+  getMessageById,
+  getMessagesUnreadForParent
 } from '@/selectors/messages';
 import './row.scss';
 import { MessageTypes } from '@/store/messages/types';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+dayjs.extend(relativeTime);
 
 export interface UserDmListRowProps {
   id: string;
@@ -32,6 +37,9 @@ export const UserDmListRow = ({
   const user = useSelector(getUserById(id));
   const isUnread = useSelector(areMessagesUnreadByParentId(user.id));
   const lastMessage = useSelector(getMessageById(user.lastMessage?.id));
+  const unreadMessagesLength = useSelector(
+    getMessagesUnreadForParent(user.id)
+  )?.length;
   const history = useHistory();
 
   const handleClick = () => {
@@ -70,7 +78,7 @@ export const UserDmListRow = ({
         </i>
       );
     } else if (lastMessage?.body && lastMessage.body.length > 90) {
-      return sender + lastMessage?.body.substr(0, 90) + '...';
+      return sender + lastMessage?.body.substring(0, 90) + '...';
     } else if (lastMessage?.body) {
       return sender + lastMessage?.body;
     }
@@ -103,6 +111,12 @@ export const UserDmListRow = ({
       >
         <UserUsername username={user.nickname || user.name} />
         <div className='dm-list-row-message'>{renderLastMessage()}</div>
+        {unreadMessagesLength > 0 && (
+          <div className='dm-list-row-unread'>{unreadMessagesLength}</div>
+        )}
+        <div className='dm-list-row-timestamp'>
+          {dayjs(lastMessage.timeReceived).fromNow()}
+        </div>
       </div>
     </div>
   );
