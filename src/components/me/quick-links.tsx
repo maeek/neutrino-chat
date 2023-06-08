@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   ExitToAppRounded,
   SettingsApplicationsRounded,
@@ -10,10 +10,14 @@ import { sideNavConfig } from '../settings/side-nav/config';
 import { useHistory } from 'react-router-dom';
 import { useAccessibility } from '@maeek/neutrino-design';
 import './quick-links.scss';
+import { UserRole } from '@/store/me/user/types';
+import { getMeRole } from '@/selectors/user';
 
 export const ProfileQuickLinks = () => {
   const { onEnter } = useAccessibility();
   const history = useHistory();
+  const isAdmin = useSelector(getMeRole) === UserRole.ADMIN;
+
   // const isMobile = useMediaQuery({ maxWidth: 786 });
   const dispatch = useDispatch();
 
@@ -27,31 +31,47 @@ export const ProfileQuickLinks = () => {
 
   return (
     <ul className='me-profile-links'>
-      {sideNavConfig.mainSection.map((item) => (
-        <li
-          tabIndex={0}
-          key={item.name}
-          onClick={navigate(`/settings/${item.category}`)}
-          onKeyUp={onEnter(navigate(`/settings/${item.category}`))}
-          className='nav-item'
-        >
-          <div className='icon'>{item.icon}</div>
-          <div>{item.node || item.name}</div>
-        </li>
-      ))}
-      <li className='spacer' />
-      <li className='nav-item' tabIndex={0}>
-        <div className='icon'>
-          <SettingsApplicationsRounded />
-        </div>
-        <div>Server Management</div>
-      </li>
-      <li className='nav-item' tabIndex={0}>
-        <div className='icon'>
-          <VisibilityRounded />
-        </div>
-        <div>Audit Log</div>
-      </li>
+      {sideNavConfig.mainSection
+        .filter((item) => !item.adminOnly)
+        .map((item) => (
+          <li
+            tabIndex={0}
+            key={item.name}
+            onClick={navigate(`/settings/${item.category}`)}
+            onKeyUp={onEnter(navigate(`/settings/${item.category}`))}
+            className='nav-item'
+          >
+            <div className='icon'>{item.icon}</div>
+            <div>{item.node || item.name}</div>
+          </li>
+        ))}
+      {isAdmin && (
+        <>
+          <li className='spacer' />
+          <li
+            className='nav-item'
+            tabIndex={0}
+            onClick={navigate(`/settings/server`)}
+            onKeyUp={onEnter(navigate(`/settings/server`))}
+          >
+            <div className='icon'>
+              <SettingsApplicationsRounded />
+            </div>
+            <div>Server Management</div>
+          </li>
+          <li
+            className='nav-item'
+            tabIndex={0}
+            onClick={navigate(`/settings/audit`)}
+            onKeyUp={onEnter(navigate(`/settings/audit`))}
+          >
+            <div className='icon'>
+              <VisibilityRounded />
+            </div>
+            <div>Audit</div>
+          </li>
+        </>
+      )}
       <li className='spacer' />
       <li
         onClick={onLogout}

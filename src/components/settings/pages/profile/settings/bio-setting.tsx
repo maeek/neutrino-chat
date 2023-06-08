@@ -1,7 +1,7 @@
 import { getMeBio } from '@/selectors/user';
 import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { ProceedButton, Heading, useAccessibility, Text } from '@maeek/neutrino-design';
+import { ProceedButton, Heading, useAccessibility, Text, Paragraph } from '@maeek/neutrino-design';
 import './bio-setting.scss';
 
 export const BioSetting = () => {
@@ -23,6 +23,9 @@ export const BioSetting = () => {
   return (
     <div className='setting-bio-preview-container'>
       <Heading level={4}>Description</Heading>
+      <Paragraph>
+        This is your public description. It will be visible to everyone who visits your profile.
+      </Paragraph>
       <textarea
         ref={inputRef}
         className='setting-bio-preview'
@@ -30,9 +33,8 @@ export const BioSetting = () => {
           setContent(e.target.value)
           setIsEdited(e.target.value !== bioText);
         }}
-      >
-        {content}
-      </textarea>
+        value={content}
+      />
       <div className='image-change-footer'>
         <Text
           tabIndex={0}

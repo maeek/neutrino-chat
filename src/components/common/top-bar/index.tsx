@@ -20,12 +20,13 @@ export const TopBar = () => {
 
   useEffect(() => {
     if (
-      isMobile &&
+      (isMobile &&
       (
         ['/me', '/'].includes(location.pathname) ||
-        location.pathname.startsWith('/settings') ||
+        location.pathname.startsWith('/settings')
+      ))
+      ||
         location.pathname.endsWith('/chat')
-      )
     ) {
       dispatch(setTopBarVisibility(true));
     }

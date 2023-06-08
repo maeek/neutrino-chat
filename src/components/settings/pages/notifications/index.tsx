@@ -15,11 +15,11 @@ export const SettingsNotifications = () => {
         field="mentions"
         description="Receive notifications for mentions"
       />
-      <NotfSection
+      {/* <NotfSection
         title="Reactions"
         field="reactions"
         description="Receive notifications for when people react to messages"
-      />
+      /> */}
       <NotfSection
         title="Joined"
         field="joined"

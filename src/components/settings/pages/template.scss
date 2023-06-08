@@ -20,13 +20,13 @@
     position: sticky;
     top: 2.5rem;
     white-space: nowrap;
-    margin-bottom: 3rem;
     z-index: 100;
+    margin-bottom: 1rem;
 
     @include mq('small') {
       top: 0;
       z-index: 999;
-      margin-bottom: 1rem;
+      margin-bottom: 3.5rem;
       padding: 0.1rem 0;
     }
 

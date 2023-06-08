@@ -21,6 +21,14 @@
     .ne-typo {
       font: inherit;
       color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      > svg {
+        filter: saturate(150%);
+        font-size: var(--fs-600);
+      }
     }
   }
 }

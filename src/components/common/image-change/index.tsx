@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { ImageChangePreview } from './preview';
 import { ImageChangeFooter } from './footer';
 import { FileSelect } from '@maeek/neutrino-design/components/inputs/file/FileSelect';
@@ -43,10 +43,12 @@ export const ImageChange = ({
   const [originalImg, setOriginalImg] = useState(url);
   const [currentImg, setCurrentImg] = useState(url || '');
   const savingIsBlocked = currentImg === originalImg;
+  const ref = useRef<{ clear: () => void }>(null);
 
   const onUpdateHandler = () => {
     if (onUpdate && !savingIsBlocked) {
       onUpdate(currentImg);
+      ref.current?.clear();
     }
 
     return currentImg;
@@ -60,7 +62,7 @@ export const ImageChange = ({
     setCurrentImg(url || '');
   };
 
-  const fileSelect = useCallback((files: FileList) => {
+  const fileSelect = useCallback((files: FileList | null) => {
     if (files?.[0]) {
       setCurrentImg(URL.createObjectURL(files[0]));
     }
@@ -82,8 +84,12 @@ export const ImageChange = ({
             forceAspectRatio={forceAspectRatio}
           />
           <FileSelect
+            ref={ref}
             description='Upload your profile photo'
             onChange={fileSelect}
+            accept='image/*'
+            limit={1}
+            buttonText='Upload a photo'
           />
         </div>
         <ImageChangeFooter

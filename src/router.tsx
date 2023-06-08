@@ -11,7 +11,7 @@ import { MobileBottomNav } from '@/components/common/mobile-bottom-nav';
 import SettingsPage from './views/settings/Settings';
 import SettingsProfilePage from './views/settings/content/Profile';
 import SettingsSecurityPage from './views/settings/content/Security';
-import SettingsChatsPage from './views/settings/content/Chats';
+import SettingsServerMgmtPage from './views/settings/content/ServerMgmt';
 import SettingsNotificationsPage from './views/settings/content/Notifications';
 
 const RouterWrapper = () => (
@@ -28,7 +28,7 @@ const RouterWrapper = () => (
           <SettingsPage>
             <Route path='/settings/profile' component={SettingsProfilePage} />
             <Route path='/settings/security' component={SettingsSecurityPage} />
-            <Route path='/settings/chats' component={SettingsChatsPage} />
+            <Route path='/settings/server' component={SettingsServerMgmtPage} />
             <Route
               path='/settings/notifications'
               component={SettingsNotificationsPage}

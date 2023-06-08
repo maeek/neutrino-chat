@@ -5,7 +5,8 @@ import {
   setMeUsername,
   setMeAvatar,
   setMeBanner,
-  clearMe
+  clearMe,
+  setMeRole
 } from '@/store/me/user/actions';
 import {
   setToken,
@@ -17,6 +18,7 @@ import { addNewError } from '@/store/app/errors/actions';
 import { unifiedErrorTemplate } from '@/store/app/errors/error';
 import { RootState } from '@/store/root';
 import { getAuthRefreshToken } from '@/selectors/session';
+import { UserRole } from '@/store/me/user/types';
 
 export const login =
   (
@@ -28,37 +30,37 @@ export const login =
       from: { pathname: string };
     }
   ) =>
-    (dispatch: Dispatch) => {
-      // ApiAuthorization.login(username, password)
-      //   .then((response) => {
-      const user = {
-        username,
-        token: 'token', //response.data.resources.accessToken,
-        refreshToken: 'refreshToken' // response.headers[ NeutrinoApiAuthHeadersEnum.REFRESH_TOKEN ]
-      };
-
-      dispatch(setToken(user.token));
-      dispatch(setRefreshToken(user.refreshToken));
-      dispatch(setMeUsername(username));
-
-      // After login initial fetch
-      dispatch(setMeAvatar('https://static.suchanecki.me/avatar.png'));
-      dispatch(setMeBanner(''));
-
-      Navigator.replace(params.history, params.from?.pathname || '/');
-      // })
-      // .catch((e: any) => {
-      //   console.error('Failed to log in! ', e);
-      //   dispatch(
-      //     addNewError(
-      //       unifiedErrorTemplate(e.type, e, null, {
-      //         username,
-      //         from: params.from
-      //       })
-      //     )
-      //   );
-      // });
+  (dispatch: Dispatch) => {
+    // ApiAuthorization.login(username, password)
+    //   .then((response) => {
+    const user = {
+      username,
+      token: 'token', //response.data.resources.accessToken,
+      refreshToken: 'refreshToken' // response.headers[ NeutrinoApiAuthHeadersEnum.REFRESH_TOKEN ]
     };
+
+    dispatch(setToken(user.token));
+    dispatch(setRefreshToken(user.refreshToken));
+    dispatch(setMeUsername(username));
+    dispatch(setMeRole(UserRole.ADMIN));
+
+    // After login initial fetch
+    dispatch(setMeAvatar('https://static.suchanecki.me/avatar.png'));
+
+    Navigator.replace(params.history, params.from?.pathname || '/');
+    // })
+    // .catch((e: any) => {
+    //   console.error('Failed to log in! ', e);
+    //   dispatch(
+    //     addNewError(
+    //       unifiedErrorTemplate(e.type, e, null, {
+    //         username,
+    //         from: params.from
+    //       })
+    //     )
+    //   );
+    // });
+  };
 
 export const logout = () => (dispatch: Dispatch, getState: () => RootState) => {
   ApiAuthorization.logout(getAuthRefreshToken(getState()) as string)

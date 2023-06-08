@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive';
 import { Heading } from '@maeek/neutrino-design/components/typography/heading';
 import { Text } from '@maeek/neutrino-design/components/typography/text';
 import Navigator from '@/utils/navigation';
 import { getMeColor } from '@/selectors/user';
+import { ForumRounded } from '@material-ui/icons';
 import './heading.scss';
 
 export const TopBarHeading = () => {
@@ -26,6 +26,7 @@ export const TopBarHeading = () => {
         className='top-bar-heading-colored'
         style={{ color: meColor || 'inherit' }}
       >
+        <ForumRounded />
         Chat
       </Text>
     </Heading>

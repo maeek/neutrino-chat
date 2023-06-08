@@ -37,7 +37,7 @@ export const NotfSection = ({
         <SwitchStoreWrapper
           field={field as never}
           innerField='enabled'
-          title='Recieve this notifications'
+          title='Recieve these notifications'
           description='Enable or disable this notification'
         />
         <SwitchStoreWrapper
@@ -45,20 +45,6 @@ export const NotfSection = ({
           innerField='push'
           title='Sound'
           description='Play sound when notification is received'
-          disabled={!enabled}
-        />
-        <SwitchStoreWrapper
-          field={field as never}
-          innerField='push'
-          title='Push'
-          description='Receive push notifications'
-          disabled={!enabled}
-        />
-        <SwitchStoreWrapper
-          field={field as never}
-          innerField='push'
-          title='Native'
-          description='Receive native notifications'
           disabled={!enabled}
         />
         <SwitchStoreWrapper

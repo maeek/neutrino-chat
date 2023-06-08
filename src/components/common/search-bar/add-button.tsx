@@ -1,19 +1,16 @@
-import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import ActionButton from '@maeek/neutrino-design/components/buttons/Action';
 import { AddRounded } from '@material-ui/icons';
-import MainSearchBarAddButtonContextMenu from './context-menu-wrapper';
 import { getMeColor } from '@/selectors/user';
+import { useAccessibility } from '@maeek/neutrino-design';
 
 export const MainSearchBarAddButton = () => {
-  const [showContext, setShowContext] = useState(false);
+  const { onEnter } = useAccessibility();
   const meColor = useSelector(getMeColor);
 
-  const toggleContext = () => setShowContext(!showContext);
-  const closeContextMenu = useCallback(
-    () => setShowContext(false),
-    [setShowContext]
-  );
+  const addNewChannel = () => {
+    alert('Add new channel');
+  };
 
   return (
     <div className='main-search-bar-add'>
@@ -21,25 +18,21 @@ export const MainSearchBarAddButton = () => {
         type='button'
         className='main-search-bar-action main-search-bar-action--compact'
         style={{
-          // @ts-ignore
           background: meColor || undefined,
           border: 'currentColor',
           color: 'currentColor'
         }}
-        onClick={toggleContext}
+        onClick={addNewChannel}
+        onKeyUp={onEnter(addNewChannel)}
+        title='Add new channel'
       >
         <AddRounded
           style={{
-            // @ts-ignore
             color: meColor || undefined,
             mixBlendMode: 'difference'
           }}
         />
       </ActionButton>
-      <MainSearchBarAddButtonContextMenu
-        closeContextMenu={closeContextMenu}
-        className={showContext ? 'main-search-bar-context--visible' : undefined}
-      />
     </div>
   );
 };

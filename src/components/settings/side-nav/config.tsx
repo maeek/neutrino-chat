@@ -1,15 +1,17 @@
 import {
-  VerifiedUserRounded,
   NotificationsRounded,
-  AccountCircleRounded
+  AccountCircleRounded,
+  SettingsApplicationsRounded,
+  VisibilityRounded,
+  LockRounded
 } from '@material-ui/icons';
 
 export enum SettingsCategoriesEnum {
   Profile = 'profile',
   Security = 'security',
   Notifications = 'notifications',
-  Appearance = 'appearance',
-  Chats = 'chats'
+  ServerMgmt = 'server',
+  Audit = 'audit'
 }
 
 export const sideNavConfig = {
@@ -27,10 +29,24 @@ export const sideNavConfig = {
       icon: <NotificationsRounded />
     },
     {
-      name: 'Sessions',
+      name: 'Security',
       node: null,
       category: SettingsCategoriesEnum.Security,
-      icon: <VerifiedUserRounded />
+      icon: <LockRounded />
+    },
+    {
+      name: 'Server Management',
+      node: null,
+      category: SettingsCategoriesEnum.ServerMgmt,
+      icon: <SettingsApplicationsRounded />,
+      adminOnly: true
+    },
+    {
+      name: 'Audit',
+      node: null,
+      category: SettingsCategoriesEnum.Audit,
+      icon: <VisibilityRounded />,
+      adminOnly: true
     }
   ]
 };

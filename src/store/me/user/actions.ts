@@ -1,9 +1,28 @@
-import { SetMeAvatar, SetMeUsername, SetMeBio, UserActionsEnum, Reaction, SetMeReactions, SetMeBanner, SetMeStatus, MeStatus, ClearMe } from './types';
+import {
+  SetMeAvatar,
+  SetMeUsername,
+  SetMeBio,
+  UserActionsEnum,
+  Reaction,
+  SetMeReactions,
+  SetMeBanner,
+  SetMeStatus,
+  MeStatus,
+  ClearMe,
+  SetMeRole
+} from './types';
 
 export const setMeUsername = (username: string): SetMeUsername => ({
   type: UserActionsEnum.SET_ME_USERNAME,
   data: {
     username
+  }
+});
+
+export const setMeRole = (role: string): SetMeRole => ({
+  type: UserActionsEnum.SET_ME_ROLE,
+  data: {
+    role
   }
 });
 
