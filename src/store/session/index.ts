@@ -10,33 +10,58 @@ export const initialState: SessionState = {
   }
 };
 
-const sessionReducer = (state = initialState, action: SessionActionTypes) => {
+const getInitState = () => {
+  const sessionInfo = JSON.parse(
+    localStorage.getItem('persist:ne-auth') || 'null'
+  )?.sessionInfo;
+
+  if (sessionInfo) {
+    return JSON.parse(sessionInfo);
+  }
+
+  return initialState.sessionInfo;
+};
+
+const initialFromLocalStorage = {
+  sessionInfo: getInitState()
+};
+
+const sessionReducer = (
+  state = initialFromLocalStorage,
+  action: SessionActionTypes
+) => {
   switch (action.type) {
-  case SessionActionsEnum.SET_TOKEN:
-    return {
-      sessionInfo: {
-        ...state.sessionInfo,
-        token: action.data.token
-      }
-    };
+    case SessionActionsEnum.SET_TOKEN:
+      return {
+        sessionInfo: {
+          ...state.sessionInfo,
+          token: action.data.token
+        }
+      };
 
-  case SessionActionsEnum.SET_REFRESH_TOKEN:
-    return {
-      sessionInfo: {
-        ...state.sessionInfo,
-        refreshToken: action.data.token
-      }
-    };
+    case SessionActionsEnum.SET_REFRESH_TOKEN:
+      return {
+        sessionInfo: {
+          ...state.sessionInfo,
+          refreshToken: action.data.token
+        }
+      };
 
-  case SessionActionsEnum.CLEAR_TOKENS:
-    return initialState;
+    case SessionActionsEnum.CLEAR_TOKENS:
+      return initialState;
 
-  default:
-    return state;
+    default:
+      return state;
   }
 };
 
-export default persistReducer<ReturnType<typeof sessionReducer>, SessionActionTypes>({
-  ...getPersistConf('ne-auth'),
-  storage
-}, sessionReducer);
+export default persistReducer<
+  ReturnType<typeof sessionReducer>,
+  SessionActionTypes
+>(
+  {
+    ...{ ...getPersistConf('ne-auth'), storage: localStorage },
+    storage
+  },
+  sessionReducer
+);

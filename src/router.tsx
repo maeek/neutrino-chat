@@ -13,6 +13,7 @@ import SettingsProfilePage from './views/settings/content/Profile';
 import SettingsSecurityPage from './views/settings/content/Security';
 import SettingsServerMgmtPage from './views/settings/content/ServerMgmt';
 import SettingsNotificationsPage from './views/settings/content/Notifications';
+import SettingsServerAuditPage from './views/settings/content/Audit';
 
 const RouterWrapper = () => (
   <Router>
@@ -29,6 +30,7 @@ const RouterWrapper = () => (
             <Route path='/settings/profile' component={SettingsProfilePage} />
             <Route path='/settings/security' component={SettingsSecurityPage} />
             <Route path='/settings/server' component={SettingsServerMgmtPage} />
+            <Route path='/settings/audit' component={SettingsServerAuditPage} />
             <Route
               path='/settings/notifications'
               component={SettingsNotificationsPage}
