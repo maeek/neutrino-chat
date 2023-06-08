@@ -35,7 +35,7 @@ export const ImageChangeFooter = ({
         type='button'
         onClick={onUpdate}
       >
-        Update
+        Save
       </ProceedButton>
     </div>
   );

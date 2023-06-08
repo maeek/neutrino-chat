@@ -39,7 +39,7 @@ export const DeleteAccountSetting = () => {
 
   return (
     <div className='setting-deletion-preview-container'>
-      <Heading level={4}>Delete Account</Heading>
+      <Heading level={4}>Account Deletion</Heading>
       <Paragraph>
         You can delete your account here - this action is{' '}
         <Text underline type='danger'>

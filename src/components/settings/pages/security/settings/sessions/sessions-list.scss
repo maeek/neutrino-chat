@@ -1,5 +1,19 @@
 .settings-sessions-list {
   margin: 0;
+  margin-bottom: 1.5rem;
   padding: 0;
   list-style: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: var(--font-family);
+
+  &--reserved {
+    height: calc(1.7rem * 10);
+  }
+}
+
+.settings-sessions-search {
+  margin-top: 1rem;
 }

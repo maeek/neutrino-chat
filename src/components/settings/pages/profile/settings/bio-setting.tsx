@@ -1,7 +1,13 @@
 import { getMeBio } from '@/selectors/user';
 import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { ProceedButton, Heading, useAccessibility, Text, Paragraph } from '@maeek/neutrino-design';
+import {
+  ProceedButton,
+  Heading,
+  useAccessibility,
+  Text,
+  Paragraph
+} from '@maeek/neutrino-design';
 import './bio-setting.scss';
 
 export const BioSetting = () => {
@@ -11,8 +17,7 @@ export const BioSetting = () => {
   const { onEnter } = useAccessibility();
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const save = () => {
-  };
+  const save = () => {};
 
   const onCancelHandler = () => {
     setIsEdited(false);
@@ -24,13 +29,14 @@ export const BioSetting = () => {
     <div className='setting-bio-preview-container'>
       <Heading level={4}>Description</Heading>
       <Paragraph>
-        This is your public description. It will be visible to everyone who visits your profile.
+        This is your public description. It will be visible to everyone who
+        visits your profile.
       </Paragraph>
       <textarea
         ref={inputRef}
         className='setting-bio-preview'
         onChange={(e) => {
-          setContent(e.target.value)
+          setContent(e.target.value);
           setIsEdited(e.target.value !== bioText);
         }}
         value={content}
@@ -51,7 +57,7 @@ export const BioSetting = () => {
           onClick={save}
           className='setting-bio-button'
         >
-          Update
+          Save
         </ProceedButton>
       </div>
     </div>

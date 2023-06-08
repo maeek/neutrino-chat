@@ -1,0 +1,39 @@
+.settings-sessions-list-entry {
+  padding: 0.5rem 0.8rem;
+  width: 100%;
+  background-color: var(--clr-primary-900);
+  color: var(--clr-basic-100);
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--fs-200);
+
+  &-details {
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      font-size: var(--fs-300);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+  }
+
+  .image-change-cancel {
+    cursor: pointer;
+    outline-offset: 0.4rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:active {
+      color: var(--clr-basic-100);
+    }
+
+    &:focus {
+      color: var(--clr-actions-100);
+    }
+  }
+}

@@ -16,7 +16,7 @@ export const SessionsSetting = () => {
 
   return (
     <div className='setting-sessions-preview-container'>
-      <Heading level={4}>Log out of all active sessions</Heading>
+      <Heading level={4}>Active Sessions</Heading>
       <Paragraph>
         This will log you out of all active sessions. You will be logged out of
         all devices and will have to log in again.
