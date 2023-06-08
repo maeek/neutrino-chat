@@ -20,10 +20,11 @@ export const usersReducerMock: UsersState = {
         '258f4703-52f8-49e1-bd39-23e9d9a0b888',
         '1234-7115-4e4a-b82a-58e2332c78e0',
         '12345-7115-4e4a-b82a-58e2332c78e0',
-        '123456-7115-4e4a-b82a-58e2332c78e0'
+        '123456-7115-4e4a-b82a-58e2332c78e0',
+        '258f4703-52f8-49e1-bd39-23e9d9a0b888'
       ],
       lastMessage: {
-        id: '123456-7115-4e4a-b82a-58e2332c78e0',
+        id: '258f4703-52f8-49e1-bd39-23e9d9a0b888',
         content: 'Dictum varius duis at consectetur',
         receivedDate: Date.now() - 3670
       },

@@ -6,7 +6,7 @@ import './server-mgmt.scss';
 export const SettingsServerMgmt = () => {
   return (
     <SettingsPageTemplate
-      name='Server Management Settings'
+      name='Server Management'
       className='settings-page-server-mgmt'
     >
       <div className='settings-page-server-mgmt-checkbox'>

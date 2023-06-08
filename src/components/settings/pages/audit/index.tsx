@@ -3,8 +3,10 @@ import './audit.scss';
 
 export const SettingsServerAudit = () => {
   return (
-    <SettingsPageTemplate name="Audit" className="settings-page-server-audit">
-    </SettingsPageTemplate>
+    <SettingsPageTemplate
+      name='Audit'
+      className='settings-page-server-audit'
+    ></SettingsPageTemplate>
   );
 };
 

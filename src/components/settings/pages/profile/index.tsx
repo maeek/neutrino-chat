@@ -4,9 +4,8 @@ import './profile.scss';
 import BioSetting from './settings/bio-setting';
 
 export const SettingsProfile = () => {
-
   return (
-    <SettingsPageTemplate name="Profile Settings" className="settings-page-profile">
+    <SettingsPageTemplate name='Your Profile' className='settings-page-profile'>
       <AvatarSetting />
       <BioSetting />
     </SettingsPageTemplate>

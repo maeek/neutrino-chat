@@ -6,7 +6,7 @@ import SessionsSetting from './settings/sessions-setting';
 
 export const SettingsSecurity = () => {
   return (
-    <SettingsPageTemplate name="Security Settings" className="settings-page-security">
+    <SettingsPageTemplate name='Security' className='settings-page-security'>
       <ChangePasswordSetting />
       <SessionsSetting />
       <DeleteAccountSetting />

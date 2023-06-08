@@ -20,11 +20,6 @@
       cursor: pointer;
       display: flex;
       align-items: center;
-
-      &--delete:hover svg,
-      &--delete:focus svg {
-        color: var(--clr-negative-200);
-      }
     }
   }
 

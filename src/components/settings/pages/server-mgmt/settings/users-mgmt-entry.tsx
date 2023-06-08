@@ -3,7 +3,11 @@ import './users-mgmt-entry.scss';
 import { getUserById } from '@/selectors/users';
 import { useSelector } from 'react-redux';
 import { getHslColorFromCharCode } from '@/utils/getHslColorFromCharCode';
-import { DeleteRounded, LockRounded } from '@material-ui/icons';
+import {
+  DeleteRounded,
+  LockRounded,
+  MoreHorizRounded
+} from '@material-ui/icons';
 import { Text } from '@maeek/neutrino-design';
 
 export interface UsersMgmtEntryProps {
@@ -28,13 +32,7 @@ export const UsersMgmtEntry = ({ id }: UsersMgmtEntryProps) => {
       </div>
       <div className='user-mgmt-list-entry-actions'>
         <Text tabIndex={0} className='user-mgmt-action' type='secondary'>
-          <LockRounded />
-        </Text>
-        <Text
-          tabIndex={0}
-          className='user-mgmt-action user-mgmt-action--delete'
-        >
-          <DeleteRounded />
+          <MoreHorizRounded />
         </Text>
       </div>
     </li>
