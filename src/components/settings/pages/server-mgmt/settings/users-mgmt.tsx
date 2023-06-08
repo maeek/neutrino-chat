@@ -25,7 +25,6 @@ export const UsersMgmt = () => {
   const { page, currentPage, goToPage, nextPage, prevPage } = usePagination<
     (typeof users)[number]
   >(usersMemo, PER_PAGE);
-  const maxPagesUnfiltered = Math.ceil(users.length / PER_PAGE);
   const maxPages = Math.ceil(usersMemo.length / PER_PAGE);
 
   return (
