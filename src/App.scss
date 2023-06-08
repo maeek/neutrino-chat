@@ -10,3 +10,7 @@
   min-height: 100%;
   transform: translate3d(0);
 }
+
+.desktop-1224 .page-root {
+  min-height: calc(100% - 2.5rem);
+}

@@ -1,14 +1,26 @@
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { WindowScroller, List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized';
-import { getFilteredUsersIdsWithMessages, getFiltersMain } from '@/selectors/filters';
+import {
+  WindowScroller,
+  List,
+  AutoSizer,
+  CellMeasurer,
+  CellMeasurerCache
+} from 'react-virtualized';
+import {
+  getFilteredUsersIdsWithMessages,
+  getFiltersMain
+} from '@/selectors/filters';
 import { FilterCategory } from '@/store/app/filters/types';
 import UserDmListRow from './row';
+import { MessageTypes } from '@/store/messages/types';
 import './list.scss';
 
-export interface UserDmListProps {}
+export interface UserDmListProps {
+  onSelected?: (id: string, type: MessageTypes) => void;
+}
 
-export const UserDmList = () => {
+export const UserDmList = ({ onSelected }: UserDmListProps) => {
   const usersIds = useSelector(getFilteredUsersIdsWithMessages);
   const selectedCategory = useSelector(getFiltersMain);
 
@@ -21,14 +33,13 @@ export const UserDmList = () => {
     []
   );
 
-  return usersIds.length > 0
-    && (selectedCategory === FilterCategory.USER || selectedCategory === FilterCategory.ALL)
-    ? (
-      <WindowScroller
-        scrollElement={window}
-      >
-        {({ height, isScrolling, registerChild, onChildScroll, scrollTop }) => registerChild && (
-          <div className="dm-list-autosizer-boundry">
+  return usersIds.length > 0 &&
+    (selectedCategory === FilterCategory.USER ||
+      selectedCategory === FilterCategory.ALL) ? (
+    <WindowScroller scrollElement={window}>
+      {({ height, isScrolling, registerChild, onChildScroll, scrollTop }) =>
+        registerChild && (
+          <div className='dm-list-autosizer-boundry'>
             <AutoSizer disableHeight>
               {({ width }) => (
                 <div ref={registerChild}>
@@ -45,22 +56,25 @@ export const UserDmList = () => {
                         columnIndex={0}
                         key={`CellMeasurerRow_${key}`}
                         parent={parent}
-                        rowIndex={index} 
+                        rowIndex={index}
                       >
-                        {({ measure, registerChild: regChild }) => regChild && (
-                          <div
-                            style={style}
-                            className="dm-list-row-wrapper"
-                            ref={(el) => regChild?.(el as Element)}
-                          >
-                            <UserDmListRow
-                              isScrolling={isScrolling}
-                              key={key}
-                              id={usersIds[ index ]}
-                              measure={measure}
-                            />
-                          </div>
-                        )}
+                        {({ measure, registerChild: regChild }) =>
+                          regChild && (
+                            <div
+                              style={style}
+                              className='dm-list-row-wrapper'
+                              ref={(el) => regChild?.(el as Element)}
+                            >
+                              <UserDmListRow
+                                isScrolling={isScrolling}
+                                key={key}
+                                id={usersIds[index]}
+                                measure={measure}
+                                onClick={onSelected}
+                              />
+                            </div>
+                          )
+                        }
                       </CellMeasurer>
                     )}
                     scrollTop={scrollTop}
@@ -71,10 +85,10 @@ export const UserDmList = () => {
               )}
             </AutoSizer>
           </div>
-        )}
-      </WindowScroller>
-    )
-    : null;
+        )
+      }
+    </WindowScroller>
+  ) : null;
 };
 
 export default UserDmList;

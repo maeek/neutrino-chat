@@ -3,11 +3,14 @@ import { Heading } from '@maeek/neutrino-design/components/typography/heading';
 import { getFilteredUsersIds, getFiltersMain } from '@/selectors/filters';
 import { FilterCategory } from '@/store/app/filters/types';
 import UserDmList from './list';
+import { MessageTypes } from '@/store/messages/types';
 import './cards.scss';
 
-export interface UsersCardsProps {}
+export interface UsersCardsProps {
+  onSelected?: (id: string, type: MessageTypes) => void;
+}
 
-export const UsersCards = () => {
+export const UsersCards = ({ onSelected }: UsersCardsProps) => {
   const usersIds = useSelector(getFilteredUsersIds);
   const selectedCategory = useSelector(getFiltersMain);
 
@@ -18,7 +21,7 @@ export const UsersCards = () => {
       <Heading level={3} className='main-side-filter-heading'>
         Messages
       </Heading>
-      <UserDmList />
+      <UserDmList onSelected={onSelected} />
     </div>
   ) : null;
 };

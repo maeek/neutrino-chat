@@ -27,6 +27,7 @@ export const NotificationsDrawerWrapper = ({
 
   useEffect(() => {
     if (!isOpened) return;
+    const hadOverflow = document.body.style.overflow;
 
     document.body.style.overflow = 'hidden';
     if (!isMobile && document.body.scrollHeight > window.innerHeight) {
@@ -34,7 +35,7 @@ export const NotificationsDrawerWrapper = ({
     }
 
     return () => {
-      document.body.style.overflow = 'auto';
+      if (hadOverflow) document.body.style.overflow = hadOverflow || 'auto';
       document.body.style.paddingRight = '0';
     };
   }, [isOpened, isMobile]);
