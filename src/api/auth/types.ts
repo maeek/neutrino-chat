@@ -1,23 +1,25 @@
-import type { NeutrinoApiResponse } from '../types';
+import type { ChatApiResponse } from '../types';
 
-export enum NeutrinoApiAuthHeadersEnum {
-  TOKEN = 'x-ne-key',
-  REFRESH_TOKEN = 'x-ne-refreshtoken'
+export enum ChatApiAuthHeadersEnum {
+  TOKEN = 'x-api-token'
 }
-export interface NeutrinoApiAuthHeaders {
-  [NeutrinoApiAuthHeadersEnum.TOKEN]: string;
-  [NeutrinoApiAuthHeadersEnum.REFRESH_TOKEN]: string;
+export interface ChatApiAuthHeaders {
+  [ChatApiAuthHeadersEnum.TOKEN]: string;
 }
 
-export interface NeutrinoApiAuth {
-  user: {
-    username: string;
-    type: string;
+export interface ChatApiAuth {
+  username: string;
+  role: string;
+  avatar?: string;
+  description?: string;
+  sessions: string[];
+  settings?: {
+    mutedUsers: string[];
+    chats: {
+      channel: string;
+      muted: boolean;
+    }[];
   };
-  device: {
-    deviceId: string;
-  };
-  accessToken: string;
 }
 
-export type NeutrinoApiAuthResponse = NeutrinoApiResponse<NeutrinoApiAuth>;
+export type ChatApiAuthResponse = { me: ChatApiAuth };

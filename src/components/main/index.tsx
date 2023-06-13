@@ -18,7 +18,7 @@ export const MainView = () => {
     return () => {
       dispatch(setTopBarQuickNavVisibility(false));
     };
-  }, [ dispatch ]);
+  }, [dispatch]);
 
   const footerNode = <GenericFooter />;
 

@@ -1,27 +1,30 @@
-import { NeutrinoApiMeAvatar } from '../me/avatar/types';
-import type { NeutrinoApiPagination, NeutrinoApiResponse } from '../types';
+import { ChatApiMeAvatar } from '../me/avatar/types';
+import type { ChatApiPagination, ChatApiResponse } from '../types';
 
-export type NeutrinoApiChannelId = string;
+export type ChatApiChannelId = string;
 
-export interface NeutrinoApiChannelSettings {
+export interface ChatApiChannelSettings {
   password: boolean;
   public: boolean;
 }
 
-export interface NeutrinoApiChannel {
-  id: NeutrinoApiChannelId;
+export interface ChatApiChannel {
+  id: ChatApiChannelId;
   name: string;
   description: string;
-  avatar: NeutrinoApiMeAvatar;
+  avatar: ChatApiMeAvatar;
   created: number;
   createdBy: string;
-  settings: NeutrinoApiChannelSettings;
+  settings: ChatApiChannelSettings;
 }
 
-export type NeutrinoApiChannelCreateObj = Omit<NeutrinoApiChannel, 'id' | 'created' | 'createdBy'>;
+export type ChatApiChannelCreateObj = Omit<
+  ChatApiChannel,
+  'id' | 'created' | 'createdBy'
+>;
 
-export interface NeutrinoApiChannels {
-  channels: NeutrinoApiPagination<NeutrinoApiChannel>;
+export interface ChatApiChannels {
+  channels: ChatApiPagination<ChatApiChannel>;
 }
 
-export type NeutrinoApiChannelsResponse = NeutrinoApiResponse<NeutrinoApiChannels>;
+export type ChatApiChannelsResponse = ChatApiResponse<ChatApiChannels>;

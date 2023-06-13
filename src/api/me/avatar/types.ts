@@ -1,26 +1,27 @@
-import { NeutrinoApiResponse } from '@/api/types';
+import { ChatApiResponse } from '@/api/types';
 
-export enum NeutrinoApiMeAvatarTypes {
+export enum ChatApiMeAvatarTypes {
   FILE = 'file',
   URI = 'uri'
 }
 
-export interface NeutrinoApiMeAvatar {
+export interface ChatApiMeAvatar {
   uri: string;
   isLocal: boolean;
-  type: NeutrinoApiMeAvatarTypes;
+  type: ChatApiMeAvatarTypes;
 }
 
-export interface NeutrinoApiMeAvatarTemp {
+export interface ChatApiMeAvatarTemp {
   uuid: string;
   uri: string;
   ttl: number;
   created: number;
 }
 
-export interface NeutrinoApiMeAvatarUpdateBody extends NeutrinoApiMeAvatar {
-   file?: Blob | ArrayBuffer | string;
+export interface ChatApiMeAvatarUpdateBody extends ChatApiMeAvatar {
+  file?: Blob | ArrayBuffer | string;
 }
 
-export type NeutrinoApiMeMeAvatarInfoResponse = NeutrinoApiResponse<NeutrinoApiMeAvatar>;
-export type NeutrinoApiMeMeAvatarUploadResponse = NeutrinoApiResponse<NeutrinoApiMeAvatarTemp>;
+export type ChatApiMeMeAvatarInfoResponse = ChatApiResponse<ChatApiMeAvatar>;
+export type ChatApiMeMeAvatarUploadResponse =
+  ChatApiResponse<ChatApiMeAvatarTemp>;

@@ -17,16 +17,18 @@ export const SideNavMainSection = () => {
 
   return (
     <>
-      {sideNavConfig.mainSection.filter(item => isAdmin || !item.adminOnly).map((item) => (
-        <NavItem
-          key={item.name}
-          icon={item.icon}
-          active={loc.pathname.substr('/settings/'.length) === item.category}
-          onClick={navigate(`/settings/${item.category}`)}
-        >
-          {item.node || item.name}
-        </NavItem>
-      ))}
+      {sideNavConfig.mainSection
+        .filter((item) => isAdmin || !item.adminOnly)
+        .map((item) => (
+          <NavItem
+            key={item.name}
+            icon={item.icon}
+            active={loc.pathname.substr('/settings/'.length) === item.category}
+            onClick={navigate(`/settings/${item.category}`)}
+          >
+            {item.node || item.name}
+          </NavItem>
+        ))}
     </>
   );
 };

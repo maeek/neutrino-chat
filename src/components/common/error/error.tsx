@@ -52,7 +52,7 @@ export const GenericError = ({ message }: GenericErrorProps) => {
             </Paragraph>
             <Text
               type='secondary'
-              link={`https://github.com/maeek/neutrino-chat/issues?q=${encodeURIComponent(
+              link={`https://github.com/maeek/Chat-chat/issues?q=${encodeURIComponent(
                 message + ''
               )}`}
               rel='noopener noreferrer'

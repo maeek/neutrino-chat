@@ -1,20 +1,20 @@
-import type { NeutrinoApiPagination, NeutrinoApiResponse } from '../../types';
+import type { ChatApiPagination, ChatApiResponse } from '../../types';
 
-export interface NeutrinoApiSettingsMuted {
-  users?: NeutrinoApiPagination<string>;
-  channels?: NeutrinoApiPagination<string>;
+export interface ChatApiSettingsMuted {
+  users?: ChatApiPagination<string>;
+  channels?: ChatApiPagination<string>;
 }
 
-export interface NeutrinoApiSettingsNotifications {
-  muted?: NeutrinoApiSettingsMuted;
+export interface ChatApiSettingsNotifications {
+  muted?: ChatApiSettingsMuted;
   push?: boolean;
   message?: boolean;
   mentions?: boolean;
   joins?: boolean;
 }
 
-export interface NeutrinoApiSettings {
-  notifications?: NeutrinoApiSettingsNotifications;
+export interface ChatApiSettings {
+  notifications?: ChatApiSettingsNotifications;
 }
 
-export type NeutrinoApiSettingsResponse = NeutrinoApiResponse<NeutrinoApiSettings>;
+export type ChatApiSettingsResponse = ChatApiResponse<ChatApiSettings>;

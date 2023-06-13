@@ -1,18 +1,18 @@
-export interface NeutrinoApiResponse<T> {
+export interface ChatApiResponse<T> {
   resources: T;
   params?: {
     perPage?: number;
     page?: number;
     fields?: string[];
-  }
+  };
 }
 
-export interface NeutrinoApiPaginationRequest {
+export interface ChatApiPaginationRequest {
   page?: number;
   perPage?: number;
 }
 
-export interface NeutrinoApiPaginationMetadata {
+export interface ChatApiPaginationMetadata {
   total: number;
   page: number;
   perPage: number;
@@ -20,7 +20,7 @@ export interface NeutrinoApiPaginationMetadata {
   indices: [number, number];
 }
 
-export interface NeutrinoApiPagination<T> {
+export interface ChatApiPagination<T> {
   collection: T;
-  pagination: NeutrinoApiPaginationMetadata;
+  pagination: ChatApiPaginationMetadata;
 }

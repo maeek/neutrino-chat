@@ -1,18 +1,18 @@
-import type { NeutrinoApiPagination, NeutrinoApiResponse } from '../types';
-import type { NeutrinoApiDeviceId } from '../devices/types';
-import type { NeutrinoApiSettings } from './settings/types';
-import type { NeutrinoApiMeAvatar } from './avatar/types';
+import type { ChatApiPagination, ChatApiResponse } from '../types';
+import type { ChatApiDeviceId } from '../devices/types';
+import type { ChatApiSettings } from './settings/types';
+import type { ChatApiMeAvatar } from './avatar/types';
 
-export type NeutrinoApiMeDevices = NeutrinoApiPagination<NeutrinoApiDeviceId>;
+export type ChatApiMeDevices = ChatApiPagination<ChatApiDeviceId>;
 
-export interface NeutrinoApiMe {
+export interface ChatApiMe {
   me: {
     username: string;
     scope?: string;
-    avatar?: NeutrinoApiMeAvatar;
-    devices?: NeutrinoApiMeDevices;
-    settings?: NeutrinoApiSettings;
-  }
+    avatar?: ChatApiMeAvatar;
+    devices?: ChatApiMeDevices;
+    settings?: ChatApiSettings;
+  };
 }
 
-export type NeutrinoApiMeResponse = NeutrinoApiResponse<NeutrinoApiMe>;
+export type ChatApiMeResponse = ChatApiResponse<ChatApiMe>;

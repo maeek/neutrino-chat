@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { ApiAuthorization } from '@/api/auth';
-import { NeutrinoApiAuthHeadersEnum } from '@/api/auth/types';
+import { ChatApiAuthHeadersEnum } from '@/api/auth/types';
 import {
   setMeUsername,
   setMeAvatar,
@@ -31,35 +31,29 @@ export const login =
     }
   ) =>
   (dispatch: Dispatch) => {
-    // ApiAuthorization.login(username, password)
-    //   .then((response) => {
-    const user = {
-      username,
-      token: 'token', //response.data.resources.accessToken,
-      refreshToken: 'refreshToken' // response.headers[ NeutrinoApiAuthHeadersEnum.REFRESH_TOKEN ]
-    };
+    ApiAuthorization.login(username, password)
+      .then((response) => {
+        dispatch(setToken(response.headers[ChatApiAuthHeadersEnum.TOKEN]));
+        dispatch(setRefreshToken('secure-token'));
+        dispatch(setMeUsername(response.data.me.username));
+        dispatch(setMeRole(response.data.me.role));
 
-    dispatch(setToken(user.token));
-    dispatch(setRefreshToken(user.refreshToken));
-    dispatch(setMeUsername(username));
-    dispatch(setMeRole(UserRole.ADMIN));
+        // After login initial fetch
+        dispatch(setMeAvatar(response.data.me.avatar || ''));
 
-    // After login initial fetch
-    dispatch(setMeAvatar('https://static.suchanecki.me/avatar.png'));
-
-    Navigator.replace(params.history, params.from?.pathname || '/');
-    // })
-    // .catch((e: any) => {
-    //   console.error('Failed to log in! ', e);
-    //   dispatch(
-    //     addNewError(
-    //       unifiedErrorTemplate(e.type, e, null, {
-    //         username,
-    //         from: params.from
-    //       })
-    //     )
-    //   );
-    // });
+        Navigator.replace(params.history, params.from?.pathname || '/');
+      })
+      .catch((e: any) => {
+        console.error('Failed to log in! ', e);
+        dispatch(
+          addNewError(
+            unifiedErrorTemplate(e.type, e, null, {
+              username,
+              from: params.from
+            })
+          )
+        );
+      });
   };
 
 export const logout = () => (dispatch: Dispatch, getState: () => RootState) => {

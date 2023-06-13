@@ -1,6 +1,6 @@
 import ApiInstance, { ApiInstance as ApiInstanceType } from '../api';
-import { NeutrinoApiError } from '../api-error';
-import { NeutrinoApiAuthHeadersEnum, NeutrinoApiAuthResponse } from './types';
+import { ChatApiError } from '../api-error';
+import { ChatApiAuthHeadersEnum, ChatApiAuthResponse } from './types';
 
 export enum ApiAuthorizationEnum {
   LOGIN = 'ApiAuthorization.login',
@@ -14,29 +14,46 @@ export class ApiAuthorization {
   static route = '/auth';
 
   static login(username: string, password: string) {
-    return ApiAuthorization.api.instance.post<NeutrinoApiAuthResponse>(
-      `${ApiAuthorization.route}/login`, { username, password, newDeviceName: navigator.userAgent }
-    )
+    return ApiAuthorization.api.instance
+      .post<ChatApiAuthResponse>(`${ApiAuthorization.route}/login`, {
+        username,
+        password,
+        newDeviceName: navigator.userAgent
+      })
       .catch((e: any) => {
-        throw new NeutrinoApiError(e.message, { error: e }, ApiAuthorizationEnum.LOGIN);
+        throw new ChatApiError(
+          e.message,
+          { error: e },
+          ApiAuthorizationEnum.LOGIN
+        );
       });
   }
 
   static logout(refreshToken: string) {
-    return ApiAuthorization.api.instance.delete<NeutrinoApiAuthResponse>(`${ApiAuthorization.route}/logout`, {
-      headers: {
-        [ NeutrinoApiAuthHeadersEnum.REFRESH_TOKEN ]: refreshToken
-      }
-    })
+    return ApiAuthorization.api.instance
+      .delete<ChatApiAuthResponse>(`${ApiAuthorization.route}/logout`, {
+        headers: {
+          [ChatApiAuthHeadersEnum.REFRESH_TOKEN]: refreshToken
+        }
+      })
       .catch((e: any) => {
-        throw new NeutrinoApiError(e.message, { error: e }, ApiAuthorizationEnum.LOGOUT);
+        throw new ChatApiError(
+          e.message,
+          { error: e },
+          ApiAuthorizationEnum.LOGOUT
+        );
       });
   }
 
   static refresh() {
-    return ApiAuthorization.api.instance.put<NeutrinoApiAuthResponse>(`${ApiAuthorization.route}/refresh`)
+    return ApiAuthorization.api.instance
+      .put<ChatApiAuthResponse>(`${ApiAuthorization.route}/refresh`)
       .catch((e: any) => {
-        throw new NeutrinoApiError(e.message, { error: e }, ApiAuthorizationEnum.REFRESH);
+        throw new ChatApiError(
+          e.message,
+          { error: e },
+          ApiAuthorizationEnum.REFRESH
+        );
       });
   }
 }

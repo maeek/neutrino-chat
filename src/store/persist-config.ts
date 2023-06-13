@@ -4,7 +4,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 localforage.config({
   driver: localforage.INDEXEDDB,
-  name: 'neutrino-chat',
+  name: 'Chat-chat',
   version: 1.0,
   storeName: 'persist_cache'
 });
@@ -14,9 +14,7 @@ export const getPersistConf = (key: string): PersistConfig<any> => ({
   storage: localforage,
   debug: import.meta.env.MODE === 'development',
   stateReconciler: autoMergeLevel2,
-  blacklist: [
-    'lastMessage'
-  ]
+  blacklist: ['lastMessage']
 });
 
 export default getPersistConf;

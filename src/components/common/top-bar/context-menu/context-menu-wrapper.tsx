@@ -60,8 +60,7 @@ export const ContextMenuWrapper = () => {
       text: 'Help',
       icon: <HelpOutlineRounded />,
       closeOnClick: true,
-      onClick: () =>
-        (location.href = 'https://github.com/maeek/neutrino-chat.git')
+      onClick: () => (location.href = 'https://github.com/maeek/Chat-chat.git')
     },
     {
       text: 'Log out',

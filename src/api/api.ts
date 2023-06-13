@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { getAuthRefreshToken, getAuthToken } from '@/selectors/session';
-import { NeutrinoApiAuthHeadersEnum } from './auth/types';
+import { ChatApiAuthHeadersEnum } from './auth/types';
 
 export class ApiInstance {
   baseURL: string;
@@ -31,7 +31,7 @@ export class ApiInstance {
   private _handleRequest(config: AxiosRequestConfig): AxiosRequestConfig {
     const token = getAuthToken();
     if (token && config?.headers) {
-      config.headers[ 'Authorization' ] = `JWT ${token}`;
+      config.headers['Authorization'] = `JWT ${token}`;
     }
 
     return config;
@@ -46,13 +46,17 @@ export class ApiInstance {
 
     if (!refreshToken) return Promise.reject();
 
-    const refreshRequest = axios.post(`${this.baseURL}/auth/refresh`, {}, {
-      headers: {
-        [NeutrinoApiAuthHeadersEnum.REFRESH_TOKEN]: refreshToken
+    const refreshRequest = axios.post(
+      `${this.baseURL}/auth/refresh`,
+      {},
+      {
+        headers: {
+          [ChatApiAuthHeadersEnum.REFRESH_TOKEN]: refreshToken
+        }
       }
-    });
+    );
 
-    return refreshRequest.then((res: { data: { token: string }}) => {
+    return refreshRequest.then((res: { data: { token: string } }) => {
       return res.data.token;
     });
   };
@@ -60,7 +64,7 @@ export class ApiInstance {
   private _handleError = (error: any): Promise<any> => {
     if (error.config && error.response && error.response.status === 401) {
       return this._updateToken().then((token: string) => {
-        error.config.headers[ 'Authorization' ] = `JWT ${token}`;
+        error.config.headers['Authorization'] = `JWT ${token}`;
 
         return axios.request(error.config);
       });

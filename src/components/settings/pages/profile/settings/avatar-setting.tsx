@@ -19,10 +19,10 @@ export const AvatarSetting = () => {
     <div className='setting-avatar-preview-container'>
       <Heading level={4}>Avatar</Heading>
       <Paragraph>
-        You can change your avatar here. Simply drag and drop an image or click the button below to select one.
+        You can change your avatar here. Simply drag and drop an image or click
+        the button below to select one.
       </Paragraph>
-      <div className="centered">
-      </div>
+      <div className='centered'></div>
       <EditMeAvatarModal
         setEdited={(v: boolean) => setIsEdited(v)}
         isEdited={isEdited}

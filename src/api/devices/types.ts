@@ -1,23 +1,23 @@
-import type { NeutrinoApiPagination, NeutrinoApiResponse } from '../types';
+import type { ChatApiPagination, ChatApiResponse } from '../types';
 
-export type NeutrinoApiDeviceId = string;
+export type ChatApiDeviceId = string;
 
-export interface NeutrinoApiDevicePlatform {
+export interface ChatApiDevicePlatform {
   ip: string;
   os: string;
   browser: string;
   version: string;
 }
 
-export interface NeutrinoApiDevice {
-  id: NeutrinoApiDeviceId;
+export interface ChatApiDevice {
+  id: ChatApiDeviceId;
   created: number;
   username: string;
-  platform: NeutrinoApiDevicePlatform;
+  platform: ChatApiDevicePlatform;
 }
 
-export interface NeutrinoApiDevices {
-  devices: NeutrinoApiPagination<NeutrinoApiDevice>;
+export interface ChatApiDevices {
+  devices: ChatApiPagination<ChatApiDevice>;
 }
 
-export type NeutrinoApiDevicesResponse = NeutrinoApiResponse<NeutrinoApiDevices>;
+export type ChatApiDevicesResponse = ChatApiResponse<ChatApiDevices>;
