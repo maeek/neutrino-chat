@@ -1,13 +1,13 @@
-import { MouseEvent, useMemo } from 'react';
+import { MouseEvent } from 'react';
 import { RouteProps, useHistory } from 'react-router-dom';
-import { LayoutSideContent } from '@maeek/neutrino-design/components/layouts/side-content';
-import { LayoutContentFooter } from '@maeek/neutrino-design/components/layouts/content-footer';
 import { GenericFooter } from '@/components/common/footer/generic';
 import Navigator from '@/utils/navigation';
 import { RegisterForm } from './form/';
 import { User } from './types';
-import './join.scss';
 import { Heading, Text } from '@maeek/neutrino-design';
+import './join.scss';
+import { useDispatch } from 'react-redux';
+import { register } from '@/actions/auth';
 
 interface JoinViewProps extends RouteProps {
   from: {
@@ -18,13 +18,23 @@ interface JoinViewProps extends RouteProps {
 export const JoinView = (props: JoinViewProps) => {
   const { from } = props;
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onRegister = (user: User) => {
     // eslint-disable-next-line no-console
-    console.log(user);
+    // console.log(user);
     // Register
     // then
-    Navigator.replace(history, from?.pathname);
+    dispatch(
+      register(user.username, {
+        password: user.password,
+        webAuthn: user.method === 'webauthn',
+        history,
+        from
+      })
+    );
+
+    // Navigator.replace(history, from?.pathname);
   };
 
   const redirectToLogin = (e: MouseEvent<HTMLSpanElement>) => {

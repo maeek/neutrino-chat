@@ -17,8 +17,8 @@ export class ApiAuthorization {
     return ApiAuthorization.api.instance
       .post<ChatApiAuthResponse>(`${ApiAuthorization.route}/login`, {
         username,
-        password,
-        newDeviceName: navigator.userAgent
+        method: 'password',
+        password
       })
       .catch((e: any) => {
         throw new ChatApiError(
@@ -29,11 +29,54 @@ export class ApiAuthorization {
       });
   }
 
-  static logout(refreshToken: string) {
+  static getWebAuthnRegistrationOptions(username: string) {
+    return ApiAuthorization.api.instance
+      .post<any>(`${ApiAuthorization.route}/webauthn/options`, {
+        username
+      })
+      .catch((e: any) => {
+        throw new ChatApiError(
+          e.message,
+          { error: e },
+          ApiAuthorizationEnum.LOGIN
+        );
+      });
+  }
+
+  static registerWebAuthn(username: string, webauthn: any) {
+    return ApiAuthorization.api.instance
+      .post<any>(`${ApiAuthorization.route}/registration/webauthn`, {
+        username,
+        webauthn
+      })
+      .catch((e: any) => {
+        throw new ChatApiError(
+          e.message,
+          { error: e },
+          ApiAuthorizationEnum.LOGIN
+        );
+      });
+  }
+
+  static loginWebAuthn(username: string) {
+    return ApiAuthorization.api.instance
+      .post<ChatApiAuthResponse>(`${ApiAuthorization.route}/login/webauthn`, {
+        username
+      })
+      .catch((e: any) => {
+        throw new ChatApiError(
+          e.message,
+          { error: e },
+          ApiAuthorizationEnum.LOGIN
+        );
+      });
+  }
+
+  static logout(accessToken: string) {
     return ApiAuthorization.api.instance
       .delete<ChatApiAuthResponse>(`${ApiAuthorization.route}/logout`, {
         headers: {
-          [ChatApiAuthHeadersEnum.REFRESH_TOKEN]: refreshToken
+          Authorization: `Bearer ${accessToken}`
         }
       })
       .catch((e: any) => {
@@ -45,15 +88,15 @@ export class ApiAuthorization {
       });
   }
 
-  static refresh() {
-    return ApiAuthorization.api.instance
-      .put<ChatApiAuthResponse>(`${ApiAuthorization.route}/refresh`)
-      .catch((e: any) => {
-        throw new ChatApiError(
-          e.message,
-          { error: e },
-          ApiAuthorizationEnum.REFRESH
-        );
-      });
-  }
+  // static refresh() {
+  //   return ApiAuthorization.api.instance
+  //     .put<ChatApiAuthResponse>(`${ApiAuthorization.route}/refresh`)
+  //     .catch((e: any) => {
+  //       throw new ChatApiError(
+  //         e.message,
+  //         { error: e },
+  //         ApiAuthorizationEnum.REFRESH
+  //       );
+  //     });
+  // }
 }

@@ -32,6 +32,7 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
   const passwordRef = useRef<any>();
   const passwordRepeatRef = useRef<any>();
 
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
 
@@ -55,14 +56,20 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
     [password, passwordRepeat]
   );
 
+  const validateUsername = useCallback(
+    (): boolean => !/[#@",?!{}/\\~*()]/.test(username) && username.length > 2,
+    [username]
+  );
+
   const onRegisterHandler = () => {
     const username = loginRef.current.value;
-    const password = passwordRef.current.value;
+    const password = passwordRef.current?.value;
 
-    if (validatePasswords() && onRegister) {
+    if ((method === 'webauthn' || validatePasswords()) && onRegister) {
       onRegister({
         username,
-        password
+        password,
+        method: (method as 'webauthn' | 'password') || 'password'
       });
     } else {
       focusElement(passwordRef)();
@@ -106,7 +113,7 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
                 type='secondary'
                 className='form-register-box-requirements-entry'
               >
-                Cannot contain {'“ #@”,’?!{}/\\~ ”'}
+                Cannot contain {'“ #@”,’?!{}/\\~ *()”'}
               </Text>
             </li>
           </ul>
@@ -119,7 +126,8 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
             placeholder='Username'
             required={true}
             onKeyUp={onEnter(focusElement(passwordRef))}
-            validate={(value: string) => value.length > 2}
+            validate={validateUsername}
+            onChange={setUsername}
           />
         </div>
 
@@ -211,6 +219,10 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
         type='button'
         className='button-login'
         onClick={onRegisterHandler}
+        disabled={
+          !validateUsername() ||
+          (doesNotSupportWebAuthn && !validatePasswords())
+        }
       >
         Register
       </ProceedButton>
