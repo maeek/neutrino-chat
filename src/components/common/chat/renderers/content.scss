@@ -1,0 +1,18 @@
+.chat-bubble-content {
+  width: 100%;
+  max-height: 30rem;
+  display: flex;
+  flex-direction: column;
+
+  &-renderer {
+    margin-bottom: 0.4rem;
+    overflow: hidden;
+    display: flex;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  }
+}

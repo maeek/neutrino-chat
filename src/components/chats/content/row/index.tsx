@@ -63,18 +63,13 @@ export const UserDmListRow = ({
       return '';
     }
 
-    const sender =
-      lastMessage.senderId !== user.id
-        ? 'You: '
-        : `${user.nickname || user.name}: `;
+    const sender = lastMessage.senderId !== user.id ? 'You: ' : `${user.id}: `;
 
     if (lastMessage.attachments.length > 0) {
       return (
         <i>
-          {lastMessage.senderId !== user.id
-            ? 'You '
-            : `${user.nickname || user.name} `}{' '}
-          sent an attachment
+          {lastMessage.senderId !== user.id ? 'You ' : `${user.id} `} sent an
+          attachment
         </i>
       );
     } else if (lastMessage?.body && lastMessage.body.length > 90) {
@@ -100,8 +95,8 @@ export const UserDmListRow = ({
         size={'large'}
         key={user.avatar}
         url={user.avatar}
-        username={user.name}
-        color={getHslColorFromCharCode(user.name)}
+        username={user.id}
+        color={getHslColorFromCharCode(user.id)}
       />
       <div
         className={classNames(
@@ -109,7 +104,7 @@ export const UserDmListRow = ({
           user.lastMessage && isUnread && 'dm-list-row-data--unread'
         )}
       >
-        <UserUsername username={user.nickname || user.name} />
+        <UserUsername username={user.id} />
         <div className='dm-list-row-message'>{renderLastMessage()}</div>
         {unreadMessagesLength > 0 && (
           <div className='dm-list-row-unread'>{unreadMessagesLength}</div>

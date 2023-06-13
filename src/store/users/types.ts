@@ -1,4 +1,3 @@
-
 import { Action } from 'redux';
 
 export enum UserStatusEnum {
@@ -16,7 +15,7 @@ export enum UserFetchingStatus {
 }
 
 export interface UsersSettings {
-  backgroundUri?: string
+  backgroundUri?: string;
   backgroundOpacity?: number;
   backgroundBlur?: number;
   color?: string;
@@ -24,13 +23,13 @@ export interface UsersSettings {
 
 export interface User {
   id: string;
-  name: string;
+  // name: string;
   bio?: string;
   fetchingStatus: UserFetchingStatus;
-  nickname?: string;
+  // nickname?: string;
   status?: UserStatusEnum;
   avatar?: string;
-  banner?: string;
+  // banner?: string;
   blocked?: boolean;
   settings?: UsersSettings;
   messages?: string[];
@@ -62,44 +61,49 @@ export enum UsersActionsEnum {
 }
 
 export interface PopulateUsersCache extends Action {
-  type: UsersActionsEnum.USERS_CACHE,
+  type: UsersActionsEnum.USERS_CACHE;
   data: {
     users: User[];
-  }
+  };
 }
 
 export interface AddUsers extends Action {
-  type: UsersActionsEnum.ADD_USERS,
+  type: UsersActionsEnum.ADD_USERS;
   data: {
     users: User[];
-  }
+  };
 }
 
 export interface ModifyUsers extends Action {
-  type: UsersActionsEnum.MODIFY_USERS,
+  type: UsersActionsEnum.MODIFY_USERS;
   data: {
-    users: ({ id: string; } & Partial<User>)[];
-  }
+    users: ({ id: string } & Partial<User>)[];
+  };
 }
 
 export interface RemoveUsers extends Action {
-  type: UsersActionsEnum.REMOVE_USERS,
+  type: UsersActionsEnum.REMOVE_USERS;
   data: {
     ids: string[];
-  }
+  };
 }
 
 export interface DeleteUsersCache extends Action {
-  type: UsersActionsEnum.USERS_DELETE,
+  type: UsersActionsEnum.USERS_DELETE;
   data: {
     users: string[];
-  }
+  };
 }
 
 export interface ClearUsersCache extends Action {
-  type: UsersActionsEnum.USERS_CLEAR,
-  data: {}
+  type: UsersActionsEnum.USERS_CLEAR;
+  data: {};
 }
 
-export type UsersAction = PopulateUsersCache | DeleteUsersCache | ClearUsersCache | AddUsers
-| RemoveUsers | ModifyUsers;
+export type UsersAction =
+  | PopulateUsersCache
+  | DeleteUsersCache
+  | ClearUsersCache
+  | AddUsers
+  | RemoveUsers
+  | ModifyUsers;

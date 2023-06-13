@@ -7,10 +7,8 @@ export const usersReducerMock: UsersState = {
       id: 'bob',
       fetchingStatus: UserFetchingStatus.SUCCESS,
       status: UserStatusEnum.ACTIVE,
-      name: 'Bob Frank',
       avatar: '',
       blocked: false,
-      nickname: 'bob',
       settings: {},
       messages: [
         '1914477c-e595-43d3-b0f5-78e9625a4ba6',
@@ -34,16 +32,13 @@ export const usersReducerMock: UsersState = {
       id: 'test_user',
       fetchingStatus: UserFetchingStatus.SUCCESS,
       status: UserStatusEnum.ACTIVE,
-      name: 'Rossalita Antonios Gonzalez Martinez Gaworia',
       avatar: 'https://static.suchanecki.me/pepe1.jpg',
-      banner: 'https://static.suchanecki.me/jupiter.jpg',
       blocked: false
     },
     andy: {
       id: 'andy',
       fetchingStatus: UserFetchingStatus.SUCCESS,
       status: UserStatusEnum.OFFLINE,
-      name: 'Andy Bernard',
       avatar: '',
       blocked: false
     },
@@ -51,7 +46,6 @@ export const usersReducerMock: UsersState = {
       id: 'bobandy',
       fetchingStatus: UserFetchingStatus.SUCCESS,
       status: UserStatusEnum.AWAY,
-      name: 'bobandy',
       avatar: '',
       blocked: false
     },
@@ -59,10 +53,8 @@ export const usersReducerMock: UsersState = {
       id: 'matt',
       fetchingStatus: UserFetchingStatus.SUCCESS,
       status: UserStatusEnum.OFFLINE,
-      name: 'matt',
       avatar: '',
       blocked: false,
-      nickname: '',
       settings: {
         backgroundUri: 'https://static.suchanecki.me/neony.jpeg',
         backgroundOpacity: 0.3,
@@ -84,16 +76,13 @@ export const usersReducerMock: UsersState = {
       id: 'j',
       fetchingStatus: UserFetchingStatus.SUCCESS,
       status: UserStatusEnum.OFFLINE,
-      name: 'j',
       avatar: 'https://static.suchanecki.me/nasa.jpg',
-      blocked: true,
-      nickname: 'jj abrams'
+      blocked: true
     },
     paczka: {
       id: 'paczka',
       fetchingStatus: UserFetchingStatus.SUCCESS,
       status: UserStatusEnum.AWAY,
-      name: 'paczka',
       avatar: '',
       blocked: false,
       messages: [
