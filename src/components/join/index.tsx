@@ -21,10 +21,6 @@ export const JoinView = (props: JoinViewProps) => {
   const dispatch = useDispatch();
 
   const onRegister = (user: User) => {
-    // eslint-disable-next-line no-console
-    // console.log(user);
-    // Register
-    // then
     dispatch(
       register(user.username, {
         password: user.password,
@@ -33,8 +29,6 @@ export const JoinView = (props: JoinViewProps) => {
         from
       })
     );
-
-    // Navigator.replace(history, from?.pathname);
   };
 
   const redirectToLogin = (e: MouseEvent<HTMLSpanElement>) => {

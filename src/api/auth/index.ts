@@ -31,7 +31,7 @@ export class ApiAuthorization {
 
   static getWebAuthnRegistrationOptions(username: string) {
     return ApiAuthorization.api.instance
-      .post<any>(`${ApiAuthorization.route}/webauthn/options`, {
+      .post<any>(`${ApiAuthorization.route}/webauthn/reg-options`, {
         username
       })
       .catch((e: any) => {
@@ -58,10 +58,40 @@ export class ApiAuthorization {
       });
   }
 
-  static loginWebAuthn(username: string) {
+  static register(username: string, password: string) {
+    return ApiAuthorization.api.instance
+      .post<any>(`${ApiAuthorization.route}/registration`, {
+        username,
+        password
+      })
+      .catch((e: any) => {
+        throw new ChatApiError(
+          e.message,
+          { error: e },
+          ApiAuthorizationEnum.LOGIN
+        );
+      });
+  }
+
+  static getWebAuthnLoginOptions(username: string) {
+    return ApiAuthorization.api.instance
+      .post<any>(`${ApiAuthorization.route}/webauthn/login-options`, {
+        username
+      })
+      .catch((e: any) => {
+        throw new ChatApiError(
+          e.message,
+          { error: e },
+          ApiAuthorizationEnum.LOGIN
+        );
+      });
+  }
+
+  static loginWebAuthn(username: string, webauthn: any) {
     return ApiAuthorization.api.instance
       .post<ChatApiAuthResponse>(`${ApiAuthorization.route}/login/webauthn`, {
-        username
+        username,
+        webauthn
       })
       .catch((e: any) => {
         throw new ChatApiError(

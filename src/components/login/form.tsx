@@ -69,7 +69,7 @@ export const LoginForm = (props: LoginFormProps) => {
     }
 
     const username = loginRef.current.value;
-    const password = passwordRef.current.value;
+    const password = passwordRef.current?.value;
 
     if (onLogin && method === 'webauthn') onLogin(username, '', true);
     else if (onLogin) onLogin(username, password);
