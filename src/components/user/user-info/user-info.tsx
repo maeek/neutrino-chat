@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { getHslColorFromCharCode } from '@/utils/getHslColorFromCharCode';
 import UserAvatar from '../../common/user-components/avatar';
-import UserBanner from '../../common/user-components/banner';
 import UsernameFull from '../../common/user-components/username-full';
 import DetailsButtonShowMore from '../details-buttons/details-more';
 import ArrowBackRounded from '@material-ui/icons/ArrowBackRounded';
@@ -13,25 +12,18 @@ import { modifyUsers } from '@/store/users/actions';
 import { MouseEventHandler, useState } from 'react';
 import {
   BlockRounded,
-  GroupAddRounded,
-  NotificationsRounded,
-  StarBorderRounded,
-  StarRounded
+  NewReleasesRounded,
+  VerifiedUser,
+  VerifiedUserRounded
 } from '@material-ui/icons';
-import NotificationsOffIcon from '@material-ui/icons/NotificationsOff';
 import { Chip } from '../chip/chip';
 import { getUserIsInStarred } from '@/selectors/users';
-import {
-  removeMembersFromGroup,
-  addMembersToGroup
-} from '@/store/me/groups/actions';
-import { GroupTypeEnum } from '@/store/me/groups/types';
 import { checkIfUserIsMuted } from '@/selectors/muted';
-import { muteUser, unmuteUser } from '@/store/settings/muted/actions';
 import { AddToGroup } from '@/components/common/add-to-group';
 import Navigator from '@/utils/navigation';
 import { useHistory } from 'react-router-dom';
 import './user-info.scss';
+import { getMeUsername } from '@/selectors/user';
 
 export interface UserInfoProps {
   isMinified?: boolean;
@@ -42,85 +34,27 @@ export interface UserInfoProps {
 export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const loggedUser = useSelector(getMeUsername);
   const userIsInStarred = useSelector(getUserIsInStarred(user.id));
   const userIsInMuted = useSelector(checkIfUserIsMuted(user.id));
   const [showGroupSelection, setShowGroupSelection] = useState(false);
 
   const toggleBlock: MouseEventHandler = (e) => {
     e.preventDefault();
-    dispatch(modifyUsers([{ id: user.id, blocked: !user.blocked }]));
+    dispatch(modifyUsers([{ id: user.id, muted: !user.muted }]));
   };
 
-  const toggleMute: MouseEventHandler = (e) => {
-    e.preventDefault();
-
-    if (userIsInMuted) {
-      dispatch(unmuteUser([user.id]));
-    } else {
-      dispatch(muteUser([user.id]));
-    }
-  };
-
-  const toggleStar: MouseEventHandler = (e) => {
-    e.preventDefault();
-
-    if (userIsInStarred) {
-      dispatch(removeMembersFromGroup('Starred', [user.id]));
-    } else {
-      dispatch(
-        addMembersToGroup('Starred', [
-          { id: user.id, type: GroupTypeEnum.USER }
-        ])
-      );
-    }
-  };
-
-  const unmuteNode = (
-    <>
-      <NotificationsOffIcon /> Click to unmute
-    </>
-  );
-  const muteNode = (
-    <>
-      <NotificationsRounded /> Snooze Notifications
-    </>
-  );
-  const mutedNode = userIsInMuted ? unmuteNode : muteNode;
-
-  const addToStarredNode = (
-    <>
-      <StarBorderRounded /> Add to Starred
-    </>
-  );
-  const removeFromStarredNode = (
-    <>
-      <StarRounded /> Remove from Starred
-    </>
-  );
-  const starNode = !userIsInStarred ? addToStarredNode : removeFromStarredNode;
-
-  const blockNode = !user.blocked ? (
+  const blockNode = !user.muted ? (
     <>
       <div className='user-info-chips'>
-        <Chip onClick={toggleStar}>
-          <Text className='user-info-star'>{starNode}</Text>
-        </Chip>
-        <Chip>
+        {/* <Chip>
           <Text
             className='user-info-addto'
             onClick={() => setShowGroupSelection((prev) => !prev)}
           >
             <GroupAddRounded /> Add to Group
           </Text>
-        </Chip>
-        <Chip onClick={toggleMute}>
-          <Text
-            className='user-info-mute'
-            title={userIsInMuted ? 'Click to unmute' : 'Click to mute'}
-          >
-            {mutedNode}
-          </Text>
-        </Chip>
+        </Chip> */}
         <Chip onClick={toggleBlock}>
           <Text className='user-info-block' type='danger'>
             <BlockRounded /> Block
@@ -158,7 +92,7 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
         className={classNames(
           'user-info',
           isMinified && 'user-info--minified',
-          user.blocked && 'user-info--blocked'
+          user.muted && 'user-info--blocked'
         )}
       >
         <div className='user-info-container'>
@@ -169,15 +103,24 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
             url={user.avatar}
             size={isMinified ? 'medium' : 'extra-large'}
             expandOnClick
-            status={isMinified ? user.status : undefined}
             loader={<Loader />}
           />
           <UsernameFull
-            nickname={user.id}
             id={user.id}
-            name={user.id}
-            status={user.status}
-            hideStatus={!isMinified}
+            nickname={
+              loggedUser === user.id ? (
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <span>Note to self</span>
+                  <NewReleasesRounded
+                    style={{
+                      color: 'var(--clr-actions-400)',
+                      marginLeft: '0.3rem',
+                      fontSize: '1rem'
+                    }}
+                  />
+                </div>
+              ) : undefined
+            }
           />
         </div>
         <DetailsButtonShowMore
@@ -187,12 +130,12 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
       </div>
       {!isMinified && blockNode}
 
-      {showGroupSelection ? (
+      {/* {showGroupSelection ? (
         <AddToGroup
           item={user.id}
           onDismiss={() => setShowGroupSelection((prev) => !prev)}
         />
-      ) : null}
+      ) : null} */}
     </>
   );
 };

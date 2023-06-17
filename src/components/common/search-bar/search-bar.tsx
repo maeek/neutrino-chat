@@ -115,6 +115,10 @@ export const MainSearchBar = () => {
         onClick={() => setIsFocused(true)}
         onFocus={() => setIsFocused(true)}
         onKeyDown={handleAccessibility}
+        onSearchClear={() => {
+          dispatch(setFilterSearch(''));
+          dispatch(setFilterCust([]));
+        }}
       />
       <SearchBarSuggestions
         ref={suggestionsRef}

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import ActionButton from '@maeek/neutrino-design/components/buttons/Action';
-import { AddRounded } from '@material-ui/icons';
+import { AddRounded, GroupAddRounded } from '@material-ui/icons';
 import { getMeColor } from '@/selectors/user';
 import { useAccessibility } from '@maeek/neutrino-design';
 
@@ -26,7 +26,7 @@ export const MainSearchBarAddButton = () => {
         onKeyUp={onEnter(addNewChannel)}
         title='Add new channel'
       >
-        <AddRounded
+        <GroupAddRounded
           style={{
             color: meColor || undefined,
             mixBlendMode: 'difference'

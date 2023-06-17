@@ -49,6 +49,7 @@ export const ComposeMessage = forwardRef(
     const inputRef = useRef<InputRef>(null);
     const dispatch = useDispatch();
     const [message, setMessage] = useState<string>('');
+    const [attachment, setAttachment] = useState<File | null>(null);
 
     useImperativeHandle(ref, () => inputRef.current);
 
@@ -71,6 +72,18 @@ export const ComposeMessage = forwardRef(
       }
     };
 
+    const attachFile = () => {
+      const fileInput = document.createElement('input');
+      fileInput.type = 'file';
+      fileInput.onchange = (e: any) => {
+        const file = e.target.files[0];
+        if (file) {
+          setAttachment(file);
+        }
+      };
+      fileInput.click();
+    };
+
     return (
       <div
         className={classNames(
@@ -79,7 +92,11 @@ export const ComposeMessage = forwardRef(
         )}
       >
         {showActions && (
-          <ActionButton type='button' className='chat-compose-action--compact'>
+          <ActionButton
+            type='button'
+            className='chat-compose-action--compact'
+            onClick={attachFile}
+          >
             <AttachFileRounded />
           </ActionButton>
         )}

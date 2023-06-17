@@ -15,6 +15,7 @@ import { FilterCategory } from '@/store/app/filters/types';
 import UserDmListRow from './row';
 import { MessageTypes } from '@/store/messages/types';
 import './list.scss';
+import { Text } from '@maeek/neutrino-design';
 
 export interface UserDmListProps {
   onSelected?: (id: string, type: MessageTypes) => void;
@@ -22,8 +23,6 @@ export interface UserDmListProps {
 
 export const UserDmList = ({ onSelected }: UserDmListProps) => {
   const usersIds = useSelector(getFilteredUsersIdsWithMessages);
-  const selectedCategory = useSelector(getFiltersMain);
-
   const cache = useMemo(
     () =>
       new CellMeasurerCache({
@@ -33,9 +32,7 @@ export const UserDmList = ({ onSelected }: UserDmListProps) => {
     []
   );
 
-  return usersIds.length > 0 &&
-    (selectedCategory === FilterCategory.USER ||
-      selectedCategory === FilterCategory.ALL) ? (
+  return usersIds.length > 0 ? (
     <WindowScroller scrollElement={window}>
       {({ height, isScrolling, registerChild, onChildScroll, scrollTop }) =>
         registerChild && (
@@ -88,7 +85,14 @@ export const UserDmList = ({ onSelected }: UserDmListProps) => {
         )
       }
     </WindowScroller>
-  ) : null;
+  ) : (
+    <div className='dm-list-no-chats'>
+      <Text type='secondary'>
+        You have no chats yet. Search for the user or group in the search bar
+        above.
+      </Text>
+    </div>
+  );
 };
 
 export default UserDmList;

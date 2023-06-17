@@ -86,6 +86,7 @@ export const users: Reducer<UsersState, UsersAction | ClearMe | AddMessages> = (
       for (const ms of action.data.messages) {
         newUsers[ms.parentId] = {
           ...state.entries[ms.parentId],
+          messages: [...(state.entries[ms.parentId].messages || []), ms.uuid],
           lastMessage: {
             id: ms.uuid,
             content: ms.body || '',

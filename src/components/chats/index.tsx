@@ -11,7 +11,7 @@ import UserAvatar from '../common/user-components/avatar';
 import { getHslColorFromCharCode } from '@/utils/getHslColorFromCharCode';
 import { useSelector } from 'react-redux';
 import { getUserById } from '@/selectors/users';
-import { MoreHorizRounded } from '@material-ui/icons';
+import { ForumRounded, MoreHorizRounded } from '@material-ui/icons';
 import Navigator from '@/utils/navigation';
 import { useHistory, useLocation } from 'react-router-dom';
 import './chats.scss';
@@ -75,12 +75,11 @@ export const ChatsView = () => {
             </>
           }
         >
-          {selectedConvo && (
+          {selectedConvo ? (
             <>
               <div className='selected-convo-title'>
                 <Heading level={3}>
                   <UserAvatar
-                    status={user.status}
                     size={'small'}
                     url={user.avatar}
                     key={user.id}
@@ -90,10 +89,6 @@ export const ChatsView = () => {
                   {user.id}
                 </Heading>
                 <DetailsButtonShowMore isVisible onClick={navToUserDetails} />
-                {/* <MoreHorizRounded
-                  className='selected-convo-more'
-                  onClick={navToUserDetails}
-                /> */}
               </div>
               <div className='view-root--user--minified-move'>
                 <Chat parentId={selectedConvo?.id} type={selectedConvo?.type} />
@@ -104,6 +99,30 @@ export const ChatsView = () => {
                 showActions
               />
             </>
+          ) : (
+            <div
+              style={{
+                display: 'flex',
+                marginTop: '5rem',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexDirection: 'column'
+              }}
+            >
+              <ForumRounded
+                style={{ fontSize: '4rem', color: 'var(--clr-actions-100)' }}
+              />
+              <Heading
+                level={3}
+                style={{
+                  color: 'var(--clr-basic-300)',
+                  width: '22ch',
+                  textAlign: 'center'
+                }}
+              >
+                Select a chat in the sidebar to start chatting
+              </Heading>
+            </div>
           )}
         </LayoutSideContent>
       )}

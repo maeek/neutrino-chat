@@ -35,12 +35,10 @@ export const getFilteredUsersByGroup = createSelector(
 );
 
 export const USER_SEARCH_EXCLUDE_KEYS: Array<keyof User> = [
-  'settings',
   'avatar',
   'lastMessage',
-  'blocked',
-  'messages',
-  'typing'
+  'muted',
+  'messages'
 ];
 
 export const getFilteredUsersByQueries = createSelector(
@@ -68,17 +66,20 @@ export const getFilteredUsersByQueries = createSelector(
 export const getFilteredUsers = createSelector(
   getFilteredUsersByGroup,
   getFilteredUsersByQueries,
-  (usersByGroup, usersByQueries) => {
+  getFiltersSearch,
+  (usersByGroup, usersByQueries, searchString) => {
     const uniq = [...new Set([...usersByGroup, ...usersByQueries])];
     const usernamesInGroups = usersByGroup.filter(Boolean).map((c) => c.id);
     const usernamesInQueries = usersByQueries.filter(Boolean).map((c) => c.id);
 
-    const soretdResults = uniq.filter(
+    const sortedResults = uniq.filter(
       (c) =>
-        usernamesInGroups.includes(c.id) && usernamesInQueries.includes(c.id)
+        usernamesInGroups.includes(c.id) &&
+        usernamesInQueries.includes(c.id) &&
+        c.id.toLocaleLowerCase().includes(searchString.toLocaleLowerCase())
     );
 
-    return soretdResults.sort((a, b) => {
+    return sortedResults.sort((a, b) => {
       const nameA = a.id.toUpperCase();
       const nameB = b.id.toUpperCase();
 

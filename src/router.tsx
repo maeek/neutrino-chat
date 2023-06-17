@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import RestrictedRoute from '@/components/common/restricted-routes';
 import LoginPage from '@/views/auth/Login';
 import JoinPage from '@/views/auth/Join';
-import MainPage from '@/views/main/Main';
 import ChatsPage from '@/views/chats/Chats';
 import ProfilePage from '@/views/me/Profile';
 import UserPage from '@/views/user/User';
@@ -24,7 +23,6 @@ const RouterWrapper = () => (
         <TopBar />
 
         <Route exact path='/' component={ChatsPage} />
-        <Route exact path='/browse' component={MainPage} />
         <Route path='/settings'>
           <SettingsPage>
             <Route path='/settings/profile' component={SettingsProfilePage} />
