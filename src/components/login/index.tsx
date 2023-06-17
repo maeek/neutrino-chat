@@ -25,7 +25,7 @@ export const LoginView = (props: LoginViewProps) => {
     password: string,
     webAuthn = false
   ) => {
-    dispatch(login(username, password, { history, from, webAuthn }));
+    await dispatch(login(username, password, { history, from, webAuthn }));
   };
 
   const redirectToRegister = (e: MouseEvent<HTMLSpanElement>) => {

@@ -1,6 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { getAuthRefreshToken, getAuthToken } from '@/selectors/session';
-import { ChatApiAuthHeadersEnum } from './auth/types';
+import { getAuthToken } from '@/selectors/session';
 
 export class ApiInstance {
   baseURL: string;
@@ -31,7 +30,7 @@ export class ApiInstance {
   private _handleRequest(config: AxiosRequestConfig): AxiosRequestConfig {
     const token = getAuthToken();
     if (token && config?.headers) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+      config.headers['Authorization'] = `${token}`;
     }
 
     return config;

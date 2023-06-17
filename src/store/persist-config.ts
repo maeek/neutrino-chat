@@ -4,7 +4,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 localforage.config({
   driver: localforage.INDEXEDDB,
-  name: 'Chat-chat',
+  name: 'chat',
   version: 1.0,
   storeName: 'persist_cache'
 });

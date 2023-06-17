@@ -5,6 +5,7 @@ import { PageTemplate } from '@/components/common/page-template';
 import { RootState } from '@/store/root';
 import { getAuthToken, getAuthRefreshToken } from '@/selectors/session';
 import Navigator from '@/utils/navigation';
+import { ErrorNotification } from '@/components/common/error-notification';
 
 const JoinView = lazy(
   () =>
@@ -43,6 +44,7 @@ export const JoinPage = (props: JoinPageProps) => {
       canOperateOffline={false}
     >
       <JoinView from={from} {...props} />
+      <ErrorNotification />
     </PageTemplate>
   );
 };

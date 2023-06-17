@@ -10,17 +10,28 @@ import Input, {
   InputRef
 } from '@maeek/neutrino-design/components/inputs/text/Input';
 import './change-password.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMeUsername } from '@/selectors/user';
+import { updateMeBasicInfo } from '@/actions/me';
 
 export const ChangePasswordSetting = () => {
+  const dispath = useDispatch();
+  const username = useSelector(getMeUsername);
   const prevInputRef = useRef<InputRef>(null);
   const newInputRef = useRef<InputRef>(null);
   const [prevPassword, setPrevPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const { onEnter } = useAccessibility();
 
-  const onChangePassword = () => {
+  const onChangePassword = async () => {
     if (prevPassword.length > 0 && newPassword.length > 0) {
-      alert('Change password');
+      await dispath(
+        updateMeBasicInfo(username, {
+          currentPassword: prevPassword,
+          password: newPassword
+        })
+      );
+      onCancelHandler();
       return;
     }
   };

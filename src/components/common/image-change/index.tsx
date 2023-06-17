@@ -9,45 +9,32 @@ export interface GalleryItem {
 }
 
 export interface ImageChangeProps {
-  /**
-   * Modal title
-   */
-  title?: string | ReactNode;
-  /**
-   * Modal description
-   */
-  description?: string | ReactNode;
-  /**
-   * Current image url
-   */
   url?: string;
-  /**
-   * Can the image be removed entirely
-   */
-  canBeRemoved?: boolean;
+  isEdited?: boolean;
+  setIsEdited?: (v: boolean) => void;
   forceAspectRatio?: '1-1';
-  mimeTypesAllowed?: 'image/*' | string[];
-  gallery?: GalleryItem[];
-  onUpdate?: (image: string) => string | undefined | void;
+  onUpdate?: (file: File | null) => Promise<string | undefined | void>;
   onCancel?: () => void;
 }
-
-const SCROLL_POINT = 50;
 
 export const ImageChange = ({
   url,
   onUpdate,
   onCancel,
+  isEdited,
+  setIsEdited,
   forceAspectRatio
 }: ImageChangeProps) => {
   const [originalImg, setOriginalImg] = useState(url);
+  const [currentImgFile, setCurrentImgFile] = useState<File>();
   const [currentImg, setCurrentImg] = useState(url || '');
-  const savingIsBlocked = currentImg === originalImg;
   const ref = useRef<{ clear: () => void }>(null);
+
+  const savingIsBlocked = !isEdited;
 
   const onUpdateHandler = () => {
     if (onUpdate && !savingIsBlocked) {
-      onUpdate(currentImg);
+      onUpdate(currentImgFile || null);
       ref.current?.clear();
     }
 
@@ -60,11 +47,21 @@ export const ImageChange = ({
     }
 
     setCurrentImg(url || '');
+    ref.current?.clear();
+  };
+
+  const onClearAvatar = () => {
+    setCurrentImg('');
+    setCurrentImgFile(undefined);
+    ref.current?.clear();
+    setIsEdited?.(true);
   };
 
   const fileSelect = useCallback((files: FileList | null) => {
     if (files?.[0]) {
+      setCurrentImgFile(files[0]);
       setCurrentImg(URL.createObjectURL(files[0]));
+      setIsEdited?.(true);
     }
   }, []);
 
@@ -72,6 +69,12 @@ export const ImageChange = ({
     if (url !== originalImg) {
       setOriginalImg(url);
     }
+
+    return () => {
+      if (url && url !== originalImg) {
+        URL.revokeObjectURL(url);
+      }
+    };
   }, [url, originalImg]);
 
   return (
@@ -80,7 +83,7 @@ export const ImageChange = ({
         <div className='image-change-content'>
           <ImageChangePreview
             url={currentImg}
-            onClear={() => setCurrentImg('')}
+            onClear={onClearAvatar}
             forceAspectRatio={forceAspectRatio}
           />
           <FileSelect
@@ -89,7 +92,7 @@ export const ImageChange = ({
             onChange={fileSelect}
             accept='image/*'
             limit={1}
-            buttonText='Upload a photo'
+            buttonText='Select a photo'
           />
         </div>
         <ImageChangeFooter

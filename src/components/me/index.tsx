@@ -23,7 +23,7 @@ export const ProfileView = () => {
     <div className='view-root view-root--me'>
       <div className='me-profile-content'>
         <UserAvatar
-          url={avatar}
+          url={avatar ? `/api/users/${username}/avatar` : undefined}
           username={username}
           color={color}
         />

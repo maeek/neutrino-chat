@@ -11,8 +11,9 @@ import { Heading } from '@maeek/neutrino-design/components/typography/heading';
 import { Text } from '@maeek/neutrino-design/components/typography/text';
 import { User } from '../types';
 import { RegisterFormHeader } from './header';
-import './box.scss';
 import { useLocation } from 'react-router-dom';
+import { browserSupportsWebAuthn } from '@simplewebauthn/browser';
+import './box.scss';
 
 interface RegisterFormBoxProps {
   onRegister?: (user: User) => void;
@@ -24,10 +25,7 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
     () => new URLSearchParams(search)?.get('method') || '',
     [search]
   );
-  const doesNotSupportWebAuthn = useMemo(
-    () => typeof PublicKeyCredential == 'undefined',
-    []
-  );
+  const doesNotSupportWebAuthn = useMemo(() => browserSupportsWebAuthn(), []);
   const loginRef = useRef<any>();
   const passwordRef = useRef<any>();
   const passwordRepeatRef = useRef<any>();
@@ -221,7 +219,7 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
         onClick={onRegisterHandler}
         disabled={
           !validateUsername() ||
-          (doesNotSupportWebAuthn && !validatePasswords())
+          (!doesNotSupportWebAuthn && !validatePasswords())
         }
       >
         Register

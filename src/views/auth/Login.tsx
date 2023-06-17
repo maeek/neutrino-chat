@@ -5,6 +5,7 @@ import { RootState } from '@/store/root';
 import { getAuthToken, getAuthRefreshToken } from '@/selectors/session';
 import { PageTemplate } from '@/components/common/page-template';
 import Navigator from '@/utils/navigation';
+import { ErrorNotification } from '@/components/common/error-notification';
 
 const LoginView = lazy(
   () =>
@@ -45,6 +46,7 @@ export const LoginPage = (props: LoginPageProps) => {
       canOperateOffline={false}
     >
       <LoginView from={from} {...props} />
+      <ErrorNotification />
     </PageTemplate>
   );
 };

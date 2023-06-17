@@ -4,6 +4,7 @@ import { PageTemplate } from '@/components/common/page-template';
 import SettingsViewLoader from '@/components/settings/loader';
 import { GenericError } from '@/components/common/error';
 import Navigator from '@/utils/navigation';
+import { ErrorNotification } from '@/components/common/error-notification';
 
 const SettingsView = lazy(
   () =>
@@ -39,6 +40,7 @@ export const SettingsPage = ({ children }: SettingsPageProps) => {
       startFromTop
     >
       <SettingsView>{children}</SettingsView>
+      <ErrorNotification />
     </PageTemplate>
   );
 };

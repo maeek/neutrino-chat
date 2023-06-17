@@ -1,6 +1,6 @@
-import { getMeBio } from '@/selectors/user';
+import { getMeBio, getMeUsername } from '@/selectors/user';
 import { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   ProceedButton,
   Heading,
@@ -9,15 +9,21 @@ import {
   Paragraph
 } from '@maeek/neutrino-design';
 import './bio-setting.scss';
+import { updateMeBasicInfo } from '@/actions/me';
 
 export const BioSetting = () => {
+  const dispath = useDispatch();
+  const username = useSelector(getMeUsername);
   const bioText = useSelector(getMeBio);
   const [isEdited, setIsEdited] = useState(false);
   const [content, setContent] = useState(bioText);
   const { onEnter } = useAccessibility();
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const save = () => {};
+  const save = async () => {
+    await dispath(updateMeBasicInfo(username, { description: content }));
+    setIsEdited(false);
+  };
 
   const onCancelHandler = () => {
     setIsEdited(false);
@@ -34,6 +40,7 @@ export const BioSetting = () => {
       </Paragraph>
       <textarea
         ref={inputRef}
+        maxLength={255}
         className='setting-bio-preview'
         onChange={(e) => {
           setContent(e.target.value);

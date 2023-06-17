@@ -57,12 +57,6 @@ export const ContextMenuWrapper = () => {
       onClick: navigate('/settings/profile')
     },
     {
-      text: 'Help',
-      icon: <HelpOutlineRounded />,
-      closeOnClick: true,
-      onClick: () => (location.href = 'https://github.com/maeek/Chat-chat.git')
-    },
-    {
       text: 'Log out',
       icon: <ExitToAppRounded />,
       closeOnClick: true,

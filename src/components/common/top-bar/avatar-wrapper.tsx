@@ -66,14 +66,14 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
   return (
     <Avatar
       // {...rest}
-      key={src || avatar}
+      key={src || `avatar-${username}-${avatar}`}
       className={classnames(
         'top-bar-avatar',
         !hasAvatar && 'top-bar-avatar--empty'
       )}
       selectable
       tabIndex={0}
-      src={src || avatar}
+      src={src || `/api/users/${username}/avatar`}
       name={username}
       size={size}
       onClick={goToProfile}

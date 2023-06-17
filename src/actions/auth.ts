@@ -39,8 +39,23 @@ export const login =
 
     let webAuthnParams = null;
     if (params.webAuthn) {
-      const options = await ApiAuthorization.getWebAuthnLoginOptions(username);
-      webAuthnParams = await startAuthentication(options.data);
+      try {
+        const options = await ApiAuthorization.getWebAuthnLoginOptions(
+          username
+        );
+        webAuthnParams = await startAuthentication(options.data);
+      } catch (e: any) {
+        console.error('Failed to start authentication', e);
+        dispatch(
+          addNewError(
+            unifiedErrorTemplate(e.type, 'Invalid credentials', null, {
+              username,
+              from: params.from
+            })
+          )
+        );
+        return;
+      }
     }
 
     loginPromise(username, params.webAuthn ? webAuthnParams : password)
@@ -64,7 +79,7 @@ export const login =
         console.error('Failed to log in! ', e);
         dispatch(
           addNewError(
-            unifiedErrorTemplate(e.type, e, null, {
+            unifiedErrorTemplate(e.type, 'Invalid credentials', null, {
               username,
               from: params.from
             })
@@ -80,7 +95,9 @@ export const logout = () => (dispatch: Dispatch, getState: () => RootState) => {
         'Failed to clear the session, you will be logged out anyway but the token will still be valid',
         e
       );
-      dispatch(addNewError(unifiedErrorTemplate(e.type, e, [])));
+      dispatch(
+        addNewError(unifiedErrorTemplate(e.type, 'Failed delete a session', []))
+      );
     })
     .finally(() => {
       dispatch(clearTokens());
@@ -120,10 +137,15 @@ export const register =
         console.error('Failed to start registration', e);
         dispatch(
           addNewError(
-            unifiedErrorTemplate(e.type, e, null, {
-              username,
-              from: params.from
-            })
+            unifiedErrorTemplate(
+              e.type,
+              'Failed to register an account',
+              null,
+              {
+                username,
+                from: params.from
+              }
+            )
           )
         );
         return;

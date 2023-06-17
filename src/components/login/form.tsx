@@ -12,6 +12,7 @@ import { Paragraph } from '@maeek/neutrino-design/components/typography/paragrap
 import { Text } from '@maeek/neutrino-design/components/typography/text';
 import Navigator from '@/utils/navigation';
 import { useHistory, useLocation } from 'react-router-dom';
+import { browserSupportsWebAuthn } from '@simplewebauthn/browser';
 import './form.scss';
 
 interface LoginFormProps {
@@ -26,10 +27,7 @@ export const LoginForm = (props: LoginFormProps) => {
     () => new URLSearchParams(search)?.get('method') || '',
     [search]
   );
-  const doesNotSupportWebAuthn = useMemo(
-    () => typeof PublicKeyCredential == 'undefined',
-    []
-  );
+  const doesNotSupportWebAuthn = useMemo(() => browserSupportsWebAuthn(), []);
   const savedUsername = useMemo(
     () => localStorage.getItem('savedUsername'),
     []

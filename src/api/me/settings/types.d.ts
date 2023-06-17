@@ -5,16 +5,13 @@ export interface ChatApiSettingsMuted {
   channels?: ChatApiPagination<string>;
 }
 
-export interface ChatApiSettingsNotifications {
-  muted?: ChatApiSettingsMuted;
-  push?: boolean;
-  message?: boolean;
-  mentions?: boolean;
-  joins?: boolean;
-}
-
 export interface ChatApiSettings {
-  notifications?: ChatApiSettingsNotifications;
+  mutedUsers?: string[];
+  chats: {
+    channel: string;
+    muted: boolean;
+    color: string | null;
+  }[];
 }
 
 export type ChatApiSettingsResponse = ChatApiResponse<ChatApiSettings>;
