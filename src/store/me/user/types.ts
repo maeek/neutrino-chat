@@ -20,10 +20,7 @@ export type UserState = {
   username: string;
   role: string;
   avatar: string;
-  banner: string;
   bio: string;
-  status: MeStatus;
-  defaultReactions: Reaction[];
 };
 
 export enum UserActionsEnum {
@@ -65,27 +62,6 @@ export interface SetMeBio extends Action {
   };
 }
 
-export interface SetMeBanner extends Action {
-  type: UserActionsEnum.SET_ME_BANNER;
-  data: {
-    banner: string;
-  };
-}
-
-export interface SetMeStatus extends Action {
-  type: UserActionsEnum.SET_ME_STATUS;
-  data: {
-    status: MeStatus;
-  };
-}
-
-export interface SetMeReactions extends Action {
-  type: UserActionsEnum.SET_ME_REACTIONS;
-  data: {
-    reactions: Reaction[];
-  };
-}
-
 export interface ClearMe extends Action {
   type: UserActionsEnum.CLEAR_ME;
   data: {};
@@ -96,7 +72,4 @@ export type UserActionTypes =
   | ClearMe
   | SetMeUsername
   | SetMeAvatar
-  | SetMeBio
-  | SetMeBanner
-  | SetMeStatus
-  | SetMeReactions;
+  | SetMeBio;

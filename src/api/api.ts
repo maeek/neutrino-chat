@@ -40,35 +40,7 @@ export class ApiInstance {
     return response;
   }
 
-  // private _updateToken = (): Promise<string> => {
-  //   const refreshToken = getAuthRefreshToken();
-
-  //   if (!refreshToken) return Promise.reject();
-
-  //   const refreshRequest = axios.post(
-  //     `${this.baseURL}/auth/refresh`,
-  //     {},
-  //     {
-  //       headers: {
-  //         [ChatApiAuthHeadersEnum.REFRESH_TOKEN]: refreshToken
-  //       }
-  //     }
-  //   );
-
-  //   return refreshRequest.then((res: { data: { token: string } }) => {
-  //     return res.data.token;
-  //   });
-  // };
-
   private _handleError = (error: any): Promise<any> => {
-    // if (error.config && error.response && error.response.status === 401) {
-    //   return this._updateToken().then((token: string) => {
-    //     error.config.headers['Authorization'] = `JWT ${token}`;
-
-    //     return axios.request(error.config);
-    //   });
-    // }
-
     return Promise.reject(error);
   };
 }

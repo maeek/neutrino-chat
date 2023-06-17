@@ -23,6 +23,12 @@
     }
   }
 
+  &-context {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
   &-details {
     display: flex;
     flex-direction: row;
@@ -30,10 +36,16 @@
     justify-content: flex-start;
     gap: 0.5rem;
 
+    &-role {
+      font-size: var(--fs-200);
+    }
+
     &-title {
       font-size: var(--fs-300);
       font-weight: 500;
       margin-bottom: 0.2rem;
+      display: flex;
+      flex-direction: column;
     }
 
     &-avatar .user-profile-avatar-container .ne-avatar {

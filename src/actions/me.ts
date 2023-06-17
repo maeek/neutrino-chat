@@ -10,9 +10,11 @@ import { RootState } from '@/store/root';
 import { getMeUsername } from '@/selectors/user';
 import { addNewError } from '@/store/app/errors/actions';
 import { unifiedErrorTemplate } from '@/store/app/errors/error';
+import { ApiUsers } from '@/api/users';
+import { populateUsersCache } from '@/store/users/actions';
 
-export const fetchMeBasicInfo = () => (dispatch: Dispatch) => {
-  return ApiMe.getMe()
+export const fetchMeBasicInfo = () => async (dispatch: Dispatch) => {
+  await ApiMe.getMe()
     .then((response) => {
       console.log('response', response.data);
       dispatch(
@@ -27,10 +29,50 @@ export const fetchMeBasicInfo = () => (dispatch: Dispatch) => {
       dispatch(setMeBio(response.data?.description || ''));
     })
     .catch((e: any) => {
-      console.error('Request failed with reason: ', e.message);
+      console.error('Request failed with reason: ', e);
       dispatch(
         addNewError(
-          unifiedErrorTemplate(e.type, 'Failed to fetch user info', null)
+          unifiedErrorTemplate(e.type, 'Failed to fetch user info', null, {
+            shouldLogout: [401, 403].includes(e.base.response.status)
+          })
+        )
+      );
+    });
+
+  await ApiUsers.getUsers()
+    .then((response) => {
+      console.log('response', response.data);
+
+      const users = response.data.items;
+      const me = users.find((user) => user.username === getMeUsername());
+
+      if (me) {
+        dispatch(
+          setMeAvatar(me.avatar ? `/api/users/${me.username}/avatar` : '')
+        );
+        dispatch(setMeUsername(me.username));
+        dispatch(setMeRole(me.role));
+        dispatch(setMeBio(me.description));
+      }
+
+      dispatch(
+        populateUsersCache(
+          users.map((user) => ({
+            id: user.username,
+            bio: user.description,
+            avatar: user.avatar ? `/api/users/${user.username}/avatar` : '',
+            role: user.role
+          }))
+        )
+      );
+    })
+    .catch((e: any) => {
+      console.error('Request failed with reason: ', e);
+      dispatch(
+        addNewError(
+          unifiedErrorTemplate(e.type, 'Failed to fetch user info', null, {
+            shouldLogout: [401, 403].includes(e.base.response.status)
+          })
         )
       );
     });
@@ -50,7 +92,9 @@ export const uploadAvatar =
         console.error('Request failed with reason: ', e.message);
         dispatch(
           addNewError(
-            unifiedErrorTemplate(e.type, 'Failed to update avatar', null)
+            unifiedErrorTemplate(e.type, 'Failed to update avatar', null, {
+              shouldLogout: [401, 403].includes(e.base.response.status)
+            })
           )
         );
       });
@@ -77,7 +121,9 @@ export const updateMeBasicInfo =
         console.error('Request failed with reason: ', e.message);
         dispatch(
           addNewError(
-            unifiedErrorTemplate(e.type, 'Failed to update user info', null)
+            unifiedErrorTemplate(e.type, 'Failed to update user info', null, {
+              shouldLogout: [401, 403].includes(e.base.response.status)
+            })
           )
         );
       });

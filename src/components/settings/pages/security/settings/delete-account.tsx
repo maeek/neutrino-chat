@@ -1,6 +1,6 @@
-import { getMeUsername } from '@/selectors/user';
+import { getMeRole, getMeUsername } from '@/selectors/user';
 import { useRef, useState, KeyboardEvent } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   AbortButton,
   Heading,
@@ -12,6 +12,8 @@ import Input, {
   InputRef
 } from '@maeek/neutrino-design/components/inputs/text/Input';
 import './delete-account.scss';
+import { ApiAuthorization } from '@/api/auth';
+import { logout } from '@/actions/auth';
 
 export const DeleteAccountSetting = () => {
   const username = useSelector(getMeUsername);
@@ -19,16 +21,22 @@ export const DeleteAccountSetting = () => {
   const [confirmed, setConfirmed] = useState(false);
   const { onEnter } = useAccessibility();
   const inputRef = useRef<InputRef>(null);
+  const dispatch = useDispatch();
 
-  const removeAccountStart = () => {
+  const removeAccountStart = async () => {
     if (!inProcess) {
       setInProcess(true);
       return;
     }
 
     if (confirmed) {
-      setInProcess(false);
-      alert('Remove account');
+      await ApiAuthorization.removeAccount(username)
+        .then(() => {
+          dispatch(logout());
+        })
+        .finally(() => {
+          setInProcess(false);
+        });
     }
   };
 
@@ -82,7 +90,7 @@ export const DeleteAccountSetting = () => {
         ) : (
           <AbortButton
             type='button'
-            disabled={inProcess && !confirmed}
+            disabled={username === 'admin' || (inProcess && !confirmed)}
             onKeyDown={onEnter(removeAccountStart)}
             onClick={removeAccountStart}
             className='setting-deletion-button'

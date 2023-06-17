@@ -1,13 +1,14 @@
-import { MouseEvent } from 'react';
+import { MouseEvent, useEffect, useState } from 'react';
 import { RouteProps, useHistory } from 'react-router-dom';
 import { GenericFooter } from '@/components/common/footer/generic';
 import Navigator from '@/utils/navigation';
 import { RegisterForm } from './form/';
 import { User } from './types';
 import { Heading, Text } from '@maeek/neutrino-design';
-import './join.scss';
 import { useDispatch } from 'react-redux';
 import { register } from '@/actions/auth';
+import './join.scss';
+import { ApiAdmin } from '@/api/admin';
 
 interface JoinViewProps extends RouteProps {
   from: {
@@ -19,6 +20,18 @@ export const JoinView = (props: JoinViewProps) => {
   const { from } = props;
   const history = useHistory();
   const dispatch = useDispatch();
+  const [registrationEnabled, setRegistrationEnabled] = useState(false);
+
+  useEffect(() => {
+    ApiAdmin.getConfig()
+      .then((res) => {
+        setRegistrationEnabled(res.data.registrationEnabled);
+      })
+      .catch((err) => {
+        console.error(err);
+        setRegistrationEnabled(false);
+      });
+  }, []);
 
   const onRegister = (user: User) => {
     dispatch(
@@ -48,7 +61,15 @@ export const JoinView = (props: JoinViewProps) => {
         </div>
       </div>
       <div className='container-centered'>
-        <RegisterForm onRegister={onRegister} />
+        {!registrationEnabled ? (
+          <div className='form-register'>
+            <Text strong>
+              <Heading level={2}>Registration is currently disabled!</Heading>
+            </Text>
+          </div>
+        ) : (
+          <RegisterForm onRegister={onRegister} />
+        )}
         <GenericFooter />
       </div>
     </div>

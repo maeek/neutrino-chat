@@ -6,6 +6,7 @@ import { getAuthToken, getAuthRefreshToken } from '@/selectors/session';
 import Navigator from '@/utils/navigation';
 import { getMeUser } from '@/selectors/user';
 import { fetchMeBasicInfo } from '@/actions/me';
+import { logout } from '@/actions/auth';
 
 interface RestrictedRouteProps {
   children?: ReactNode;
@@ -19,6 +20,7 @@ const RestrictedRoute = ({ children }: RestrictedRouteProps) => {
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
+  const errors = useSelector((state: RootState) => state.app.errors.list);
 
   useLayoutEffect(() => {
     if (!isAuthenticated) {
@@ -37,11 +39,21 @@ const RestrictedRoute = ({ children }: RestrictedRouteProps) => {
     if (fetched === 'idle') {
       setFetched('fetching');
       (async () => {
-        await dispatch(fetchMeBasicInfo());
-        setFetched('done');
+        try {
+          await dispatch(fetchMeBasicInfo());
+        } catch (err) {
+        } finally {
+          setFetched('done');
+        }
       })();
     }
   }, [isAuthenticated, dispatch, fetched]);
+
+  useEffect(() => {
+    if (errors.filter((e) => e.shouldLogout).length > 0) {
+      dispatch(logout());
+    }
+  }, [errors, dispatch]);
 
   return <>{children}</>;
 };

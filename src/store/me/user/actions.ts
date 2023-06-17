@@ -4,9 +4,6 @@ import {
   SetMeBio,
   UserActionsEnum,
   Reaction,
-  SetMeReactions,
-  SetMeBanner,
-  SetMeStatus,
   MeStatus,
   ClearMe,
   SetMeRole
@@ -37,27 +34,6 @@ export const setMeBio = (bio: string): SetMeBio => ({
   type: UserActionsEnum.SET_ME_BIO,
   data: {
     bio
-  }
-});
-
-export const setMeBanner = (banner: string): SetMeBanner => ({
-  type: UserActionsEnum.SET_ME_BANNER,
-  data: {
-    banner
-  }
-});
-
-export const setMeStatus = (status: MeStatus): SetMeStatus => ({
-  type: UserActionsEnum.SET_ME_STATUS,
-  data: {
-    status
-  }
-});
-
-export const setMeReactions = (reactions: Reaction[]): SetMeReactions => ({
-  type: UserActionsEnum.SET_ME_REACTIONS,
-  data: {
-    reactions
   }
 });
 

@@ -1,15 +1,12 @@
 import { v4 } from 'uuid';
-import { UserFetchingStatus, UsersState, UserStatusEnum } from './types';
+import { UsersState, UserStatusEnum } from './types';
 
 export const usersReducerMock: UsersState = {
   entries: {
     bob: {
       id: 'bob',
-      fetchingStatus: UserFetchingStatus.SUCCESS,
-      status: UserStatusEnum.ACTIVE,
       avatar: '',
-      blocked: false,
-      settings: {},
+      muted: false,
       messages: [
         '1914477c-e595-43d3-b0f5-78e9625a4ba6',
         '2d9ae79a-a3c1-4756-afdc-f6fa9f7956b2',
@@ -25,42 +22,27 @@ export const usersReducerMock: UsersState = {
         id: '258f4703-52f8-49e1-bd39-23e9d9a0b888',
         content: 'Dictum varius duis at consectetur',
         receivedDate: Date.now() - 3670
-      },
-      typing: false
+      }
     },
     test_user: {
       id: 'test_user',
-      fetchingStatus: UserFetchingStatus.SUCCESS,
-      status: UserStatusEnum.ACTIVE,
       avatar: 'https://static.suchanecki.me/pepe1.jpg',
-      blocked: false
+      muted: false
     },
     andy: {
       id: 'andy',
-      fetchingStatus: UserFetchingStatus.SUCCESS,
-      status: UserStatusEnum.OFFLINE,
       avatar: '',
-      blocked: false
+      muted: false
     },
     bobandy: {
       id: 'bobandy',
-      fetchingStatus: UserFetchingStatus.SUCCESS,
-      status: UserStatusEnum.AWAY,
       avatar: '',
-      blocked: false
+      muted: false
     },
     matt: {
       id: 'matt',
-      fetchingStatus: UserFetchingStatus.SUCCESS,
-      status: UserStatusEnum.OFFLINE,
       avatar: '',
-      blocked: false,
-      settings: {
-        backgroundUri: 'https://static.suchanecki.me/neony.jpeg',
-        backgroundOpacity: 0.3,
-        backgroundBlur: 6,
-        color: '#fff'
-      },
+      muted: false,
       messages: [
         '258f4703-52f8-49e1-bd39-23e9d9a0b345',
         '88832d5c-d6ed-4d54-9e1a-94e3db235f57'
@@ -69,22 +51,17 @@ export const usersReducerMock: UsersState = {
         id: '88832d5c-d6ed-4d54-9e1a-94e3db235f57',
         content: 'lol',
         receivedDate: Date.now()
-      },
-      typing: false
+      }
     },
     j: {
       id: 'j',
-      fetchingStatus: UserFetchingStatus.SUCCESS,
-      status: UserStatusEnum.OFFLINE,
       avatar: 'https://static.suchanecki.me/nasa.jpg',
-      blocked: true
+      muted: true
     },
     paczka: {
       id: 'paczka',
-      fetchingStatus: UserFetchingStatus.SUCCESS,
-      status: UserStatusEnum.AWAY,
       avatar: '',
-      blocked: false,
+      muted: false,
       messages: [
         '2e341b65-656a-4fb4-b616-9d2c0ba1499c',
         '57499627-432a-4302-9163-1a3001c5798e'
@@ -93,8 +70,7 @@ export const usersReducerMock: UsersState = {
         id: '57499627-432a-4302-9163-1a3001c5798e',
         content: 'testing',
         receivedDate: Date.now() - 123600
-      },
-      typing: false
+      }
     },
     ...Object.fromEntries(
       new Array(10).fill(null).map((_, i) => {
@@ -103,21 +79,18 @@ export const usersReducerMock: UsersState = {
           `${uid}-${i + 1}`,
           {
             id: `${uid}-${i + 1}`,
-            fetchingStatus: UserFetchingStatus.SUCCESS,
-            status: UserStatusEnum.AWAY,
             name: `${uid}-${i + 1}`,
             avatar: '',
-            blocked: false,
+            muted: false,
             messages: [
               // '2e341b65-656a-4fb4-b616-9d2c0ba1499c',
               // '57499627-432a-4302-9163-1a3001c5798e'
-            ],
+            ]
             // lastMessage: {
             //   id: '57499627-432a-4302-9163-1a3001c5798e',
             //   content: v4(),
             //   receivedDate: Date.now() - 200000
             // },
-            typing: false
           }
         ];
       })

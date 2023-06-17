@@ -34,4 +34,18 @@ export class ApiMe {
         throw new ChatApiError(e.message, { error: e }, ApiMeEnum.GET_ME);
       });
   }
+
+  static getSessions() {
+    return ApiMe.api.instance.get<any>('/auth/sessions').catch((e: any) => {
+      throw new ChatApiError(e.message, { error: e }, ApiMeEnum.GET_ME);
+    });
+  }
+
+  static deleteSessions(sessions: string[]) {
+    return ApiMe.api.instance
+      .delete<any>('/auth/sessions', { data: { sessions } })
+      .catch((e: any) => {
+        throw new ChatApiError(e.message, { error: e }, ApiMeEnum.GET_ME);
+      });
+  }
 }

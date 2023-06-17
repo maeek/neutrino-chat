@@ -89,7 +89,7 @@ export const login =
   };
 
 export const logout = () => (dispatch: Dispatch, getState: () => RootState) => {
-  ApiAuthorization.logout(getAuthRefreshToken(getState()) as string)
+  ApiAuthorization.logout()
     .catch((e: any) => {
       console.error(
         'Failed to clear the session, you will be logged out anyway but the token will still be valid',

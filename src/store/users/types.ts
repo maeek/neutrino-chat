@@ -6,41 +6,18 @@ export enum UserStatusEnum {
   ACTIVE = 2
 }
 
-export enum UserFetchingStatus {
-  NOT_STARTED = 0,
-  PENDING = 1,
-  SUCCESS = 2,
-  FAIL = 3,
-  CANCELED = 4
-}
-
-export interface UsersSettings {
-  backgroundUri?: string;
-  backgroundOpacity?: number;
-  backgroundBlur?: number;
-  color?: string;
-}
-
 export interface User {
   id: string;
-  // name: string;
   bio?: string;
-  fetchingStatus: UserFetchingStatus;
-  // nickname?: string;
-  status?: UserStatusEnum;
+  role?: string;
   avatar?: string;
-  // banner?: string;
-  blocked?: boolean;
-  settings?: UsersSettings;
+  muted?: boolean;
   messages?: string[];
-  isHidden?: boolean;
-  isContact?: boolean;
   lastMessage?: {
     id: string;
     content: string;
     receivedDate: number;
   };
-  typing?: boolean;
 }
 
 export interface UsersEntry {

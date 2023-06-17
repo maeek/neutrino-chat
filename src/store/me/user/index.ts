@@ -7,10 +7,7 @@ export const initialState: UserState = !!import.meta.env.VITE_DEMO
       username: '',
       role: '',
       avatar: '',
-      banner: '',
-      bio: '',
-      status: MeStatus.ACTIVE,
-      defaultReactions: []
+      bio: ''
     };
 
 const userReducer = (state = initialState, action: UserActionTypes) => {
@@ -37,24 +34,6 @@ const userReducer = (state = initialState, action: UserActionTypes) => {
       return {
         ...state,
         bio: action.data.bio
-      };
-
-    case UserActionsEnum.SET_ME_BANNER:
-      return {
-        ...state,
-        banner: action.data.banner
-      };
-
-    case UserActionsEnum.SET_ME_STATUS:
-      return {
-        ...state,
-        status: action.data.status
-      };
-
-    case UserActionsEnum.SET_ME_REACTIONS:
-      return {
-        ...state,
-        defaultReactions: action.data.reactions
       };
 
     case UserActionsEnum.CLEAR_ME:

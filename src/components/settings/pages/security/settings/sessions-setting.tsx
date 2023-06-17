@@ -4,15 +4,52 @@ import {
   useAccessibility,
   Paragraph
 } from '@maeek/neutrino-design';
-import './sessions-setting.scss';
 import { SessionsList } from './sessions/sessions-list';
+import { useCallback, useEffect, useState } from 'react';
+import { ApiMe } from '@/api/me';
+import { useDispatch } from 'react-redux';
+import { logout } from '@/actions/auth';
+import { addNewError } from '@/store/app/errors/actions';
+import { unifiedErrorTemplate } from '@/store/app/errors/error';
+import './sessions-setting.scss';
 
 export const SessionsSetting = () => {
+  const [sessions, setSessions] = useState<any>([]);
   const { onEnter } = useAccessibility();
+  const [isFetching, setIsFetching] = useState(false);
+  const dispatch = useDispatch();
 
-  const clearSessions = () => {
-    alert('Clear sessions');
+  const clearSessions = async () => {
+    await ApiMe.deleteSessions(sessions.map((s: any) => s.id));
+    await dispatch(logout());
   };
+
+  const updateList = useCallback(async () => {
+    setIsFetching(true);
+    ApiMe.getSessions()
+      .then((response) => {
+        setSessions(response.data.items);
+      })
+      .catch((e) => {
+        console.error(e);
+        dispatch(
+          addNewError(
+            unifiedErrorTemplate(e.type, 'Failed to load sessions', null, {
+              shouldLogout: [401, 403].includes(e.base.response.status)
+            })
+          )
+        );
+      })
+      .finally(() => {
+        setIsFetching(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (sessions.length === 0 && !isFetching) {
+      updateList();
+    }
+  }, [sessions]);
 
   return (
     <div className='setting-sessions-preview-container'>
@@ -31,7 +68,7 @@ export const SessionsSetting = () => {
           Clear all active sessions
         </ActionButton>
       </div>
-      <SessionsList />
+      <SessionsList updateList={updateList} sessions={sessions} />
     </div>
   );
 };

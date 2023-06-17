@@ -19,7 +19,7 @@ export const UsersMgmt = () => {
   const usersMemo = useMemo(
     () =>
       users.filter((user) => user.toLowerCase().includes(search.toLowerCase())),
-    [search]
+    [search, users]
   );
 
   const { page, currentPage, goToPage, nextPage, prevPage } = usePagination<
@@ -30,10 +30,7 @@ export const UsersMgmt = () => {
   return (
     <div className='setting-users-preview-container'>
       <Heading level={4}>Users</Heading>
-      <Paragraph>
-        Here you can manage users. You can delete them, change their roles and
-        more.
-      </Paragraph>
+      <Paragraph>Here you can manage users. more.</Paragraph>
       <Input
         key='users-search-input'
         type='search'

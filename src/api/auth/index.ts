@@ -102,31 +102,23 @@ export class ApiAuthorization {
       });
   }
 
-  static logout(accessToken: string) {
+  static logout() {
     return ApiAuthorization.api.instance
-      .delete<ChatApiAuthResponse>(`${ApiAuthorization.route}/logout`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`
-        }
-      })
+      .delete<ChatApiAuthResponse>(`${ApiAuthorization.route}/session`)
+      .catch((e: any) => {
+        console.error(e);
+      });
+  }
+
+  static removeAccount(username: string) {
+    return ApiAuthorization.api.instance
+      .delete<any>(`/users/${username}`)
       .catch((e: any) => {
         throw new ChatApiError(
           e.message,
           { error: e },
-          ApiAuthorizationEnum.LOGOUT
+          ApiAuthorizationEnum.LOGIN
         );
       });
   }
-
-  // static refresh() {
-  //   return ApiAuthorization.api.instance
-  //     .put<ChatApiAuthResponse>(`${ApiAuthorization.route}/refresh`)
-  //     .catch((e: any) => {
-  //       throw new ChatApiError(
-  //         e.message,
-  //         { error: e },
-  //         ApiAuthorizationEnum.REFRESH
-  //       );
-  //     });
-  // }
 }

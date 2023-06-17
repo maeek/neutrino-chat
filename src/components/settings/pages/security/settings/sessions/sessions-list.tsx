@@ -1,25 +1,27 @@
 import { SessionsListEntry } from './session-entry';
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Input, usePagination } from '@maeek/neutrino-design';
 import { Pagination } from '@/components/common/pagination/pagination';
 import './sessions-list.scss';
 import classNames from 'classnames';
+import { ApiMe } from '@/api/me';
+
+export interface SessionsListProps {
+  sessions: any[];
+  updateList: () => void;
+}
 
 const PER_PAGE = 5;
 
-const sessions = new Array(58).fill(0).map((_, i) => ({
-  id: (i + 1).toString(),
-  device: 'Android Chrome ' + i
-}));
-
-export const SessionsList = () => {
+export const SessionsList = ({ sessions, updateList }: SessionsListProps) => {
   const [search, setSearch] = useState('');
+
   const sessionMemo = useMemo(
     () =>
-      sessions.filter((session) =>
+      sessions.filter((session: any) =>
         session.device.toLowerCase().includes(search.toLowerCase())
       ),
-    [search]
+    [search, sessions]
   );
 
   const { page, currentPage, goToPage, nextPage, prevPage } = usePagination<
@@ -27,6 +29,8 @@ export const SessionsList = () => {
   >(sessionMemo, PER_PAGE);
   const maxPagesUnfiltered = Math.ceil(sessions.length / PER_PAGE);
   const maxPages = Math.ceil(sessionMemo.length / PER_PAGE);
+
+  console.log(sessionMemo);
 
   return (
     <>
@@ -50,7 +54,12 @@ export const SessionsList = () => {
         })}
       >
         {page.map((session) => (
-          <SessionsListEntry id={session.id} device={session.device} />
+          <SessionsListEntry
+            id={session.id}
+            device={session.device}
+            createdAt={session.createdAt}
+            updateList={updateList}
+          />
         ))}
       </ul>
       {maxPages > 1 && (
