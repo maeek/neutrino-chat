@@ -1,15 +1,19 @@
 import { useSelector } from 'react-redux';
 import ActionButton from '@maeek/neutrino-design/components/buttons/Action';
-import { AddRounded, GroupAddRounded } from '@material-ui/icons';
+import ProceedButton from '@maeek/neutrino-design/components/buttons/Proceed';
+import { GroupAddRounded } from '@material-ui/icons';
 import { getMeColor } from '@/selectors/user';
 import { useAccessibility } from '@maeek/neutrino-design';
+import MainSearchBarAddChannelModal from './new-channel';
+import { useState } from 'react';
 
 export const MainSearchBarAddButton = () => {
   const { onEnter } = useAccessibility();
   const meColor = useSelector(getMeColor);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const addNewChannel = () => {
-    alert('Add new channel');
+    setIsModalOpen(true);
   };
 
   return (
@@ -33,6 +37,9 @@ export const MainSearchBarAddButton = () => {
           }}
         />
       </ActionButton>
+      {isModalOpen && (
+        <MainSearchBarAddChannelModal onClose={() => setIsModalOpen(false)} />
+      )}
     </div>
   );
 };

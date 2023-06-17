@@ -3,11 +3,16 @@ import classnames from 'classnames';
 import { useSelector } from 'react-redux';
 import { InputRef } from '@maeek/neutrino-design/components/inputs/text/Input';
 import { SearchBarSuggestionsList, SuggestionItemTypes } from './list';
-import { getFilteredUsersByQueries } from '@/selectors/filters';
+import {
+  getFilteredChannelsByQueries,
+  getFilteredUsersByQueries
+} from '@/selectors/filters';
 import { RootState } from '@/store/root';
 import { User } from '@/store/users/types';
 // import { Channel } from '@/store/channels/types';
 import './suggestions.scss';
+import { Channel } from '@/store/channels/types';
+import { getMeUsername } from '@/selectors/user';
 
 export interface SearchBarSuggestionsProps {
   searchedValue?: string;
@@ -29,21 +34,23 @@ export const SearchBarSuggestions = forwardRef<
     const filteredUsers = useSelector<RootState, User[]>(
       getFilteredUsersByQueries
     );
-    // const filteredChannels = useSelector<RootState, Channel[]>(getFilteredChannelsByQueries);
+    const filteredChannels = useSelector<RootState, Channel[]>(
+      getFilteredChannelsByQueries
+    );
     const flatElements = [
       ...filteredUsers.map((c) => ({
         id: c.id,
         name: c.id,
         link: `/u/${c.id}/chat`,
         type: SuggestionItemTypes.USER
+      })),
+      ...filteredChannels.map((ch) => ({
+        id: ch.name,
+        name: ch.name,
+        link: `/c/${ch.name}/chat`,
+        type: SuggestionItemTypes.CHANNEL,
+        owner: ch.owner
       }))
-      // ...filteredChannels.map((ch) => ({
-      //   id: ch.id,
-      //   name: ch.name,
-      //   link: `/c/${ch.id}/${ch.name}`,
-      //   type: SuggestionItemTypes.CHANNEL,
-      //   owner: ch.owner
-      // }))
     ]
       .sort()
       .slice(0, 10);

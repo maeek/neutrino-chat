@@ -1,49 +1,26 @@
 /* eslint-disable no-unused-vars */
 import { Action } from 'redux';
 
-export interface ChannelSettings {
-  passwordPrompt?: string;
-  hasPassword?: boolean;
-  backgroundUri?: string
-  backgroundOpacity?: number;
-  backgroundBlur?: number;
-  contactsOnly?: boolean;
-  color?: string;
-  blocked?: string[];
-  limit?: number;
-  encrypted?: boolean;
-}
-
 export interface Channel {
-  id: string;
   name: string;
-  description: string;
-  avatar: {
-    uri: string;
-    type: string; // TODO: type
-  };
   owner: string;
-  createdDate: number;
-  isPublic?: boolean;
-  settings: ChannelSettings;
+  createdAt: number;
+  public?: boolean;
   messages: string[];
-  lastMessage:{
+  lastMessage: {
     id: string;
     content: string;
+    receivedDate: number;
   };
-  shadowBans?: string[];
-  bans?: string[];
-  participants: string[];
-  typing: string[];
+  users?: string[];
+  blockedUsers?: string[];
 }
 
 export type ChannelEntry = {
-  [key: string]: Channel
+  [key: string]: Channel;
 };
 
 export interface ChannelsState {
-  joined: string[];
-  recent: string[];
   entries: ChannelEntry;
 }
 
@@ -62,25 +39,25 @@ export enum ChannelsActionsEnum {
   CLEAR_RECENT_CHANNELS = 'CLEAR_RECENT_CHANNELS',
   ADD_CHANNEL_TO_JOINED = 'ADD_CHANNEL_TO_JOINED',
   REMOVE_CHANNEL_FROM_JOINED = 'REMOVE_CHANNEL_FROM_JOINED',
-  CLEAR_JOINED_CHANNELS = 'CLEAR_JOINED_CHANNELS',
+  CLEAR_JOINED_CHANNELS = 'CLEAR_JOINED_CHANNELS'
 }
 
 export interface AddChannels extends Action {
-  type: ChannelsActionsEnum.ADD_CHANNELS,
+  type: ChannelsActionsEnum.ADD_CHANNELS;
   data: {
-    channels: Channel[]
-  }
+    channels: Channel[];
+  };
 }
 
 export interface RemoveChannels extends Action {
-  type: ChannelsActionsEnum.REMOVE_CHANNELS,
+  type: ChannelsActionsEnum.REMOVE_CHANNELS;
   data: {
-    ids: string[]
-  }
+    ids: string[];
+  };
 }
 
 export interface ModifyChannel extends Action {
-  type: ChannelsActionsEnum.MODIFY_CHANNEL,
+  type: ChannelsActionsEnum.MODIFY_CHANNEL;
   data: {
     id: string;
     name?: string;
@@ -89,98 +66,67 @@ export interface ModifyChannel extends Action {
       uri: string;
       type: string;
     };
-    isPublic?: boolean;
-    lastMessage?:{
+    public?: boolean;
+    lastMessage?: {
       id: string;
       content: string;
     };
-  }
-}
-
-export interface ModifyChannelSettings extends Action {
-  type: ChannelsActionsEnum.MODIFY_CHANNEL_SETTINGS,
-  data: {
-    id: string;
-    settings: ChannelSettings;
-  }
+  };
 }
 
 export interface AddChannelParticipants extends Action {
-  type: ChannelsActionsEnum.ADD_CHANNEL_PARTICIPANTS,
+  type: ChannelsActionsEnum.ADD_CHANNEL_PARTICIPANTS;
   data: {
     id: string;
     participants: string[];
-  }
+  };
 }
 
 export interface RemoveChannelParticipants extends Action {
-  type: ChannelsActionsEnum.REMOVE_CHANNEL_PARTICIPANTS,
+  type: ChannelsActionsEnum.REMOVE_CHANNEL_PARTICIPANTS;
   data: {
     id: string;
     participants: string[];
-  }
+  };
 }
 
 export interface AddChannelMessages extends Action {
-  type: ChannelsActionsEnum.ADD_CHANNEL_MESSAGES,
+  type: ChannelsActionsEnum.ADD_CHANNEL_MESSAGES;
   data: {
     id: string;
     messages: string[];
-  }
+  };
 }
 
 export interface RemoveChannelMessages extends Action {
-  type: ChannelsActionsEnum.REMOVE_CHANNEL_MESSAGES,
+  type: ChannelsActionsEnum.REMOVE_CHANNEL_MESSAGES;
   data: {
     id: string;
     messages: string[];
-  }
+  };
 }
 
 export interface ClearChannelMessages extends Action {
-  type: ChannelsActionsEnum.CLEAR_CHANNEL_MESSAGES,
+  type: ChannelsActionsEnum.CLEAR_CHANNEL_MESSAGES;
   data: {
     id: string;
-  }
+  };
 }
 
 export interface ClearChannels extends Action {
-  type: ChannelsActionsEnum.CLEAR_CHANNELS,
-  data: {}
+  type: ChannelsActionsEnum.CLEAR_CHANNELS;
+  data: {};
 }
 
-export interface AddChannelToRecent extends Action {
-  type: ChannelsActionsEnum.ADD_CHANNEL_TO_RECENT,
-  data: {
-    id: string;
-  }
-}
-
-export interface ClearRecentChannels extends Action {
-  type: ChannelsActionsEnum.CLEAR_RECENT_CHANNELS,
-  data: {}
-}
-
-export interface AddChannelToJoined extends Action {
-  type: ChannelsActionsEnum.ADD_CHANNEL_TO_JOINED,
-  data: {
-    id: string;
-  }
-}
-
-export interface RemoveChannelFromJoined extends Action {
-  type: ChannelsActionsEnum.REMOVE_CHANNEL_FROM_JOINED,
-  data: {
-    id: string;
-  }
-}
-
-export interface ClearJoinedChannels extends Action {
-  type: ChannelsActionsEnum.CLEAR_JOINED_CHANNELS,
-  data: {}
-}
-
-export type ChannelsAction = AddChannels | RemoveChannels | ModifyChannel | ModifyChannelSettings
-| AddChannelParticipants | RemoveChannelParticipants | AddChannelMessages | RemoveChannelMessages | ClearChannelMessages
-| ClearChannels | AddChannelToRecent | ClearRecentChannels | AddChannelToJoined | RemoveChannelFromJoined
-| ClearJoinedChannels;
+export type ChannelsAction =
+  | AddChannels
+  | RemoveChannels
+  | ModifyChannel
+  | AddChannelParticipants
+  | RemoveChannelParticipants
+  | AddChannelMessages
+  | RemoveChannelMessages
+  | ClearChannelMessages
+  | ClearChannels
+  | ClearChannels
+  | ClearChannels;

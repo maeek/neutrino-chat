@@ -2,7 +2,11 @@ import { Reducer } from 'redux';
 import { ClearMe, UserActionsEnum } from '@/store/me/user/types';
 import { usersReducerMock } from './mock';
 import { UsersAction, UsersActionsEnum, UsersState } from './types';
-import { AddMessages, MessagesActionsEnum } from '../messages/types';
+import {
+  AddMessages,
+  MessageTypes,
+  MessagesActionsEnum
+} from '../messages/types';
 
 export const initialState: UsersState = !!import.meta.env.VITE_DEMO
   ? usersReducerMock
@@ -83,7 +87,9 @@ export const users: Reducer<UsersState, UsersAction | ClearMe | AddMessages> = (
       };
 
     case MessagesActionsEnum.ADD_MESSAGES:
-      for (const ms of action.data.messages) {
+      for (const ms of action.data.messages.filter(
+        (m) => m.type === MessageTypes.DIRECT
+      )) {
         newUsers[ms.parentId] = {
           ...state.entries[ms.parentId],
           messages: [...(state.entries[ms.parentId].messages || []), ms.uuid],

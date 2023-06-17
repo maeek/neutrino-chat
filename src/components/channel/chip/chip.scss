@@ -1,0 +1,16 @@
+.ne-chip {
+  border-radius: 3rem;
+  background-color: var(--clr-primary-300);
+  padding: 0.25rem 0.5rem;
+  color: #000;
+
+  svg {
+    font-size: var(--fs-300);
+    margin-right: 0.3rem;
+    margin-top: -0.05rem;
+  }
+
+  &:hover {
+    background-color: var(--clr-primary-200);
+  }
+}

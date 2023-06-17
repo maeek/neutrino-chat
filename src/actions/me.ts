@@ -12,9 +12,11 @@ import { addNewError } from '@/store/app/errors/actions';
 import { unifiedErrorTemplate } from '@/store/app/errors/error';
 import { ApiUsers } from '@/api/users';
 import { populateUsersCache } from '@/store/users/actions';
+import { ApiChannels } from '@/api/channels';
+import { addChannels } from '@/store/channels/actions';
 
 export const fetchMeBasicInfo = () => async (dispatch: Dispatch) => {
-  await ApiMe.getMe()
+  ApiMe.getMe()
     .then((response) => {
       console.log('response', response.data);
       dispatch(
@@ -39,7 +41,7 @@ export const fetchMeBasicInfo = () => async (dispatch: Dispatch) => {
       );
     });
 
-  await ApiUsers.getUsers()
+  ApiUsers.getUsers()
     .then((response) => {
       console.log('response', response.data);
 
@@ -75,6 +77,14 @@ export const fetchMeBasicInfo = () => async (dispatch: Dispatch) => {
           })
         )
       );
+    });
+
+  ApiChannels.getList()
+    .then((res) => {
+      dispatch(addChannels(res.data.items));
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };
 

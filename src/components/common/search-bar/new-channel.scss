@@ -1,0 +1,76 @@
+@use '@/styles/base/breakpoints' as *;
+
+.create-new-channel-modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include mq('small') {
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  &-box {
+    width: 100%;
+    max-width: 30rem;
+    height: auto;
+    max-height: 60rem;
+    background-color: var(--clr-primary-800);
+    border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+
+    @include mq('small') {
+      border-radius: 0;
+      max-width: 100%;
+      margin: 0;
+      height: 100%;
+    }
+  }
+}
+
+.create-new-channel-name {
+  margin-top: 0.5rem;
+}
+
+.create-new-channel-users-input {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.create-new-channel-members {
+  margin: 1rem 0;
+}
+
+.create-new-channel-users-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  max-height: 20rem;
+  overflow: auto;
+  margin-top: 1rem;
+}
+
+.create-new-channel-modal-close {
+  position: absolute;
+  right: 0.6rem;
+  top: 0.4rem;
+  color: var(--clr-basic-300);
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: var(--clr-basic-100);
+  }
+}

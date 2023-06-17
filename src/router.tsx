@@ -13,6 +13,7 @@ import SettingsSecurityPage from './views/settings/content/Security';
 import SettingsServerMgmtPage from './views/settings/content/ServerMgmt';
 import SettingsNotificationsPage from './views/settings/content/Notifications';
 import SettingsServerAuditPage from './views/settings/content/Audit';
+import ChannelPage from './views/channel/Channel';
 
 const RouterWrapper = () => (
   <Router>
@@ -43,6 +44,8 @@ const RouterWrapper = () => (
         />
         <Route exact path='/u/:username' render={UserPage} />
         <Route exact path='/u/:username/chat' render={UserPage} />
+        <Route exact path='/c/:channel' render={ChannelPage} />
+        <Route exact path='/c/:channel/chat' render={ChannelPage} />
 
         <MobileBottomNav />
       </RestrictedRoute>

@@ -17,7 +17,6 @@ import {
   VerifiedUserRounded
 } from '@material-ui/icons';
 import { Chip } from '../chip/chip';
-import { getUserIsInStarred } from '@/selectors/users';
 import { checkIfUserIsMuted } from '@/selectors/muted';
 import { AddToGroup } from '@/components/common/add-to-group';
 import Navigator from '@/utils/navigation';
@@ -35,9 +34,6 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const loggedUser = useSelector(getMeUsername);
-  const userIsInStarred = useSelector(getUserIsInStarred(user.id));
-  const userIsInMuted = useSelector(checkIfUserIsMuted(user.id));
-  const [showGroupSelection, setShowGroupSelection] = useState(false);
 
   const toggleBlock: MouseEventHandler = (e) => {
     e.preventDefault();

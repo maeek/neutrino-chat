@@ -16,41 +16,66 @@ import './row.scss';
 import { MessageTypes } from '@/store/messages/types';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { type } from 'os';
+import { getChannelById } from '@/selectors/channels';
+import { RootState } from '@/store/root';
+import { Channel } from '@/store/channels/types';
+import { User } from '@/store/users/types';
+import { Heading } from '@maeek/neutrino-design';
+import { getMeUsername } from '@/selectors/user';
+import { NewReleasesRounded } from '@material-ui/icons';
 
 dayjs.extend(relativeTime);
 
-export interface UserDmListRowProps {
+export interface DmListRowProps {
   id: string;
+  type: MessageTypes;
   style?: any;
   isScrolling?: boolean;
   measure?: () => void;
   onClick?: (id: string, type: MessageTypes) => void;
 }
 
-export const UserDmListRow = ({
+export const DmListRow = ({
   id,
   style,
   measure,
   isScrolling,
+  type,
   onClick
-}: UserDmListRowProps) => {
-  const user = useSelector(getUserById(id));
-  const isUnread = useSelector(areMessagesUnreadByParentId(user.id));
-  const lastMessage = useSelector(getMessageById(user.lastMessage?.id));
+}: DmListRowProps) => {
+  const username = useSelector(getMeUsername);
+  const context = useSelector((state: RootState) => {
+    if (type === MessageTypes.DIRECT) {
+      return getUserById(id)(state);
+    } else {
+      return getChannelById(id, state);
+    }
+  });
+  const actualId =
+    type === MessageTypes.DIRECT
+      ? (context as User).id
+      : (context as Channel).name;
+  const isUnread = useSelector(areMessagesUnreadByParentId(actualId));
+  const lastMessage = useSelector(getMessageById(context.lastMessage?.id));
   const unreadMessagesLength = useSelector(
-    getMessagesUnreadForParent(user.id)
+    getMessagesUnreadForParent(actualId)
   )?.length;
   const history = useHistory();
 
   const handleClick = () => {
     if (onClick) {
-      onClick(user.id, MessageTypes.DIRECT);
+      onClick(actualId, MessageTypes.DIRECT);
       return;
     }
 
-    Navigator.forward(history, `/u/${user.id}/chat`, {
-      isChat: true
-    });
+    Navigator.forward(
+      history,
+      `/${type === MessageTypes.DIRECT ? 'u' : 'c'}/${actualId}/chat`,
+      {
+        isChat: true
+      }
+    );
   };
 
   useEffect(() => {
@@ -63,12 +88,13 @@ export const UserDmListRow = ({
       return '';
     }
 
-    const sender = lastMessage.senderId !== user.id ? 'You: ' : `${user.id}: `;
+    const sender =
+      lastMessage.senderId !== actualId ? 'You: ' : `${actualId}: `;
 
     if (lastMessage.attachments.length > 0) {
       return (
         <i>
-          {lastMessage.senderId !== user.id ? 'You ' : `${user.id} `} sent an
+          {lastMessage.senderId !== actualId ? 'You ' : `${actualId} `} sent an
           attachment
         </i>
       );
@@ -89,22 +115,44 @@ export const UserDmListRow = ({
       style={style}
       tabIndex={0}
     >
-      <UserAvatar
-        loader={null}
-        status={user.status}
-        size={'large'}
-        key={user.avatar}
-        url={user.avatar}
-        username={user.id}
-        color={getHslColorFromCharCode(user.id)}
-      />
+      {type === MessageTypes.DIRECT ? (
+        <UserAvatar
+          loader={null}
+          size={'large'}
+          key={(context as User).avatar}
+          url={(context as User).avatar}
+          username={actualId}
+          color={getHslColorFromCharCode(actualId)}
+        />
+      ) : (
+        <div className='dm-list-row-avatar'>
+          {((context as Channel)?.users?.length || 0) > 9
+            ? '9+'
+            : (context as Channel)?.users?.length}
+        </div>
+      )}
       <div
         className={classNames(
           'dm-list-row-data',
-          user.lastMessage && isUnread && 'dm-list-row-data--unread'
+          context.lastMessage && isUnread && 'dm-list-row-data--unread'
         )}
       >
-        <UserUsername username={user.id} />
+        <Heading className='me-profile-username' level={3}>
+          {actualId === username && type === MessageTypes.DIRECT ? (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <span>Note to self</span>
+              <NewReleasesRounded
+                style={{
+                  color: 'var(--clr-actions-400)',
+                  marginLeft: '0.3rem',
+                  fontSize: '1rem'
+                }}
+              />
+            </div>
+          ) : (
+            actualId
+          )}
+        </Heading>
         <div className='dm-list-row-message'>{renderLastMessage()}</div>
         {unreadMessagesLength > 0 && (
           <div className='dm-list-row-unread'>{unreadMessagesLength}</div>
@@ -117,4 +165,4 @@ export const UserDmListRow = ({
   );
 };
 
-export default UserDmListRow;
+export default DmListRow;

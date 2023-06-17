@@ -11,6 +11,9 @@ import { InputRef } from '@maeek/neutrino-design/components/inputs/text/Input';
 import { Text } from '@maeek/neutrino-design/components/typography/text';
 import Navigator from '@/utils/navigation';
 import './list.scss';
+import { Message, NewReleasesRounded } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
+import { getMeUsername } from '@/selectors/user';
 
 export enum SuggestionItemTypes {
   USER = 'user',
@@ -44,6 +47,7 @@ export const SearchBarSuggestionsList = ({
 }: SearchBarSuggestionsListProps) => {
   const history = useHistory();
   const listRefs = useRef<MutableRefObject<any>[]>([]);
+  const username = useSelector(getMeUsername);
 
   const preventDefault = (e: MouseEvent) => e.preventDefault();
 
@@ -140,7 +144,20 @@ export const SearchBarSuggestionsList = ({
                   onClick={preventDefault}
                   tabIndex={-1}
                 >
-                  {name}
+                  {type === SuggestionItemTypes.USER && name === username ? (
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <span>Note to self</span>
+                      <NewReleasesRounded
+                        style={{
+                          color: 'var(--clr-actions-400)',
+                          marginLeft: '0.3rem',
+                          fontSize: '1rem'
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    name
+                  )}
                   {renderChannelOwner}
                 </Text>
               </li>
