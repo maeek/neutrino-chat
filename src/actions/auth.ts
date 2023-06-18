@@ -100,6 +100,7 @@ export const logout = () => (dispatch: Dispatch) => {
     .finally(() => {
       dispatch(clearTokens());
       dispatch(clearMe());
+      location.reload();
     });
 };
 

@@ -16,6 +16,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import io, { Socket } from 'socket.io-client';
 import { dataURLToBlob } from './dataUrlToBlob';
+import { logout } from '@/actions/auth';
 
 export interface SocketContext {
   socket?: Socket;
@@ -60,6 +61,10 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
     const onDisconnect = () => {
       setIsConnected(false);
       console.log('SocketProvider', 'disconnected');
+    };
+    const onSessionClosed = (data: any) => {
+      console.log('SocketProvider', 'session closed');
+      if (data.logout) dispatch(logout());
     };
 
     const onMessage = async (data: any) => {
@@ -109,6 +114,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
     skt.on('connect', onConnect);
     skt.on('disconnect', onDisconnect);
     skt.on('message', onMessage);
+    skt.on('sessions', onSessionClosed);
 
     socket.current = skt;
     (window as any).socket = socket;

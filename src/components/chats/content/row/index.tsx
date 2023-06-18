@@ -102,7 +102,7 @@ export const DmListRow = ({
     if (lastMessage.attachments.length > 0) {
       return (
         <i>
-          {lastMessage.senderId !== username
+          {lastMessage.senderId === username
             ? 'You '
             : `${lastMessage.senderId} `}{' '}
           sent an attachment

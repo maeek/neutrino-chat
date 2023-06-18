@@ -2,6 +2,8 @@ import { Attachment, Message } from '@/store/messages/types';
 import { useSelector } from 'react-redux';
 import { getAttachmentsByMessageId } from '@/selectors/messages';
 import { SaveAltRounded } from '@material-ui/icons';
+import { useState } from 'react';
+import { ImagePreview } from '../../image-preview/image-preview';
 import './content.scss';
 
 export interface ChatBubbleAttachmentProps {
@@ -14,6 +16,7 @@ export const ChatBubbleAttachment = ({
   onClick
 }: ChatBubbleAttachmentProps) => {
   const attachments = useSelector(getAttachmentsByMessageId(message.uuid));
+  const [ isOpened, setIsOpened ] = useState<boolean>(false);
 
   const downloadAttachment = (attachment: Attachment) => {
     const link = document.createElement('a');
@@ -24,18 +27,37 @@ export const ChatBubbleAttachment = ({
 
   const renderAttachment = (attachment: Attachment) => {
     if (attachment.mimeType.startsWith('image/')) {
-      return <img src={attachment.uri} alt={attachment.name} />;
-    } else if(attachment.mimeType.startsWith('video/')) {
+      return (
+        <>
+          <img
+            src={attachment.uri}
+            alt={attachment.name}
+            onClick={() => setIsOpened(true)}
+          />
+          {isOpened && (
+            <ImagePreview
+              url={attachment.uri}
+              isOpened={isOpened}
+              onClose={() => setIsOpened(false)}
+            />
+          )}
+        </>
+      );
+    } else if (attachment.mimeType.startsWith('video/')) {
       return <video src={attachment.uri} controls />;
     } else if (attachment.mimeType.startsWith('audio/')) {
       return <audio src={attachment.uri} controls />;
     } else {
       return (
-        <a onClick={() => downloadAttachment(attachment)} title={attachment.name} target='_blank' rel='noreferrer' className='attachment-download-link' >
+        <a
+          onClick={() => downloadAttachment(attachment)}
+          title={attachment.name}
+          target='_blank'
+          rel='noreferrer'
+          className='attachment-download-link'
+        >
           <SaveAltRounded />
-          <span>
-            {attachment.name}
-          </span>
+          <span>{attachment.name}</span>
         </a>
       );
     }
