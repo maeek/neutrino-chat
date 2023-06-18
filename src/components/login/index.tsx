@@ -1,7 +1,6 @@
 import { MouseEvent } from 'react';
 import { useDispatch } from 'react-redux';
 import { RouteProps, useHistory } from 'react-router-dom';
-import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/content-footer';
 import Navigator from '@/utils/navigation';
 import { login } from '@/actions/auth';
 import { GenericFooter } from '@/components/common/footer/generic';

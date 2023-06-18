@@ -44,7 +44,7 @@ export const UsersMgmt = () => {
       />
       <ul className='user-mgmt-list'>
         {page.map((user) => (
-          <UsersMgmtEntry id={user} />
+          <UsersMgmtEntry id={user} key={`usr-mgmt-${user}`} />
         ))}
       </ul>
       {maxPages > 1 && (

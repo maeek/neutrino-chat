@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ProceedButton from '@maeek/neutrino-design/components/buttons/Proceed';
 import { getMeUsername } from '@/selectors/user';
 import {
@@ -11,11 +11,10 @@ import {
   useAccessibility
 } from '@maeek/neutrino-design';
 import './new-channel.scss';
-import { KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { KeyboardEvent, useCallback, useRef, useState } from 'react';
 import { InputRef } from '@maeek/neutrino-design/components/inputs/text/Input';
 import { CloseRounded } from '@material-ui/icons';
 import { CheckboxBox } from '@/components/settings/pages/notifications/notf-switch';
-import { addChannels } from '@/store/channels/actions';
 
 export interface MainSearchBarAddChannelModalProps {
   onClose?: () => void;
@@ -30,7 +29,6 @@ export const MainSearchBarAddChannelModal = ({
   const usersInputRef = useRef<InputRef>(null);
   const [ channelName, setChannelName ] = useState('');
   const [ isPublic, setIsPublic ] = useState(false);
-  const dispatch = useDispatch();
 
   const focusOnRender = useCallback((node: HTMLDivElement) => {
     node?.focus();
@@ -88,6 +86,7 @@ export const MainSearchBarAddChannelModal = ({
                 </Chip>
                 {users.map((user) => (
                   <Chip
+                    key={'new-channel-user-' + user}
                     type='round'
                     size={'large'}
                     deletable

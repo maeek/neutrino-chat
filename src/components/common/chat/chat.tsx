@@ -2,15 +2,15 @@ import { getMessagesByParentId } from '@/selectors/messages';
 import { getMeUsername } from '@/selectors/user';
 import { getUsers } from '@/selectors/users';
 import { MessageTypes } from '@/store/messages/types';
-import { Bubble, ContextMenu } from '@maeek/neutrino-design';
+import { Bubble } from '@maeek/neutrino-design';
 import { useDispatch, useSelector } from 'react-redux';
-import { DeleteForeverRounded, MoreHorizRounded } from '@material-ui/icons';
 import classNames from 'classnames';
-import './chat.scss';
 import { useEffect, useState } from 'react';
-import { modifyMessage, removeMessages } from '@/store/messages/actions';
+import { modifyMessage } from '@/store/messages/actions';
 import { ChatBubbleAttachment } from './renderers/content';
 import { useSocketContext } from '@/components/socket-context/context';
+import { RootState } from '@/store/root';
+import './chat.scss';
 
 export interface ChatProps {
   type: MessageTypes;
@@ -19,25 +19,11 @@ export interface ChatProps {
 
 export const Chat = ({ type, parentId }: ChatProps) => {
   const [ hasFocus, setHasFocus ] = useState(true);
-  const messages = useSelector(getMessagesByParentId(parentId)) || [];
+  const messages = useSelector((state: RootState) => getMessagesByParentId(parentId)(state) || []);
   const myId = useSelector(getMeUsername);
   const users = useSelector(getUsers);
   const dispatch = useDispatch();
   const { joinPublicChannel, isConnected } = useSocketContext();
-
-  const actions = [
-    {
-      key: 'action-1',
-      name: 'More',
-      icon: <MoreHorizRounded />,
-      onClick: () => {},
-      children: (
-        <ContextMenu
-          items={[ { text: 'Remove', icon: <DeleteForeverRounded /> } ]}
-        />
-      )
-    }
-  ];
 
   useEffect(() => {
     const unreadMessages = messages.filter((m) => !m.read);

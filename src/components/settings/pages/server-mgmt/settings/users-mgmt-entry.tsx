@@ -1,23 +1,14 @@
 import UserAvatar from '@/components/common/user-components/avatar';
-import './users-mgmt-entry.scss';
 import { getUserById } from '@/selectors/users';
 import { useDispatch, useSelector } from 'react-redux';
 import { getHslColorFromCharCode } from '@/utils/getHslColorFromCharCode';
-import {
-  DeleteRounded,
-  MoreHorizRounded,
-  SupervisorAccountRounded
-} from '@material-ui/icons';
-import {
-  ContextMenu,
-  ContextMenuItem,
-  Text,
-  useClickOutside
-} from '@maeek/neutrino-design';
+import { DeleteRounded, MoreHorizRounded } from '@material-ui/icons';
+import { ContextMenu, Text, useClickOutside } from '@maeek/neutrino-design';
 import { MutableRefObject, useRef, useState } from 'react';
 import { ApiUsers } from '@/api/users';
 import { fetchMeBasicInfo } from '@/actions/me';
 import { deleteUsersCache } from '@/store/users/actions';
+import './users-mgmt-entry.scss';
 
 export interface UsersMgmtEntryProps {
   id: string;
@@ -29,7 +20,7 @@ export const UsersMgmtEntry = ({ id }: UsersMgmtEntryProps) => {
   const contextRef = useRef<HTMLElement>();
   const dispatch = useDispatch();
 
-  useClickOutside((e) => {
+  useClickOutside(() => {
     setContext(false);
   }, contextRef as MutableRefObject<Element>);
 

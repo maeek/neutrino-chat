@@ -8,7 +8,6 @@ import ContextMenu, {
 import {
   AccountCircleRounded,
   ExitToAppRounded,
-  HelpOutlineRounded,
   SettingsRounded
 } from '@material-ui/icons';
 import Navigator from '@/utils/navigation';

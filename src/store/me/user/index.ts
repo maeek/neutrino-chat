@@ -1,5 +1,5 @@
 import userReducerMock from './mock';
-import { UserState, UserActionTypes, UserActionsEnum, MeStatus } from './types';
+import { UserState, UserActionTypes, UserActionsEnum } from './types';
 
 export const initialState: UserState = import.meta.env.VITE_DEMO
   ? userReducerMock

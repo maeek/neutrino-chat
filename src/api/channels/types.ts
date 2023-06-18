@@ -1,5 +1,3 @@
-import type { ChatApiPagination, ChatApiResponse } from '../types';
-
 export type ChatApiChannelId = string;
 
 export interface ChatApiChannelSettings {

@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import ActionButton from '@maeek/neutrino-design/components/buttons/Action';
-import ProceedButton from '@maeek/neutrino-design/components/buttons/Proceed';
 import { GroupAddRounded } from '@material-ui/icons';
 import { getMeColor } from '@/selectors/user';
 import { useAccessibility } from '@maeek/neutrino-design';

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store/root';
 import { getAuthToken, getAuthRefreshToken } from '@/selectors/session';
 import Navigator from '@/utils/navigation';
-import { getMeUser } from '@/selectors/user';
 import { fetchMeBasicInfo } from '@/actions/me';
 import { logout } from '@/actions/auth';
 import { SocketProvider } from '../socket-context/context';
@@ -43,6 +42,7 @@ const RestrictedRoute = ({ children }: RestrictedRouteProps) => {
         try {
           await dispatch(fetchMeBasicInfo());
         } catch (err) {
+          // noting to do here
         } finally {
           setFetched('done');
         }

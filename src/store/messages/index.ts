@@ -6,7 +6,6 @@ import {
   MessagesActionsType,
   MessagesState,
   MessageStatus,
-  MessageTypes,
   ModifyMessage,
   RemoveAttachments,
   RemoveMessageReactions,

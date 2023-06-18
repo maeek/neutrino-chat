@@ -2,23 +2,19 @@ import classNames from 'classnames';
 import UsernameFull from '../../common/user-components/username-full';
 import DetailsButtonShowMore from '../details-buttons/details-more';
 import ArrowBackRounded from '@material-ui/icons/ArrowBackRounded';
-import { useDispatch, useSelector } from 'react-redux';
 import Navigator from '@/utils/navigation';
 import { useHistory } from 'react-router-dom';
-import './channel-info.scss';
-import { getMeUsername } from '@/selectors/user';
 import { Channel } from '@/store/channels/types';
+import './channel-info.scss';
 
 export interface UserInfoProps {
   isMinified?: boolean;
-  onToggle?: () => void;
   channel: Channel;
 }
 
 export const ChannelInfo = ({
   channel,
-  isMinified,
-  onToggle
+  isMinified
 }: UserInfoProps) => {
   const history = useHistory();
 

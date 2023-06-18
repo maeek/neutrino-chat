@@ -2,7 +2,7 @@ import LayoutContentFooter from '@maeek/neutrino-design/components/layouts/conte
 import MainSearchBar from '../common/search-bar/search-bar';
 import UsersCards from './content/users';
 import { useMediaQuery } from 'react-responsive';
-import { Heading, LayoutSideContent, Text } from '@maeek/neutrino-design';
+import { Heading, LayoutSideContent } from '@maeek/neutrino-design';
 import { Chat } from '../common/chat/chat';
 import { useEffect, useState } from 'react';
 import { MessageTypes } from '@/store/messages/types';
@@ -11,7 +11,7 @@ import UserAvatar from '../common/user-components/avatar';
 import { getHslColorFromCharCode } from '@/utils/getHslColorFromCharCode';
 import { useSelector } from 'react-redux';
 import { getUserById } from '@/selectors/users';
-import { ForumRounded, MoreHorizRounded } from '@material-ui/icons';
+import { ForumRounded } from '@material-ui/icons';
 import Navigator from '@/utils/navigation';
 import { useHistory, useLocation } from 'react-router-dom';
 import './chats.scss';

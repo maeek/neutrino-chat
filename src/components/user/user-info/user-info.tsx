@@ -9,28 +9,20 @@ import { Text } from '@maeek/neutrino-design/components/typography/text/Text';
 import Loader from '@maeek/neutrino-design/components/loaders/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { modifyUsers } from '@/store/users/actions';
-import { MouseEventHandler, useState } from 'react';
-import {
-  BlockRounded,
-  NewReleasesRounded,
-  VerifiedUser,
-  VerifiedUserRounded
-} from '@material-ui/icons';
+import { MouseEventHandler } from 'react';
+import { BlockRounded, NewReleasesRounded } from '@material-ui/icons';
 import { Chip } from '../chip/chip';
-import { checkIfUserIsMuted } from '@/selectors/muted';
-import { AddToGroup } from '@/components/common/add-to-group';
 import Navigator from '@/utils/navigation';
 import { useHistory } from 'react-router-dom';
-import './user-info.scss';
 import { getMeUsername } from '@/selectors/user';
+import './user-info.scss';
 
 export interface UserInfoProps {
   isMinified?: boolean;
-  onToggle?: () => void;
   user: User;
 }
 
-export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
+export const UserInfo = ({ user, isMinified }: UserInfoProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const loggedUser = useSelector(getMeUsername);

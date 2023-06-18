@@ -3,8 +3,6 @@ import {
   SetMeUsername,
   SetMeBio,
   UserActionsEnum,
-  Reaction,
-  MeStatus,
   ClearMe,
   SetMeRole
 } from './types';

@@ -1,4 +1,4 @@
-import { MeStatus, UserRole, UserState } from './types';
+import { UserRole, UserState } from './types';
 
 export const userReducerMock: UserState = {
   username: 'maek',

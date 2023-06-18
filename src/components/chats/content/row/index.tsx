@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { getUserById } from '@/selectors/users';
 import UserAvatar from '@/components/common/user-components/avatar';
 import { getHslColorFromCharCode } from '@/utils/getHslColorFromCharCode';
-import { UserUsername } from '@/components/common/user-components/username';
 import Navigator from '@/utils/navigation';
 import { useHistory } from 'react-router-dom';
 import classNames from 'classnames';
@@ -13,10 +12,9 @@ import {
   getMessagesUnreadForParent
 } from '@/selectors/messages';
 import './row.scss';
-import { Message, MessageTypes } from '@/store/messages/types';
+import { MessageTypes } from '@/store/messages/types';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { type } from 'os';
 import { getChannelById } from '@/selectors/channels';
 import { RootState } from '@/store/root';
 import { Channel } from '@/store/channels/types';

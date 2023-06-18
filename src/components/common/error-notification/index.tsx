@@ -1,5 +1,5 @@
 import { RootState } from '@/store/root';
-import { Heading, Modal, Text } from '@maeek/neutrino-design';
+import { Modal, Text } from '@maeek/neutrino-design';
 import { useDispatch, useSelector } from 'react-redux';
 import { CloseRounded } from '@material-ui/icons';
 import { useCallback } from 'react';
@@ -28,7 +28,7 @@ export const ErrorNotification = () => {
     setTimeout(() => {
       node?.classList.add('error-notification-item--dismissed');
     }, 2000);
-  }, []);
+  }, [ dispatch ]);
 
   if (errors.list.length === 0) {
     return null;

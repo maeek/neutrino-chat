@@ -9,13 +9,10 @@ import {
 } from '@/selectors/filters';
 import { RootState } from '@/store/root';
 import { User } from '@/store/users/types';
-// import { Channel } from '@/store/channels/types';
-import './suggestions.scss';
 import { Channel } from '@/store/channels/types';
-import { getMeUsername } from '@/selectors/user';
+import './suggestions.scss';
 
 export interface SearchBarSuggestionsProps {
-  searchedValue?: string;
   isVisible?: boolean;
   firstSuggestionRef?: MutableRefObject<HTMLLIElement>;
   lastSuggestionRef?: MutableRefObject<HTMLLIElement>;
@@ -57,7 +54,7 @@ export const SearchBarSuggestions = forwardRef<
 
     const isOpened = !!(
       isVisible &&
-      // filteredChannels.length > 0 ||
+      filteredChannels.length > 0 ||
       filteredUsers.length > 0
     );
 

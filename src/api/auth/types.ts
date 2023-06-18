@@ -1,5 +1,3 @@
-import type { ChatApiResponse } from '../types';
-
 export enum ChatApiAuthHeadersEnum {
   TOKEN = 'x-api-token'
 }

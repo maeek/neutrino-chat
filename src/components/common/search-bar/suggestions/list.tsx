@@ -10,15 +10,16 @@ import { useHistory } from 'react-router';
 import { InputRef } from '@maeek/neutrino-design/components/inputs/text/Input';
 import { Text } from '@maeek/neutrino-design/components/typography/text';
 import Navigator from '@/utils/navigation';
-import './list.scss';
-import { Message, NewReleasesRounded } from '@material-ui/icons';
+import { NewReleasesRounded } from '@material-ui/icons';
 import { useSelector } from 'react-redux';
 import { getMeUsername } from '@/selectors/user';
+import './list.scss';
 
 export enum SuggestionItemTypes {
   USER = 'user',
   CHANNEL = 'channel'
 }
+
 export interface SuggestionsListElement {
   id: string;
   name: string;

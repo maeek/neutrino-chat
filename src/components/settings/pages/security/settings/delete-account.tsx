@@ -1,5 +1,5 @@
-import { getMeRole, getMeUsername } from '@/selectors/user';
-import { useRef, useState, KeyboardEvent } from 'react';
+import { getMeUsername } from '@/selectors/user';
+import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   AbortButton,

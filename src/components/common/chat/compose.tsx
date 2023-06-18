@@ -1,8 +1,6 @@
-import { getMeColor, getMeUsername } from '@/selectors/user';
+import { getMeColor } from '@/selectors/user';
 import {
   Attachment,
-  Message,
-  MessageStatus,
   MessageTypes
 } from '@/store/messages/types';
 import { ActionButton, SecondaryButton } from '@maeek/neutrino-design';
@@ -19,12 +17,11 @@ import {
   FocusEvent,
   KeyboardEvent
 } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addMessages } from '@/store/messages/actions';
+import { useSelector } from 'react-redux';
 import { v4 } from 'uuid';
 import classNames from 'classnames';
-import './compose.scss';
 import { useSocketContext } from '@/components/socket-context/context';
+import './compose.scss';
 
 export interface ComposeMessageProps {
   type: MessageTypes;
@@ -51,10 +48,8 @@ export const ComposeMessage = forwardRef(
   ) => {
     const socket = useSocketContext();
     const meColor = useSelector(getMeColor);
-    const me = useSelector(getMeUsername);
     const { onEnter } = useAccessibility();
     const inputRef = useRef<InputRef>(null);
-    const dispatch = useDispatch();
     const [ message, setMessage ] = useState<string>('');
     const [ attachment, setAttachment ] = useState<File | null>(null);
 

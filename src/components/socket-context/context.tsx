@@ -29,7 +29,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
   const authToken = useSelector(getAuthToken);
   const username = useSelector(getMeUsername);
   const socket = useRef<Socket>();
-  const [isConnected, setIsConnected] = useState(false);
+  const [ isConnected, setIsConnected ] = useState(false);
   const dispatch = useDispatch();
   const throttleRef = useRef(
     throttle(() => {
@@ -112,7 +112,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
       skt.off('connect', onConnect);
       skt.off('message', onMessage);
     };
-  }, [dispatch, authToken, username]);
+  }, [ dispatch, authToken, username ]);
 
   const sendMessage = useCallback((data: any) => {
     socket.current?.emit('message', data);

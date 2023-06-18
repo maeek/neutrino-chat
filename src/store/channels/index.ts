@@ -8,8 +8,6 @@ import {
   ChannelsActionsEnum,
   ChannelsState
 } from './types';
-import getPersistConf from '../persist-config';
-import { persistReducer } from 'redux-persist';
 import {
   AddMessages,
   MessageTypes,

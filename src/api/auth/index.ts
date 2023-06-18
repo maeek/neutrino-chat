@@ -1,6 +1,6 @@
 import ApiInstance, { ApiInstance as ApiInstanceType } from '../api';
 import { ChatApiError } from '../api-error';
-import { ChatApiAuthHeadersEnum, ChatApiAuthResponse } from './types';
+import { ChatApiAuthResponse } from './types';
 
 export enum ApiAuthorizationEnum {
   LOGIN = 'ApiAuthorization.login',

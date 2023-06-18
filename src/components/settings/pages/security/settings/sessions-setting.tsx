@@ -43,13 +43,13 @@ export const SessionsSetting = () => {
       .finally(() => {
         setIsFetching(false);
       });
-  }, []);
+  }, [ dispatch ]);
 
   useEffect(() => {
     if (sessions.length === 0 && !isFetching) {
       updateList();
     }
-  }, [ sessions ]);
+  }, [ sessions, isFetching, updateList ]);
 
   return (
     <div className='setting-sessions-preview-container'>

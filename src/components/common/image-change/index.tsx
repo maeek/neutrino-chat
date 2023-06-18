@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ImageChangePreview } from './preview';
 import { ImageChangeFooter } from './footer';
 import { FileSelect } from '@maeek/neutrino-design/components/inputs/file/FileSelect';
@@ -63,7 +63,7 @@ export const ImageChange = ({
       setCurrentImg(URL.createObjectURL(files[ 0 ]));
       setIsEdited?.(true);
     }
-  }, []);
+  }, [ setIsEdited ]);
 
   useEffect(() => {
     if (url !== originalImg) {

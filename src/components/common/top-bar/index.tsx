@@ -29,7 +29,7 @@ export const TopBar = () => {
     return () => {
       dispatch(setTopBarVisibility(false));
     };
-  }, [ isMobile, location.pathname ]);
+  }, [ dispatch, isMobile, location.pathname ]);
 
   return (
     <nav className={classNames('top-bar', !isHidden && 'top-bar--visible')}>

@@ -15,8 +15,6 @@ import {
 import Navigator from '@/utils/navigation';
 import { addNewError } from '@/store/app/errors/actions';
 import { unifiedErrorTemplate } from '@/store/app/errors/error';
-import { RootState } from '@/store/root';
-import { getAuthRefreshToken } from '@/selectors/session';
 import {
   startAuthentication,
   startRegistration
@@ -88,7 +86,7 @@ export const login =
         });
     };
 
-export const logout = () => (dispatch: Dispatch, getState: () => RootState) => {
+export const logout = () => (dispatch: Dispatch) => {
   ApiAuthorization.logout()
     .catch((e: any) => {
       console.error(

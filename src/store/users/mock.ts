@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { UsersState, UserStatusEnum } from './types';
+import { UsersState } from './types';
 
 export const usersReducerMock: UsersState = {
   entries: {

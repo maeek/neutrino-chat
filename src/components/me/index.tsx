@@ -9,11 +9,9 @@ import UserAvatar from '@/components/common/user-components/avatar';
 import UserUsername from '@/components/common/user-components/username';
 import UserBio from '@/components/common/user-components/bio';
 import ProfileQuickLinks from './quick-links';
-import { useHistory } from 'react-router-dom';
 import './me.scss';
 
 export const ProfileView = () => {
-  const history = useHistory();
   const username = useSelector(getMeUsername);
   const avatar = useSelector(getMeAvatar);
   const bio = useSelector(getMeBio);

@@ -2,7 +2,7 @@ import { RootState } from '@/store/root';
 import { Dispatch } from 'redux';
 
 export const notifyUser =
-  (type: 'message') => (dispatch: Dispatch, getState: () => RootState) => {
+  (_type?: 'message') => (dispatch: Dispatch, getState: () => RootState) => {
     const { sound, vibrations, enabled } =
       getState().settings.notifications.chats;
 

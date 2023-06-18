@@ -1,4 +1,3 @@
-import { AxiosRequestConfig } from 'axios';
 import ApiInstance, { ApiInstance as ApiInstanceType } from './api';
 import { ChatApiError } from './api-error';
 

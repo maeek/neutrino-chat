@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { getUserById } from '@/selectors/users';
@@ -16,10 +16,6 @@ import classNames from 'classnames';
 import './user.scss';
 import { InputRef } from '@maeek/neutrino-design/components/inputs/text/Input';
 import { ActionButton } from '@maeek/neutrino-design';
-
-interface UserLocationState {
-  isChat?: boolean;
-}
 
 export const UserView = () => {
   const { username } = useParams<UserPageParams>();

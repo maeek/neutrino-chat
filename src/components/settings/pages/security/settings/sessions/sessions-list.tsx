@@ -1,5 +1,5 @@
 import { SessionsListEntry } from './session-entry';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Input, usePagination } from '@maeek/neutrino-design';
 import { Pagination } from '@/components/common/pagination/pagination';
 import './sessions-list.scss';
@@ -51,6 +51,7 @@ export const SessionsList = ({ sessions, updateList }: SessionsListProps) => {
       >
         {page.map((session) => (
           <SessionsListEntry
+            key={`session-${session.id}-${session.device}}`}
             id={session.id}
             device={session.device}
             createdAt={session.createdAt}

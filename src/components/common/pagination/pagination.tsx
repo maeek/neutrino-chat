@@ -36,7 +36,7 @@ export const Pagination = ({
           )
         )
         .map((i) => (
-          <li className='common-pagination-page'>
+          <li className='common-pagination-page' key={`${i + 1}`}>
             <Text
               strong={page === i}
               className={page === i ? 'common-pagination-page--focused' : ''}
