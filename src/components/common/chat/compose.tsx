@@ -1,5 +1,10 @@
 import { getMeColor, getMeUsername } from '@/selectors/user';
-import { Message, MessageStatus, MessageTypes } from '@/store/messages/types';
+import {
+  Attachment,
+  Message,
+  MessageStatus,
+  MessageTypes
+} from '@/store/messages/types';
 import { ActionButton, SecondaryButton } from '@maeek/neutrino-design';
 import { useAccessibility } from '@maeek/neutrino-design';
 import Input, {
@@ -55,28 +60,27 @@ export const ComposeMessage = forwardRef(
 
     useImperativeHandle(ref, () => inputRef.current);
 
-    const onSend = () => {
+    const onSend = async () => {
       if (message.length > 0 || attachment) {
-        const attachments: {
-          type: string;
-          data: string;
-          uuid: string;
-          name: string;
-        }[] = [];
+        const attachments: Attachment[] = [];
 
         if (attachment) {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            const data = e.target?.result;
-            attachments.push({
-              type: attachment.type,
-              data: data?.toString() || '',
-              uuid: v4(),
-              name: attachment.name
-            });
-            setAttachment(null);
-          };
-          reader.readAsDataURL(attachment);
+          await new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              const data = e.target?.result;
+              attachments.push({
+                mimeType: attachment.type,
+                uri: data?.toString() || '',
+                uuid: v4(),
+                size: attachment.size,
+                name: attachment.name
+              });
+              setAttachment(null);
+              resolve(null);
+            };
+            reader.readAsDataURL(attachment);
+          });
         }
 
         socket?.sendMessage({
@@ -88,14 +92,6 @@ export const ComposeMessage = forwardRef(
           attachments,
           uuid: v4()
         });
-        // if (attachment) {
-        //   socket?.sendAttachment({
-        //     attachment,
-        //     toId: parentId,
-        //     uuid: v4()
-        //   });
-        //   setAttachment(null);
-        // }
         inputRef.current?.setValue('');
         setMessage('');
       }

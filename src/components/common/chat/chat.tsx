@@ -84,7 +84,7 @@ export const Chat = ({ type, parentId }: ChatProps) => {
     >
       {messages.map((message, i, arr) => (
         <Bubble
-          actions={actions}
+          // actions={actions}
           key={message.uuid}
           timestamp={message.timeReceived || 0}
           sender={message.senderId}

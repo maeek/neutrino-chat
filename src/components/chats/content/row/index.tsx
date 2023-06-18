@@ -13,7 +13,7 @@ import {
   getMessagesUnreadForParent
 } from '@/selectors/messages';
 import './row.scss';
-import { MessageTypes } from '@/store/messages/types';
+import { Message, MessageTypes } from '@/store/messages/types';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { type } from 'os';
@@ -95,11 +95,15 @@ export const DmListRow = ({
         ? `${lastMessage.senderId}: `
         : '';
 
+    console.log(lastMessage);
+
     if (lastMessage.attachments.length > 0) {
       return (
         <i>
-          {lastMessage.senderId !== actualId ? 'You ' : `${actualId} `} sent an
-          attachment
+          {lastMessage.senderId !== username
+            ? 'You '
+            : `${lastMessage.senderId} `}{' '}
+          sent an attachment
         </i>
       );
     } else if (lastMessage?.body && lastMessage.body.length > 90) {

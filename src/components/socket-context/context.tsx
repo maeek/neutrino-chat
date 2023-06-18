@@ -1,8 +1,8 @@
 import { notifyUser } from '@/actions/notify';
 import { getAuthToken } from '@/selectors/session';
 import { getMeUsername } from '@/selectors/user';
-import { addMessages } from '@/store/messages/actions';
-import { MessageTypes } from '@/store/messages/types';
+import { addAttachemnts, addMessages } from '@/store/messages/actions';
+import { Attachment, MessageTypes } from '@/store/messages/types';
 import throttle from 'lodash.throttle';
 import {
   ReactNode,
@@ -77,28 +77,25 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
         }
       }
 
-      const attachments = data.attachments.map((a: any) => ({
-        name: a.name,
-        size: a.size,
-        type: a.type,
-        url: a.url
-      }));
-
       dispatch(
-        addMessages([
-          {
-            parentId,
-            uuid: data.serverUuid,
-            body: data.body,
-            timeReceived: Date.now(),
-            timeSent: data.timeSent,
-            read: false,
-            senderId: data.fromId,
-            attachments: [],
-            type
-          }
-        ])
+        addMessages(
+          [
+            {
+              parentId,
+              uuid: data.serverUuid,
+              body: data.body,
+              timeReceived: Date.now(),
+              timeSent: data.timeSent,
+              read: false,
+              senderId: data.fromId,
+              attachments: data.attachments.map((a: any) => a.uuid),
+              type
+            }
+          ],
+          data.attachments
+        )
       );
+
       if (data.fromId !== username) {
         console.log('should notify');
         throttleRef.current();
