@@ -65,7 +65,7 @@ export const DmListRow = ({
 
   const handleClick = () => {
     if (onClick) {
-      onClick(actualId, MessageTypes.DIRECT);
+      onClick(actualId, type);
       return;
     }
 
@@ -89,7 +89,11 @@ export const DmListRow = ({
     }
 
     const sender =
-      lastMessage.senderId !== actualId ? 'You: ' : `${actualId}: `;
+      lastMessage.senderId === username
+        ? 'You: '
+        : lastMessage.type === MessageTypes.CHANNEL
+        ? `${lastMessage.senderId}: `
+        : '';
 
     if (lastMessage.attachments.length > 0) {
       return (

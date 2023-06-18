@@ -61,8 +61,6 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
     </div>
   );
 
-  console.log(username, avatar, src, hasAvatar);
-
   return (
     <Avatar
       // {...rest}

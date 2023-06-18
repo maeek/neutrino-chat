@@ -11,7 +11,7 @@ import { Chat } from '../common/chat/chat';
 import { MessageTypes } from '@/store/messages/types';
 import { ComposeMessage } from '../common/chat/compose';
 import classNames from 'classnames';
-import './user.scss';
+import './channel.scss';
 import { InputRef } from '@maeek/neutrino-design/components/inputs/text/Input';
 import { ActionButton } from '@maeek/neutrino-design';
 import { getChannelById } from '@/selectors/channels';
@@ -65,8 +65,8 @@ export const ChannelView = () => {
   return (
     <div
       className={classNames(
-        'view-root view-root--user',
-        isInfoMinified && 'view-root--user-minified'
+        'view-root view-root--channel',
+        isInfoMinified && 'view-root--channel-minified'
       )}
     >
       <ChannelInfo
@@ -76,8 +76,8 @@ export const ChannelView = () => {
       />
       {isInfoMinified && (
         <>
-          <div className='view-root--user--minified-move'>
-            <Chat parentId={channel.name} type={MessageTypes.DIRECT} />
+          <div className='view-root--channel--minified-move'>
+            <Chat parentId={channel.name} type={MessageTypes.CHANNEL} />
           </div>
           <ComposeMessage
             ref={inputRef}
@@ -90,7 +90,7 @@ export const ChannelView = () => {
         </>
       )}
       {!isInfoMinified && (
-        <div className='view-root--user-cta'>
+        <div className='view-root--channel-cta'>
           <ActionButton onClick={toggleVisibility}>Send a Message</ActionButton>
         </div>
       )}

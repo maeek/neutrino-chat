@@ -1,13 +1,13 @@
 @use '@/styles/base/breakpoints' as *;
 
-.page-root--user {
+.page-root--channel {
   min-height: 0 !important;
   flex: 1 1 auto;
   overflow: hidden;
   height: 100%;
 }
 
-.view-root--user {
+.view-root--channel {
   width: 100%;
   flex: 0 1 auto;
   display: flex;

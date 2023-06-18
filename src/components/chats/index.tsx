@@ -47,7 +47,7 @@ export const ChatsView = () => {
   }, [isMobile]);
 
   const navToUserDetails = () => {
-    Navigator.forward(history, `/u/${user.id}`);
+    Navigator.forward(history, `/u/${user?.id}`);
   };
 
   return (
@@ -65,6 +65,7 @@ export const ChatsView = () => {
               <UsersCards
                 onSelected={(id, type) => {
                   if (!isMobile) {
+                    console.log('selected convo', id, type);
                     setSelectedConvo({ id, type });
                     Navigator.forward(history, `/`, {
                       selectedConvo: { id, type }
@@ -81,12 +82,12 @@ export const ChatsView = () => {
                 <Heading level={3}>
                   <UserAvatar
                     size={'small'}
-                    url={user.avatar}
-                    key={user.id}
-                    username={user.id}
-                    color={getHslColorFromCharCode(user.id)}
+                    url={user?.avatar}
+                    key={user?.id}
+                    username={user?.id}
+                    color={getHslColorFromCharCode(user?.id || '')}
                   />
-                  {user.id}
+                  {user?.id}
                 </Heading>
                 <DetailsButtonShowMore isVisible onClick={navToUserDetails} />
               </div>

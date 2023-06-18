@@ -6,7 +6,7 @@ import rootReducer, { RootState } from './root';
 
 let reducers;
 
-const logger: Middleware<{}, RootState>  = store => next => action => {
+const logger: Middleware<{}, RootState> = (store) => (next) => (action) => {
   console.groupCollapsed(action.type);
   console.info('dispatching', action);
   const result = next(action);
@@ -18,8 +18,8 @@ const logger: Middleware<{}, RootState>  = store => next => action => {
 if (import.meta.env.MODE === 'development') {
   reducers = require('redux-devtools-extension').composeWithDevTools(
     applyMiddleware(
-      thunk,
-      logger
+      thunk
+      // logger
     )
   );
 } else {

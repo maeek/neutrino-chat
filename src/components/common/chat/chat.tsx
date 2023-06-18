@@ -10,6 +10,7 @@ import './chat.scss';
 import { useEffect, useState } from 'react';
 import { modifyMessage, removeMessages } from '@/store/messages/actions';
 import { ChatBubbleAttachment } from './renderers/content';
+import { useSocketContext } from '@/components/socket-context/context';
 
 export interface ChatProps {
   type: MessageTypes;
@@ -22,6 +23,7 @@ export const Chat = ({ type, parentId }: ChatProps) => {
   const myId = useSelector(getMeUsername);
   const users = useSelector(getUsers);
   const dispatch = useDispatch();
+  const { joinPublicChannel, isConnected } = useSocketContext();
 
   const actions = [
     {
@@ -31,11 +33,7 @@ export const Chat = ({ type, parentId }: ChatProps) => {
       onClick: () => {},
       children: (
         <ContextMenu
-          items={[
-            // { text: 'Details' },
-            // { text: 'Forward' },
-            { text: 'Remove', icon: <DeleteForeverRounded /> }
-          ]}
+          items={[{ text: 'Remove', icon: <DeleteForeverRounded /> }]}
         />
       )
     }
@@ -44,11 +42,7 @@ export const Chat = ({ type, parentId }: ChatProps) => {
   useEffect(() => {
     const unreadMessages = messages.filter((m) => !m.read);
 
-    if (
-      unreadMessages.length > 0 &&
-      unreadMessages[0].senderId !== myId &&
-      hasFocus
-    ) {
+    if (unreadMessages.length > 0 && hasFocus) {
       unreadMessages.forEach((m) => {
         dispatch(
           modifyMessage({
@@ -74,6 +68,13 @@ export const Chat = ({ type, parentId }: ChatProps) => {
 
     return () => abortController.abort();
   }, []);
+
+  useEffect(() => {
+    console.log('joining channel', parentId, type);
+    if (type === MessageTypes.CHANNEL && isConnected) {
+      joinPublicChannel(parentId);
+    }
+  }, [type, parentId, joinPublicChannel, isConnected]);
 
   return (
     <div
@@ -104,9 +105,10 @@ export const Chat = ({ type, parentId }: ChatProps) => {
             !arr[i + 1] || arr[i + 1]?.senderId !== message.senderId
           }
           avatar={
-            type === MessageTypes.CHANNEL && message.senderId !== myId
-              ? users[message.senderId].avatar
-              : undefined
+            type === MessageTypes.CHANNEL &&
+            users[message.senderId].avatar &&
+            message.senderId !== myId &&
+            `/api/users/${message.senderId}/avatar`
           }
           {...(message.attachments.length > 0 && {
             attachments: message.attachments

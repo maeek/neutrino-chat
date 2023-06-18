@@ -6,7 +6,6 @@ import store from '@/store/index';
 import Navigator from '@/utils/navigation';
 import { init } from '@/actions/init';
 import reportWebVitals from './report-web-vitals';
-import * as serviceWorkerRegistration from './register-service-worker';
 import App from './App';
 import './styles/main.scss';
 
@@ -40,6 +39,3 @@ if (__DEV__) {
   // eslint-disable-next-line no-console
   reportWebVitals(console.log);
 }
-
-// Register service worker
-serviceWorkerRegistration.register();

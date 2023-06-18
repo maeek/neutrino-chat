@@ -19,6 +19,7 @@ import { addMessages } from '@/store/messages/actions';
 import { v4 } from 'uuid';
 import classNames from 'classnames';
 import './compose.scss';
+import { useSocketContext } from '@/components/socket-context/context';
 
 export interface ComposeMessageProps {
   type: MessageTypes;
@@ -43,6 +44,7 @@ export const ComposeMessage = forwardRef(
     }: ComposeMessageProps,
     ref: any
   ) => {
+    const socket = useSocketContext();
     const meColor = useSelector(getMeColor);
     const me = useSelector(getMeUsername);
     const { onEnter } = useAccessibility();
@@ -67,7 +69,21 @@ export const ComposeMessage = forwardRef(
           attachments: [],
           read: true
         };
-        dispatch(addMessages([msg]));
+        // dispatch(addMessages([msg]));
+        console.log('sending message', {
+          type: type === MessageTypes.CHANNEL ? 1 : 0,
+          body: message,
+          toId: parentId,
+          timeSent: Date.now(),
+          uuid: msg.uuid
+        });
+        socket?.sendMessage({
+          type: type === MessageTypes.CHANNEL ? 1 : 0,
+          body: message,
+          toId: parentId,
+          timeSent: Date.now(),
+          uuid: msg.uuid
+        });
         inputRef.current?.setValue('');
       }
     };

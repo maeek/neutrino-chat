@@ -7,6 +7,7 @@ import Navigator from '@/utils/navigation';
 import { getMeUser } from '@/selectors/user';
 import { fetchMeBasicInfo } from '@/actions/me';
 import { logout } from '@/actions/auth';
+import { SocketProvider } from '../socket-context/context';
 
 interface RestrictedRouteProps {
   children?: ReactNode;
@@ -55,7 +56,7 @@ const RestrictedRoute = ({ children }: RestrictedRouteProps) => {
     }
   }, [errors, dispatch]);
 
-  return <>{children}</>;
+  return <SocketProvider>{children}</SocketProvider>;
 };
 
 export default RestrictedRoute;
