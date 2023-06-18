@@ -42,7 +42,7 @@ export const NotfSection = ({
         />
         <SwitchStoreWrapper
           field={field as never}
-          innerField='push'
+          innerField='sound'
           title='Sound'
           description='Play sound when notification is received'
           disabled={!enabled}

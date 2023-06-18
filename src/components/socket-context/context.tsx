@@ -1,7 +1,9 @@
+import { notifyUser } from '@/actions/notify';
 import { getAuthToken } from '@/selectors/session';
 import { getMeUsername } from '@/selectors/user';
 import { addMessages } from '@/store/messages/actions';
 import { MessageTypes } from '@/store/messages/types';
+import throttle from 'lodash.throttle';
 import {
   ReactNode,
   createContext,
@@ -29,6 +31,11 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
   const socket = useRef<Socket>();
   const [isConnected, setIsConnected] = useState(false);
   const dispatch = useDispatch();
+  const throttleRef = useRef(
+    throttle(() => {
+      dispatch(notifyUser('message'));
+    }, 1000)
+  );
 
   useEffect(() => {
     console.log('SocketProvider', { authToken, username });
@@ -70,6 +77,13 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
         }
       }
 
+      const attachments = data.attachments.map((a: any) => ({
+        name: a.name,
+        size: a.size,
+        type: a.type,
+        url: a.url
+      }));
+
       dispatch(
         addMessages([
           {
@@ -85,6 +99,10 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
           }
         ])
       );
+      if (data.fromId !== username) {
+        console.log('should notify');
+        throttleRef.current();
+      }
     };
 
     skt.on('connect', onConnect);

@@ -98,3 +98,14 @@
     }
   }
 }
+
+.chats-channel-avatar {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  background-color: var(--clr-primary-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

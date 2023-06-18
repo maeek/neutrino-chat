@@ -1,13 +1,17 @@
 import { getNotificationsSettingsByKey } from '@/selectors/notifications-settings';
 import { setNotifications } from '@/store/settings/notifications/actions';
-import { Notification, NotificationsSettingsState } from '@/store/settings/notifications/types';
+import {
+  Notification,
+  NotificationsSettingsState
+} from '@/store/settings/notifications/types';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CheckboxBox, CheckboxBoxProps } from '.';
 
-export interface SwitchStoreWrapperProps extends Omit<CheckboxBoxProps, 'field' | 'checked'> {
+export interface SwitchStoreWrapperProps
+  extends Omit<CheckboxBoxProps, 'field' | 'checked'> {
   field: keyof NotificationsSettingsState;
-  innerField: keyof Omit<Notification, 'sound' | 'native'>;
+  innerField: keyof Notification;
 }
 
 export const SwitchStoreWrapper = (props: SwitchStoreWrapperProps) => {
@@ -19,7 +23,7 @@ export const SwitchStoreWrapper = (props: SwitchStoreWrapperProps) => {
   const onChangeHandler = (f: string, val: boolean) => {
     if (disabled) return;
 
-    dispatch(setNotifications(f, { [ innerField ]: val }));
+    dispatch(setNotifications(f, { [innerField]: val }));
     checkboxRef.current?.setChecked(val);
   };
 
@@ -28,7 +32,7 @@ export const SwitchStoreWrapper = (props: SwitchStoreWrapperProps) => {
       {...props}
       ref={checkboxRef}
       onChange={onChangeHandler}
-      checked={setting[ innerField ]}
+      checked={setting[innerField]}
     />
   );
 };

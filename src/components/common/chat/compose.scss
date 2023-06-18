@@ -32,9 +32,36 @@
     border-radius: 2rem;
   }
 
-  &--fixed {
-    // position: fixed;
-    // bottom: 0;
-    // left: 0;
+  .chat-attachment-button {
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+
+    .ne-button-item {
+      padding: 0;
+      border: 0;
+
+      &:hover {
+        border: 0;
+      }
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      overflow: hidden;
+    }
+
+    span {
+      display: block;
+      padding: 0.6rem 0.2rem;
+      width: 100%;
+      height: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
   }
 }

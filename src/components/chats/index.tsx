@@ -16,6 +16,10 @@ import Navigator from '@/utils/navigation';
 import { useHistory, useLocation } from 'react-router-dom';
 import './chats.scss';
 import DetailsButtonShowMore from '../user/details-buttons/details-more';
+import { getChannelById } from '@/selectors/channels';
+import { RootState } from '@/store/root';
+import { User } from '@/store/users/types';
+import { Channel } from '@/store/channels/types';
 
 type SelectedConvoType = { id: string; type: MessageTypes };
 
@@ -24,7 +28,13 @@ export const ChatsView = () => {
   const { state } = useLocation<{ selectedConvo: SelectedConvoType }>();
   const isMobile = useMediaQuery({ maxWidth: 1224 });
   const [selectedConvo, setSelectedConvo] = useState<SelectedConvoType>();
-  const user = useSelector(getUserById(selectedConvo?.id || ''));
+  const ctx = useSelector((state: RootState) => {
+    if (selectedConvo?.type === MessageTypes.DIRECT) {
+      return getUserById(selectedConvo?.id || '')(state);
+    } else {
+      return getChannelById(selectedConvo?.id || '', state);
+    }
+  });
 
   useEffect(() => {
     if (!isMobile && state?.selectedConvo) {
@@ -47,7 +57,14 @@ export const ChatsView = () => {
   }, [isMobile]);
 
   const navToUserDetails = () => {
-    Navigator.forward(history, `/u/${user?.id}`);
+    Navigator.forward(
+      history,
+      `/${selectedConvo?.type === MessageTypes.DIRECT ? 'u' : 'c'}/${
+        selectedConvo?.type === MessageTypes.DIRECT
+          ? (ctx as User).id
+          : (ctx as Channel).name
+      }`
+    );
   };
 
   return (
@@ -65,7 +82,6 @@ export const ChatsView = () => {
               <UsersCards
                 onSelected={(id, type) => {
                   if (!isMobile) {
-                    console.log('selected convo', id, type);
                     setSelectedConvo({ id, type });
                     Navigator.forward(history, `/`, {
                       selectedConvo: { id, type }
@@ -80,14 +96,25 @@ export const ChatsView = () => {
             <>
               <div className='selected-convo-title'>
                 <Heading level={3}>
-                  <UserAvatar
-                    size={'small'}
-                    url={user?.avatar}
-                    key={user?.id}
-                    username={user?.id}
-                    color={getHslColorFromCharCode(user?.id || '')}
-                  />
-                  {user?.id}
+                  {selectedConvo?.type === MessageTypes.DIRECT ? (
+                    <UserAvatar
+                      loader={null}
+                      size={'small'}
+                      key={(ctx as User).id + (ctx as User).avatar}
+                      url={(ctx as User).avatar}
+                      username={(ctx as User).id}
+                      color={getHslColorFromCharCode((ctx as User).id)}
+                    />
+                  ) : (
+                    <div className='chats-channel-avatar'>
+                      {((ctx as Channel)?.users?.length || 0) > 9
+                        ? '9+'
+                        : (ctx as Channel)?.users?.length}
+                    </div>
+                  )}
+                  {selectedConvo?.type === MessageTypes.DIRECT
+                    ? (ctx as User).id
+                    : (ctx as Channel).name}
                 </Heading>
                 <DetailsButtonShowMore isVisible onClick={navToUserDetails} />
               </div>

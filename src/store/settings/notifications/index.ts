@@ -2,102 +2,45 @@ import getPersistConf from '@/store/persist-config';
 import { Reducer } from 'redux';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
-import { NotificationsSettingsAction, NotificationsSettingsActionEnum, NotificationsSettingsState, SetNotfAction } from './types';
+import {
+  NotificationsSettingsAction,
+  NotificationsSettingsActionEnum,
+  NotificationsSettingsState,
+  SetNotfAction
+} from './types';
 
 export const initialState: NotificationsSettingsState = {
   mentions: {
     enabled: true,
     vibrations: true,
-    sound: {
-      enabled: true,
-      volume: 1
-    },
-    push: false,
-    native: {
-      permitted: false
-    }
-  },
-  reactions: {
-    enabled: true,
-    vibrations: true,
-    sound: {
-      enabled: true,
-      volume: 1
-    },
-    push: false,
-    native: {
-      permitted: false
-    }
+    sound: true
   },
   joined: {
     enabled: true,
     vibrations: true,
-    sound: {
-      enabled: true,
-      volume: 1
-    },
-    push: false,
-    native: {
-      permitted: false
-    }
+    sound: true
   },
   left: {
     enabled: true,
     vibrations: true,
-    sound: {
-      enabled: true,
-      volume: 1
-    },
-    push: false,
-    native: {
-      permitted: false
-    }
+    sound: true
   },
   chats: {
     enabled: true,
     vibrations: true,
-    sound: {
-      enabled: true,
-      volume: 1
-    },
-    push: false,
-    native: {
-      permitted: false
-    }
-  },
-  groupChats: {
-    enabled: true,
-    vibrations: true,
-    sound: {
-      enabled: true,
-      volume: 1
-    },
-    push: false,
-    native: {
-      permitted: false
-    }
+    sound: true
   },
   groupInvites: {
     enabled: false,
     vibrations: true,
-    sound: {
-      enabled: true,
-      volume: 1
-    },
-    push: false,
-    native: {
-      permitted: false
-    }
+    sound: true
   }
 };
 
 export const notificationsSettings: Reducer<
   NotificationsSettingsState,
   NotificationsSettingsAction
-> = (
-  state = initialState,
-  action = {} as NotificationsSettingsAction
-) => {
+> = (state = initialState, action = {} as NotificationsSettingsAction) => {
   if (action.type === NotificationsSettingsActionEnum.SET_NOTF_SETTING) {
     return updateNotifications(state, action);
   }
@@ -110,22 +53,28 @@ const updateNotifications = (
   action: SetNotfAction
 ): NotificationsSettingsState => {
   const newState = {
-    ...state 
+    ...state
   };
   const { data } = action;
   const keyes = Object.keys(data) as Array<keyof NotificationsSettingsState>;
 
-  keyes.forEach(key => {
-    newState[ key ] = {
-      ...newState[ key ],
-      ...data[ key ]
+  keyes.forEach((key) => {
+    newState[key] = {
+      ...newState[key],
+      ...data[key]
     };
   });
 
   return newState;
 };
 
-export default persistReducer<ReturnType<typeof notificationsSettings>, NotificationsSettingsAction>({
-  ...getPersistConf('ne-settings-notifications'),
-  storage
-}, notificationsSettings);
+export default persistReducer<
+  ReturnType<typeof notificationsSettings>,
+  NotificationsSettingsAction
+>(
+  {
+    ...getPersistConf('ne-settings-notifications'),
+    storage
+  },
+  notificationsSettings
+);

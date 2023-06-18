@@ -1,6 +1,6 @@
 import { getMeColor, getMeUsername } from '@/selectors/user';
 import { Message, MessageStatus, MessageTypes } from '@/store/messages/types';
-import { ActionButton } from '@maeek/neutrino-design';
+import { ActionButton, SecondaryButton } from '@maeek/neutrino-design';
 import { useAccessibility } from '@maeek/neutrino-design';
 import Input, {
   InputRef
@@ -56,35 +56,48 @@ export const ComposeMessage = forwardRef(
     useImperativeHandle(ref, () => inputRef.current);
 
     const onSend = () => {
-      if (message.length > 0) {
-        const msg: Message = {
-          parentId,
-          type,
-          body: message,
-          timeSent: Date.now(),
-          timeReceived: Date.now(),
-          status: MessageStatus.NOT_SENT,
-          senderId: me,
-          uuid: v4(),
-          attachments: [],
-          read: true
-        };
-        // dispatch(addMessages([msg]));
-        console.log('sending message', {
-          type: type === MessageTypes.CHANNEL ? 1 : 0,
-          body: message,
-          toId: parentId,
-          timeSent: Date.now(),
-          uuid: msg.uuid
-        });
+      if (message.length > 0 || attachment) {
+        const attachments: {
+          type: string;
+          data: string;
+          uuid: string;
+          name: string;
+        }[] = [];
+
+        if (attachment) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const data = e.target?.result;
+            attachments.push({
+              type: attachment.type,
+              data: data?.toString() || '',
+              uuid: v4(),
+              name: attachment.name
+            });
+            setAttachment(null);
+          };
+          reader.readAsDataURL(attachment);
+        }
+
         socket?.sendMessage({
           type: type === MessageTypes.CHANNEL ? 1 : 0,
+          attachemnts: [],
           body: message,
           toId: parentId,
           timeSent: Date.now(),
-          uuid: msg.uuid
+          attachments,
+          uuid: v4()
         });
+        // if (attachment) {
+        //   socket?.sendAttachment({
+        //     attachment,
+        //     toId: parentId,
+        //     uuid: v4()
+        //   });
+        //   setAttachment(null);
+        // }
         inputRef.current?.setValue('');
+        setMessage('');
       }
     };
 
@@ -116,6 +129,19 @@ export const ComposeMessage = forwardRef(
             <AttachFileRounded />
           </ActionButton>
         )}
+        {attachment && (
+          <SecondaryButton
+            type='button'
+            className='chat-compose-action--compact chat-attachment-button'
+            onClick={() => setAttachment(null)}
+          >
+            {attachment.type.includes('image') ? (
+              <img src={URL.createObjectURL(attachment)} alt='attachment' />
+            ) : (
+              <span>{attachment.name}</span>
+            )}
+          </SecondaryButton>
+        )}
         <Input
           ref={inputRef}
           onChange={setMessage}
@@ -133,7 +159,7 @@ export const ComposeMessage = forwardRef(
             !e.shiftKey && onEnter(onSend)(e)
           }
         />
-        {message.length > 0 && (
+        {(message.length > 0 || attachment) && (
           <ActionButton
             type='button'
             className='chat-compose-action--compact'

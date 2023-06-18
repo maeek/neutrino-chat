@@ -3,14 +3,12 @@ import { useMediaQuery } from 'react-responsive';
 import { useLocation } from 'react-router-dom';
 import NavigationControlls from '@/components/common/navigation-controlls/navigation';
 import { ContextMenuWrapper } from './context-menu/context-menu-wrapper';
-import NotificationsDrawer from './drawer/';
 import { TopBarHeading } from './heading';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  isAppUITopBarHidden} from '@/selectors/app-ui';
-  import { setTopBarVisibility } from '@/store/app/ui/actions';
-  import './top-bar.scss';
+import { isAppUITopBarHidden } from '@/selectors/app-ui';
+import { setTopBarVisibility } from '@/store/app/ui/actions';
+import './top-bar.scss';
 
 export const TopBar = () => {
   const location = useLocation();
@@ -21,12 +19,9 @@ export const TopBar = () => {
   useEffect(() => {
     if (
       (isMobile &&
-      (
-        ['/me', '/'].includes(location.pathname) ||
-        location.pathname.startsWith('/settings')
-      ))
-      ||
-        location.pathname.endsWith('/chat')
+        (['/me', '/'].includes(location.pathname) ||
+          location.pathname.startsWith('/settings'))) ||
+      location.pathname.endsWith('/chat')
     ) {
       dispatch(setTopBarVisibility(true));
     }
@@ -44,7 +39,6 @@ export const TopBar = () => {
           <TopBarHeading />
         </div>
         <div className='top-bar-right'>
-          {!isMobile && <NotificationsDrawer />}
           <ContextMenuWrapper />
         </div>
       </div>
