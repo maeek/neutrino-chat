@@ -43,9 +43,9 @@ export const getFilteredUsersByQueries = createSelector(
           .filter((k) => !USER_SEARCH_EXCLUDE_KEYS.includes(k as keyof User))
           .map((k) =>
             String(c[ k as keyof User ])
-              .trim()
-              .toLocaleLowerCase()
-              .includes(val)
+              ?.trim()
+              ?.toLocaleLowerCase()
+              ?.includes(val)
           )
           .some((v) => v);
       }, true);
@@ -63,9 +63,9 @@ export const getFilteredUsers = createSelector(
 
     const sortedResults = uniq.filter(
       (c) =>
-        usernamesInGroups.includes(c.id) &&
-        usernamesInQueries.includes(c.id) &&
-        c.id.toLocaleLowerCase().includes(searchString.toLocaleLowerCase())
+        usernamesInGroups.includes(c?.id) &&
+        usernamesInQueries.includes(c?.id) &&
+        c?.id?.toLocaleLowerCase().includes(searchString?.toLocaleLowerCase())
     );
 
     return sortedResults.sort((a, b) => {
@@ -150,9 +150,9 @@ export const getFilteredChannelsByQueries = createSelector(
           .filter((k) => !CHANNEL_SEARCH_EXCLUDE_KEYS.includes(k as keyof Channel))
           .map((k) =>
             String(ch[ k as keyof Channel ])
-              .trim()
-              .toLocaleLowerCase()
-              .includes(val)
+              ?.trim()
+              ?.toLocaleLowerCase()
+              ?.includes(val)
           )
           .some((v) => v);
       }, true);
@@ -169,7 +169,7 @@ export const getFilteredChannels = createSelector(
     const sortedResults = uniq.filter(
       (ch) =>
         idsInQueries.includes(ch.name) &&
-        ch.name.toLocaleLowerCase().includes(searchString.toLocaleLowerCase())
+        ch?.name?.toLocaleLowerCase()?.includes(searchString?.toLocaleLowerCase())
     );
 
     return sortedResults.sort((a, b) => {

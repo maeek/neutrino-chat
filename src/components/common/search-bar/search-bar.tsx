@@ -34,7 +34,7 @@ export const MainSearchBar = () => {
 
   const updateQueries = useRef(
     debounce((v: string) => {
-      const qs = getKeyValues(v.trim().toLocaleLowerCase()).map((q) => {
+      const qs = getKeyValues(v?.trim().toLocaleLowerCase()).map((q) => {
         const [ fieldName, value ] = q;
 
         if (q.length === 2) {
@@ -124,7 +124,6 @@ export const MainSearchBar = () => {
         ref={suggestionsRef}
         isVisible={isFocused}
         onClose={() => setIsFocused(false)}
-        searchedValue={searchedValue}
         firstSuggestionRef={firstSuggestionsRef}
         lastSuggestionRef={lastSuggestionsRef}
         inputRef={inputRef?.current}

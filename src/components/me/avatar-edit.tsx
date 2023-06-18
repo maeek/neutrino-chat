@@ -29,7 +29,6 @@ export const EditMeAvatarModal = ({
   return (
     <ImageChange
       url={avatar ? `/api/users/${username}/avatar` : undefined}
-      title='Change Your profile picture'
       onCancel={() => setEdited?.(false)}
       isEdited={isEdited}
       setIsEdited={setEdited}

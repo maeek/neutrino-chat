@@ -14,7 +14,8 @@ export const channelsReducerMock: ChannelsState = {
       ],
       lastMessage: {
         id: 'cc00dac3-bc5f-4ff0-8649-99720a5039a4',
-        content: 'Thanks, it\'s really useful'
+        content: 'Thanks, it\'s really useful',
+        receivedDate: 0
       },
       users: [],
       blockedUsers: []
@@ -31,7 +32,8 @@ export const channelsReducerMock: ChannelsState = {
       ],
       lastMessage: {
         id: '7bf76316-7311-421e-9011-b29b75816cd7',
-        content: 'This is secret'
+        content: 'This is secret',
+        receivedDate: 0
       },
       users: [],
       blockedUsers: []
@@ -48,7 +50,8 @@ export const channelsReducerMock: ChannelsState = {
       ],
       lastMessage: {
         id: '3bd5abaa-6346-4da9-beea-953f192175ae',
-        content: 'Yeeet'
+        content: 'Yeeet',
+        receivedDate: 0
       },
       users: [],
       blockedUsers: []
