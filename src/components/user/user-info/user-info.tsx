@@ -16,6 +16,8 @@ import Navigator from '@/utils/navigation';
 import { useHistory } from 'react-router-dom';
 import { getMeUsername } from '@/selectors/user';
 import './user-info.scss';
+import { ApiMe } from '@/api/me';
+import { getMutedUsers } from '@/selectors/muted';
 
 export interface UserInfoProps {
   isMinified?: boolean;
@@ -25,24 +27,29 @@ export interface UserInfoProps {
 export const UserInfo = ({ user, isMinified }: UserInfoProps) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const loggedUser = useSelector(getMeUsername);
+  const blockedUsers = useSelector(getMutedUsers);
+  const username = useSelector(getMeUsername);
 
   const toggleBlock: MouseEventHandler = (e) => {
     e.preventDefault();
-    dispatch(modifyUsers([ { id: user.id, muted: !user.muted } ]));
+    if (!user) return;
+
+    console.log([ ...blockedUsers.filter(u => u !== user.id), user.muted ? undefined : user.id ]);
+
+    ApiMe.updateUser(username, {
+      mutedUsers: [ ...blockedUsers.filter(u => u !== user.id), user.muted ? undefined : user.id ]
+    })
+      .then((response) => {
+        console.warn(response);
+        dispatch(modifyUsers([ { id: user.id, muted: !user.muted } ]));
+      }).catch((e) => {
+        console.error(e);
+      });
   };
 
-  const blockNode = !user.muted ? (
+  const blockNode = !user.muted && user.id !== username ? (
     <>
       <div className='user-info-chips'>
-        {/* <Chip>
-          <Text
-            className='user-info-addto'
-            onClick={() => setShowGroupSelection((prev) => !prev)}
-          >
-            <GroupAddRounded /> Add to Group
-          </Text>
-        </Chip> */}
         <Chip onClick={toggleBlock}>
           <Text className='user-info-block' type='danger'>
             <BlockRounded /> Block
@@ -96,7 +103,7 @@ export const UserInfo = ({ user, isMinified }: UserInfoProps) => {
           <UsernameFull
             id={user.id}
             nickname={
-              loggedUser === user.id ? (
+              username === user.id ? (
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <span>Note to self</span>
                   <NewReleasesRounded
@@ -117,13 +124,6 @@ export const UserInfo = ({ user, isMinified }: UserInfoProps) => {
         />
       </div>
       {!isMinified && blockNode}
-
-      {/* {showGroupSelection ? (
-        <AddToGroup
-          item={user.id}
-          onDismiss={() => setShowGroupSelection((prev) => !prev)}
-        />
-      ) : null} */}
     </>
   );
 };

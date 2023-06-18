@@ -11,36 +11,12 @@ import { getMeUsername } from '@/selectors/user';
 import { addNewError } from '@/store/app/errors/actions';
 import { unifiedErrorTemplate } from '@/store/app/errors/error';
 import { ApiUsers } from '@/api/users';
-import { populateUsersCache } from '@/store/users/actions';
+import { modifyUsers, populateUsersCache } from '@/store/users/actions';
 import { ApiChannels } from '@/api/channels';
 import { addChannels } from '@/store/channels/actions';
 
 export const fetchMeBasicInfo = () => async (dispatch: Dispatch) => {
-  ApiMe.getMe()
-    .then((response) => {
-      dispatch(
-        setMeAvatar(
-          response.data?.avatar
-            ? `/api/users/${response.data?.username}/avatar`
-            : ''
-        )
-      );
-      dispatch(setMeUsername(response.data?.username || ''));
-      dispatch(setMeRole(response.data?.role || ''));
-      dispatch(setMeBio(response.data?.description || ''));
-    })
-    .catch((e: any) => {
-      console.error('Request failed with reason: ', e);
-      dispatch(
-        addNewError(
-          unifiedErrorTemplate(e.type, 'Failed to fetch user info', null, {
-            shouldLogout: [ 401, 403 ].includes(e.base.response.status)
-          })
-        )
-      );
-    });
-
-  ApiUsers.getUsers()
+  await ApiUsers.getUsers()
     .then((response) => {
       const users = response.data.items;
       const me = users.find((user) => user.username === getMeUsername());
@@ -64,6 +40,34 @@ export const fetchMeBasicInfo = () => async (dispatch: Dispatch) => {
           }))
         )
       );
+    })
+    .catch((e: any) => {
+      console.error('Request failed with reason: ', e);
+      dispatch(
+        addNewError(
+          unifiedErrorTemplate(e.type, 'Failed to fetch user info', null, {
+            shouldLogout: [ 401, 403 ].includes(e.base.response.status)
+          })
+        )
+      );
+    });
+  
+  ApiMe.getMe()
+    .then((response) => {
+      dispatch(
+        setMeAvatar(
+          response.data?.avatar
+            ? `/api/users/${response.data?.username}/avatar`
+            : ''
+        )
+      );
+      dispatch(setMeUsername(response.data?.username || ''));
+      dispatch(setMeRole(response.data?.role || ''));
+      dispatch(setMeBio(response.data?.description || ''));
+      dispatch(modifyUsers(response.data.settings?.mutedUsers?.map((user) => ({
+        id: user,
+        muted: true
+      }))));
     })
     .catch((e: any) => {
       console.error('Request failed with reason: ', e);
