@@ -137,7 +137,7 @@ export const DmListRow = ({
           loader={null}
           size={'large'}
           key={(context as User).avatar}
-          url={(context as User).avatar}
+          url={(context as User).avatar ? `/api/users/${actualId}/avatar` : ''}
           username={actualId}
           color={getHslColorFromCharCode(actualId)}
         />
