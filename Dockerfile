@@ -1,4 +1,4 @@
-FROM node:18-alpine3.14 as builder
+FROM node:18-alpine as builder
 
 WORKDIR /app
 
@@ -15,4 +15,6 @@ RUN npm install && npm run build
 
 FROM httpd
 
+
 COPY --from=builder /app/dist/ /usr/local/apache2/htdocs/
+COPY ./httpd.conf /usr/local/apache2/conf/httpd.conf
