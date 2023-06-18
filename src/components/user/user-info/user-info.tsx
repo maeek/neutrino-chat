@@ -95,7 +95,7 @@ export const UserInfo = ({ user, isMinified }: UserInfoProps) => {
           <UserAvatar
             className={!isMinified ? '' : 'reset-margin'}
             color={getHslColorFromCharCode(user.id || '')}
-            url={user.avatar}
+            url={user.avatar ? `/api/users/${user.id}/avatar` : undefined}
             size={isMinified ? 'medium' : 'extra-large'}
             expandOnClick
             loader={<Loader />}

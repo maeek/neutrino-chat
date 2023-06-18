@@ -52,7 +52,7 @@ export const UsersMgmtEntry = ({ id }: UsersMgmtEntryProps) => {
           <div className='user-mgmt-list-entry-details-avatar'>
             <UserAvatar
               color={getHslColorFromCharCode(id)}
-              url={user?.avatar}
+              url={user?.avatar ? `/api/users/${user.avatar}/avatar` : undefined}
               size={'medium'}
               username={user?.id}
             />

@@ -14,12 +14,12 @@ import { getUserById } from '@/selectors/users';
 import { ForumRounded } from '@material-ui/icons';
 import Navigator from '@/utils/navigation';
 import { useHistory, useLocation } from 'react-router-dom';
-import './chats.scss';
 import DetailsButtonShowMore from '../user/details-buttons/details-more';
 import { getChannelById } from '@/selectors/channels';
 import { RootState } from '@/store/root';
 import { User } from '@/store/users/types';
 import { Channel } from '@/store/channels/types';
+import './chats.scss';
 
 type SelectedConvoType = { id: string; type: MessageTypes };
 
@@ -101,7 +101,7 @@ export const ChatsView = () => {
                       loader={null}
                       size={'small'}
                       key={(ctx as User).id + (ctx as User).avatar}
-                      url={(ctx as User).avatar}
+                      url={(ctx as User).avatar ? `/api/users/${(ctx as User).id}/avatar` : ''}
                       username={(ctx as User).id}
                       color={getHslColorFromCharCode((ctx as User).id)}
                     />
