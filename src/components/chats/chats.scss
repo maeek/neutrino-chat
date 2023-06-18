@@ -96,6 +96,16 @@
     .user-profile-avatar-no-avatar > svg {
       font-size: var(--fs-1100);
     }
+
+    .selected-convo-list-row-avatar {
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--clr-primary-500);
+    }
   }
 }
 

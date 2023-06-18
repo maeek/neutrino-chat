@@ -54,8 +54,8 @@ export const SearchBarSuggestions = forwardRef<
 
     const isOpened = !!(
       isVisible &&
-      filteredChannels.length > 0 ||
-      filteredUsers.length > 0
+      (filteredChannels.length > 0 ||
+      filteredUsers.length > 0)
     );
 
     const classes = classnames(

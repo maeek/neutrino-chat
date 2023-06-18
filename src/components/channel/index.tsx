@@ -72,7 +72,6 @@ export const ChannelView = () => {
       <ChannelInfo
         channel={channel}
         isMinified={isInfoMinified}
-        onToggle={toggleVisibility}
       />
       {isInfoMinified && (
         <>

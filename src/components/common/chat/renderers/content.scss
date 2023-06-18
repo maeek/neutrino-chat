@@ -15,4 +15,29 @@
       object-fit: contain;
     }
   }
+
+  .attachment-download-link {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: var(--clr-basic-100);
+    text-decoration: none;
+    gap: 0.8rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--clr-primary-900);
+    border-radius: 0.4rem;
+    max-width: 35rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--clr-primary-800);
+      text-decoration: underline;
+    }
+
+    > span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
 }

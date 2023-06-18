@@ -26,4 +26,16 @@ export class ApiChannels {
         );
       });
   }
+
+  static createChannel(name: string, users: string[], isPublic?: boolean) {
+    return ApiChannels.api.instance
+      .post(`${ApiChannels.route}/group`, { name, users, public: isPublic })
+      .catch((e: any) => {
+        throw new ChatApiError(
+          e.message,
+          { error: e },
+          ApiChannelsEnum.ADD
+        );
+      });
+  }
 }

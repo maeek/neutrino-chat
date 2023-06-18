@@ -129,7 +129,7 @@ const newChannels = (
       ...(newEntries[ ch.name ] || {}),
       ...ch,
       messages: newEntries[ ch.name ]?.messages || [],
-      owner: ch.users?.[ 0 ] || ''
+      owner: ch.owner || ''
     };
   }
 

@@ -69,7 +69,6 @@ export const UserView = () => {
       <UserInfo
         user={user}
         isMinified={isInfoMinified}
-        onToggle={toggleVisibility}
       />
       {isInfoMinified && (
         <>

@@ -147,6 +147,7 @@ export const getFilteredChannelsByQueries = createSelector(
         const val = arr[ i ].value.trim().toLowerCase();
 
         return keys
+          .filter((k) => !CHANNEL_SEARCH_EXCLUDE_KEYS.includes(k as keyof Channel))
           .map((k) =>
             String(ch[ k as keyof Channel ])
               .trim()

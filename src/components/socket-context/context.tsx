@@ -1,8 +1,8 @@
-import { notifyUser } from '@/actions/notify';
+import { checkIfRefetchNeeded, notifyUser } from '@/actions/notify';
 import { getAuthToken } from '@/selectors/session';
 import { getMeUsername } from '@/selectors/user';
 import { addMessages } from '@/store/messages/actions';
-import { MessageTypes } from '@/store/messages/types';
+import { Attachment, MessageTypes } from '@/store/messages/types';
 import throttle from 'lodash.throttle';
 import {
   ReactNode,
@@ -15,6 +15,7 @@ import {
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import io, { Socket } from 'socket.io-client';
+import { dataURLToBlob } from './dataUrlToBlob';
 
 export interface SocketContext {
   socket?: Socket;
@@ -33,7 +34,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
   const dispatch = useDispatch();
   const throttleRef = useRef(
     throttle(() => {
-      dispatch(notifyUser('message'));
+      dispatch(notifyUser());
     }, 1000)
   );
 
@@ -61,7 +62,7 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
       console.log('SocketProvider', 'disconnected');
     };
 
-    const onMessage = (data: any) => {
+    const onMessage = async (data: any) => {
       console.log('SocketProvider', 'onMessage', data);
       const type = data.type ? MessageTypes.CHANNEL : MessageTypes.DIRECT;
 
@@ -75,6 +76,8 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
           parentId = data.fromId;
         }
       }
+
+      await dispatch(checkIfRefetchNeeded(parentId));
 
       dispatch(
         addMessages(
@@ -91,7 +94,10 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
               type
             }
           ],
-          data.attachments
+          data.attachments.map((a: Attachment) => ({
+            ...a,
+            uri: URL.createObjectURL(dataURLToBlob(a.uri))
+          } as Attachment))
         )
       );
 

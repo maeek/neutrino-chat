@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProceedButton from '@maeek/neutrino-design/components/buttons/Proceed';
 import { getMeUsername } from '@/selectors/user';
 import {
@@ -10,11 +10,19 @@ import {
   Text,
   useAccessibility
 } from '@maeek/neutrino-design';
-import './new-channel.scss';
 import { KeyboardEvent, useCallback, useRef, useState } from 'react';
 import { InputRef } from '@maeek/neutrino-design/components/inputs/text/Input';
 import { CloseRounded } from '@material-ui/icons';
 import { CheckboxBox } from '@/components/settings/pages/notifications/notf-switch';
+import { ApiChannels } from '@/api/channels';
+import { ErrorNotification } from '../error-notification';
+import { unifiedErrorTemplate } from '@/store/app/errors/error';
+import { addNewError } from '@/store/app/errors/actions';
+import './new-channel.scss';
+import { fetchMeBasicInfo } from '@/actions/me';
+import Navigator from '@/utils/navigation';
+import { useHistory } from 'react-router-dom';
+import { useSocketContext } from '@/components/socket-context/context';
 
 export interface MainSearchBarAddChannelModalProps {
   onClose?: () => void;
@@ -24,17 +32,35 @@ export const MainSearchBarAddChannelModal = ({
   onClose
 }: MainSearchBarAddChannelModalProps) => {
   const username = useSelector(getMeUsername);
+  const history = useHistory();
   const [ users, setUsers ] = useState<string[]>([]);
   const { onEnter } = useAccessibility();
   const usersInputRef = useRef<InputRef>(null);
   const [ channelName, setChannelName ] = useState('');
   const [ isPublic, setIsPublic ] = useState(false);
+  const dispatch = useDispatch();
+  const { joinPublicChannel } = useSocketContext();
 
   const focusOnRender = useCallback((node: HTMLDivElement) => {
     node?.focus();
   }, []);
 
-  const onCreate = () => {};
+  const onCreate = () => {
+    ApiChannels.createChannel(channelName, users, isPublic)
+      .then(async () => {
+        await dispatch(fetchMeBasicInfo());
+        onClose?.();
+        joinPublicChannel(channelName);
+        Navigator.forward(history, `/c/${channelName}/chat`);
+      })
+      .catch((e) => {
+        dispatch(
+          addNewError(
+            unifiedErrorTemplate(e.type, 'Failed to create group with specified name', null)
+          )
+        );
+      });
+  };
 
   return (
     <Modal mountPointId='modal-root'>
@@ -70,7 +96,7 @@ export const MainSearchBarAddChannelModal = ({
                 onKeyUp={onEnter((e: KeyboardEvent<HTMLInputElement>) => {
                   const t = e.target as HTMLInputElement;
                   if (!t.value) return;
-                  setUsers((prev) => [ ...new Set([ ...prev, t.value ]) ]);
+                  setUsers((prev) => [ ...prev, t.value.toLowerCase() ]);
                   usersInputRef.current?.setValue('');
                 })}
               />
@@ -81,7 +107,7 @@ export const MainSearchBarAddChannelModal = ({
                 </Text>
               </Paragraph>
               <div className='create-new-channel-users-chips'>
-                <Chip type='round' size={'large'} color='blue'>
+                <Chip type='round' size={'large'} color='blue' className='owner-chip'>
                   {username}
                 </Chip>
                 {users.map((user) => (
@@ -89,6 +115,7 @@ export const MainSearchBarAddChannelModal = ({
                     key={'new-channel-user-' + user}
                     type='round'
                     size={'large'}
+                    className='other-chip'
                     deletable
                     onDelete={() => {
                       setUsers((prev) => prev.filter((u) => u !== user));
@@ -107,11 +134,12 @@ export const MainSearchBarAddChannelModal = ({
               />
             </div>
           </div>
-          <ProceedButton disabled={channelName.length === 0}>
+          <ProceedButton disabled={channelName.length === 0} onClick={onCreate} onKeyUp={onEnter(onCreate)}>
             Create
           </ProceedButton>
         </div>
       </div>
+      <ErrorNotification />
     </Modal>
   );
 };

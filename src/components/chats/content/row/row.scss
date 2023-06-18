@@ -13,7 +13,8 @@
   cursor: pointer;
   user-select: none;
 
-  &--scrolling {
+  &--selected {
+    background-color: var(--clr-primary-700);
   }
 
   &:hover {

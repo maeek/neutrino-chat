@@ -106,10 +106,17 @@ export const ChatsView = () => {
                       color={getHslColorFromCharCode((ctx as User).id)}
                     />
                   ) : (
-                    <div className='chats-channel-avatar'>
-                      {((ctx as Channel)?.users?.length || 0) > 9
-                        ? '9+'
-                        : (ctx as Channel)?.users?.length}
+                    <div
+                      className='selected-convo-list-row-avatar'
+                      style={{
+                        color: getHslColorFromCharCode(
+                          (ctx as Channel).name || ''
+                        ),
+                        textTransform: 'capitalize',
+                        fontSize: 'var(--fs-400)'
+                      }}
+                    >
+                      {(ctx as Channel).name.substring(0, 2)}
                     </div>
                   )}
                   {selectedConvo?.type === MessageTypes.DIRECT

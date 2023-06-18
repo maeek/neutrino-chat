@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from '@/store/index';
 import Navigator from '@/utils/navigation';
-import { init } from '@/actions/init';
 import reportWebVitals from './report-web-vitals';
 import App from './App';
 import './styles/main.scss';
@@ -28,7 +27,6 @@ const run = async () => {
 };
 
 Navigator.init();
-store.dispatch(init());
 
 run();
 

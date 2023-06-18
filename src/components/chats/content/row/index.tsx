@@ -4,7 +4,7 @@ import { getUserById } from '@/selectors/users';
 import UserAvatar from '@/components/common/user-components/avatar';
 import { getHslColorFromCharCode } from '@/utils/getHslColorFromCharCode';
 import Navigator from '@/utils/navigation';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import {
   areMessagesUnreadByParentId,
@@ -19,9 +19,10 @@ import { getChannelById } from '@/selectors/channels';
 import { RootState } from '@/store/root';
 import { Channel } from '@/store/channels/types';
 import { User } from '@/store/users/types';
-import { Heading } from '@maeek/neutrino-design';
+import { Heading, useAccessibility } from '@maeek/neutrino-design';
 import { getMeUsername } from '@/selectors/user';
 import { NewReleasesRounded } from '@material-ui/icons';
+import { useMediaQuery } from 'react-responsive';
 
 dayjs.extend(relativeTime);
 
@@ -43,6 +44,10 @@ export const DmListRow = ({
   onClick
 }: DmListRowProps) => {
   const username = useSelector(getMeUsername);
+  const isMobile = useMediaQuery({ maxWidth: 1224 });
+  const { state } = useLocation<{
+    selectedConvo: { id: string; type: MessageTypes };
+  }>();
   const context = useSelector((state: RootState) => {
     if (type === MessageTypes.DIRECT) {
       return getUserById(id)(state);
@@ -50,6 +55,7 @@ export const DmListRow = ({
       return getChannelById(id, state);
     }
   });
+  const { onEnter } = useAccessibility();
   const actualId =
     type === MessageTypes.DIRECT
       ? (context as User).id
@@ -113,9 +119,16 @@ export const DmListRow = ({
     <div
       className={classNames(
         'dm-list-row',
-        isScrolling && 'dm-list-row--scrolling'
+        isScrolling && 'dm-list-row--scrolling',
+        {
+          'dm-list-row--selected':
+            !isMobile &&
+            state?.selectedConvo?.id === actualId &&
+            state?.selectedConvo?.type === type
+        }
       )}
       onClick={handleClick}
+      onKeyUp={onEnter(handleClick)}
       style={style}
       tabIndex={0}
     >
@@ -129,10 +142,15 @@ export const DmListRow = ({
           color={getHslColorFromCharCode(actualId)}
         />
       ) : (
-        <div className='dm-list-row-avatar'>
-          {((context as Channel)?.users?.length || 0) > 9
-            ? '9+'
-            : (context as Channel)?.users?.length}
+        <div
+          className='dm-list-row-avatar'
+          style={{
+            color: getHslColorFromCharCode((context as Channel).name || ''),
+            textTransform: 'capitalize',
+            fontSize: 'var(--fs-800)'
+          }}
+        >
+          {(context as Channel).name.substring(0, 2)}
         </div>
       )}
       <div

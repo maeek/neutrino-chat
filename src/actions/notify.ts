@@ -1,8 +1,11 @@
+import { getChannelById } from '@/selectors/channels';
+import { getUserById } from '@/selectors/users';
 import { RootState } from '@/store/root';
 import { Dispatch } from 'redux';
+import { fetchMeBasicInfo } from './me';
 
 export const notifyUser =
-  (_type?: 'message') => (dispatch: Dispatch, getState: () => RootState) => {
+  () => (dispatch: Dispatch, getState: () => RootState) => {
     const { sound, vibrations, enabled } =
       getState().settings.notifications.chats;
 
@@ -20,3 +23,15 @@ export const notifyUser =
       }
     }
   };
+
+export const checkIfRefetchNeeded =
+  (parentId: string) =>
+    async (dispatch: Dispatch<any>, getState: () => RootState) => {
+      const state = getState();
+      const user = getUserById(parentId)(state);
+      const channel = getChannelById(parentId, state);
+
+      if (!user && !channel) {
+        return dispatch(fetchMeBasicInfo());
+      }
+    };
