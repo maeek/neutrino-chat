@@ -17,13 +17,13 @@ export const UsersCards = ({ onSelected }: UsersCardsProps) => {
   return usersIds.length > 0 &&
     (selectedCategory === FilterCategory.USER ||
       selectedCategory === FilterCategory.ALL) ? (
-    <div className='cards'>
-      <Heading level={3} className='main-side-filter-heading'>
+      <div className='cards'>
+        <Heading level={3} className='main-side-filter-heading'>
         Messages
-      </Heading>
-      <DmList onSelected={onSelected} />
-    </div>
-  ) : null;
+        </Heading>
+        <DmList onSelected={onSelected} />
+      </div>
+    ) : null;
 };
 
 export default UsersCards;

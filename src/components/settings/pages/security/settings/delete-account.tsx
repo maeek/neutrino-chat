@@ -17,8 +17,8 @@ import { logout } from '@/actions/auth';
 
 export const DeleteAccountSetting = () => {
   const username = useSelector(getMeUsername);
-  const [inProcess, setInProcess] = useState(false);
-  const [confirmed, setConfirmed] = useState(false);
+  const [ inProcess, setInProcess ] = useState(false);
+  const [ confirmed, setConfirmed ] = useState(false);
   const { onEnter } = useAccessibility();
   const inputRef = useRef<InputRef>(null);
   const dispatch = useDispatch();

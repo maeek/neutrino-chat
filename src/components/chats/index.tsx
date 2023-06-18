@@ -27,7 +27,7 @@ export const ChatsView = () => {
   const history = useHistory();
   const { state } = useLocation<{ selectedConvo: SelectedConvoType }>();
   const isMobile = useMediaQuery({ maxWidth: 1224 });
-  const [selectedConvo, setSelectedConvo] = useState<SelectedConvoType>();
+  const [ selectedConvo, setSelectedConvo ] = useState<SelectedConvoType>();
   const ctx = useSelector((state: RootState) => {
     if (selectedConvo?.type === MessageTypes.DIRECT) {
       return getUserById(selectedConvo?.id || '')(state);
@@ -40,7 +40,7 @@ export const ChatsView = () => {
     if (!isMobile && state?.selectedConvo) {
       setSelectedConvo(state.selectedConvo);
     }
-  }, [isMobile, state]);
+  }, [ isMobile, state ]);
 
   useEffect(() => {
     if (!isMobile) {
@@ -54,7 +54,7 @@ export const ChatsView = () => {
       document.body.style.overflow = 'auto';
       document.body.classList.remove('desktop-1224');
     };
-  }, [isMobile]);
+  }, [ isMobile ]);
 
   const navToUserDetails = () => {
     Navigator.forward(
@@ -83,7 +83,7 @@ export const ChatsView = () => {
                 onSelected={(id, type) => {
                   if (!isMobile) {
                     setSelectedConvo({ id, type });
-                    Navigator.forward(history, `/`, {
+                    Navigator.forward(history, '/', {
                       selectedConvo: { id, type }
                     });
                   }

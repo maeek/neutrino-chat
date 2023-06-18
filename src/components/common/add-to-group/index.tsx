@@ -34,7 +34,7 @@ export const AddToGroup = ({
     const isInGroup = group.items.find((gi) => gi.id === item);
 
     if (isInGroup) {
-      dispatch(removeMembersFromGroup(group.name, [item]));
+      dispatch(removeMembersFromGroup(group.name, [ item ]));
     } else {
       dispatch(
         addMembersToGroup(group.name, [

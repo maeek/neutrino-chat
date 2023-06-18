@@ -30,8 +30,6 @@ export const DmList = ({ onSelected }: UserDmListProps) => {
     []
   );
 
-  console.log(IdsAndTypesTuple);
-
   return IdsAndTypesTuple.length > 0 ? (
     <WindowScroller scrollElement={window}>
       {({ height, isScrolling, registerChild, onChildScroll, scrollTop }) =>
@@ -65,9 +63,9 @@ export const DmList = ({ onSelected }: UserDmListProps) => {
                               <DmListRow
                                 isScrolling={isScrolling}
                                 key={key}
-                                id={IdsAndTypesTuple[index][0]}
+                                id={IdsAndTypesTuple[ index ][ 0 ]}
                                 type={
-                                  IdsAndTypesTuple[index][1] as MessageTypes
+                                  IdsAndTypesTuple[ index ][ 1 ] as MessageTypes
                                 }
                                 measure={measure}
                                 onClick={onSelected}

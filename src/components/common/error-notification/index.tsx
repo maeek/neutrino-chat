@@ -30,7 +30,6 @@ export const ErrorNotification = () => {
     }, 2000);
   }, []);
 
-  console.log(errors.list);
   if (errors.list.length === 0) {
     return null;
   }

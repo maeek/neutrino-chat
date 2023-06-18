@@ -2,7 +2,7 @@ import { ClearMe, UserActionsEnum } from '@/store/me/user/types';
 import mutedReducerMock from './mock';
 import { MutedActionsEnum, MutedActionTypes, MutedState } from './types';
 
-export const initialState: MutedState = !!import.meta.env.VITE_DEMO ? mutedReducerMock : {
+export const initialState: MutedState = import.meta.env.VITE_DEMO ? mutedReducerMock : {
   channels: [],
   users: []
 };

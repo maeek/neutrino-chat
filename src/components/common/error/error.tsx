@@ -12,13 +12,13 @@ interface GenericErrorProps {
 }
 
 export const GenericError = ({ message }: GenericErrorProps) => {
-  const [isShown, setShown] = useState(false);
+  const [ isShown, setShown ] = useState(false);
 
   useEffect(() => {
     if (!message) return;
 
     console.error('Unexpected error occured\n\n', message);
-  }, [message]);
+  }, [ message ]);
 
   return (
     <div className='common-error'>

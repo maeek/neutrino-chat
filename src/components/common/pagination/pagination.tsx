@@ -27,7 +27,7 @@ export const Pagination = ({
           <ArrowLeftRounded />
         </Text>
       </li>
-      {[...Array(maxPages).keys()]
+      {[ ...Array(maxPages).keys() ]
         .slice(
           Math.max(0, page > 4 ? page - 4 : 0),
           Math.min(

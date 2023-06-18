@@ -14,7 +14,7 @@ export interface NoNetworkBannerProps {
 export const NoNetworkBanner: any = (props: NoNetworkBannerProps) => {
   const { children } = props;
   const isConnected = useConnection();
-  const [isHidden, setIsHidden] = useState(false);
+  const [ isHidden, setIsHidden ] = useState(false);
   const portalNode = document.querySelector('#connection-root');
 
   const hideNotification = () => {

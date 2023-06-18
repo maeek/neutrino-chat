@@ -38,7 +38,7 @@ export const SettingsPageTemplate = ({
     return () => {
       dispatch(setMobileBottomNavVisibility(false));
     };
-  }, [dispatch, isMobile]);
+  }, [ dispatch, isMobile ]);
 
   return (
     <div className={classNames('settings-page-content', className)}>

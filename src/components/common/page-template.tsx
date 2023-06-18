@@ -78,7 +78,7 @@ export class PageTemplate extends Component<PageTemplateProps, PageTemplateState
     }
 
     const contentNode = (
-      <main className={classNames("page-root", this.props.className)}>
+      <main className={classNames('page-root', this.props.className)}>
         {
           this.props.children
         }

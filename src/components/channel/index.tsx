@@ -27,7 +27,7 @@ export const ChannelView = () => {
   );
   const inputRef = useRef<InputRef>(null);
   const dispatch = useDispatch();
-  const [isInfoMinified, setIsInfoMinified] = useState(true);
+  const [ isInfoMinified, setIsInfoMinified ] = useState(true);
 
   const toggleVisibility = () => {
     if (isInfoMinified) {
@@ -56,7 +56,7 @@ export const ChannelView = () => {
         dispatch(setTopBarVisibility(false));
       }
     };
-  }, [dispatch, location]);
+  }, [ dispatch, location ]);
 
   if (!channel) {
     return <></>;

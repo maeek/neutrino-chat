@@ -23,16 +23,16 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
   const { search } = useLocation<{ method: string }>();
   const method = useMemo(
     () => new URLSearchParams(search)?.get('method') || '',
-    [search]
+    [ search ]
   );
   const doesNotSupportWebAuthn = useMemo(() => browserSupportsWebAuthn(), []);
   const loginRef = useRef<any>();
   const passwordRef = useRef<any>();
   const passwordRepeatRef = useRef<any>();
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordRepeat, setPasswordRepeat] = useState('');
+  const [ username, setUsername ] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ passwordRepeat, setPasswordRepeat ] = useState('');
 
   const clickOnFocus = (elementToFocus: MutableRefObject<any>) => () => {
     if (elementToFocus.current) elementToFocus.current.element.focus();
@@ -51,12 +51,12 @@ export const RegisterFormBox = ({ onRegister }: RegisterFormBoxProps) => {
 
   const validatePasswords = useCallback(
     (): boolean => password.length > 0 && password === passwordRepeat,
-    [password, passwordRepeat]
+    [ password, passwordRepeat ]
   );
 
   const validateUsername = useCallback(
     (): boolean => !/[#@",?!{}/\\~*()]/.test(username) && username.length > 2,
-    [username]
+    [ username ]
   );
 
   const onRegisterHandler = () => {

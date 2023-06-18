@@ -25,7 +25,7 @@ export const MobileBottomNav = () => {
   const location = useLocation();
   const history = useHistory();
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [position, setPosition] = useState<number | null>(null);
+  const [ position, setPosition ] = useState<number | null>(null);
   const refs = useRef<MutableRefObject<HTMLDivElement>[]>([]);
   const isHidden = useSelector(isAppUIMobileBottonNavHidden);
   const { pathname } = location;
@@ -41,17 +41,17 @@ export const MobileBottomNav = () => {
 
   const onClick =
     (link?: string): MouseEventHandler =>
-    (e) => {
-      e.preventDefault();
-      Navigator.forward(history, link || '');
-    };
+      (e) => {
+        e.preventDefault();
+        Navigator.forward(history, link || '');
+      };
 
   const buttons = navConfig.map(({ name, link, icon }, i) => {
-    refs.current[i] = refs.current[i] || createRef();
+    refs.current[ i ] = refs.current[ i ] || createRef();
 
     return (
       <MobileBottomNavButton
-        ref={refs.current[i]}
+        ref={refs.current[ i ]}
         key={link}
         onClick={onClick}
         link={link}
@@ -65,16 +65,16 @@ export const MobileBottomNav = () => {
   const positionThumb = useCallback(() => {
     const path = location.pathname.substr(1).split('/');
     const btnIndex = navConfig.findIndex((conf) => {
-      return path[0] === conf.link.substr(1);
+      return path[ 0 ] === conf.link.substr(1);
     });
 
-    if (!refs.current[btnIndex]?.current) return;
+    if (!refs.current[ btnIndex ]?.current) return;
 
-    const btn = refs.current[btnIndex].current;
+    const btn = refs.current[ btnIndex ].current;
     const { left } = btn.getBoundingClientRect();
 
     setPosition(left);
-  }, [location.pathname, navConfig]);
+  }, [ location.pathname, navConfig ]);
 
   useEffect(() => {
     if (!isMobile) return;
@@ -85,7 +85,7 @@ export const MobileBottomNav = () => {
     return () => {
       window.removeEventListener('resize', positionThumb);
     };
-  }, [isMobile, positionThumb]);
+  }, [ isMobile, positionThumb ]);
 
   return isMobile ? (
     <nav

@@ -23,7 +23,7 @@ export const SwitchStoreWrapper = (props: SwitchStoreWrapperProps) => {
   const onChangeHandler = (f: string, val: boolean) => {
     if (disabled) return;
 
-    dispatch(setNotifications(f, { [innerField]: val }));
+    dispatch(setNotifications(f, { [ innerField ]: val }));
     checkboxRef.current?.setChecked(val);
   };
 
@@ -32,7 +32,7 @@ export const SwitchStoreWrapper = (props: SwitchStoreWrapperProps) => {
       {...props}
       ref={checkboxRef}
       onChange={onChangeHandler}
-      checked={setting[innerField]}
+      checked={setting[ innerField ]}
     />
   );
 };

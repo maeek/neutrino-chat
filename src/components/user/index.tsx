@@ -28,7 +28,7 @@ export const UserView = () => {
   const user = useSelector(getUserById(username));
   const inputRef = useRef<InputRef>(null);
   const dispatch = useDispatch();
-  const [isInfoMinified, setIsInfoMinified] = useState(true);
+  const [ isInfoMinified, setIsInfoMinified ] = useState(true);
 
   const toggleVisibility = () => {
     if (isInfoMinified) {
@@ -57,7 +57,7 @@ export const UserView = () => {
         dispatch(setTopBarVisibility(false));
       }
     };
-  }, [dispatch, location]);
+  }, [ dispatch, location ]);
 
   if (!user) {
     return <></>;

@@ -25,7 +25,7 @@ export interface UsersMgmtEntryProps {
 
 export const UsersMgmtEntry = ({ id }: UsersMgmtEntryProps) => {
   const user = useSelector(getUserById(id));
-  const [context, setContext] = useState(false);
+  const [ context, setContext ] = useState(false);
   const contextRef = useRef<HTMLElement>();
   const dispatch = useDispatch();
 
@@ -46,7 +46,7 @@ export const UsersMgmtEntry = ({ id }: UsersMgmtEntryProps) => {
 
         ApiUsers.removeUser(id)
           .then(() => {
-            dispatch(deleteUsersCache([id]));
+            dispatch(deleteUsersCache([ id ]));
             dispatch(fetchMeBasicInfo());
           })
           .catch((e) => console.error(e));

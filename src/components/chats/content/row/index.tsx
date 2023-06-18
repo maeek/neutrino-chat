@@ -81,7 +81,7 @@ export const DmListRow = ({
   useEffect(() => {
     if (!measure) return;
     return measure();
-  }, [measure]);
+  }, [ measure ]);
 
   const renderLastMessage = () => {
     if (!lastMessage) {
@@ -92,10 +92,8 @@ export const DmListRow = ({
       lastMessage.senderId === username
         ? 'You: '
         : lastMessage.type === MessageTypes.CHANNEL
-        ? `${lastMessage.senderId}: `
-        : '';
-
-    console.log(lastMessage);
+          ? `${lastMessage.senderId}: `
+          : '';
 
     if (lastMessage.attachments.length > 0) {
       return (

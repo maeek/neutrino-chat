@@ -38,7 +38,7 @@ export const NotificationsDrawerWrapper = ({
       if (hadOverflow) document.body.style.overflow = hadOverflow || 'auto';
       document.body.style.paddingRight = '0';
     };
-  }, [isOpened, isMobile]);
+  }, [ isOpened, isMobile ]);
 
   return (
     <Drawer

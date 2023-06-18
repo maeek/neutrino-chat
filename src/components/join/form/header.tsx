@@ -11,7 +11,7 @@ export const RegisterFormHeader = () => {
   const { search } = useLocation<{ method: string }>();
   const method = useMemo(
     () => new URLSearchParams(search)?.get('method') || '',
-    [search]
+    [ search ]
   );
 
   const redirectToWebAuthn = (e: MouseEvent<HTMLSpanElement>) => {

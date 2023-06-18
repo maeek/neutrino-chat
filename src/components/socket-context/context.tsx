@@ -1,8 +1,8 @@
 import { notifyUser } from '@/actions/notify';
 import { getAuthToken } from '@/selectors/session';
 import { getMeUsername } from '@/selectors/user';
-import { addAttachemnts, addMessages } from '@/store/messages/actions';
-import { Attachment, MessageTypes } from '@/store/messages/types';
+import { addMessages } from '@/store/messages/actions';
+import { MessageTypes } from '@/store/messages/types';
 import throttle from 'lodash.throttle';
 import {
   ReactNode,
@@ -38,7 +38,6 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
   );
 
   useEffect(() => {
-    console.log('SocketProvider', { authToken, username });
     if (!authToken || !username) return;
 
     const skt = io('/', {
@@ -97,7 +96,6 @@ export const SocketProvider = ({ children }: { children: ReactNode }) => {
       );
 
       if (data.fromId !== username) {
-        console.log('should notify');
         throttleRef.current();
       }
     };

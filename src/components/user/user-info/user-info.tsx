@@ -37,7 +37,7 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
 
   const toggleBlock: MouseEventHandler = (e) => {
     e.preventDefault();
-    dispatch(modifyUsers([{ id: user.id, muted: !user.muted }]));
+    dispatch(modifyUsers([ { id: user.id, muted: !user.muted } ]));
   };
 
   const blockNode = !user.muted ? (
@@ -74,7 +74,7 @@ export const UserInfo = ({ user, isMinified, onToggle }: UserInfoProps) => {
     </>
   );
 
-  const goBack = () => Navigator.forward(history, `/`);
+  const goBack = () => Navigator.forward(history, '/');
 
   const backNode = isMinified ? (
     <div className='user-info-back' onClick={goBack}>

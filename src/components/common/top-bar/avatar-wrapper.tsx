@@ -39,7 +39,7 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
 
       if (redirect) Navigator.forward(history, '/me');
     },
-    [onClick, redirect, history]
+    [ onClick, redirect, history ]
   );
 
   const onEnter = useCallback(
@@ -49,7 +49,7 @@ export const AvatarWrapper = (props: AvatarWrapperProps) => {
         else fn();
       }
     },
-    [onClick]
+    [ onClick ]
   );
 
   const noAvatar = (

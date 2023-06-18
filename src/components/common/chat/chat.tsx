@@ -18,7 +18,7 @@ export interface ChatProps {
 }
 
 export const Chat = ({ type, parentId }: ChatProps) => {
-  const [hasFocus, setHasFocus] = useState(true);
+  const [ hasFocus, setHasFocus ] = useState(true);
   const messages = useSelector(getMessagesByParentId(parentId)) || [];
   const myId = useSelector(getMeUsername);
   const users = useSelector(getUsers);
@@ -33,7 +33,7 @@ export const Chat = ({ type, parentId }: ChatProps) => {
       onClick: () => {},
       children: (
         <ContextMenu
-          items={[{ text: 'Remove', icon: <DeleteForeverRounded /> }]}
+          items={[ { text: 'Remove', icon: <DeleteForeverRounded /> } ]}
         />
       )
     }
@@ -52,7 +52,7 @@ export const Chat = ({ type, parentId }: ChatProps) => {
         );
       });
     }
-  }, [messages, hasFocus, dispatch, myId]);
+  }, [ messages, hasFocus, dispatch, myId ]);
 
   useEffect(() => {
     const handleFocus = () => setHasFocus(true);
@@ -70,11 +70,10 @@ export const Chat = ({ type, parentId }: ChatProps) => {
   }, []);
 
   useEffect(() => {
-    console.log('joining channel', parentId, type);
     if (type === MessageTypes.CHANNEL && isConnected) {
       joinPublicChannel(parentId);
     }
-  }, [type, parentId, joinPublicChannel, isConnected]);
+  }, [ type, parentId, joinPublicChannel, isConnected ]);
 
   return (
     <div
@@ -97,16 +96,16 @@ export const Chat = ({ type, parentId }: ChatProps) => {
           }
           type={message.senderId === myId ? 'sender' : 'recipient'}
           inBulk={
-            arr[i - 1]?.senderId === message.senderId ||
-            arr[i + 1]?.senderId === message.senderId
+            arr[ i - 1 ]?.senderId === message.senderId ||
+            arr[ i + 1 ]?.senderId === message.senderId
           }
-          isFirstInBulk={arr[i - 1]?.senderId !== message.senderId}
+          isFirstInBulk={arr[ i - 1 ]?.senderId !== message.senderId}
           isLastInBulk={
-            !arr[i + 1] || arr[i + 1]?.senderId !== message.senderId
+            !arr[ i + 1 ] || arr[ i + 1 ]?.senderId !== message.senderId
           }
           avatar={
             type === MessageTypes.CHANNEL &&
-            users[message.senderId].avatar &&
+            users[ message.senderId ].avatar &&
             message.senderId !== myId &&
             `/api/users/${message.senderId}/avatar`
           }

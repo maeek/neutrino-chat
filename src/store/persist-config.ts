@@ -14,7 +14,7 @@ export const getPersistConf = (key: string): PersistConfig<any> => ({
   storage: localforage,
   debug: import.meta.env.MODE === 'development',
   stateReconciler: autoMergeLevel2,
-  blacklist: ['lastMessage']
+  blacklist: [ 'lastMessage' ]
 });
 
 export default getPersistConf;

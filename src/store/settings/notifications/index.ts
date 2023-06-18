@@ -59,9 +59,9 @@ const updateNotifications = (
   const keyes = Object.keys(data) as Array<keyof NotificationsSettingsState>;
 
   keyes.forEach((key) => {
-    newState[key] = {
-      ...newState[key],
-      ...data[key]
+    newState[ key ] = {
+      ...newState[ key ],
+      ...data[ key ]
     };
   });
 

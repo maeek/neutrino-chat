@@ -25,11 +25,11 @@ export const MainSearchBarAddChannelModal = ({
   onClose
 }: MainSearchBarAddChannelModalProps) => {
   const username = useSelector(getMeUsername);
-  const [users, setUsers] = useState<string[]>([]);
+  const [ users, setUsers ] = useState<string[]>([]);
   const { onEnter } = useAccessibility();
   const usersInputRef = useRef<InputRef>(null);
-  const [channelName, setChannelName] = useState('');
-  const [isPublic, setIsPublic] = useState(false);
+  const [ channelName, setChannelName ] = useState('');
+  const [ isPublic, setIsPublic ] = useState(false);
   const dispatch = useDispatch();
 
   const focusOnRender = useCallback((node: HTMLDivElement) => {
@@ -72,7 +72,7 @@ export const MainSearchBarAddChannelModal = ({
                 onKeyUp={onEnter((e: KeyboardEvent<HTMLInputElement>) => {
                   const t = e.target as HTMLInputElement;
                   if (!t.value) return;
-                  setUsers((prev) => [...new Set([...prev, t.value])]);
+                  setUsers((prev) => [ ...new Set([ ...prev, t.value ]) ]);
                   usersInputRef.current?.setValue('');
                 })}
               />

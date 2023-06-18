@@ -17,7 +17,7 @@ const RestrictedRoute = ({ children }: RestrictedRouteProps) => {
   const isAuthenticated = useSelector(
     (state: RootState) => !!getAuthToken(state) && !!getAuthRefreshToken(state)
   );
-  const [fetched, setFetched] = useState<'idle' | 'fetching' | 'done'>('idle');
+  const [ fetched, setFetched ] = useState<'idle' | 'fetching' | 'done'>('idle');
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const RestrictedRoute = ({ children }: RestrictedRouteProps) => {
   useLayoutEffect(() => {
     if (!isAuthenticated) {
       console.warn(
-        "You're not authenticated, redirecting to /login from...",
+        'You\'re not authenticated, redirecting to /login from...',
         location
       );
 
@@ -34,7 +34,7 @@ const RestrictedRoute = ({ children }: RestrictedRouteProps) => {
         from: { pathname: location.pathname }
       });
     }
-  }, [history, isAuthenticated, location]);
+  }, [ history, isAuthenticated, location ]);
 
   useEffect(() => {
     if (fetched === 'idle') {
@@ -48,13 +48,13 @@ const RestrictedRoute = ({ children }: RestrictedRouteProps) => {
         }
       })();
     }
-  }, [isAuthenticated, dispatch, fetched]);
+  }, [ isAuthenticated, dispatch, fetched ]);
 
   useEffect(() => {
     if (errors.filter((e) => e.shouldLogout).length > 0) {
       dispatch(logout());
     }
-  }, [errors, dispatch]);
+  }, [ errors, dispatch ]);
 
   return <SocketProvider>{children}</SocketProvider>;
 };

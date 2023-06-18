@@ -23,7 +23,7 @@ export const BackgroundImage = (props: BackgroundImageProps) => {
     objectFit = 'cover',
     ...rest
   } = props;
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [ isLoaded, setIsLoaded ] = useState(false);
 
   const styles = {
     opacity: isLoaded ? opacity : 0.5,

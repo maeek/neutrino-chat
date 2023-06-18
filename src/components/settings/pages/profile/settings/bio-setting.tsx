@@ -15,8 +15,8 @@ export const BioSetting = () => {
   const dispath = useDispatch();
   const username = useSelector(getMeUsername);
   const bioText = useSelector(getMeBio);
-  const [isEdited, setIsEdited] = useState(false);
-  const [content, setContent] = useState(bioText);
+  const [ isEdited, setIsEdited ] = useState(false);
+  const [ content, setContent ] = useState(bioText);
   const { onEnter } = useAccessibility();
   const inputRef = useRef<HTMLTextAreaElement>(null);
 

@@ -19,8 +19,8 @@ export const ChangePasswordSetting = () => {
   const username = useSelector(getMeUsername);
   const prevInputRef = useRef<InputRef>(null);
   const newInputRef = useRef<InputRef>(null);
-  const [prevPassword, setPrevPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
+  const [ prevPassword, setPrevPassword ] = useState('');
+  const [ newPassword, setNewPassword ] = useState('');
   const { onEnter } = useAccessibility();
 
   const onChangePassword = async () => {

@@ -8,12 +8,12 @@ import './avatar-setting.scss';
 
 export const AvatarSetting = () => {
   const avatarUrl = useSelector(getMeAvatar);
-  const [isEdited, setIsEdited] = useState(false);
+  const [ isEdited, setIsEdited ] = useState(false);
   const inputRef = useRef<InputRef>(null);
 
   useEffect(() => {
     inputRef?.current?.setValue(avatarUrl);
-  }, [avatarUrl]);
+  }, [ avatarUrl ]);
 
   return (
     <div className='setting-avatar-preview-container'>

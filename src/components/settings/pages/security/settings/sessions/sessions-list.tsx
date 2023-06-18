@@ -4,7 +4,6 @@ import { Input, usePagination } from '@maeek/neutrino-design';
 import { Pagination } from '@/components/common/pagination/pagination';
 import './sessions-list.scss';
 import classNames from 'classnames';
-import { ApiMe } from '@/api/me';
 
 export interface SessionsListProps {
   sessions: any[];
@@ -14,23 +13,21 @@ export interface SessionsListProps {
 const PER_PAGE = 5;
 
 export const SessionsList = ({ sessions, updateList }: SessionsListProps) => {
-  const [search, setSearch] = useState('');
+  const [ search, setSearch ] = useState('');
 
   const sessionMemo = useMemo(
     () =>
       sessions.filter((session: any) =>
         session.device.toLowerCase().includes(search.toLowerCase())
       ),
-    [search, sessions]
+    [ search, sessions ]
   );
 
   const { page, currentPage, goToPage, nextPage, prevPage } = usePagination<
     (typeof sessions)[number]
-  >(sessionMemo, PER_PAGE);
+      >(sessionMemo, PER_PAGE);
   const maxPagesUnfiltered = Math.ceil(sessions.length / PER_PAGE);
   const maxPages = Math.ceil(sessionMemo.length / PER_PAGE);
-
-  console.log(sessionMemo);
 
   return (
     <>
@@ -40,7 +37,6 @@ export const SessionsList = ({ sessions, updateList }: SessionsListProps) => {
         placeholder='Search active sessions'
         className='settings-sessions-search'
         onChange={(e: string) => {
-          console.log(e);
           setSearch(e);
           goToPage(0);
         }}

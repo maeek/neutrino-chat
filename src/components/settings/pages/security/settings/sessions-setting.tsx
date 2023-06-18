@@ -14,9 +14,9 @@ import { unifiedErrorTemplate } from '@/store/app/errors/error';
 import './sessions-setting.scss';
 
 export const SessionsSetting = () => {
-  const [sessions, setSessions] = useState<any>([]);
+  const [ sessions, setSessions ] = useState<any>([]);
   const { onEnter } = useAccessibility();
-  const [isFetching, setIsFetching] = useState(false);
+  const [ isFetching, setIsFetching ] = useState(false);
   const dispatch = useDispatch();
 
   const clearSessions = async () => {
@@ -35,7 +35,7 @@ export const SessionsSetting = () => {
         dispatch(
           addNewError(
             unifiedErrorTemplate(e.type, 'Failed to load sessions', null, {
-              shouldLogout: [401, 403].includes(e.base.response.status)
+              shouldLogout: [ 401, 403 ].includes(e.base.response.status)
             })
           )
         );
@@ -49,7 +49,7 @@ export const SessionsSetting = () => {
     if (sessions.length === 0 && !isFetching) {
       updateList();
     }
-  }, [sessions]);
+  }, [ sessions ]);
 
   return (
     <div className='setting-sessions-preview-container'>

@@ -7,7 +7,7 @@ export const getNotificationsSettings = (state: RootState) =>
 
 export const getNotificationsSettingsByKey = (
   key: keyof NotificationsSettingsState
-) => createSelector(getNotificationsSettings, (settings) => settings[key]);
+) => createSelector(getNotificationsSettings, (settings) => settings[ key ]);
 
 export const mentionsNotificationsSettings = (state: RootState) =>
   state.settings.notifications.mentions;

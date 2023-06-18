@@ -18,7 +18,6 @@ import { addChannels } from '@/store/channels/actions';
 export const fetchMeBasicInfo = () => async (dispatch: Dispatch) => {
   ApiMe.getMe()
     .then((response) => {
-      console.log('response', response.data);
       dispatch(
         setMeAvatar(
           response.data?.avatar
@@ -35,7 +34,7 @@ export const fetchMeBasicInfo = () => async (dispatch: Dispatch) => {
       dispatch(
         addNewError(
           unifiedErrorTemplate(e.type, 'Failed to fetch user info', null, {
-            shouldLogout: [401, 403].includes(e.base.response.status)
+            shouldLogout: [ 401, 403 ].includes(e.base.response.status)
           })
         )
       );
@@ -43,8 +42,6 @@ export const fetchMeBasicInfo = () => async (dispatch: Dispatch) => {
 
   ApiUsers.getUsers()
     .then((response) => {
-      console.log('response', response.data);
-
       const users = response.data.items;
       const me = users.find((user) => user.username === getMeUsername());
 
@@ -73,7 +70,7 @@ export const fetchMeBasicInfo = () => async (dispatch: Dispatch) => {
       dispatch(
         addNewError(
           unifiedErrorTemplate(e.type, 'Failed to fetch user info', null, {
-            shouldLogout: [401, 403].includes(e.base.response.status)
+            shouldLogout: [ 401, 403 ].includes(e.base.response.status)
           })
         )
       );
@@ -84,7 +81,7 @@ export const fetchMeBasicInfo = () => async (dispatch: Dispatch) => {
       dispatch(addChannels(res.data.items));
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
     });
 };
 
@@ -103,7 +100,7 @@ export const uploadAvatar =
         dispatch(
           addNewError(
             unifiedErrorTemplate(e.type, 'Failed to update avatar', null, {
-              shouldLogout: [401, 403].includes(e.base.response.status)
+              shouldLogout: [ 401, 403 ].includes(e.base.response.status)
             })
           )
         );
@@ -119,7 +116,6 @@ export const updateMeBasicInfo =
   (username: string, body: any) => (dispatch: Dispatch) => {
     return ApiMe.updateUser(username, body)
       .then((response) => {
-        console.log('response', response.data);
         dispatch(setMeBio(response.data?.description || ''));
         dispatch(
           setMeAvatar(
@@ -132,7 +128,7 @@ export const updateMeBasicInfo =
         dispatch(
           addNewError(
             unifiedErrorTemplate(e.type, 'Failed to update user info', null, {
-              shouldLogout: [401, 403].includes(e.base.response.status)
+              shouldLogout: [ 401, 403 ].includes(e.base.response.status)
             })
           )
         );

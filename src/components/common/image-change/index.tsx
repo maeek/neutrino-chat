@@ -25,9 +25,9 @@ export const ImageChange = ({
   setIsEdited,
   forceAspectRatio
 }: ImageChangeProps) => {
-  const [originalImg, setOriginalImg] = useState(url);
-  const [currentImgFile, setCurrentImgFile] = useState<File>();
-  const [currentImg, setCurrentImg] = useState(url || '');
+  const [ originalImg, setOriginalImg ] = useState(url);
+  const [ currentImgFile, setCurrentImgFile ] = useState<File>();
+  const [ currentImg, setCurrentImg ] = useState(url || '');
   const ref = useRef<{ clear: () => void }>(null);
 
   const savingIsBlocked = !isEdited;
@@ -58,9 +58,9 @@ export const ImageChange = ({
   };
 
   const fileSelect = useCallback((files: FileList | null) => {
-    if (files?.[0]) {
-      setCurrentImgFile(files[0]);
-      setCurrentImg(URL.createObjectURL(files[0]));
+    if (files?.[ 0 ]) {
+      setCurrentImgFile(files[ 0 ]);
+      setCurrentImg(URL.createObjectURL(files[ 0 ]));
       setIsEdited?.(true);
     }
   }, []);
@@ -75,7 +75,7 @@ export const ImageChange = ({
         URL.revokeObjectURL(url);
       }
     };
-  }, [url, originalImg]);
+  }, [ url, originalImg ]);
 
   return (
     <section className='image-change-wrapper'>

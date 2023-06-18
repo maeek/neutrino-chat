@@ -19,7 +19,7 @@ export const TopBar = () => {
   useEffect(() => {
     if (
       (isMobile &&
-        (['/me', '/'].includes(location.pathname) ||
+        ([ '/me', '/' ].includes(location.pathname) ||
           location.pathname.startsWith('/settings'))) ||
       location.pathname.endsWith('/chat')
     ) {
@@ -29,7 +29,7 @@ export const TopBar = () => {
     return () => {
       dispatch(setTopBarVisibility(false));
     };
-  }, [isMobile, location.pathname]);
+  }, [ isMobile, location.pathname ]);
 
   return (
     <nav className={classNames('top-bar', !isHidden && 'top-bar--visible')}>

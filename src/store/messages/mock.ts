@@ -25,7 +25,7 @@ export const messagesMock: MessagesState = {
       timeSent: Date.now() - 9000,
       body: 'Lorem ipsum sil dolor a met',
       mentions: [],
-      attachments: ['81df5623-4fa2-423d-a109-4930e7fde301'],
+      attachments: [ '81df5623-4fa2-423d-a109-4930e7fde301' ],
       read: true
     },
     '653440af-60fc-4ebb-88a5-67f98d209691': {
@@ -37,7 +37,7 @@ export const messagesMock: MessagesState = {
       timeReceived: Date.now() - 8000,
       timeSent: Date.now() - 8000,
       body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-      mentions: ['bop'],
+      mentions: [ 'bop' ],
       attachments: [],
       read: true
     },
@@ -103,7 +103,7 @@ export const messagesMock: MessagesState = {
       timeSent: Date.now() - 3670,
       body: 'Look at this meme',
       mentions: [],
-      attachments: ['a925630e-bab7-4f01-8804-f087e3dd341e'],
+      attachments: [ 'a925630e-bab7-4f01-8804-f087e3dd341e' ],
       read: true
     },
     '88832d5c-d6ed-4d54-9e1a-94e3db235f57': {

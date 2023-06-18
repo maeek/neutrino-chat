@@ -20,7 +20,7 @@ export const JoinView = (props: JoinViewProps) => {
   const { from } = props;
   const history = useHistory();
   const dispatch = useDispatch();
-  const [registrationEnabled, setRegistrationEnabled] = useState(false);
+  const [ registrationEnabled, setRegistrationEnabled ] = useState(false);
 
   useEffect(() => {
     ApiAdmin.getConfig()

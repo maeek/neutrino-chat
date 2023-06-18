@@ -51,8 +51,8 @@ export const ProfileQuickLinks = () => {
           <li
             className='nav-item'
             tabIndex={0}
-            onClick={navigate(`/settings/server`)}
-            onKeyUp={onEnter(navigate(`/settings/server`))}
+            onClick={navigate('/settings/server')}
+            onKeyUp={onEnter(navigate('/settings/server'))}
           >
             <div className='icon'>
               <SettingsApplicationsRounded />
@@ -62,8 +62,8 @@ export const ProfileQuickLinks = () => {
           <li
             className='nav-item'
             tabIndex={0}
-            onClick={navigate(`/settings/audit`)}
-            onKeyUp={onEnter(navigate(`/settings/audit`))}
+            onClick={navigate('/settings/audit')}
+            onKeyUp={onEnter(navigate('/settings/audit'))}
           >
             <div className='icon'>
               <VisibilityRounded />

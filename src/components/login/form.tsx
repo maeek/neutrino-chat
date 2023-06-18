@@ -25,7 +25,7 @@ export const LoginForm = (props: LoginFormProps) => {
   const { search } = useLocation<{ method: string }>();
   const method = useMemo(
     () => new URLSearchParams(search)?.get('method') || '',
-    [search]
+    [ search ]
   );
   const doesNotSupportWebAuthn = useMemo(() => browserSupportsWebAuthn(), []);
   const savedUsername = useMemo(
@@ -77,13 +77,13 @@ export const LoginForm = (props: LoginFormProps) => {
     if (doesNotSupportWebAuthn) {
       Navigator.replace(history, '/login');
     }
-  }, [doesNotSupportWebAuthn, history]);
+  }, [ doesNotSupportWebAuthn, history ]);
 
   useEffect(() => {
     if (savedUsername) {
       loginRef.current?.setValue(savedUsername);
     }
-  }, [savedUsername, method]);
+  }, [ savedUsername, method ]);
 
   return (
     <div className='form-login'>

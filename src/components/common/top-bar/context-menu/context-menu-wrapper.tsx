@@ -19,7 +19,7 @@ import './context-menu-wrapper.scss';
 
 export const ContextMenuWrapper = () => {
   const isMobile = useMediaQuery({ maxWidth: 768 });
-  const [showContext, setShowContext] = useState(false);
+  const [ showContext, setShowContext ] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -27,7 +27,7 @@ export const ContextMenuWrapper = () => {
     (link: string) => () => {
       Navigator.forward(history, link);
     },
-    [history]
+    [ history ]
   );
 
   const toggleMenu = useCallback(() => {
@@ -36,11 +36,11 @@ export const ContextMenuWrapper = () => {
     } else {
       setShowContext(!showContext);
     }
-  }, [isMobile, history, showContext]);
+  }, [ isMobile, history, showContext ]);
 
   const closeContextMenu = useCallback(
     () => setShowContext(false),
-    [setShowContext]
+    [ setShowContext ]
   );
 
   const items: ContextMenuItems[] = [

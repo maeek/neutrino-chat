@@ -53,50 +53,50 @@ export const SearchBarSuggestionsList = ({
 
   const onClick =
     (link: string): MouseEventHandler =>
-    (e) => {
-      e.preventDefault();
-      Navigator.forward(history, link);
-    };
+      (e) => {
+        e.preventDefault();
+        Navigator.forward(history, link);
+      };
 
   const onKeyDown =
     (link: string, i: number): KeyboardEventHandler =>
-    (e) => {
-      if (['Enter', ' '].includes(e.code)) {
-        e.preventDefault();
-        onClick(link)(e as never);
-      } else if (e.code === 'ArrowDown') {
-        e.preventDefault();
-        if (
-          listRefs.current.length > i + 1 &&
-          listRefs.current[i + 1]?.current
-        ) {
-          listRefs.current[i + 1].current.focus();
-        } else {
-          if (inputRef?.element) {
-            (inputRef.element as unknown as HTMLInputElement).focus();
+      (e) => {
+        if ([ 'Enter', ' ' ].includes(e.code)) {
+          e.preventDefault();
+          onClick(link)(e as never);
+        } else if (e.code === 'ArrowDown') {
+          e.preventDefault();
+          if (
+            listRefs.current.length > i + 1 &&
+          listRefs.current[ i + 1 ]?.current
+          ) {
+            listRefs.current[ i + 1 ].current.focus();
+          } else {
+            if (inputRef?.element) {
+              (inputRef.element as unknown as HTMLInputElement).focus();
+            }
           }
-        }
-      } else if (e.code === 'ArrowUp') {
-        e.preventDefault();
-        if (i - 1 >= 0 && listRefs.current[i - 1]?.current) {
-          listRefs.current[i - 1].current.focus();
-        } else {
-          if (inputRef?.element) {
-            (inputRef.element as unknown as HTMLInputElement).focus();
+        } else if (e.code === 'ArrowUp') {
+          e.preventDefault();
+          if (i - 1 >= 0 && listRefs.current[ i - 1 ]?.current) {
+            listRefs.current[ i - 1 ].current.focus();
+          } else {
+            if (inputRef?.element) {
+              (inputRef.element as unknown as HTMLInputElement).focus();
+            }
           }
-        }
-      } else if (e.code === 'Escape') {
-        e.preventDefault();
-        if (inputRef?.element) {
+        } else if (e.code === 'Escape') {
+          e.preventDefault();
+          if (inputRef?.element) {
           // @ts-ignore
-          inputRef?.element?.focus();
-        }
+            inputRef?.element?.focus();
+          }
 
-        if (onClose) {
-          onClose();
+          if (onClose) {
+            onClose();
+          }
         }
-      }
-    };
+      };
 
   return list.length > 0 ? (
     <>
@@ -114,7 +114,7 @@ export const SearchBarSuggestionsList = ({
               ref = createRef();
             }
 
-            listRefs.current[i] = ref;
+            listRefs.current[ i ] = ref;
 
             const renderChannelOwner =
               type === SuggestionItemTypes.CHANNEL ? (

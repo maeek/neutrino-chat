@@ -18,7 +18,7 @@ export const SessionsListEntry = ({
   updateList
 }: SessionsListEntryProps) => {
   const onRemoveSession = async () => {
-    await ApiMe.deleteSessions([id]);
+    await ApiMe.deleteSessions([ id ]);
     updateList();
   };
 

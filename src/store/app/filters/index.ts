@@ -3,7 +3,7 @@ import { Reducer } from 'redux';
 import filtersReducerMock from './mock';
 import { FilterCategory, FiltersAction, FiltersActionsEnum, FiltersState } from './types';
 
-export const initialState: FiltersState = !!import.meta.env.VITE_DEMO ? filtersReducerMock : {
+export const initialState: FiltersState = import.meta.env.VITE_DEMO ? filtersReducerMock : {
   search: '',
   category: FilterCategory.ALL,
   group: '',

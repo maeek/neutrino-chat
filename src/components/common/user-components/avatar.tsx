@@ -35,18 +35,18 @@ export const UserAvatar = ({
   loader = <Loader />,
   size = 'extra-large'
 }: UserAvatarProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [ isExpanded, setIsExpanded ] = useState(false);
 
   const getStatus = () => {
     switch (status) {
-      case UserStatusEnum.ACTIVE:
-        return 'Online';
-      case UserStatusEnum.AWAY:
-        return 'Away';
-      case UserStatusEnum.OFFLINE:
-        return 'Offline';
-      default:
-        return 'Unknown';
+    case UserStatusEnum.ACTIVE:
+      return 'Online';
+    case UserStatusEnum.AWAY:
+      return 'Away';
+    case UserStatusEnum.OFFLINE:
+      return 'Offline';
+    default:
+      return 'Unknown';
     }
   };
 

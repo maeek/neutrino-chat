@@ -14,7 +14,7 @@ export const channelsReducerMock: ChannelsState = {
       ],
       lastMessage: {
         id: 'cc00dac3-bc5f-4ff0-8649-99720a5039a4',
-        content: "Thanks, it's really useful"
+        content: 'Thanks, it\'s really useful'
       },
       users: [],
       blockedUsers: []

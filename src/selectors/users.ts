@@ -12,4 +12,4 @@ export const getUsersIds = createSelector(getUsers, (users) =>
 );
 
 export const getUserById = (id: string) =>
-  createSelector(getUsers, (users) => users[id]);
+  createSelector(getUsers, (users) => users[ id ]);

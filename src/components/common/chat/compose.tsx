@@ -55,8 +55,8 @@ export const ComposeMessage = forwardRef(
     const { onEnter } = useAccessibility();
     const inputRef = useRef<InputRef>(null);
     const dispatch = useDispatch();
-    const [message, setMessage] = useState<string>('');
-    const [attachment, setAttachment] = useState<File | null>(null);
+    const [ message, setMessage ] = useState<string>('');
+    const [ attachment, setAttachment ] = useState<File | null>(null);
 
     useImperativeHandle(ref, () => inputRef.current);
 
@@ -101,7 +101,7 @@ export const ComposeMessage = forwardRef(
       const fileInput = document.createElement('input');
       fileInput.type = 'file';
       fileInput.onchange = (e: any) => {
-        const file = e.target.files[0];
+        const file = e.target.files[ 0 ];
         if (file) {
           setAttachment(file);
         }
@@ -145,9 +145,9 @@ export const ComposeMessage = forwardRef(
           onFocus={
             !isMinified
               ? (e: FocusEvent<HTMLInputElement>) => {
-                  onFocus?.(e);
-                  toggleVisibility?.();
-                }
+                onFocus?.(e);
+                toggleVisibility?.();
+              }
               : onFocus
           }
           placeholder={placeholder || 'Type a message'}

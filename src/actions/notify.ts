@@ -6,8 +6,6 @@ export const notifyUser =
     const { sound, vibrations, enabled } =
       getState().settings.notifications.chats;
 
-    console.log(sound, vibrations, enabled);
-
     if (enabled && sound) {
       const sound = new Audio('/chat-sound.ogg');
       sound.volume = 1;

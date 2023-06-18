@@ -13,82 +13,82 @@ import {
   RemoveMessages
 } from './types';
 
-export const initialState: MessagesState = !!import.meta.env.VITE_DEMO
+export const initialState: MessagesState = import.meta.env.VITE_DEMO
   ? messagesMock
   : {
-      list: {},
-      attachments: {}
-    };
+    list: {},
+    attachments: {}
+  };
 
 export const messages: Reducer<MessagesState, MessagesActionsType> = (
   state = initialState,
   action = {} as MessagesActionsType
 ) => {
   switch (action.type) {
-    case MessagesActionsEnum.ADD_MESSAGES:
-      return {
-        list: {
-          ...state.list,
-          ...Object.fromEntries(action.data.messages.map((ms) => [ms.uuid, ms]))
-        },
-        attachments: {
-          ...state.attachments,
-          ...Object.fromEntries(
-            action.data.attachments
-              ? action.data.attachments.map((at) => [at.uuid, at])
-              : []
-          )
+  case MessagesActionsEnum.ADD_MESSAGES:
+    return {
+      list: {
+        ...state.list,
+        ...Object.fromEntries(action.data.messages.map((ms) => [ ms.uuid, ms ]))
+      },
+      attachments: {
+        ...state.attachments,
+        ...Object.fromEntries(
+          action.data.attachments
+            ? action.data.attachments.map((at) => [ at.uuid, at ])
+            : []
+        )
+      }
+    };
+
+  case MessagesActionsEnum.ADD_ATTACHMENTS:
+    return {
+      list: {
+        ...state.list,
+        [ action.data.messageId ]: {
+          ...state.list[ action.data.messageId ],
+          attachments: [
+            ...state.list[ action.data.messageId ].attachments,
+            ...action.data.attachments.map((at) => at.uuid)
+          ]
         }
-      };
+      },
+      attachments: {
+        ...Object.fromEntries(
+          action.data.attachments.map((at) => [ at.uuid, at ])
+        )
+      }
+    };
 
-    case MessagesActionsEnum.ADD_ATTACHMENTS:
-      return {
-        list: {
-          ...state.list,
-          [action.data.messageId]: {
-            ...state.list[action.data.messageId],
-            attachments: [
-              ...state.list[action.data.messageId].attachments,
-              ...action.data.attachments.map((at) => at.uuid)
-            ]
-          }
-        },
-        attachments: {
-          ...Object.fromEntries(
-            action.data.attachments.map((at) => [at.uuid, at])
-          )
+  case MessagesActionsEnum.REMOVE_MESSAGES:
+    return removeMessages(state, action);
+
+  case MessagesActionsEnum.REMOVE_ATTACHMENTS:
+    return removeAttachments(state, action);
+
+  case MessagesActionsEnum.MODIFY_MESSAGE:
+    return modifyMessage(state, action);
+
+  case MessagesActionsEnum.UPDATE_MESSAGE_STATUS:
+    return {
+      ...state,
+      list: {
+        ...state.list,
+        [ action.data.messageId ]: {
+          ...state.list[ action.data.messageId ],
+          status: action.data.status
         }
-      };
+      }
+    };
 
-    case MessagesActionsEnum.REMOVE_MESSAGES:
-      return removeMessages(state, action);
+  case MessagesActionsEnum.ADD_MESSAGE_REACTIONS:
+    return addMessageReactions(state, action);
 
-    case MessagesActionsEnum.REMOVE_ATTACHMENTS:
-      return removeAttachments(state, action);
+  case MessagesActionsEnum.REMOVE_MESSAGE_REACTIONS:
+    return removeMessageReactions(state, action);
 
-    case MessagesActionsEnum.MODIFY_MESSAGE:
-      return modifyMessage(state, action);
-
-    case MessagesActionsEnum.UPDATE_MESSAGE_STATUS:
-      return {
-        ...state,
-        list: {
-          ...state.list,
-          [action.data.messageId]: {
-            ...state.list[action.data.messageId],
-            status: action.data.status
-          }
-        }
-      };
-
-    case MessagesActionsEnum.ADD_MESSAGE_REACTIONS:
-      return addMessageReactions(state, action);
-
-    case MessagesActionsEnum.REMOVE_MESSAGE_REACTIONS:
-      return removeMessageReactions(state, action);
-
-    default:
-      return state;
+  default:
+    return state;
   }
 };
 
@@ -99,10 +99,10 @@ const removeMessages = (
   const newState = { ...state };
 
   for (const id of action.data.ids) {
-    const ms = newState.list[id];
+    const ms = newState.list[ id ];
 
     for (const at of ms.attachments) {
-      delete newState.attachments[at];
+      delete newState.attachments[ at ];
     }
 
     delete ms.body;
@@ -123,10 +123,10 @@ const removeAttachments = (
 
   for (const aid of action.data.ids) {
     // Revoke uri
-    delete newState.attachments[aid];
+    delete newState.attachments[ aid ];
   }
 
-  const ms = newState.list[action.data.messageId];
+  const ms = newState.list[ action.data.messageId ];
   ms.attachments = ms.attachments.filter((id) => !action.data.ids.includes(id));
 
   return newState;
@@ -138,7 +138,7 @@ const addMessageReactions = (
 ): MessagesState => {
   const newState = { ...state };
 
-  const ms = newState.list[action.data.messageId];
+  const ms = newState.list[ action.data.messageId ];
   ms.reactions = [
     ...(ms.reactions || []),
     ...action.data.reactions.filter(
@@ -155,7 +155,7 @@ const removeMessageReactions = (
 ): MessagesState => {
   const newState = { ...state };
 
-  const ms = newState.list[action.data.messageId];
+  const ms = newState.list[ action.data.messageId ];
   ms.reactions = (ms.reactions || []).filter((react) =>
     action.data.reactionsIds.includes(react.uuid)
   );
@@ -169,8 +169,8 @@ const modifyMessage = (
 ): MessagesState => {
   const newState = { ...state };
 
-  newState.list[action.data.uuid] = {
-    ...newState.list[action.data.uuid],
+  newState.list[ action.data.uuid ] = {
+    ...newState.list[ action.data.uuid ],
     ...action.data
   };
 

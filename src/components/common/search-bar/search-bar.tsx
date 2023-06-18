@@ -21,7 +21,7 @@ const getKeyValues = (v: string) => {
 
 export const MainSearchBar = () => {
   const dispatch = useDispatch();
-  const [isFocused, setIsFocused] = useState(false);
+  const [ isFocused, setIsFocused ] = useState(false);
   const searchedValue = useSelector(getFiltersSearch);
   const inputRef = useRef<any>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
@@ -35,7 +35,7 @@ export const MainSearchBar = () => {
   const updateQueries = useRef(
     debounce((v: string) => {
       const qs = getKeyValues(v.trim().toLocaleLowerCase()).map((q) => {
-        const [fieldName, value] = q;
+        const [ fieldName, value ] = q;
 
         if (q.length === 2) {
           return {
@@ -46,7 +46,7 @@ export const MainSearchBar = () => {
 
         return {
           fieldName: '',
-          value: q[0]
+          value: q[ 0 ]
         };
       });
 
@@ -59,7 +59,7 @@ export const MainSearchBar = () => {
       dispatch(setFilterSearch(v));
       updateQueries.current(v);
     },
-    [dispatch]
+    [ dispatch ]
   );
 
   const handleAccessibility = (e: KeyboardEvent) => {

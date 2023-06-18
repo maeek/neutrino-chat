@@ -30,7 +30,7 @@ export class ApiInstance {
   private _handleRequest(config: AxiosRequestConfig): AxiosRequestConfig {
     const token = getAuthToken();
     if (token && config?.headers) {
-      config.headers['Authorization'] = `${token}`;
+      config.headers[ 'Authorization' ] = `${token}`;
     }
 
     return config;

@@ -26,10 +26,10 @@ export const SettingsPage = ({ children }: SettingsPageProps) => {
   const history = useHistory();
 
   useLayoutEffect(() => {
-    if (['/settings', '/settings/'].includes(pathname)) {
+    if ([ '/settings', '/settings/' ].includes(pathname)) {
       Navigator.replace(history, '/settings/profile');
     }
-  }, [history, pathname]);
+  }, [ history, pathname ]);
 
   return (
     <PageTemplate

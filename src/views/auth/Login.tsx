@@ -30,7 +30,7 @@ export const LoginPage = (props: LoginPageProps) => {
 
   if (isAuthenticated) {
     console.warn(
-      "You're already authenticated, redirecting to...",
+      'You\'re already authenticated, redirecting to...',
       from?.pathname || '/'
     );
     setTimeout(() => Navigator.replace(history, from?.pathname || '/'), 0);

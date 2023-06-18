@@ -15,16 +15,16 @@ const PER_PAGE = 10;
 
 export const UsersMgmt = () => {
   const users = useSelector(getUsersIds);
-  const [search, setSearch] = useState('');
+  const [ search, setSearch ] = useState('');
   const usersMemo = useMemo(
     () =>
       users.filter((user) => user.toLowerCase().includes(search.toLowerCase())),
-    [search, users]
+    [ search, users ]
   );
 
   const { page, currentPage, goToPage, nextPage, prevPage } = usePagination<
     (typeof users)[number]
-  >(usersMemo, PER_PAGE);
+      >(usersMemo, PER_PAGE);
   const maxPages = Math.ceil(usersMemo.length / PER_PAGE);
 
   return (
@@ -37,7 +37,6 @@ export const UsersMgmt = () => {
         placeholder='Search users'
         className='settings-users-search'
         onChange={(e: string) => {
-          console.log(e);
           setSearch(e);
           goToPage(0);
         }}

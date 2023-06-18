@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { ApiAdmin } from '@/api/admin';
 
 export const SettingsServerMgmt = () => {
-  const [checkbox, setCheckbox] = useState(false);
+  const [ checkbox, setCheckbox ] = useState(false);
 
   useEffect(() => {
     ApiAdmin.getConfig()

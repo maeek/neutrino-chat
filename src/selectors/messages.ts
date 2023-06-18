@@ -16,7 +16,7 @@ export const getAttachments = createSelector(
 
 export const getMessageById = (id?: string) =>
   createSelector(getMessages, (messages) =>
-    id ? messages[id] || ({} as Message) : ({} as Message)
+    id ? messages[ id ] || ({} as Message) : ({} as Message)
   );
 
 export const getMessagesList = createSelector(getMessagesState, (state) =>
@@ -24,7 +24,7 @@ export const getMessagesList = createSelector(getMessagesState, (state) =>
 );
 
 export const getMessagesByIds = (ids: string[]) =>
-  createSelector(getMessages, (messages) => ids.map((msid) => messages[msid]));
+  createSelector(getMessages, (messages) => ids.map((msid) => messages[ msid ]));
 
 export const getMessagesByParentId = (parentId: string) =>
   createSelector(getMessagesList, (messages) =>
@@ -48,12 +48,12 @@ export const getMessagesUnreadForParent = (parentId: string) =>
 export const areMessagesUnreadByParentId = (parentId: string) =>
   createSelector(
     getMessagesByParentId(parentId),
-    (messages) => ![...messages].pop()?.read
+    (messages) => ![ ...messages ].pop()?.read
   );
 
 export const getAttachmentsByMessageId = (messageId: string) =>
   createSelector(
     getMessageById(messageId),
     getAttachments,
-    (message, attachments) => message.attachments?.map((id) => attachments[id])
+    (message, attachments) => message.attachments?.map((id) => attachments[ id ])
   );

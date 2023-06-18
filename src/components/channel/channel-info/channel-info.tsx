@@ -22,7 +22,7 @@ export const ChannelInfo = ({
 }: UserInfoProps) => {
   const history = useHistory();
 
-  const goBack = () => Navigator.forward(history, `/`);
+  const goBack = () => Navigator.forward(history, '/');
 
   const backNode = isMinified ? (
     <div className='user-info-back' onClick={goBack}>

@@ -36,13 +36,13 @@ export const getFilteredUsersByQueries = createSelector(
   (users, qs) =>
     Object.values(users).filter((c) => {
       return qs.reduce((_prev: boolean, _, i, arr) => {
-        const keys = !arr[i].fieldName ? Object.keys(c) : [arr[i].fieldName];
-        const val = arr[i].value.trim().toLowerCase();
+        const keys = !arr[ i ].fieldName ? Object.keys(c) : [ arr[ i ].fieldName ];
+        const val = arr[ i ].value.trim().toLowerCase();
 
         return keys
           .filter((k) => !USER_SEARCH_EXCLUDE_KEYS.includes(k as keyof User))
           .map((k) =>
-            String(c[k as keyof User])
+            String(c[ k as keyof User ])
               .trim()
               .toLocaleLowerCase()
               .includes(val)
@@ -57,7 +57,7 @@ export const getFilteredUsers = createSelector(
   getFilteredUsersByQueries,
   getFiltersSearch,
   (usersByGroup, usersByQueries, searchString) => {
-    const uniq = [...new Set([...usersByGroup, ...usersByQueries])];
+    const uniq = [ ...new Set([ ...usersByGroup, ...usersByQueries ]) ];
     const usernamesInGroups = usersByGroup.filter(Boolean).map((c) => c.id);
     const usernamesInQueries = usersByQueries.filter(Boolean).map((c) => c.id);
 
@@ -143,12 +143,12 @@ export const getFilteredChannelsByQueries = createSelector(
         (k) => !CHANNEL_SEARCH_EXCLUDE_KEYS.includes(k as keyof Channel)
       );
       return qs.reduce((_prev: boolean, _, i, arr) => {
-        const keys = !arr[i].fieldName ? searchInKeys : [arr[i].fieldName];
-        const val = arr[i].value.trim().toLowerCase();
+        const keys = !arr[ i ].fieldName ? searchInKeys : [ arr[ i ].fieldName ];
+        const val = arr[ i ].value.trim().toLowerCase();
 
         return keys
           .map((k) =>
-            String(ch[k as keyof Channel])
+            String(ch[ k as keyof Channel ])
               .trim()
               .toLocaleLowerCase()
               .includes(val)
@@ -162,7 +162,7 @@ export const getFilteredChannels = createSelector(
   getFilteredChannelsByQueries,
   getFiltersSearch,
   (channelsByQueries, searchString) => {
-    const uniq = [...channelsByQueries];
+    const uniq = [ ...channelsByQueries ];
     const idsInQueries = channelsByQueries.map((ch) => ch.name);
 
     const sortedResults = uniq.filter(
@@ -218,7 +218,7 @@ export const getSortedListByMessages = createSelector(
   getFilteredUsers,
   getFilteredChannels,
   (users, channels) => {
-    const sortedResult = [...users, ...channels];
+    const sortedResult = [ ...users, ...channels ];
 
     sortedResult.sort((a, b) => {
       const nameA = ((a as User).id || (a as Channel).name).toUpperCase();

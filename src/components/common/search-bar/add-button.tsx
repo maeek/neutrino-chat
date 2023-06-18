@@ -10,7 +10,7 @@ import { useState } from 'react';
 export const MainSearchBarAddButton = () => {
   const { onEnter } = useAccessibility();
   const meColor = useSelector(getMeColor);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
 
   const addNewChannel = () => {
     setIsModalOpen(true);
